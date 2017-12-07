@@ -27,9 +27,9 @@ class ETLoginViewController: ETBaseViewController, UITextFieldDelegate {
         self.vPassword.layer.cornerRadius = radius
         self.btnLogin.layer.cornerRadius = radius
 
-        let color = UIColor(red: 109 / 255, green: 137 / 255, blue: 175 / 255, alpha: 0.4).cgColor
-        self.vUsername.layer.borderColor = color
-        self.vPassword.layer.borderColor = color
+        self.vUsername.layer.borderColor = UIColor.et_borderColor.cgColor
+        self.vPassword.layer.borderColor = UIColor.et_borderColor.cgColor
+        self.btnLogin.backgroundColor = UIColor.et_blueColor
 
         let width: CGFloat = 1
         self.vUsername.layer.borderWidth = width

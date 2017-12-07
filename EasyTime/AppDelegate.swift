@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        IQKeyboardManager.sharedManager().enable = true
         configureScreens();
         return true
     }
@@ -46,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Private
     func configureScreens() {
-        UINavigationBar.appearance().barTintColor = UIColor.navigationColor
+        UINavigationBar.appearance().barTintColor = UIColor.et_blueColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
 
         window = UIWindow(frame: UIScreen.main.bounds)

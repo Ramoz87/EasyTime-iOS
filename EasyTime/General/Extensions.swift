@@ -9,7 +9,8 @@
 import UIKit
 
 extension UIColor {
-    static let navigationColor = UIColor(red: 62/255, green: 142/255, blue: 215/255, alpha: 1.0)
+    static let et_blueColor = UIColor(red: 62/255, green: 142/255, blue: 215/255, alpha: 1.0)
+    static let et_borderColor = UIColor(red: 109 / 255, green: 137 / 255, blue: 175 / 255, alpha: 0.4)
 }
 
 extension UIView {
