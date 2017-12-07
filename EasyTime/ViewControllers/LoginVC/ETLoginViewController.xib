@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ETLoginViewController" customModule="EasyTime" customModuleProvider="target">
             <connections>
+                <outlet property="btnForgotPassword" destination="kuQ-ya-78O" id="X7b-ik-Ibq"/>
                 <outlet property="btnLogin" destination="lbO-XR-222" id="eC4-fV-AE9"/>
                 <outlet property="tfPassword" destination="Erf-e4-zB0" id="b1j-Ug-84v"/>
                 <outlet property="tfUsername" destination="3iH-w4-0A0" id="rZP-7j-etd"/>

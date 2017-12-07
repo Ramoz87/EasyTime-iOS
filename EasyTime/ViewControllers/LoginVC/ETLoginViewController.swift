@@ -15,6 +15,7 @@ class ETLoginViewController: ETBaseViewController, UITextFieldDelegate {
     @IBOutlet weak var vPassword: UIView!
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet weak var btnLogin: UIButton!
+    @IBOutlet weak var btnForgotPassword: UIButton!
 
     let viewModel = ETLoginViewModel()
 
@@ -37,6 +38,7 @@ class ETLoginViewController: ETBaseViewController, UITextFieldDelegate {
         self.tfUsername.placeholder = NSLocalizedString("Username", comment: "")
         self.tfPassword.placeholder = NSLocalizedString("Password", comment: "")
         self.btnLogin.setTitle(NSLocalizedString("LOG IN", comment: ""), for: .normal)
+        self.btnForgotPassword.setTitle(NSLocalizedString("Forgot password?", comment: ""), for: .normal)
     }
 
     //MARK:- Action handlers
