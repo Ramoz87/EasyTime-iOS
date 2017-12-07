@@ -48,6 +48,10 @@ class ETLoginViewController: ETBaseViewController, UITextFieldDelegate {
         }
     }
 
+    @IBAction func forgotPassord(sender: Any) {
+
+    }
+
     //MARK: - UITextFieldDelegate
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

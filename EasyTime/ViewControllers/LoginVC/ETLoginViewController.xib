@@ -103,13 +103,12 @@
                         <constraint firstItem="Erf-e4-zB0" firstAttribute="leading" secondItem="1Dd-XP-rjl" secondAttribute="leading" constant="12" id="stD-is-L2q"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbO-XR-222">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lbO-XR-222">
                     <rect key="frame" x="12" y="373" width="351" height="54"/>
                     <color key="backgroundColor" red="0.24313725490196078" green="0.55686274509803924" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="54" id="IN4-ec-v17"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <state key="normal" title="SIGN IN">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -117,20 +116,45 @@
                         <action selector="loginWithSender:" destination="-1" eventType="touchUpInside" id="SNC-aO-ea9"/>
                     </connections>
                 </button>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loginIcon" translatesAutoresizingMaskIntoConstraints="NO" id="an5-Yb-55K">
+                    <rect key="frame" x="309" y="373" width="54" height="54"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="54" id="ZF5-73-Dji"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuQ-ya-78O">
+                    <rect key="frame" x="12" y="457" width="351" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="fSC-GN-JRZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="Forgot password?">
+                        <color key="titleColor" red="0.42745098039215684" green="0.53725490196078429" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="forgotPassordWithSender:" destination="-1" eventType="touchUpInside" id="lbu-57-BKw"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="2qb-SS-YF9" firstAttribute="top" secondItem="j11-Vg-eZV" secondAttribute="bottom" id="3W9-bz-eID"/>
+                <constraint firstItem="kuQ-ya-78O" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="74l-xe-xTf"/>
                 <constraint firstItem="1Dd-XP-rjl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="833-Qg-1wd"/>
                 <constraint firstItem="2qb-SS-YF9" firstAttribute="width" secondItem="j11-Vg-eZV" secondAttribute="width" id="DmD-qh-spW"/>
                 <constraint firstItem="B6N-bh-cGH" firstAttribute="top" secondItem="2qb-SS-YF9" secondAttribute="bottom" constant="57" id="Dxe-Pg-SbJ"/>
                 <constraint firstItem="2qb-SS-YF9" firstAttribute="centerX" secondItem="j11-Vg-eZV" secondAttribute="centerX" id="KjQ-iN-eLC"/>
                 <constraint firstItem="j11-Vg-eZV" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="S5m-lM-hZJ"/>
+                <constraint firstItem="an5-Yb-55K" firstAttribute="trailing" secondItem="lbO-XR-222" secondAttribute="trailing" id="S9H-4w-lSW"/>
                 <constraint firstItem="B6N-bh-cGH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="W8n-gk-Ick"/>
                 <constraint firstItem="j11-Vg-eZV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="WTt-Kz-tIz"/>
                 <constraint firstItem="lbO-XR-222" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="WbW-i8-uQN"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kuQ-ya-78O" secondAttribute="trailing" constant="12" id="awU-X1-KY2"/>
+                <constraint firstItem="kuQ-ya-78O" firstAttribute="top" secondItem="lbO-XR-222" secondAttribute="bottom" constant="30" id="c15-sD-N6b"/>
+                <constraint firstItem="an5-Yb-55K" firstAttribute="height" secondItem="lbO-XR-222" secondAttribute="height" id="da5-jq-cNM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="B6N-bh-cGH" secondAttribute="trailing" constant="12" id="fK9-on-fAV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lbO-XR-222" secondAttribute="trailing" constant="12" id="jgV-2X-ZNQ"/>
+                <constraint firstItem="an5-Yb-55K" firstAttribute="centerY" secondItem="lbO-XR-222" secondAttribute="centerY" id="jyC-ax-D8d"/>
                 <constraint firstItem="lbO-XR-222" firstAttribute="top" secondItem="1Dd-XP-rjl" secondAttribute="bottom" constant="9" id="vqE-f2-VGg"/>
                 <constraint firstItem="1Dd-XP-rjl" firstAttribute="top" secondItem="B6N-bh-cGH" secondAttribute="bottom" constant="9" id="wA4-Ye-2qA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1Dd-XP-rjl" secondAttribute="trailing" constant="12" id="wht-Nf-N9K"/>
@@ -140,6 +164,7 @@
         </view>
     </objects>
     <resources>
+        <image name="loginIcon" width="17" height="13"/>
         <image name="loginPasswordIcon" width="14" height="18"/>
         <image name="loginUsernameIcon" width="19" height="17"/>
     </resources>
