@@ -48,22 +48,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func configureScreens() {
         UINavigationBar.appearance().barTintColor = UIColor.navigationColor
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
-        
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
-        
-        
+
         let rootController = ETTabBarViewController()
         
-        let ctrlProjects = ETProjectsViewController()
-        ctrlProjects.tabBarItem = UITabBarItem(title: NSLocalizedString("Projects", comment: ""), image: nil, selectedImage: nil)
-        let ctrlMaterials = ETMaterialsViewController()
-        ctrlMaterials.tabBarItem = UITabBarItem(title: NSLocalizedString("Materials", comment: ""), image: nil, selectedImage: nil)
-        let ctrlClients = ETClientsViewController()
-        ctrlClients.tabBarItem = UITabBarItem(title: NSLocalizedString("Clients", comment: ""), image: nil, selectedImage: nil)
-        let ctrlSettings = ETSettingsViewController()
-        ctrlSettings.tabBarItem = UITabBarItem(title: NSLocalizedString("Settings", comment: ""), image: nil, selectedImage: nil)
+        var ctrl: UIViewController = ETProjectsViewController()
+        ctrl.title = NSLocalizedString("Projects", comment: "")
+        let ctrlTab1 = UINavigationController(rootViewController: ctrl)
+        ctrlTab1.tabBarItem = UITabBarItem(title: ctrl.title, image: nil, selectedImage: nil)
+       
+        ctrl = ETMaterialsViewController()
+        ctrl.title = NSLocalizedString("Materials", comment: "")
+        let ctrlTab2 = UINavigationController(rootViewController: ctrl)
+        ctrlTab2.tabBarItem = UITabBarItem(title: ctrl.title, image: nil, selectedImage: nil)
         
-        rootController.viewControllers = [ctrlProjects, ctrlMaterials, ctrlClients, ctrlSettings]
+        ctrl = ETClientsViewController()
+        ctrl.title = NSLocalizedString("Clients", comment: "")
+        let ctrlTab3 = UINavigationController(rootViewController: ctrl)
+        ctrlTab3.tabBarItem = UITabBarItem(title:  ctrl.title, image: nil, selectedImage: nil)
+        
+        ctrl = ETSettingsViewController()
+        ctrl.title = NSLocalizedString("Settings", comment: "")
+        let ctrlTab4 = UINavigationController(rootViewController: ctrl)
+        ctrlTab4.tabBarItem = UITabBarItem(title:  ctrl.title, image: nil, selectedImage: nil)
+        
+        rootController.viewControllers = [ctrlTab1, ctrlTab2, ctrlTab3, ctrlTab4]
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = rootController

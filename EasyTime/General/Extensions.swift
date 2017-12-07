@@ -9,10 +9,7 @@
 import UIKit
 
 extension UIColor {
-    static let navigationColor = UIColor(red: 0/255, green: 2/255, blue: 53/255, alpha: 1.0)
-    static let borderColor = UIColor(red: 186/255, green: 66/255, blue: 217/255, alpha: 1.0)
-    static let toolBarColor = UIColor(red: 14/255, green: 45/255, blue: 79/255, alpha: 1.0)
-    static let selectedColor = UIColor(red: 24/255, green: 177/255, blue: 192/255, alpha: 1.0)
+    static let navigationColor = UIColor(red: 62/255, green: 142/255, blue: 215/255, alpha: 1.0)
 }
 
 extension UIView {
