@@ -8,22 +8,44 @@
 
 /* Begin PBXBuildFile section */
 		B7E358CB1FD53F6C006256FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E358CA1FD53F6C006256FC /* AppDelegate.swift */; };
-		B7E358CD1FD53F6C006256FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E358CC1FD53F6C006256FC /* ViewController.swift */; };
-		B7E358D01FD53F6C006256FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7E358CE1FD53F6C006256FC /* Main.storyboard */; };
 		B7E358D31FD53F6C006256FC /* EasyTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7E358D11FD53F6C006256FC /* EasyTime.xcdatamodeld */; };
 		B7E358D51FD53F6C006256FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7E358D41FD53F6C006256FC /* Assets.xcassets */; };
 		B7E358D81FD53F6C006256FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7E358D61FD53F6C006256FC /* LaunchScreen.storyboard */; };
+		B7E358F91FD9350F006256FC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E358F71FD9350F006256FC /* Extensions.swift */; };
+		B7E358FA1FD9350F006256FC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E358F81FD9350F006256FC /* Constants.swift */; };
+		B7E358FC1FD93524006256FC /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E358FB1FD93524006256FC /* DataHelper.swift */; };
+		B7E358FF1FD93710006256FC /* ETTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E358FD1FD93710006256FC /* ETTabBarViewController.swift */; };
+		B7E359081FD93C81006256FC /* ETBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E359071FD93C81006256FC /* ETBaseViewController.swift */; };
+		B7E3590B1FD93C9A006256FC /* ETSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E359091FD93C9A006256FC /* ETSettingsViewController.swift */; };
+		B7E3590C1FD93C9A006256FC /* ETSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E3590A1FD93C9A006256FC /* ETSettingsViewController.xib */; };
+		B7E3590F1FD93CB4006256FC /* ETClientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E3590D1FD93CB4006256FC /* ETClientsViewController.swift */; };
+		B7E359101FD93CB4006256FC /* ETClientsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E3590E1FD93CB4006256FC /* ETClientsViewController.xib */; };
+		B7E359131FD93CC6006256FC /* ETMaterialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E359111FD93CC6006256FC /* ETMaterialsViewController.swift */; };
+		B7E359141FD93CC6006256FC /* ETMaterialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E359121FD93CC6006256FC /* ETMaterialsViewController.xib */; };
+		B7E359171FD93CD5006256FC /* ETProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E359151FD93CD5006256FC /* ETProjectsViewController.swift */; };
+		B7E359181FD93CD5006256FC /* ETProjectsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7E359161FD93CD5006256FC /* ETProjectsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B7E358C71FD53F6C006256FC /* EasyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7E358CA1FD53F6C006256FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B7E358CC1FD53F6C006256FC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		B7E358CF1FD53F6C006256FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B7E358D21FD53F6C006256FC /* EasyTime.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyTime.xcdatamodel; sourceTree = "<group>"; };
 		B7E358D41FD53F6C006256FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7E358D71FD53F6C006256FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B7E358D91FD53F6C006256FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7E358F71FD9350F006256FC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		B7E358F81FD9350F006256FC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B7E358FB1FD93524006256FC /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
+		B7E358FD1FD93710006256FC /* ETTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETTabBarViewController.swift; sourceTree = "<group>"; };
+		B7E359071FD93C81006256FC /* ETBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETBaseViewController.swift; sourceTree = "<group>"; };
+		B7E359091FD93C9A006256FC /* ETSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETSettingsViewController.swift; sourceTree = "<group>"; };
+		B7E3590A1FD93C9A006256FC /* ETSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ETSettingsViewController.xib; sourceTree = "<group>"; };
+		B7E3590D1FD93CB4006256FC /* ETClientsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETClientsViewController.swift; sourceTree = "<group>"; };
+		B7E3590E1FD93CB4006256FC /* ETClientsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ETClientsViewController.xib; sourceTree = "<group>"; };
+		B7E359111FD93CC6006256FC /* ETMaterialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETMaterialsViewController.swift; sourceTree = "<group>"; };
+		B7E359121FD93CC6006256FC /* ETMaterialsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ETMaterialsViewController.xib; sourceTree = "<group>"; };
+		B7E359151FD93CD5006256FC /* ETProjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETProjectsViewController.swift; sourceTree = "<group>"; };
+		B7E359161FD93CD5006256FC /* ETProjectsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ETProjectsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +78,106 @@
 		B7E358C91FD53F6C006256FC /* EasyTime */ = {
 			isa = PBXGroup;
 			children = (
+				B7E358F51FD934A1006256FC /* General */,
+				B7E358F11FD933C2006256FC /* DAL */,
+				B7E358F41FD93407006256FC /* ViewControllers */,
 				B7E358CA1FD53F6C006256FC /* AppDelegate.swift */,
-				B7E358CC1FD53F6C006256FC /* ViewController.swift */,
-				B7E358CE1FD53F6C006256FC /* Main.storyboard */,
 				B7E358D41FD53F6C006256FC /* Assets.xcassets */,
 				B7E358D61FD53F6C006256FC /* LaunchScreen.storyboard */,
 				B7E358D91FD53F6C006256FC /* Info.plist */,
-				B7E358D11FD53F6C006256FC /* EasyTime.xcdatamodeld */,
 			);
 			path = EasyTime;
+			sourceTree = "<group>";
+		};
+		B7E358F11FD933C2006256FC /* DAL */ = {
+			isa = PBXGroup;
+			children = (
+				B7E358F21FD933E6006256FC /* Entities */,
+				B7E358FB1FD93524006256FC /* DataHelper.swift */,
+				B7E358D11FD53F6C006256FC /* EasyTime.xcdatamodeld */,
+			);
+			path = DAL;
+			sourceTree = "<group>";
+		};
+		B7E358F21FD933E6006256FC /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		B7E358F41FD93407006256FC /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B7E359051FD93C2D006256FC /* GeneralVC */,
+				B7E359041FD93BEE006256FC /* SettingsVC */,
+				B7E359031FD93BE5006256FC /* ClientsVC */,
+				B7E359021FD93BD7006256FC /* MaterialsVC */,
+				B7E359011FD93BCC006256FC /* ProjectsVC */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B7E358F51FD934A1006256FC /* General */ = {
+			isa = PBXGroup;
+			children = (
+				B7E358F71FD9350F006256FC /* Extensions.swift */,
+				B7E358F81FD9350F006256FC /* Constants.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		B7E359011FD93BCC006256FC /* ProjectsVC */ = {
+			isa = PBXGroup;
+			children = (
+				B7E359151FD93CD5006256FC /* ETProjectsViewController.swift */,
+				B7E359161FD93CD5006256FC /* ETProjectsViewController.xib */,
+			);
+			path = ProjectsVC;
+			sourceTree = "<group>";
+		};
+		B7E359021FD93BD7006256FC /* MaterialsVC */ = {
+			isa = PBXGroup;
+			children = (
+				B7E359111FD93CC6006256FC /* ETMaterialsViewController.swift */,
+				B7E359121FD93CC6006256FC /* ETMaterialsViewController.xib */,
+			);
+			path = MaterialsVC;
+			sourceTree = "<group>";
+		};
+		B7E359031FD93BE5006256FC /* ClientsVC */ = {
+			isa = PBXGroup;
+			children = (
+				B7E3590D1FD93CB4006256FC /* ETClientsViewController.swift */,
+				B7E3590E1FD93CB4006256FC /* ETClientsViewController.xib */,
+			);
+			path = ClientsVC;
+			sourceTree = "<group>";
+		};
+		B7E359041FD93BEE006256FC /* SettingsVC */ = {
+			isa = PBXGroup;
+			children = (
+				B7E359091FD93C9A006256FC /* ETSettingsViewController.swift */,
+				B7E3590A1FD93C9A006256FC /* ETSettingsViewController.xib */,
+			);
+			path = SettingsVC;
+			sourceTree = "<group>";
+		};
+		B7E359051FD93C2D006256FC /* GeneralVC */ = {
+			isa = PBXGroup;
+			children = (
+				B7E359071FD93C81006256FC /* ETBaseViewController.swift */,
+				B7E359061FD93C54006256FC /* TabBarVC */,
+			);
+			path = GeneralVC;
+			sourceTree = "<group>";
+		};
+		B7E359061FD93C54006256FC /* TabBarVC */ = {
+			isa = PBXGroup;
+			children = (
+				B7E358FD1FD93710006256FC /* ETTabBarViewController.swift */,
+			);
+			path = TabBarVC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,9 +239,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7E359101FD93CB4006256FC /* ETClientsViewController.xib in Resources */,
 				B7E358D81FD53F6C006256FC /* LaunchScreen.storyboard in Resources */,
+				B7E359141FD93CC6006256FC /* ETMaterialsViewController.xib in Resources */,
+				B7E359181FD93CD5006256FC /* ETProjectsViewController.xib in Resources */,
+				B7E3590C1FD93C9A006256FC /* ETSettingsViewController.xib in Resources */,
 				B7E358D51FD53F6C006256FC /* Assets.xcassets in Resources */,
-				B7E358D01FD53F6C006256FC /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,23 +255,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7E358CD1FD53F6C006256FC /* ViewController.swift in Sources */,
+				B7E359171FD93CD5006256FC /* ETProjectsViewController.swift in Sources */,
+				B7E359131FD93CC6006256FC /* ETMaterialsViewController.swift in Sources */,
+				B7E358FA1FD9350F006256FC /* Constants.swift in Sources */,
 				B7E358CB1FD53F6C006256FC /* AppDelegate.swift in Sources */,
+				B7E3590B1FD93C9A006256FC /* ETSettingsViewController.swift in Sources */,
+				B7E358FC1FD93524006256FC /* DataHelper.swift in Sources */,
+				B7E358FF1FD93710006256FC /* ETTabBarViewController.swift in Sources */,
 				B7E358D31FD53F6C006256FC /* EasyTime.xcdatamodeld in Sources */,
+				B7E3590F1FD93CB4006256FC /* ETClientsViewController.swift in Sources */,
+				B7E358F91FD9350F006256FC /* Extensions.swift in Sources */,
+				B7E359081FD93C81006256FC /* ETBaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		B7E358CE1FD53F6C006256FC /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B7E358CF1FD53F6C006256FC /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B7E358D61FD53F6C006256FC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -215,7 +331,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -266,7 +382,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -281,6 +397,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LZZX277PR7;
 				INFOPLIST_FILE = EasyTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiss1mobile.EasyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -296,6 +413,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LZZX277PR7;
 				INFOPLIST_FILE = EasyTime/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiss1mobile.EasyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
