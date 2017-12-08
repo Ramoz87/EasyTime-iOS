@@ -30,11 +30,35 @@
 		9EB63E971FD988BB00DB5A67 /* IQToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB63E851FD988BB00DB5A67 /* IQToolbar.swift */; };
 		9EB63E981FD988BB00DB5A67 /* IQUIView+IQKeyboardToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB63E861FD988BB00DB5A67 /* IQUIView+IQKeyboardToolbar.swift */; };
 		9EB63E991FD988BB00DB5A67 /* IQKeyboardManager.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9EB63E881FD988BB00DB5A67 /* IQKeyboardManager.bundle */; };
+		B79FFBAA1FDA982D00739EA5 /* Files+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFB921FDA982D00739EA5 /* Files+CoreDataClass.swift */; };
+		B79FFBAB1FDA982D00739EA5 /* Files+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFB931FDA982D00739EA5 /* Files+CoreDataProperties.swift */; };
+		B79FFBAC1FDA982D00739EA5 /* Customer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFB941FDA982D00739EA5 /* Customer+CoreDataClass.swift */; };
+		B79FFBAD1FDA982D00739EA5 /* Customer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFB951FDA982D00739EA5 /* Customer+CoreDataProperties.swift */; };
+		B79FFBAE1FDA982D00739EA5 /* Object+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFB961FDA982D00739EA5 /* Object+CoreDataClass.swift */; };
+		B79FFBAF1FDA982D00739EA5 /* Object+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFB971FDA982D00739EA5 /* Object+CoreDataProperties.swift */; };
+		B79FFBB01FDA982D00739EA5 /* Contact+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFB981FDA982D00739EA5 /* Contact+CoreDataClass.swift */; };
+		B79FFBB11FDA982D00739EA5 /* Contact+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFB991FDA982D00739EA5 /* Contact+CoreDataProperties.swift */; };
+		B79FFBB21FDA982D00739EA5 /* Project+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFB9A1FDA982D00739EA5 /* Project+CoreDataClass.swift */; };
+		B79FFBB31FDA982D00739EA5 /* Project+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFB9B1FDA982D00739EA5 /* Project+CoreDataProperties.swift */; };
+		B79FFBB41FDA982D00739EA5 /* Type+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFB9C1FDA982D00739EA5 /* Type+CoreDataClass.swift */; };
+		B79FFBB51FDA982D00739EA5 /* Type+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFB9D1FDA982D00739EA5 /* Type+CoreDataProperties.swift */; };
+		B79FFBB61FDA982D00739EA5 /* Address+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFB9E1FDA982D00739EA5 /* Address+CoreDataClass.swift */; };
+		B79FFBB71FDA982D00739EA5 /* Address+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFB9F1FDA982D00739EA5 /* Address+CoreDataProperties.swift */; };
+		B79FFBB81FDA982D00739EA5 /* Job+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFBA01FDA982D00739EA5 /* Job+CoreDataClass.swift */; };
+		B79FFBB91FDA982D00739EA5 /* Job+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFBA11FDA982D00739EA5 /* Job+CoreDataProperties.swift */; };
+		B79FFBBA1FDA982D00739EA5 /* Material+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFBA21FDA982D00739EA5 /* Material+CoreDataClass.swift */; };
+		B79FFBBB1FDA982D00739EA5 /* Material+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFBA31FDA982D00739EA5 /* Material+CoreDataProperties.swift */; };
+		B79FFBBC1FDA982D00739EA5 /* Order+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFBA41FDA982D00739EA5 /* Order+CoreDataClass.swift */; };
+		B79FFBBD1FDA982D00739EA5 /* Order+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFBA51FDA982D00739EA5 /* Order+CoreDataProperties.swift */; };
+		B79FFBBE1FDA982E00739EA5 /* Expense+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFBA61FDA982D00739EA5 /* Expense+CoreDataClass.swift */; };
+		B79FFBBF1FDA982E00739EA5 /* Expense+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFBA71FDA982D00739EA5 /* Expense+CoreDataProperties.swift */; };
+		B79FFBC01FDA982E00739EA5 /* User+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFBA81FDA982D00739EA5 /* User+CoreDataClass.swift */; };
+		B79FFBC11FDA982E00739EA5 /* User+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B79FFBA91FDA982D00739EA5 /* User+CoreDataProperties.swift */; };
+		B7B42B1C1FDA87D1001F404C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7B42B1B1FDA87D1001F404C /* Extensions.swift */; };
 		B7E358CB1FD53F6C006256FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E358CA1FD53F6C006256FC /* AppDelegate.swift */; };
 		B7E358D31FD53F6C006256FC /* EasyTime.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7E358D11FD53F6C006256FC /* EasyTime.xcdatamodeld */; };
 		B7E358D51FD53F6C006256FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7E358D41FD53F6C006256FC /* Assets.xcassets */; };
 		B7E358D81FD53F6C006256FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7E358D61FD53F6C006256FC /* LaunchScreen.storyboard */; };
-		B7E358F91FD9350F006256FC /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E358F71FD9350F006256FC /* Extensions.swift */; };
 		B7E358FA1FD9350F006256FC /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E358F81FD9350F006256FC /* Constants.swift */; };
 		B7E358FC1FD93524006256FC /* DataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E358FB1FD93524006256FC /* DataHelper.swift */; };
 		B7E358FF1FD93710006256FC /* ETTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E358FD1FD93710006256FC /* ETTabBarViewController.swift */; };
@@ -74,13 +98,37 @@
 		9EB63E851FD988BB00DB5A67 /* IQToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IQToolbar.swift; sourceTree = "<group>"; };
 		9EB63E861FD988BB00DB5A67 /* IQUIView+IQKeyboardToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIView+IQKeyboardToolbar.swift"; sourceTree = "<group>"; };
 		9EB63E881FD988BB00DB5A67 /* IQKeyboardManager.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = IQKeyboardManager.bundle; sourceTree = "<group>"; };
+		B79FFB921FDA982D00739EA5 /* Files+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Files+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B79FFB931FDA982D00739EA5 /* Files+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Files+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B79FFB941FDA982D00739EA5 /* Customer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B79FFB951FDA982D00739EA5 /* Customer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B79FFB961FDA982D00739EA5 /* Object+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Object+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B79FFB971FDA982D00739EA5 /* Object+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Object+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B79FFB981FDA982D00739EA5 /* Contact+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B79FFB991FDA982D00739EA5 /* Contact+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Contact+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B79FFB9A1FDA982D00739EA5 /* Project+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B79FFB9B1FDA982D00739EA5 /* Project+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Project+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B79FFB9C1FDA982D00739EA5 /* Type+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Type+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B79FFB9D1FDA982D00739EA5 /* Type+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Type+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B79FFB9E1FDA982D00739EA5 /* Address+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B79FFB9F1FDA982D00739EA5 /* Address+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Address+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B79FFBA01FDA982D00739EA5 /* Job+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Job+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B79FFBA11FDA982D00739EA5 /* Job+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Job+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B79FFBA21FDA982D00739EA5 /* Material+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Material+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B79FFBA31FDA982D00739EA5 /* Material+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Material+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B79FFBA41FDA982D00739EA5 /* Order+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B79FFBA51FDA982D00739EA5 /* Order+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Order+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B79FFBA61FDA982D00739EA5 /* Expense+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expense+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B79FFBA71FDA982D00739EA5 /* Expense+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Expense+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B79FFBA81FDA982D00739EA5 /* User+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B79FFBA91FDA982D00739EA5 /* User+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B7B42B1B1FDA87D1001F404C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B7E358C71FD53F6C006256FC /* EasyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7E358CA1FD53F6C006256FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7E358D21FD53F6C006256FC /* EasyTime.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EasyTime.xcdatamodel; sourceTree = "<group>"; };
 		B7E358D41FD53F6C006256FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7E358D71FD53F6C006256FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B7E358D91FD53F6C006256FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B7E358F71FD9350F006256FC /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B7E358F81FD9350F006256FC /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B7E358FB1FD93524006256FC /* DataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataHelper.swift; sourceTree = "<group>"; };
 		B7E358FD1FD93710006256FC /* ETTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETTabBarViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +291,30 @@
 		B7E358F21FD933E6006256FC /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				B79FFB921FDA982D00739EA5 /* Files+CoreDataClass.swift */,
+				B79FFB931FDA982D00739EA5 /* Files+CoreDataProperties.swift */,
+				B79FFB941FDA982D00739EA5 /* Customer+CoreDataClass.swift */,
+				B79FFB951FDA982D00739EA5 /* Customer+CoreDataProperties.swift */,
+				B79FFB961FDA982D00739EA5 /* Object+CoreDataClass.swift */,
+				B79FFB971FDA982D00739EA5 /* Object+CoreDataProperties.swift */,
+				B79FFB981FDA982D00739EA5 /* Contact+CoreDataClass.swift */,
+				B79FFB991FDA982D00739EA5 /* Contact+CoreDataProperties.swift */,
+				B79FFB9A1FDA982D00739EA5 /* Project+CoreDataClass.swift */,
+				B79FFB9B1FDA982D00739EA5 /* Project+CoreDataProperties.swift */,
+				B79FFB9C1FDA982D00739EA5 /* Type+CoreDataClass.swift */,
+				B79FFB9D1FDA982D00739EA5 /* Type+CoreDataProperties.swift */,
+				B79FFB9E1FDA982D00739EA5 /* Address+CoreDataClass.swift */,
+				B79FFB9F1FDA982D00739EA5 /* Address+CoreDataProperties.swift */,
+				B79FFBA01FDA982D00739EA5 /* Job+CoreDataClass.swift */,
+				B79FFBA11FDA982D00739EA5 /* Job+CoreDataProperties.swift */,
+				B79FFBA21FDA982D00739EA5 /* Material+CoreDataClass.swift */,
+				B79FFBA31FDA982D00739EA5 /* Material+CoreDataProperties.swift */,
+				B79FFBA41FDA982D00739EA5 /* Order+CoreDataClass.swift */,
+				B79FFBA51FDA982D00739EA5 /* Order+CoreDataProperties.swift */,
+				B79FFBA61FDA982D00739EA5 /* Expense+CoreDataClass.swift */,
+				B79FFBA71FDA982D00739EA5 /* Expense+CoreDataProperties.swift */,
+				B79FFBA81FDA982D00739EA5 /* User+CoreDataClass.swift */,
+				B79FFBA91FDA982D00739EA5 /* User+CoreDataProperties.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -264,7 +336,7 @@
 		B7E358F51FD934A1006256FC /* General */ = {
 			isa = PBXGroup;
 			children = (
-				B7E358F71FD9350F006256FC /* Extensions.swift */,
+				B7B42B1B1FDA87D1001F404C /* Extensions.swift */,
 				B7E358F81FD9350F006256FC /* Constants.swift */,
 			);
 			path = General;
@@ -401,21 +473,44 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B79FFBB51FDA982D00739EA5 /* Type+CoreDataProperties.swift in Sources */,
 				9EB63E911FD988BB00DB5A67 /* IQKeyboardManager.swift in Sources */,
+				B79FFBAC1FDA982D00739EA5 /* Customer+CoreDataClass.swift in Sources */,
+				B79FFBBD1FDA982D00739EA5 /* Order+CoreDataProperties.swift in Sources */,
 				9E20C48F1FD97860007A040E /* ETLoginViewModel.swift in Sources */,
 				B7E359171FD93CD5006256FC /* ETProjectsViewController.swift in Sources */,
 				9EB63E941FD988BB00DB5A67 /* IQBarButtonItem.swift in Sources */,
 				9EB63E8D1FD988BB00DB5A67 /* IQUIViewController+Additions.swift in Sources */,
 				9E20C48D1FD96A47007A040E /* Authenticator.swift in Sources */,
 				B7E359131FD93CC6006256FC /* ETMaterialsViewController.swift in Sources */,
+				B79FFBBE1FDA982E00739EA5 /* Expense+CoreDataClass.swift in Sources */,
 				9EB63E921FD988BB00DB5A67 /* IQKeyboardReturnKeyHandler.swift in Sources */,
+				B79FFBB31FDA982D00739EA5 /* Project+CoreDataProperties.swift in Sources */,
+				B79FFBB21FDA982D00739EA5 /* Project+CoreDataClass.swift in Sources */,
+				B79FFBB41FDA982D00739EA5 /* Type+CoreDataClass.swift in Sources */,
+				B79FFBAB1FDA982D00739EA5 /* Files+CoreDataProperties.swift in Sources */,
 				B7E358FA1FD9350F006256FC /* Constants.swift in Sources */,
+				B79FFBAD1FDA982D00739EA5 /* Customer+CoreDataProperties.swift in Sources */,
+				B79FFBC11FDA982E00739EA5 /* User+CoreDataProperties.swift in Sources */,
+				B79FFBB61FDA982D00739EA5 /* Address+CoreDataClass.swift in Sources */,
+				B79FFBB71FDA982D00739EA5 /* Address+CoreDataProperties.swift in Sources */,
+				B79FFBBC1FDA982D00739EA5 /* Order+CoreDataClass.swift in Sources */,
+				B79FFBBF1FDA982E00739EA5 /* Expense+CoreDataProperties.swift in Sources */,
+				B79FFBB91FDA982D00739EA5 /* Job+CoreDataProperties.swift in Sources */,
+				B79FFBAF1FDA982D00739EA5 /* Object+CoreDataProperties.swift in Sources */,
 				9EB63E901FD988BB00DB5A67 /* IQKeyboardManagerConstantsInternal.swift in Sources */,
+				B7B42B1C1FDA87D1001F404C /* Extensions.swift in Sources */,
+				B79FFBB81FDA982D00739EA5 /* Job+CoreDataClass.swift in Sources */,
+				B79FFBAA1FDA982D00739EA5 /* Files+CoreDataClass.swift in Sources */,
+				B79FFBB01FDA982D00739EA5 /* Contact+CoreDataClass.swift in Sources */,
 				9EB63E8E1FD988BB00DB5A67 /* IQUIWindow+Hierarchy.swift in Sources */,
+				B79FFBBA1FDA982D00739EA5 /* Material+CoreDataClass.swift in Sources */,
 				9EB63E981FD988BB00DB5A67 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
+				B79FFBC01FDA982E00739EA5 /* User+CoreDataClass.swift in Sources */,
 				B7E358CB1FD53F6C006256FC /* AppDelegate.swift in Sources */,
 				B7E3590B1FD93C9A006256FC /* ETSettingsViewController.swift in Sources */,
 				9E4A173D1FD966EE00808EF9 /* ETRootViewController.swift in Sources */,
+				B79FFBAE1FDA982D00739EA5 /* Object+CoreDataClass.swift in Sources */,
 				9EB63E961FD988BB00DB5A67 /* IQTitleBarButtonItem.swift in Sources */,
 				9EB63E8A1FD988BB00DB5A67 /* IQUIScrollView+Additions.swift in Sources */,
 				9EB63E8C1FD988BB00DB5A67 /* IQUIView+Hierarchy.swift in Sources */,
@@ -425,12 +520,13 @@
 				9E4A17411FD9670200808EF9 /* ETLoginViewController.swift in Sources */,
 				B7E358FF1FD93710006256FC /* ETTabBarViewController.swift in Sources */,
 				B7E358D31FD53F6C006256FC /* EasyTime.xcdatamodeld in Sources */,
+				B79FFBBB1FDA982D00739EA5 /* Material+CoreDataProperties.swift in Sources */,
 				9EB63E971FD988BB00DB5A67 /* IQToolbar.swift in Sources */,
+				B79FFBB11FDA982D00739EA5 /* Contact+CoreDataProperties.swift in Sources */,
 				9EB63E891FD988BB00DB5A67 /* IQNSArray+Sort.swift in Sources */,
 				9EB63E8B1FD988BB00DB5A67 /* IQUITextFieldView+Additions.swift in Sources */,
 				B7E3590F1FD93CB4006256FC /* ETClientsViewController.swift in Sources */,
 				9EB63E931FD988BB00DB5A67 /* IQTextView.swift in Sources */,
-				B7E358F91FD9350F006256FC /* Extensions.swift in Sources */,
 				B7E359081FD93C81006256FC /* ETBaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,7 +593,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -548,7 +644,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -563,7 +659,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LZZX277PR7;
 				INFOPLIST_FILE = EasyTime/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiss1mobile.EasyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -579,7 +675,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LZZX277PR7;
 				INFOPLIST_FILE = EasyTime/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiss1mobile.EasyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
