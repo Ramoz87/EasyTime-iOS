@@ -1,5 +1,5 @@
 //
-//  ETBaseViewController.swift
+//  ClientsViewController.swift
 //  EasyTime
 //
 //  Created by Yury Ramazanov on 07/12/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ETBaseViewController: UIViewController {
+class ClientsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -1,5 +1,5 @@
 //
-//  ETSettingsViewController.swift
+//  SettingsViewController.swift
 //  EasyTime
 //
 //  Created by Yury Ramazanov on 07/12/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ETSettingsViewController: ETBaseViewController {
+class SettingsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

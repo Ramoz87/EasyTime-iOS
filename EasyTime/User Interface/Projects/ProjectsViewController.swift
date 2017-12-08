@@ -1,5 +1,5 @@
 //
-//  ETMaterialsViewController.swift
+//  ProjectsViewController.swift
 //  EasyTime
 //
 //  Created by Yury Ramazanov on 07/12/2017.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ETMaterialsViewController: ETBaseViewController {
+class ProjectsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

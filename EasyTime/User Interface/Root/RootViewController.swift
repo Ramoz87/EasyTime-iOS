@@ -1,5 +1,5 @@
 //
-//  ETRootViewController.swift
+//  RootViewController.swift
 //  EasyTime
 //
 //  Created by Mobexs on 12/7/17.
@@ -8,34 +8,36 @@
 
 import UIKit
 
-class ETRootViewController: UINavigationController {
-
+class RootViewController: UINavigationController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.isNavigationBarHidden = true
-
+        
         AppManager.sharedInstance.authenticator.stateUpdateHandler = { state in
-
+            
             self.authenticatorStateDidChange(state);
         }
         self.authenticatorStateDidChange(AppManager.sharedInstance.authenticator.state);
     }
-
+    
     // MARK: - Logic
-
+    
     func authenticatorStateDidChange(_ state: AuthenticatorState) {
-
+        
         var newViewController: UIViewController?
-
+        var animated: Bool
+        
         switch state {
-
         case .Unauthorized:
-            newViewController = ETLoginViewController()
+            newViewController = LoginViewController()
+            animated = false
         case .Authorized:
-            newViewController = ETTabBarViewController()
+            newViewController = TabBarViewController()
+            animated = true
         }
-
-        self.setViewControllers([newViewController!], animated: true)
+        
+        self.setViewControllers([newViewController!], animated: animated)
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ETLoginViewModel: ETBaseViewModel {
+class LoginViewModel: BaseViewModel {
 
     func login(completion: @escaping((_ success: Bool, _ error: Error?) -> Void)) {
 

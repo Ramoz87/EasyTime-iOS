@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = ETRootViewController()
+        window?.rootViewController = RootViewController()
         window?.makeKeyAndVisible()
     }
 }

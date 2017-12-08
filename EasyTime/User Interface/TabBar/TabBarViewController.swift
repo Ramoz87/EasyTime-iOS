@@ -1,5 +1,5 @@
 //
-//  ETTabBarViewController.swift
+//  TabBarViewController.swift
 //  EasyTime
 //
 //  Created by Yury Ramazanov on 07/12/2017.
@@ -8,27 +8,27 @@
 
 import UIKit
 
-class ETTabBarViewController: UITabBarController {
+class TabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var ctrl: UIViewController = ETProjectsViewController()
+        var ctrl: UIViewController = ProjectsViewController()
         ctrl.title = NSLocalizedString("Projects", comment: "")
         let ctrlTab1 = UINavigationController(rootViewController: ctrl)
         ctrlTab1.tabBarItem = UITabBarItem(title: ctrl.title, image: nil, selectedImage: nil)
 
-        ctrl = ETMaterialsViewController()
+        ctrl = MaterialsViewController()
         ctrl.title = NSLocalizedString("Materials", comment: "")
         let ctrlTab2 = UINavigationController(rootViewController: ctrl)
         ctrlTab2.tabBarItem = UITabBarItem(title: ctrl.title, image: nil, selectedImage: nil)
 
-        ctrl = ETClientsViewController()
+        ctrl = ClientsViewController()
         ctrl.title = NSLocalizedString("Clients", comment: "")
         let ctrlTab3 = UINavigationController(rootViewController: ctrl)
         ctrlTab3.tabBarItem = UITabBarItem(title:  ctrl.title, image: nil, selectedImage: nil)
 
-        ctrl = ETSettingsViewController()
+        ctrl = SettingsViewController()
         ctrl.title = NSLocalizedString("Settings", comment: "")
         let ctrlTab4 = UINavigationController(rootViewController: ctrl)
         ctrlTab4.tabBarItem = UITabBarItem(title:  ctrl.title, image: nil, selectedImage: nil)
