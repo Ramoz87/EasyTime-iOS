@@ -8,11 +8,11 @@
 
 import UIKit
 
-class ETLoginViewModel {
+class ETLoginViewModel: ETBaseViewModel {
 
     func login(completion: @escaping((_ success: Bool, _ error: Error?) -> Void)) {
 
-        DataHelper.sharedInstance.authenticator.state = .Authorized
+        AppManager.sharedInstance.authenticator.state = .Authorized
         completion(true , nil)
     }
 }

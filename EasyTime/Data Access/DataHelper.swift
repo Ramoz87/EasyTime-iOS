@@ -24,7 +24,6 @@ typealias CompletionBlock = (Array<Any>?, Error?) -> Swift.Void
 class DataHelper: NSObject {
     
     static let sharedInstance = DataHelper()
-    let authenticator = Authenticator()
     
     // MARK: - Core Data stack
     private lazy var persistentContainer: NSPersistentContainer = {

@@ -20,6 +20,6 @@ class ETSettingsViewController: ETBaseViewController {
 
     @IBAction func logout(sender: Any) {
 
-        DataHelper.sharedInstance.authenticator.state = .Unauthorized
+        AppManager.sharedInstance.authenticator.state = .Unauthorized
     }
 }
