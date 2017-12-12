@@ -15,6 +15,10 @@ class RootViewController: UINavigationController {
         
         self.isNavigationBarHidden = true
         
+        AppManager.sharedInstance.dataHelper.prepareInitialData { success in
+            
+        }
+        
         AppManager.sharedInstance.authenticator.stateUpdateHandler = { state in
             
             self.authenticatorStateDidChange(state);
