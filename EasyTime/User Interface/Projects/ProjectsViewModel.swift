@@ -11,7 +11,7 @@ import CoreData
 
 class ProjectsViewModel: BaseViewModel {
 
-    override init() {
+    required init() {
 
         /*
         let context = AppManager.sharedInstance.dataHelper.mainContext

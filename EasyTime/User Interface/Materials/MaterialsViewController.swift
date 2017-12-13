@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MaterialsViewController: BaseViewController {
+class MaterialsViewController: BaseViewController<MaterialsViewModel> {
 
     override func viewDidLoad() {
         super.viewDidLoad()

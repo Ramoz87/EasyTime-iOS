@@ -11,4 +11,8 @@ class BaseViewModel {
     func save() {
 
     }
+
+    required init() {
+        
+    }
 }

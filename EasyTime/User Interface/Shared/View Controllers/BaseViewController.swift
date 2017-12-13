@@ -8,19 +8,21 @@
 
 import UIKit
 
-class BaseViewController: UIViewController {
-    private let viewModel: BaseViewModel
-    
-    init(model: BaseViewModel) {
-        self.viewModel = model
-        super.init(nibName: nil, bundle: nil)
-    }
-    
+class BaseViewController<T>: UIViewController where T: BaseViewModel {
+
+    var viewModel: T = T()
+
     init() {
-        self.viewModel = BaseViewModel()
+
         super.init(nibName: nil, bundle: nil)
     }
-    
+
+    init(viewModel: T) {
+
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -31,11 +33,6 @@ class BaseViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         
         self.viewModel.save()

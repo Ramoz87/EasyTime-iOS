@@ -19,7 +19,7 @@ fileprivate struct Constants
     static let borderWidth: CGFloat = 1
 }
 
-class LoginViewController: BaseViewController, UITextFieldDelegate {
+class LoginViewController: BaseViewController<LoginViewModel>, UITextFieldDelegate {
 
     @IBOutlet weak var vUsername: UIView!
     @IBOutlet weak var tfUsername: UITextField!
@@ -27,16 +27,6 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var tfPassword: UITextField!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnForgotPassword: UIButton!
-    
-    let model = LoginViewModel()
-    
-    override init() {
-        super.init(model: model)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,7 +52,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
 
     @IBAction func login(sender: Any) {
 
-        model.login { (success, error) in
+        self.viewModel.login { (success, error) in
         
         }
     }

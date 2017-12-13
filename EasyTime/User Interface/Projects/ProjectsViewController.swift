@@ -14,12 +14,10 @@ fileprivate struct Constants
     static let searchBarPlaceholder = NSLocalizedString("Search", comment: "")
 }
 
-class ProjectsViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, NSFetchedResultsControllerDelegate {
+class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, NSFetchedResultsControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
-    let viewModel = ProjectsViewModel()
-
     lazy var searchController: UISearchController = {
 
         let controller = UISearchController(searchResultsController: nil)
