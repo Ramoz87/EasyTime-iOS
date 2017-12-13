@@ -56,6 +56,7 @@
 		9E730D291FDAA16A0059C810 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730CD71FDAA1690059C810 /* AppManager.swift */; };
 		9E730D2A1FDAA16A0059C810 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730CD81FDAA1690059C810 /* Authenticator.swift */; };
 		9E730D2B1FDAA16A0059C810 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E730CDA1FDAA16A0059C810 /* LaunchScreen.storyboard */; };
+		9E730D2C1FDAA16A0059C810 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9E730CDC1FDAA16A0059C810 /* Info.plist */; };
 		9E730D2D1FDAA16A0059C810 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E730CDE1FDAA16A0059C810 /* Assets.xcassets */; };
 		9E730D2E1FDAA16A0059C810 /* ClientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730CE01FDAA16A0059C810 /* ClientsViewController.swift */; };
 		9E730D2F1FDAA16A0059C810 /* ClientsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E730CE11FDAA16A0059C810 /* ClientsViewController.xib */; };
@@ -75,6 +76,9 @@
 		B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */ = {isa = PBXBuildFile; fileRef = B73108D51FDEC1DE00BB3B07 /* customer.csv */; };
 		B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D71FDEC28300BB3B07 /* CSV.swift */; };
 		B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */; };
+		9EAE1F241FE0068300E8C47E /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */; };
+		9EAE1F271FE0FDC600E8C47E /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */; };
+		9EAE1F281FE0FDC600E8C47E /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -149,6 +153,9 @@
 		B73108D51FDEC1DE00BB3B07 /* customer.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customer.csv; sourceTree = "<group>"; };
 		B73108D71FDEC28300BB3B07 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
+		9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
+		9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
+		9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
 		B7E358C71FD53F6C006256FC /* EasyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -357,6 +364,9 @@
 			children = (
 				9E730CEA1FDAA16A0059C810 /* ProjectsViewController.swift */,
 				9E730CEB1FDAA16A0059C810 /* ProjectsViewController.xib */,
+				9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */,
+				9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */,
+				9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */,
 			);
 			path = Projects;
 			sourceTree = "<group>";
@@ -500,6 +510,8 @@
 				9E730D0C1FDAA16A0059C810 /* IQKeyboardManager.bundle in Resources */,
 				9E730D2B1FDAA16A0059C810 /* LaunchScreen.storyboard in Resources */,
 				9E730D2D1FDAA16A0059C810 /* Assets.xcassets in Resources */,
+				9E730D2C1FDAA16A0059C810 /* Info.plist in Resources */,
+				9EAE1F281FE0FDC600E8C47E /* ProjectTableViewCell.xib in Resources */,
 				9E730D311FDAA16A0059C810 /* LoginViewController.xib in Resources */,
 				9E730D361FDAA16A0059C810 /* ProjectsViewController.xib in Resources */,
 			);
@@ -547,6 +559,7 @@
 				9E730D3B1FDAA16A0059C810 /* BaseViewController.swift in Sources */,
 				9E730D0D1FDAA16A0059C810 /* DataHelper.swift in Sources */,
 				9E730D3C1FDAA16A0059C810 /* BaseViewModel.swift in Sources */,
+				9EAE1F271FE0FDC600E8C47E /* ProjectTableViewCell.swift in Sources */,
 				9E730D0B1FDAA16A0059C810 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				9E730D0F1FDAA16A0059C810 /* Address+CoreDataClass.swift in Sources */,
 				9E730D021FDAA16A0059C810 /* IQKeyboardManagerConstants.swift in Sources */,
@@ -560,6 +573,7 @@
 				B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */,
 				9E730D371FDAA16A0059C810 /* RootViewController.swift in Sources */,
 				9E730D191FDAA16A0059C810 /* Job+CoreDataClass.swift in Sources */,
+				9EAE1F241FE0068300E8C47E /* ProjectsViewModel.swift in Sources */,
 				9E730D041FDAA16A0059C810 /* IQKeyboardManager.swift in Sources */,
 				9E730D071FDAA16A0059C810 /* IQBarButtonItem.swift in Sources */,
 				9E730D101FDAA16A0059C810 /* Address+CoreDataProperties.swift in Sources */,
