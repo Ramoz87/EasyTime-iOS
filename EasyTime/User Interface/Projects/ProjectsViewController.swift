@@ -63,8 +63,7 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectTableViewCell.reuseIdentifier, for: indexPath) as! ProjectTableViewCell
-        let job = self.viewModel.fetchResultsController.object(at: indexPath) as! Job
-
+        let job = self.viewModel.fetchResultsController.object(at: indexPath)
         cell.lblID.text = job.jobId
         return cell
     }
@@ -72,7 +71,7 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
         guard let sections = self.viewModel.fetchResultsController.sections else { return "" }
-        guard let job = sections.first?.objects?.first as? Job else { return "" }
+        guard let job = sections.first?.objects?.first else { return "" }
         return "SECTION NAME" // TODO: type
     }
 

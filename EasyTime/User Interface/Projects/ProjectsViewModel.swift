@@ -33,9 +33,8 @@ class ProjectsViewModel: BaseViewModel {
         //TODO: REMOVE
     }
 
-    lazy var fetchResultsController: NSFetchedResultsController<NSFetchRequestResult> = {
+    lazy var fetchResultsController: NSFetchedResultsController<Job> = {
 
-        let controller = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: "Job", sort: [])
-        return controller
+        return AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: "Job", sort: [])
     }()
 }

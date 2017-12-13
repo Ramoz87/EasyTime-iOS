@@ -27,40 +27,37 @@ class DataHelper: NSObject {
     
     // MARK: - Core Data stack
     private lazy var persistentContainer: NSPersistentContainer = {
+
         let container = NSPersistentContainer(name: Constants.modelName)
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in})
         return container
     }()
     
     private lazy var mainContext: NSManagedObjectContext = {
-        [unowned self] in
+
         return self.persistentContainer.viewContext
-        }()
+    }()
     
     private lazy var backgroundContext: NSManagedObjectContext = {
-        [unowned self] in
+
         return self.persistentContainer.newBackgroundContext()
-        }()
+    }()
     
     // MARK: - Fetch data
-    func fetchedResultsController(entityName: String, sort: [String]) -> NSFetchedResultsController<NSFetchRequestResult> {
-        let request = self.fetchRequest(entityName: entityName, sort: sort)
-        
-        return self.fetchedResultsController(request: request)
+    func fetchedResultsController<ResultType>(entityName: String, sort: [String]) -> NSFetchedResultsController<ResultType> {
+
+        return self.fetchedResultsController(request: self.fetchRequest(entityName: entityName, sort: sort))
     }
     
-    func fetchedResultsController(entityName: String, sort: [String], predicate: NSPredicate) -> NSFetchedResultsController<NSFetchRequestResult> {
-        let request = self.fetchRequest(entityName: entityName, sort: sort, predicate: predicate)
-        
-        return self.fetchedResultsController(request: request)
+    func fetchedResultsController<ResultType>(entityName: String, sort: [String], predicate: NSPredicate) -> NSFetchedResultsController<ResultType> {
+
+        return self.fetchedResultsController(request: self.fetchRequest(entityName: entityName, sort: sort, predicate: predicate))
     }
-    
-    func fetchData(entityName: String, predicate: NSPredicate?, completion: CompletionBlock)
+
+    func fetchData<ResultType: NSFetchRequestResult>(entityName: String, predicate: NSPredicate?, completion: (Array<ResultType>?, Error?) -> Void)
     {
-        let request = self.fetchRequest(entityName: entityName)
-        if let pred = predicate {
-            request.predicate = pred
-        }
+        let request: NSFetchRequest<ResultType> = self.fetchRequest(entityName: entityName)
+        if let pred = predicate { request.predicate = pred }
         
         do {
             let fetchedData = try self.mainContext.fetch(request)
@@ -71,7 +68,8 @@ class DataHelper: NSObject {
     }
     
     // MARK: - Save data
-    func save (completion: @escaping CompletionBlock)  {
+    func save(completion: @escaping CompletionBlock)  {
+
         let context = self.mainContext
         if context.hasChanges {
             do {
@@ -84,6 +82,7 @@ class DataHelper: NSObject {
     }
     
     func saveInBackground(data: Array<DataObject>, completion: @escaping CompletionBlock ) {
+
         let context = self.backgroundContext;
         context.perform {
             for item in data {
@@ -106,6 +105,7 @@ class DataHelper: NSObject {
     
     // MARK: - Delete data
     func delete(data: Array<NSManagedObject>, completion: @escaping CompletionBlock) {
+
         let context = self.mainContext
         for item in data {
             context.delete(item);
@@ -119,40 +119,40 @@ class DataHelper: NSObject {
     }
     
     // MARK: - Private
-    private func fetchRequest(entityName: String) -> NSFetchRequest<NSFetchRequestResult> {
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-        
-        return request
+    private func fetchRequest<ResultType>(entityName: String) -> NSFetchRequest<ResultType> {
+
+        return NSFetchRequest<ResultType>(entityName: entityName)
     }
     
-    private func fetchRequest(entityName: String, sort: [String]) -> NSFetchRequest<NSFetchRequestResult> {
-        let request = self.fetchRequest(entityName: entityName)
+    private func fetchRequest<ResultType>(entityName: String, sort: [String]) -> NSFetchRequest<ResultType> {
+
+        let request: NSFetchRequest<ResultType> = self.fetchRequest(entityName: entityName)
         request.sortDescriptors = sort.map({ (key) -> NSSortDescriptor in
             NSSortDescriptor(key: key, ascending: true)
         })
-        
         return request
     }
     
-    private func fetchRequest(entityName: String, sort: [String], predicate: NSPredicate) -> NSFetchRequest<NSFetchRequestResult> {
-        let request = self.fetchRequest(entityName: entityName, sort: sort);
+    private func fetchRequest<ResultType>(entityName: String, sort: [String], predicate: NSPredicate) -> NSFetchRequest<ResultType> {
+
+        let request: NSFetchRequest<ResultType> = self.fetchRequest(entityName: entityName, sort: sort);
         request.predicate = predicate
-        
         return request
     }
     
-    private func fetchedResultsController(request: NSFetchRequest<NSFetchRequestResult>) -> NSFetchedResultsController<NSFetchRequestResult> {
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
-        
-        return fetchedResultsController
+    private func fetchedResultsController<ResultType>(request: NSFetchRequest<ResultType>) -> NSFetchedResultsController<ResultType> {
+
+        return NSFetchedResultsController<ResultType>(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
     }
 }
 
 protocol DataObject {
+    
     var entityName: String { get }
 }
 
 extension NSManagedObject {
+
     func update(object: DataObject) {
         
     }
