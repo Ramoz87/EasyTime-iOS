@@ -29,6 +29,7 @@ extension Job {
     @NSManaged public var typeId: String?
     @NSManaged public var expenses: NSSet?
     @NSManaged public var images: Files?
+    @NSManaged public var entityType: String?
 
 }
 

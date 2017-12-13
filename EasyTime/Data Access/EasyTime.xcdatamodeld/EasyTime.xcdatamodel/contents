@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13533" systemVersion="17B1003" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Address" representedClassName=".Address" syncable="YES">
         <attribute name="addressId" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
@@ -49,6 +49,7 @@
         <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="customerId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="entityType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="information" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jobId" attributeType="String" syncable="YES"/>
         <attribute name="members" optional="YES" attributeType="String" syncable="YES"/>
@@ -102,7 +103,7 @@
         <element name="Customer" positionX="-839" positionY="-18" width="128" height="135"/>
         <element name="Expense" positionX="34" positionY="-234" width="128" height="180"/>
         <element name="Files" positionX="43" positionY="-9" width="128" height="120"/>
-        <element name="Job" positionX="-191" positionY="-238" width="128" height="225"/>
+        <element name="Job" positionX="-191" positionY="-238" width="128" height="240"/>
         <element name="Material" positionX="241" positionY="-153" width="128" height="150"/>
         <element name="Object" positionX="-405" positionY="-171" width="128" height="88"/>
         <element name="Order" positionX="-405" positionY="5" width="128" height="103"/>

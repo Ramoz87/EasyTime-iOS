@@ -44,14 +44,15 @@ class DataHelper: NSObject {
     }()
     
     // MARK: - Fetch data
-    func fetchedResultsController<ResultType>(entityName: String, sort: [String]) -> NSFetchedResultsController<ResultType> {
 
-        return self.fetchedResultsController(request: self.fetchRequest(entityName: entityName, sort: sort))
-    }
-    
-    func fetchedResultsController<ResultType>(entityName: String, sort: [String], predicate: NSPredicate) -> NSFetchedResultsController<ResultType> {
+    func fetchedResultsController<ResultType>(entityName: String, sort: [String]? = nil, predicate: NSPredicate? = nil, sectionNameKeyPath: String? = nil) -> NSFetchedResultsController<ResultType> {
 
-        return self.fetchedResultsController(request: self.fetchRequest(entityName: entityName, sort: sort, predicate: predicate))
+        let request: NSFetchRequest<ResultType> = self.fetchRequest(entityName: entityName, sort: sort, predicate: predicate)
+
+        return NSFetchedResultsController<ResultType>(fetchRequest: request,
+                                                      managedObjectContext: self.mainContext,
+                                                      sectionNameKeyPath: sectionNameKeyPath,
+                                                      cacheName: nil)
     }
 
     func fetchData<ResultType: NSFetchRequestResult>(entityName: String, predicate: NSPredicate?, completion: (Array<ResultType>?, Error?) -> Void)
@@ -119,35 +120,21 @@ class DataHelper: NSObject {
     }
     
     // MARK: - Private
-    private func fetchRequest<ResultType>(entityName: String) -> NSFetchRequest<ResultType> {
 
-        return NSFetchRequest<ResultType>(entityName: entityName)
-    }
-    
-    private func fetchRequest<ResultType>(entityName: String, sort: [String]) -> NSFetchRequest<ResultType> {
+    private func fetchRequest<ResultType>(entityName: String, sort: [String]? = nil, predicate: NSPredicate? = nil) -> NSFetchRequest<ResultType> {
 
-        let request: NSFetchRequest<ResultType> = self.fetchRequest(entityName: entityName)
-        request.sortDescriptors = sort.map({ (key) -> NSSortDescriptor in
+        let request = NSFetchRequest<ResultType>(entityName: entityName)
+        request.predicate = predicate
+        request.sortDescriptors = sort?.map({ (key) -> NSSortDescriptor in
+
             NSSortDescriptor(key: key, ascending: true)
         })
         return request
     }
-    
-    private func fetchRequest<ResultType>(entityName: String, sort: [String], predicate: NSPredicate) -> NSFetchRequest<ResultType> {
-
-        let request: NSFetchRequest<ResultType> = self.fetchRequest(entityName: entityName, sort: sort);
-        request.predicate = predicate
-        return request
-    }
-    
-    private func fetchedResultsController<ResultType>(request: NSFetchRequest<ResultType>) -> NSFetchedResultsController<ResultType> {
-
-        return NSFetchedResultsController<ResultType>(fetchRequest: request, managedObjectContext: self.mainContext, sectionNameKeyPath: nil, cacheName: nil)
-    }
 }
 
 protocol DataObject {
-    
+
     var entityName: String { get }
 }
 
