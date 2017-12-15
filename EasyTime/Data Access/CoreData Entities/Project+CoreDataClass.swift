@@ -13,4 +13,20 @@ import CoreData
 
 public class Project: Job {
 
+    var customer: Customer? {
+
+        get {
+
+            guard let customerId = self.customerId else { return nil }
+            let request = NSFetchRequest<Customer>(entityName: "Customer")
+            request.predicate = NSPredicate(format: "customerId = %@", customerId)
+            do {
+                return try self.managedObjectContext?.fetch(request).first
+            }
+            catch {
+
+                return nil
+            }
+        }
+    }
 }

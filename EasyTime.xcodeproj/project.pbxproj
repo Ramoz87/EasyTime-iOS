@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		9E0AD1731FE3CFBF000244FF /* ETJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0AD1721FE3CFBF000244FF /* ETJob.swift */; };
+		9E1350B61FE3EEBE007CAEC3 /* ETOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1350B51FE3EEBE007CAEC3 /* ETOrder.swift */; };
+		9E1350B81FE3EECF007CAEC3 /* ETObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1350B71FE3EECF007CAEC3 /* ETObject.swift */; };
+		9E1350BA1FE3F6C7007CAEC3 /* ETAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1350B91FE3F6C7007CAEC3 /* ETAddress.swift */; };
+		9E1350BC1FE40015007CAEC3 /* ETCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1350BB1FE40015007CAEC3 /* ETCustomer.swift */; };
 		9E6348971FE116DB00FEDF17 /* ClientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6348961FE116DB00FEDF17 /* ClientsViewModel.swift */; };
 		9E6348991FE1173800FEDF17 /* MaterialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6348981FE1173800FEDF17 /* MaterialsViewModel.swift */; };
 		9E63489B1FE1179B00FEDF17 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63489A1FE1179B00FEDF17 /* SettingsViewModel.swift */; };
@@ -77,6 +81,7 @@
 		9E730D3C1FDAA16A0059C810 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730CF61FDAA16A0059C810 /* BaseViewModel.swift */; };
 		9E730D431FDAA22A0059C810 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730D411FDAA2290059C810 /* TabBarViewController.swift */; };
 		9E824D681FE3E05E008538EB /* CollectionViewUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E824D671FE3E05E008538EB /* CollectionViewUpdateDelegate.swift */; };
+		9E824D6A1FE3EC32008538EB /* ETProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E824D691FE3EC32008538EB /* ETProject.swift */; };
 		9EAE1F241FE0068300E8C47E /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */; };
 		9EAE1F271FE0FDC600E8C47E /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */; };
 		9EAE1F281FE0FDC600E8C47E /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */; };
@@ -87,6 +92,10 @@
 
 /* Begin PBXFileReference section */
 		9E0AD1721FE3CFBF000244FF /* ETJob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETJob.swift; sourceTree = "<group>"; };
+		9E1350B51FE3EEBE007CAEC3 /* ETOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETOrder.swift; sourceTree = "<group>"; };
+		9E1350B71FE3EECF007CAEC3 /* ETObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETObject.swift; sourceTree = "<group>"; };
+		9E1350B91FE3F6C7007CAEC3 /* ETAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAddress.swift; sourceTree = "<group>"; };
+		9E1350BB1FE40015007CAEC3 /* ETCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETCustomer.swift; sourceTree = "<group>"; };
 		9E6348961FE116DB00FEDF17 /* ClientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsViewModel.swift; sourceTree = "<group>"; };
 		9E6348981FE1173800FEDF17 /* MaterialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsViewModel.swift; sourceTree = "<group>"; };
 		9E63489A1FE1179B00FEDF17 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -159,6 +168,7 @@
 		9E730D3F1FDAA17A0059C810 /* EasyTime-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EasyTime-Bridging-Header.h"; sourceTree = "<group>"; };
 		9E730D411FDAA2290059C810 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		9E824D671FE3E05E008538EB /* CollectionViewUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewUpdateDelegate.swift; sourceTree = "<group>"; };
+		9E824D691FE3EC32008538EB /* ETProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETProject.swift; sourceTree = "<group>"; };
 		9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
 		9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
@@ -182,7 +192,12 @@
 		9E0AD1711FE3CF8E000244FF /* Business Entities */ = {
 			isa = PBXGroup;
 			children = (
+				9E1350B91FE3F6C7007CAEC3 /* ETAddress.swift */,
+				9E1350BB1FE40015007CAEC3 /* ETCustomer.swift */,
 				9E0AD1721FE3CFBF000244FF /* ETJob.swift */,
+				9E1350B71FE3EECF007CAEC3 /* ETObject.swift */,
+				9E1350B51FE3EEBE007CAEC3 /* ETOrder.swift */,
+				9E824D691FE3EC32008538EB /* ETProject.swift */,
 			);
 			path = "Business Entities";
 			sourceTree = "<group>";
@@ -554,6 +569,7 @@
 				9E730D1D1FDAA16A0059C810 /* Object+CoreDataClass.swift in Sources */,
 				9E730D261FDAA16A0059C810 /* User+CoreDataProperties.swift in Sources */,
 				9E730D1A1FDAA16A0059C810 /* Job+CoreDataProperties.swift in Sources */,
+				9E824D6A1FE3EC32008538EB /* ETProject.swift in Sources */,
 				9E730CFC1FDAA16A0059C810 /* IQNSArray+Sort.swift in Sources */,
 				9E730D201FDAA16A0059C810 /* Order+CoreDataProperties.swift in Sources */,
 				9E730D081FDAA16A0059C810 /* IQPreviousNextView.swift in Sources */,
@@ -577,14 +593,17 @@
 				9E730D181FDAA16A0059C810 /* Files+CoreDataProperties.swift in Sources */,
 				9E730D251FDAA16A0059C810 /* User+CoreDataClass.swift in Sources */,
 				B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */,
+				9E1350BC1FE40015007CAEC3 /* ETCustomer.swift in Sources */,
 				9E730D121FDAA16A0059C810 /* Contact+CoreDataProperties.swift in Sources */,
 				9E730D271FDAA16A0059C810 /* Constants.swift in Sources */,
 				9E730CFE1FDAA16A0059C810 /* IQUITextFieldView+Additions.swift in Sources */,
 				9E730D3B1FDAA16A0059C810 /* BaseViewController.swift in Sources */,
+				9E1350B81FE3EECF007CAEC3 /* ETObject.swift in Sources */,
 				9E730D0D1FDAA16A0059C810 /* DataHelper.swift in Sources */,
 				9E730D3C1FDAA16A0059C810 /* BaseViewModel.swift in Sources */,
 				9EAE1F271FE0FDC600E8C47E /* ProjectTableViewCell.swift in Sources */,
 				9E730D0B1FDAA16A0059C810 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
+				9E1350B61FE3EEBE007CAEC3 /* ETOrder.swift in Sources */,
 				9E0AD1731FE3CFBF000244FF /* ETJob.swift in Sources */,
 				9E730D0F1FDAA16A0059C810 /* Address+CoreDataClass.swift in Sources */,
 				9E730D021FDAA16A0059C810 /* IQKeyboardManagerConstants.swift in Sources */,
@@ -603,6 +622,7 @@
 				9E730D041FDAA16A0059C810 /* IQKeyboardManager.swift in Sources */,
 				9E730D071FDAA16A0059C810 /* IQBarButtonItem.swift in Sources */,
 				9E730D101FDAA16A0059C810 /* Address+CoreDataProperties.swift in Sources */,
+				9E1350BA1FE3F6C7007CAEC3 /* ETAddress.swift in Sources */,
 				9E730CFF1FDAA16A0059C810 /* IQUIView+Hierarchy.swift in Sources */,
 				9E730D2A1FDAA16A0059C810 /* Authenticator.swift in Sources */,
 				9E730D131FDAA16A0059C810 /* Customer+CoreDataClass.swift in Sources */,

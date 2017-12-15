@@ -17,4 +17,17 @@ class ProjectTableViewCell: UITableViewCell {
     @IBOutlet weak var lblStatus: UILabel!
     @IBOutlet weak var lblID: UILabel!
     @IBOutlet weak var lblCompanyName: UILabel!
+
+    var project: ETProject? {
+
+        didSet {
+
+            if let project = project {
+
+                self.lblID.text = project.jobId
+                self.lblName.text = project.name
+                self.lblCompanyName.text = project.customer?.companyName
+            }
+        }
+    }
 }

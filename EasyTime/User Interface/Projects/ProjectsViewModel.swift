@@ -64,6 +64,26 @@ class ProjectsViewModel: BaseViewModel, NSFetchedResultsControllerDelegate {
         } catch {}
     }
 
+    subscript(indexPath: IndexPath) -> ETJob {
+
+        let job = self.fetchResultsController.object(at: indexPath)
+
+        if let project = job as? Project {
+
+            return ETProject(project: project)
+        }
+        else if let object = job as? Object {
+
+            return ETObject(object: object)
+        }
+        else if let order = job as? Order {
+
+            return ETOrder(order: order)
+        }
+
+        return ETJob(job: job)
+    }
+
     func numberOfSections() -> Int {
 
         guard let count = self.fetchResultsController.sections?.count else { return 0 }
@@ -96,16 +116,6 @@ class ProjectsViewModel: BaseViewModel, NSFetchedResultsControllerDelegate {
             self.collectionViewUpdateDelegate?.didChangeCollectionView()
 
         } catch {}
-    }
-
-    func configure(cell: UITableViewCell, indexPath: IndexPath) {
-
-        let job = self.fetchResultsController.object(at: indexPath)
-        if let cell = cell as? ProjectTableViewCell {
-
-            cell.lblID.text = job.jobId
-            cell.lblName.text = job.name
-        }
     }
 
     //MARK: - NSFetchedResultsControllerDelegate

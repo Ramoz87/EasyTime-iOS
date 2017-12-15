@@ -59,7 +59,13 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectTableViewCell.reuseIdentifier, for: indexPath) as! ProjectTableViewCell
-        self.viewModel.configure(cell: cell, indexPath: indexPath)
+
+        let job = self.viewModel[indexPath]
+        if let project = job as? ETProject {
+
+            cell.project = project
+        }
+
         return cell
     }
 
