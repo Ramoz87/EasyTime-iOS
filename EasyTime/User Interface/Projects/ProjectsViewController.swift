@@ -14,7 +14,7 @@ fileprivate struct Constants
     static let searchBarPlaceholder = NSLocalizedString("Search", comment: "")
 }
 
-class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating {
+class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, CollectionViewUpdateDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -41,7 +41,7 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
         }
 
         self.tableView.register(UINib.init(nibName: ProjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectTableViewCell.reuseIdentifier)
-        self.viewModel.tableView = self.tableView
+        self.viewModel.collectionViewUpdateDelegate = self
     }
 
     //MARK: - UITableViewDataSource
@@ -79,6 +79,52 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
     func updateSearchResults(for searchController: UISearchController) {
 
         self.viewModel.updateSearchResults(text: searchController.searchBar.text)
+    }
+
+    //MARK: - CollectionViewUpdateDelegate
+
+    func didChangeObject(at indexPath: IndexPath?, for type: CollectionViewChangeType, newIndexPath: IndexPath?) {
+
+        guard let indexPath = indexPath else { return }
+
+        switch type {
+        case .insert:
+            self.tableView.insertRows(at: [indexPath], with: .automatic)
+        case .delete:
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+        case .move:
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            self.tableView.insertRows(at: [indexPath], with: .automatic)
+        case .update:
+            self.tableView.insertRows(at: [indexPath], with: .automatic)
+        }
+    }
+
+    func didChangeSection(at sectionIndex: Int, for type: CollectionViewChangeType) {
+
+        switch type {
+            case .insert:
+            self.tableView.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
+            case .delete:
+            self.tableView.deleteSections(IndexSet(integer: sectionIndex), with: .automatic)
+            default:
+            break
+        }
+    }
+
+    func didChangeCollectionView() {
+
+        self.tableView.reloadData()
+    }
+
+    func willChangeContent() {
+
+        self.tableView.beginUpdates()
+    }
+
+    func didChangeContent() {
+
+        self.tableView.endUpdates()
     }
 }
 
