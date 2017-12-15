@@ -17,25 +17,15 @@ fileprivate struct Constants {
     static let searchPredicate = "name CONTAINS[cd] %@"
 }
 
-class ProjectsViewModel: BaseViewModel {
+class ProjectsViewModel: BaseViewModel, NSFetchedResultsControllerDelegate {
 
-    private let fetchResultsControllerCallbackReceiver: FetchedResultsControllerCallbackReceiver = FetchedResultsControllerCallbackReceiver()
+    weak var collectionViewUpdateDelegate: CollectionViewUpdateDelegate?
     private lazy var fetchResultsController: NSFetchedResultsController<Job> = {
 
         return AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Constants.entityName,
                                                                              sort: [Constants.sortDescriptor],
                                                                              sectionNameKeyPath:Constants.sectionName)
     }()
-
-    var tableView: UITableView? {
-
-        didSet {
-
-            self.fetchResultsControllerCallbackReceiver.tableView = self.tableView
-            do { try self.fetchResultsController.performFetch() } catch {}
-            self.tableView?.reloadData()
-        }
-    }
 
     required init() {
 
@@ -66,7 +56,12 @@ class ProjectsViewModel: BaseViewModel {
         */
 
         super.init()
-        self.fetchResultsController.delegate = self.fetchResultsControllerCallbackReceiver
+        self.fetchResultsController.delegate = self
+        do {
+            try self.fetchResultsController.performFetch()
+            self.collectionViewUpdateDelegate?.didChangeCollectionView()
+
+        } catch {}
     }
 
     func numberOfSections() -> Int {
@@ -96,8 +91,11 @@ class ProjectsViewModel: BaseViewModel {
             predicate = NSPredicate(format: Constants.searchPredicate, text)
         }
         self.fetchResultsController.fetchRequest.predicate = predicate
-        do { try self.fetchResultsController.performFetch() } catch {}
-        self.tableView?.reloadData()
+        do {
+            try self.fetchResultsController.performFetch()
+            self.collectionViewUpdateDelegate?.didChangeCollectionView()
+
+        } catch {}
     }
 
     func configure(cell: UITableViewCell, indexPath: IndexPath) {
@@ -109,54 +107,26 @@ class ProjectsViewModel: BaseViewModel {
             cell.lblName.text = job.name
         }
     }
-}
-
-fileprivate class FetchedResultsControllerCallbackReceiver: NSObject, NSFetchedResultsControllerDelegate {
-
-    var tableView: UITableView?
-
-    override init() {
-
-    }
 
     //MARK: - NSFetchedResultsControllerDelegate
 
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 
-        self.tableView?.beginUpdates()
+        self.collectionViewUpdateDelegate?.willChangeContent()
     }
 
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
 
-        self.tableView?.endUpdates()
+        self.collectionViewUpdateDelegate?.didChangeContent()
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
 
-        switch type {
-        case .insert:
-            self.tableView?.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
-        case .delete:
-            self.tableView?.deleteSections(IndexSet(integer: sectionIndex), with: .automatic)
-        default:
-            break
-        }
+        self.collectionViewUpdateDelegate?.didChangeSection(at: sectionIndex, for: CollectionViewChangeType(rawValue: type.rawValue)!)
     }
 
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
 
-        guard let indexPath = indexPath else { return }
-
-        switch type {
-        case .insert:
-            self.tableView?.insertRows(at: [indexPath], with: .automatic)
-        case .delete:
-            self.tableView?.deleteRows(at: [indexPath], with: .automatic)
-        case .move:
-            self.tableView?.deleteRows(at: [indexPath], with: .automatic)
-            self.tableView?.insertRows(at: [indexPath], with: .automatic)
-        case .update:
-            self.tableView?.insertRows(at: [indexPath], with: .automatic)
-        }
+        self.collectionViewUpdateDelegate?.didChangeObject(at: indexPath, for: CollectionViewChangeType(rawValue: type.rawValue)!, newIndexPath: newIndexPath)
     }
 }

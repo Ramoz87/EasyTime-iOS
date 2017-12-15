@@ -6,13 +6,15 @@
 //  Copyright © 2017 Mobexs. All rights reserved.
 //
 
-class BaseViewModel {
+import Foundation
+
+class BaseViewModel: NSObject {
 
     func save() {
 
     }
 
-    required init() {
+    required override init() {
         
     }
 }

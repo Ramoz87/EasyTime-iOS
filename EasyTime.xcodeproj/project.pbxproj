@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E0AD1731FE3CFBF000244FF /* ETJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0AD1721FE3CFBF000244FF /* ETJob.swift */; };
 		9E6348971FE116DB00FEDF17 /* ClientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6348961FE116DB00FEDF17 /* ClientsViewModel.swift */; };
 		9E6348991FE1173800FEDF17 /* MaterialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6348981FE1173800FEDF17 /* MaterialsViewModel.swift */; };
 		9E63489B1FE1179B00FEDF17 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63489A1FE1179B00FEDF17 /* SettingsViewModel.swift */; };
@@ -75,6 +76,7 @@
 		9E730D3B1FDAA16A0059C810 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730CF41FDAA16A0059C810 /* BaseViewController.swift */; };
 		9E730D3C1FDAA16A0059C810 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730CF61FDAA16A0059C810 /* BaseViewModel.swift */; };
 		9E730D431FDAA22A0059C810 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730D411FDAA2290059C810 /* TabBarViewController.swift */; };
+		9E824D681FE3E05E008538EB /* CollectionViewUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E824D671FE3E05E008538EB /* CollectionViewUpdateDelegate.swift */; };
 		9EAE1F241FE0068300E8C47E /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */; };
 		9EAE1F271FE0FDC600E8C47E /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */; };
 		9EAE1F281FE0FDC600E8C47E /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */; };
@@ -84,6 +86,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E0AD1721FE3CFBF000244FF /* ETJob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETJob.swift; sourceTree = "<group>"; };
 		9E6348961FE116DB00FEDF17 /* ClientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsViewModel.swift; sourceTree = "<group>"; };
 		9E6348981FE1173800FEDF17 /* MaterialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsViewModel.swift; sourceTree = "<group>"; };
 		9E63489A1FE1179B00FEDF17 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -155,6 +158,7 @@
 		9E730CF61FDAA16A0059C810 /* BaseViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		9E730D3F1FDAA17A0059C810 /* EasyTime-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EasyTime-Bridging-Header.h"; sourceTree = "<group>"; };
 		9E730D411FDAA2290059C810 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		9E824D671FE3E05E008538EB /* CollectionViewUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewUpdateDelegate.swift; sourceTree = "<group>"; };
 		9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
 		9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
@@ -175,6 +179,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E0AD1711FE3CF8E000244FF /* Business Entities */ = {
+			isa = PBXGroup;
+			children = (
+				9E0AD1721FE3CFBF000244FF /* ETJob.swift */,
+			);
+			path = "Business Entities";
+			sourceTree = "<group>";
+		};
 		9E730C9D1FDAA1690059C810 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,14 +264,15 @@
 		9E730CB61FDAA1690059C810 /* Data Access */ = {
 			isa = PBXGroup;
 			children = (
+				9E0AD1711FE3CF8E000244FF /* Business Entities */,
+				9E730CBA1FDAA1690059C810 /* CoreData Entities */,
 				9E730CB71FDAA1690059C810 /* DataHelper.swift */,
 				9E730CB81FDAA1690059C810 /* EasyTime.xcdatamodeld */,
-				9E730CBA1FDAA1690059C810 /* Entities */,
 			);
 			path = "Data Access";
 			sourceTree = "<group>";
 		};
-		9E730CBA1FDAA1690059C810 /* Entities */ = {
+		9E730CBA1FDAA1690059C810 /* CoreData Entities */ = {
 			isa = PBXGroup;
 			children = (
 				9E730CBB1FDAA1690059C810 /* Address+CoreDataClass.swift */,
@@ -287,7 +300,7 @@
 				9E730CD11FDAA1690059C810 /* User+CoreDataClass.swift */,
 				9E730CD21FDAA1690059C810 /* User+CoreDataProperties.swift */,
 			);
-			path = Entities;
+			path = "CoreData Entities";
 			sourceTree = "<group>";
 		};
 		9E730CD31FDAA1690059C810 /* Common */ = {
@@ -399,6 +412,7 @@
 		9E730CF21FDAA16A0059C810 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				9E824D671FE3E05E008538EB /* CollectionViewUpdateDelegate.swift */,
 				9E730CF31FDAA16A0059C810 /* View Controllers */,
 			);
 			path = Shared;
@@ -549,6 +563,7 @@
 				9E63489B1FE1179B00FEDF17 /* SettingsViewModel.swift in Sources */,
 				9E730D031FDAA16A0059C810 /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				9E730CFB1FDAA16A0059C810 /* AppDelegate.swift in Sources */,
+				9E824D681FE3E05E008538EB /* CollectionViewUpdateDelegate.swift in Sources */,
 				9E730D301FDAA16A0059C810 /* LoginViewController.swift in Sources */,
 				9E730D061FDAA16A0059C810 /* IQTextView.swift in Sources */,
 				9E730D161FDAA16A0059C810 /* Expense+CoreDataProperties.swift in Sources */,
@@ -570,6 +585,7 @@
 				9E730D3C1FDAA16A0059C810 /* BaseViewModel.swift in Sources */,
 				9EAE1F271FE0FDC600E8C47E /* ProjectTableViewCell.swift in Sources */,
 				9E730D0B1FDAA16A0059C810 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
+				9E0AD1731FE3CFBF000244FF /* ETJob.swift in Sources */,
 				9E730D0F1FDAA16A0059C810 /* Address+CoreDataClass.swift in Sources */,
 				9E730D021FDAA16A0059C810 /* IQKeyboardManagerConstants.swift in Sources */,
 				9E730D231FDAA16A0059C810 /* Type+CoreDataClass.swift in Sources */,

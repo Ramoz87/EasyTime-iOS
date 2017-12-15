@@ -10,10 +10,11 @@ import UIKit
 
 class BaseViewController<T>: UIViewController where T: BaseViewModel {
 
-    var viewModel: T = T()
+    var viewModel: T
 
     init() {
 
+        self.viewModel = T()
         super.init(nibName: nil, bundle: nil)
     }
 
