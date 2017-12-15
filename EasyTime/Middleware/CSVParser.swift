@@ -8,46 +8,31 @@
 
 import UIKit
 
-fileprivate struct Constants
-{
-    static let fileType = "csv"
-    static let fileCustomers = "customer.csv"
-    static let entityCustomer = "Customer"
-}
-
 class CSVParser: NSObject, ParserDelegate {
 
+    public var startIndex: Int = 0
+    public var batchSize: Int = 500
+    public var progress: ((_ csvName: String, _ objects: [DataObject]) -> Void)?
+    
     private var parsedObjects = [CSVObject]()
     private var currentObject: CSVObject?
-    
-    var progress: ((_ csvName: String, _ objects: [DataObject]) -> Void)?
-    
-    func parseInitialData(completion: ((_ success: Bool) -> Void)?) {
-        DispatchQueue.global(qos: .utility).async {
-            do {
-                try self.parse(url: Bundle(for: type(of: self)).url(forResource: Constants.fileCustomers, withExtension: nil)!)
-                
-                DispatchQueue.main.async {
-                    completion?(true)
-                }
-            }
-            catch {
-                DispatchQueue.main.async {
-                    completion?(false)
-                }
-            }
-        }
+    private var entityName: String?
+
+
+    public func parse(url fileUrl: URL) throws {
+        let parser = CSV.Parser(url: fileUrl, configuration: CSV.Configuration(delimiter: ","))!
+        parser.descrtiption = fileUrl.lastPathComponent
+        parser.delegate = self
+        try parser.parse()
     }
     
-    private func parse(url fileUrl: URL) throws {
-            let parser = CSV.Parser(url: fileUrl, configuration: CSV.Configuration(delimiter: ","))!
-            parser.descrtiption = fileUrl.lastPathComponent
-            parser.delegate = self
-            try parser.parse()
+    public func parse(url fileUrl: URL, entity name: String) throws {
+        self.entityName = name
+        try self.parse(url: fileUrl)
     }
     
     private func showProgress(for parser: CSV.Parser) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.sync {
             self.progress?(parser.descrtiption, self.parsedObjects)
             self.parsedObjects.removeAll()
         }
@@ -62,33 +47,37 @@ class CSVParser: NSObject, ParserDelegate {
     }
     
     func parser(_ parser: CSV.Parser, didBeginLineAt index: UInt) {
-        if(index > 0)
+        if(index >= startIndex)
         {
-            switch parser.descrtiption {
-            case Constants.fileCustomers:
-                currentObject = CSVObject(entityName: Constants.entityCustomer)
-            default:
-                currentObject = nil
+            currentObject = CSVObject()
+            if let name = self.entityName {
+                currentObject!.entityName = name
             }
         }
     }
     
     func parser(_ parser: CSV.Parser, didEndLineAt index: UInt) {
-        if let object = currentObject {
+        if index >= startIndex, let object = currentObject {
             self.parsedObjects.append(object)
+            if(self.parsedObjects.count == self.batchSize) {
+                self.showProgress(for: parser)
+            }
         }
     }
     
     func parser(_ parser: CSV.Parser, didReadFieldAt index: UInt, value: String) {
-        currentObject?.data.append(value)
+            currentObject?.data.append(value)
     }
 }
 
 struct CSVObject: DataObject {
-    var entityName: String
+    var entityName: String = ""
     var data: Array = [String]()
     
-    init(entityName name: String) {
-        self.entityName = name
+    subscript(index: Int) -> String? {
+        get {
+            if(index < data.count) { return data[index] }
+            else { return nil }
+        }
     }
 }

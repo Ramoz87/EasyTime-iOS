@@ -86,19 +86,31 @@ class DataHelper: NSObject {
 
         let context = self.backgroundContext;
         context.perform {
+            var createdObjects = [NSManagedObject]()
+            
             for item in data {
                 let dataObject = NSEntityDescription.insertNewObject(forEntityName: item.entityName, into: context)
-                dataObject.update(object: item)
+                if let updateDataObject = dataObject as? NSManagedObjectUpdate {
+                    updateDataObject.update(object: item)
+                }
+                createdObjects.append(dataObject)
             }
-            do {
-                try context.save()
-                
+            
+            if context.hasChanges {
+                do {
+                    try context.save()
+                    DispatchQueue.main.async(execute: {() -> () in
+                        completion(createdObjects, nil)
+                    })
+                } catch {
+                    DispatchQueue.main.async(execute: {() -> () in
+                        completion(nil, DataError.contextSaveError(error))
+                    })
+                }
+            }
+            else {
                 DispatchQueue.main.async(execute: {() -> () in
-                    completion(nil, nil)
-                })
-            } catch {
-                DispatchQueue.main.async(execute: {() -> () in
-                    completion(nil, DataError.contextSaveError(error))
+                    completion(createdObjects, nil)
                 })
             }
         }
@@ -138,9 +150,6 @@ protocol DataObject {
     var entityName: String { get }
 }
 
-extension NSManagedObject {
-
-    func update(object: DataObject) {
-        
-    }
+protocol NSManagedObjectUpdate {
+    func update(object: DataObject)
 }

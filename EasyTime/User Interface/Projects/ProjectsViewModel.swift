@@ -91,7 +91,7 @@ class ProjectsViewModel: BaseViewModel {
     func updateSearchResults(text: String?) {
 
         var predicate: NSPredicate?
-        if let text = text, text.characters.count > 0 {
+        if let text = text, text.count > 0 {
 
             predicate = NSPredicate(format: Constants.searchPredicate, text)
         }

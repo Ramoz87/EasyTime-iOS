@@ -15,8 +15,12 @@ class RootViewController: UINavigationController {
         
         self.isNavigationBarHidden = true
         
-        AppManager.sharedInstance.dataHelper.prepareInitialData { success in
-            
+        if AppManager.sharedInstance.lastSyncDate == nil {
+            AppManager.sharedInstance.prepareInitialData { success, error in
+                if(success) {
+                    AppManager.sharedInstance.lastSyncDate = Date()
+                }
+            }
         }
         
         AppManager.sharedInstance.authenticator.stateUpdateHandler = { state in

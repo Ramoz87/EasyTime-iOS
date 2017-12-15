@@ -12,5 +12,5 @@ import CoreData
 
 
 public class Address: NSManagedObject {
-
+    static let entityName = "Address"
 }
