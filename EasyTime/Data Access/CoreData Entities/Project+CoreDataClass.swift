@@ -10,6 +10,10 @@
 import Foundation
 import CoreData
 
+fileprivate struct Constants
+{
+    static let customerPredicate = "customerId = %@"
+}
 
 public class Project: Job {
 
@@ -18,8 +22,8 @@ public class Project: Job {
         get {
 
             guard let customerId = self.customerId else { return nil }
-            let request = NSFetchRequest<Customer>(entityName: "Customer")
-            request.predicate = NSPredicate(format: "customerId = %@", customerId)
+            let request = NSFetchRequest<Customer>(entityName: Customer.entityName)
+            request.predicate = NSPredicate(format: Constants.customerPredicate, customerId)
             do {
                 return try self.managedObjectContext?.fetch(request).first
             }
