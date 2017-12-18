@@ -12,5 +12,10 @@ import CoreData
 
 
 public class Object: Job {
-
+    override class var entityName: String  { return "Object" }
+    
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+        self.entityType = Object.entityName
+    }
 }

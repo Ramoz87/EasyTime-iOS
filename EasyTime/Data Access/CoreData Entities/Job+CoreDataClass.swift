@@ -12,5 +12,5 @@ import CoreData
 
 
 public class Job: NSManagedObject {
-
+    class var entityName: String  { return "Job" }
 }

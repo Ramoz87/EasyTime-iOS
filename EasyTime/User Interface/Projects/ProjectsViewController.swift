@@ -41,6 +41,8 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
         }
 
         self.tableView.register(UINib.init(nibName: ProjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectTableViewCell.reuseIdentifier)
+        self.tableView.register(UINib.init(nibName: OrderTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: OrderTableViewCell.reuseIdentifier)
+        self.tableView.register(UINib.init(nibName: ObjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ObjectTableViewCell.reuseIdentifier)
         self.viewModel.collectionViewUpdateDelegate = self
     }
 
@@ -58,15 +60,27 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: ProjectTableViewCell.reuseIdentifier, for: indexPath) as! ProjectTableViewCell
-
+        var cell: UITableViewCell?
         let job = self.viewModel[indexPath]
         if let project = job as? ETProject {
-
-            cell.project = project
+            let projectCell = tableView.dequeueReusableCell(withIdentifier: ProjectTableViewCell.reuseIdentifier, for: indexPath) as! ProjectTableViewCell
+            projectCell.project = project
+            cell = projectCell
+        }
+        
+        if let order = job as? ETOrder {
+            let orderCell = tableView.dequeueReusableCell(withIdentifier: OrderTableViewCell.reuseIdentifier, for: indexPath) as! OrderTableViewCell
+            orderCell.order = order
+            cell = orderCell
+        }
+        
+        if let object = job as? ETObject {
+            let objectCell = tableView.dequeueReusableCell(withIdentifier: ObjectTableViewCell.reuseIdentifier, for: indexPath) as! ObjectTableViewCell
+            objectCell.object = object
+            cell = objectCell
         }
 
-        return cell
+        return cell!
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -102,25 +116,20 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
             self.tableView.insertRows(at: [indexPath], with: .automatic)
         case .update:
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
 
     func didChangeSection(at sectionIndex: Int, for type: CollectionViewChangeType) {
-
+        
         switch type {
-            case .insert:
+        case .insert:
             self.tableView.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
-            case .delete:
+        case .delete:
             self.tableView.deleteSections(IndexSet(integer: sectionIndex), with: .automatic)
-            default:
+        default:
             break
         }
-    }
-
-    func didChangeCollectionView() {
-
-        self.tableView.reloadData()
     }
 
     func willChangeContent() {

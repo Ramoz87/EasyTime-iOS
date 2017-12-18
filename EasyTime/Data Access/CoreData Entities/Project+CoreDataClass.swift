@@ -16,7 +16,8 @@ fileprivate struct Constants
 }
 
 public class Project: Job {
-
+    override class var entityName: String  { return "Project" }
+    
     var customer: Customer? {
 
         get {
@@ -32,5 +33,10 @@ public class Project: Job {
                 return nil
             }
         }
+    }
+    
+    public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+        self.entityType = Project.entityName
     }
 }

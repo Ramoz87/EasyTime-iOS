@@ -10,21 +10,21 @@ import UIKit
 import CoreData
 
 fileprivate struct Constants {
-
-    static let entityName = "Job"
     static let sortDescriptor = "name"
     static let sectionName = "entityType"
     static let searchPredicate = "name CONTAINS[cd] %@"
 }
 
-class ProjectsViewModel: BaseViewModel, NSFetchedResultsControllerDelegate {
+class ProjectsViewModel: BaseViewModel {
 
-    weak var collectionViewUpdateDelegate: CollectionViewUpdateDelegate?
+    
     private lazy var fetchResultsController: NSFetchedResultsController<Job> = {
-
-        return AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Constants.entityName,
-                                                                             sort: [Constants.sortDescriptor],
-                                                                             sectionNameKeyPath:Constants.sectionName)
+        
+        let fetchedResultsController: NSFetchedResultsController<Job> = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Job.entityName,
+                                                                                                                                     sort: [Constants.sortDescriptor],
+                                                                                                                                     sectionNameKeyPath:Constants.sectionName)
+        fetchedResultsController.delegate = self
+        return fetchedResultsController
     }()
 
     required init() {
@@ -36,32 +36,25 @@ class ProjectsViewModel: BaseViewModel, NSFetchedResultsControllerDelegate {
             let job = NSEntityDescription.insertNewObject(forEntityName: "Project", into: context) as! Project
             job.jobId = "Project \(i)"
             job.name = "Project \(i)"
-            job.entityType = "Project"
         }
         for i in 1...10 {
 
             let job = NSEntityDescription.insertNewObject(forEntityName: "Object", into: context) as! Object
             job.jobId = "Object \(i)"
             job.name = "Object \(i)"
-            job.entityType = "Object"
         }
         for i in 1...10 {
 
             let job = NSEntityDescription.insertNewObject(forEntityName: "Order", into: context) as! Order
             job.jobId = "Order \(i)"
             job.name = "Order \(i)"
-            job.entityType = "Order"
         }
         do { try context.save() } catch (let error){ print(error) } //TODO: REMOVE
-        */
+ */
 
         super.init()
-        self.fetchResultsController.delegate = self
-        do {
-            try self.fetchResultsController.performFetch()
-            self.collectionViewUpdateDelegate?.didChangeCollectionView()
-
-        } catch {}
+        
+        self.updateSearchResults(text: nil)
     }
 
     subscript(indexPath: IndexPath) -> ETJob {
@@ -98,9 +91,8 @@ class ProjectsViewModel: BaseViewModel, NSFetchedResultsControllerDelegate {
 
     func titleForHeaderInSection(section: Int) -> String? {
 
-        guard let sections = self.fetchResultsController.sections else { return "" }
-        if section < sections.count { return sections[section].name }
-        else { return "" }
+        guard let sections = self.fetchResultsController.sections, section < sections.count else { return "" }
+        return sections[section].name
     }
 
     func updateSearchResults(text: String?) {
@@ -113,30 +105,6 @@ class ProjectsViewModel: BaseViewModel, NSFetchedResultsControllerDelegate {
         self.fetchResultsController.fetchRequest.predicate = predicate
         do {
             try self.fetchResultsController.performFetch()
-            self.collectionViewUpdateDelegate?.didChangeCollectionView()
-
         } catch {}
-    }
-
-    //MARK: - NSFetchedResultsControllerDelegate
-
-    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-
-        self.collectionViewUpdateDelegate?.willChangeContent()
-    }
-
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-
-        self.collectionViewUpdateDelegate?.didChangeContent()
-    }
-
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-
-        self.collectionViewUpdateDelegate?.didChangeSection(at: sectionIndex, for: CollectionViewChangeType(rawValue: type.rawValue)!)
-    }
-
-    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-
-        self.collectionViewUpdateDelegate?.didChangeObject(at: indexPath, for: CollectionViewChangeType(rawValue: type.rawValue)!, newIndexPath: newIndexPath)
     }
 }

@@ -14,7 +14,7 @@ import CoreData
 extension Job {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Job> {
-        return NSFetchRequest<Job>(entityName: "Job")
+        return NSFetchRequest<Job>(entityName: Job.entityName)
     }
 
     @NSManaged public var currency: String?
@@ -30,7 +30,6 @@ extension Job {
     @NSManaged public var expenses: NSSet?
     @NSManaged public var images: Files?
     @NSManaged public var entityType: String?
-
 }
 
 // MARK: Generated accessors for expenses

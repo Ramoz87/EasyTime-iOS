@@ -88,6 +88,10 @@
 		B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */ = {isa = PBXBuildFile; fileRef = B73108D51FDEC1DE00BB3B07 /* customer.csv */; };
 		B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D71FDEC28300BB3B07 /* CSV.swift */; };
 		B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */; };
+		B7EEAB711FE7E09600FC50EF /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EEAB6F1FE7E09600FC50EF /* OrderTableViewCell.swift */; };
+		B7EEAB751FE7E14700FC50EF /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7EEAB731FE7E14700FC50EF /* OrderTableViewCell.xib */; };
+		B7EEAB761FE7E14700FC50EF /* ObjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7EEAB741FE7E14700FC50EF /* ObjectTableViewCell.xib */; };
+		B7EEAB781FE7E17E00FC50EF /* ObjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EEAB771FE7E17E00FC50EF /* ObjectTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -176,6 +180,10 @@
 		B73108D71FDEC28300BB3B07 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
 		B7E358C71FD53F6C006256FC /* EasyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7EEAB6F1FE7E09600FC50EF /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		B7EEAB731FE7E14700FC50EF /* OrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
+		B7EEAB741FE7E14700FC50EF /* ObjectTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ObjectTableViewCell.xib; sourceTree = "<group>"; };
+		B7EEAB771FE7E17E00FC50EF /* ObjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,6 +410,10 @@
 				9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */,
 				9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */,
 				9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */,
+				B7EEAB6F1FE7E09600FC50EF /* OrderTableViewCell.swift */,
+				B7EEAB731FE7E14700FC50EF /* OrderTableViewCell.xib */,
+				B7EEAB771FE7E17E00FC50EF /* ObjectTableViewCell.swift */,
+				B7EEAB741FE7E14700FC50EF /* ObjectTableViewCell.xib */,
 			);
 			path = Projects;
 			sourceTree = "<group>";
@@ -544,11 +556,13 @@
 				9E730D2F1FDAA16A0059C810 /* ClientsViewController.xib in Resources */,
 				9E730D341FDAA16A0059C810 /* MaterialsViewController.xib in Resources */,
 				9E730D3A1FDAA16A0059C810 /* SettingsViewController.xib in Resources */,
+				B7EEAB751FE7E14700FC50EF /* OrderTableViewCell.xib in Resources */,
 				9E730D0C1FDAA16A0059C810 /* IQKeyboardManager.bundle in Resources */,
 				9E730D2B1FDAA16A0059C810 /* LaunchScreen.storyboard in Resources */,
 				9E730D2D1FDAA16A0059C810 /* Assets.xcassets in Resources */,
 				9EAE1F281FE0FDC600E8C47E /* ProjectTableViewCell.xib in Resources */,
 				9E730D311FDAA16A0059C810 /* LoginViewController.xib in Resources */,
+				B7EEAB761FE7E14700FC50EF /* ObjectTableViewCell.xib in Resources */,
 				9E730D361FDAA16A0059C810 /* ProjectsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -590,6 +604,7 @@
 				9E730D151FDAA16A0059C810 /* Expense+CoreDataClass.swift in Sources */,
 				9E730D1E1FDAA16A0059C810 /* Object+CoreDataProperties.swift in Sources */,
 				9E730D1F1FDAA16A0059C810 /* Order+CoreDataClass.swift in Sources */,
+				B7EEAB781FE7E17E00FC50EF /* ObjectTableViewCell.swift in Sources */,
 				9E730D181FDAA16A0059C810 /* Files+CoreDataProperties.swift in Sources */,
 				9E730D251FDAA16A0059C810 /* User+CoreDataClass.swift in Sources */,
 				B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */,
@@ -602,6 +617,7 @@
 				9E730D0D1FDAA16A0059C810 /* DataHelper.swift in Sources */,
 				9E730D3C1FDAA16A0059C810 /* BaseViewModel.swift in Sources */,
 				9EAE1F271FE0FDC600E8C47E /* ProjectTableViewCell.swift in Sources */,
+				B7EEAB711FE7E09600FC50EF /* OrderTableViewCell.swift in Sources */,
 				9E730D0B1FDAA16A0059C810 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
 				9E1350B61FE3EEBE007CAEC3 /* ETOrder.swift in Sources */,
 				9E0AD1731FE3CFBF000244FF /* ETJob.swift in Sources */,

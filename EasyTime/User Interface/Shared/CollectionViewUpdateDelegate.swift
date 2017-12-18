@@ -10,7 +10,7 @@ import UIKit
 
 enum CollectionViewChangeType : UInt {
 
-    case insert
+    case insert = 1
     case delete
     case move
     case update
@@ -20,7 +20,6 @@ protocol CollectionViewUpdateDelegate: class {
 
     func didChangeObject(at indexPath: IndexPath?, for type: CollectionViewChangeType, newIndexPath: IndexPath?)
     func didChangeSection(at sectionIndex: Int, for type: CollectionViewChangeType)
-    func didChangeCollectionView()
     func willChangeContent()
     func didChangeContent()
 }
