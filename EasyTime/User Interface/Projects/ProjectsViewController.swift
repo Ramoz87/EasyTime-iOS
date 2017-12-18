@@ -22,6 +22,7 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
 
         let controller = UISearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
+        controller.obscuresBackgroundDuringPresentation = false
         controller.hidesNavigationBarDuringPresentation = false
         controller.searchBar.placeholder = Constants.searchBarPlaceholder
         return controller
@@ -140,6 +141,10 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
     func didChangeContent() {
 
         self.tableView.endUpdates()
+    }
+    
+    func didChangeDataSet() {
+        self.tableView.reloadData()
     }
 }
 

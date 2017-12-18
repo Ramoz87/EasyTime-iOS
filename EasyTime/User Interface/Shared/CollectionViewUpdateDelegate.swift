@@ -22,4 +22,13 @@ protocol CollectionViewUpdateDelegate: class {
     func didChangeSection(at sectionIndex: Int, for type: CollectionViewChangeType)
     func willChangeContent()
     func didChangeContent()
+    func didChangeDataSet()
+}
+
+extension CollectionViewUpdateDelegate {
+    func didChangeObject(at indexPath: IndexPath?, for type: CollectionViewChangeType, newIndexPath: IndexPath?) {}
+    func didChangeSection(at sectionIndex: Int, for type: CollectionViewChangeType) {}
+    func willChangeContent() {}
+    func didChangeContent() {}
+    func didChangeDataSet() {}
 }

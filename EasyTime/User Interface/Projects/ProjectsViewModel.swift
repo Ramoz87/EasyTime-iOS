@@ -54,7 +54,9 @@ class ProjectsViewModel: BaseViewModel {
 
         super.init()
         
-        self.updateSearchResults(text: nil)
+        do {
+            try self.fetchResultsController.performFetch()
+        } catch {}
     }
 
     subscript(indexPath: IndexPath) -> ETJob {
@@ -102,9 +104,11 @@ class ProjectsViewModel: BaseViewModel {
 
             predicate = NSPredicate(format: Constants.searchPredicate, text)
         }
+        
         self.fetchResultsController.fetchRequest.predicate = predicate
         do {
             try self.fetchResultsController.performFetch()
+            self.collectionViewUpdateDelegate?.didChangeDataSet()
         } catch {}
     }
 }
