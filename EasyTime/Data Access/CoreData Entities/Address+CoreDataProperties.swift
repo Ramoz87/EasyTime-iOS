@@ -14,7 +14,7 @@ import CoreData
 extension Address {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Address> {
-        return NSFetchRequest<Address>(entityName: "Address")
+        return NSFetchRequest<Address>(entityName: Address.entityName)
     }
 
     @NSManaged public var addressId: String?

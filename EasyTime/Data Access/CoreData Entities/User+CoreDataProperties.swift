@@ -14,7 +14,7 @@ import CoreData
 extension User {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<User> {
-        return NSFetchRequest<User>(entityName: "User")
+        return NSFetchRequest<User>(entityName: User.entityName)
     }
 
     @NSManaged public var firstName: String?

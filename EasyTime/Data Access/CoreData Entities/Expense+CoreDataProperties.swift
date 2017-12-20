@@ -14,7 +14,7 @@ import CoreData
 extension Expense {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Expense> {
-        return NSFetchRequest<Expense>(entityName: "Expense")
+        return NSFetchRequest<Expense>(entityName: Expense.entityName)
     }
 
     @NSManaged public var discount: Float

@@ -14,11 +14,11 @@ import CoreData
 extension Order {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Order> {
-        return NSFetchRequest<Order>(entityName: "Order")
+        return NSFetchRequest<Order>(entityName: Order.entityName)
     }
 
     @NSManaged public var contact: String?
-    @NSManaged public var deliveryTime: NSDate?
+    @NSManaged public var deliveryTime: String?
     @NSManaged public var objects: String?
     @NSManaged public var deliveryAddress: Address?
 

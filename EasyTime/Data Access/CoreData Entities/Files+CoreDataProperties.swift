@@ -14,7 +14,7 @@ import CoreData
 extension Files {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Files> {
-        return NSFetchRequest<Files>(entityName: "Files")
+        return NSFetchRequest<Files>(entityName: Files.entityName)
     }
 
     @NSManaged public var fileId: String?

@@ -92,6 +92,12 @@
 		B7EEAB751FE7E14700FC50EF /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7EEAB731FE7E14700FC50EF /* OrderTableViewCell.xib */; };
 		B7EEAB761FE7E14700FC50EF /* ObjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7EEAB741FE7E14700FC50EF /* ObjectTableViewCell.xib */; };
 		B7EEAB781FE7E17E00FC50EF /* ObjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EEAB771FE7E17E00FC50EF /* ObjectTableViewCell.swift */; };
+		B7EEAB871FEA717A00FC50EF /* materials.csv in Resources */ = {isa = PBXBuildFile; fileRef = B7EEAB811FEA717800FC50EF /* materials.csv */; };
+		B7EEAB881FEA717A00FC50EF /* orders.csv in Resources */ = {isa = PBXBuildFile; fileRef = B7EEAB821FEA717800FC50EF /* orders.csv */; };
+		B7EEAB891FEA717A00FC50EF /* objects.csv in Resources */ = {isa = PBXBuildFile; fileRef = B7EEAB831FEA717900FC50EF /* objects.csv */; };
+		B7EEAB8A1FEA717A00FC50EF /* types.csv in Resources */ = {isa = PBXBuildFile; fileRef = B7EEAB841FEA717900FC50EF /* types.csv */; };
+		B7EEAB8B1FEA717A00FC50EF /* users.csv in Resources */ = {isa = PBXBuildFile; fileRef = B7EEAB851FEA717900FC50EF /* users.csv */; };
+		B7EEAB8C1FEA717A00FC50EF /* projects.csv in Resources */ = {isa = PBXBuildFile; fileRef = B7EEAB861FEA717900FC50EF /* projects.csv */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -184,6 +190,12 @@
 		B7EEAB731FE7E14700FC50EF /* OrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
 		B7EEAB741FE7E14700FC50EF /* ObjectTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ObjectTableViewCell.xib; sourceTree = "<group>"; };
 		B7EEAB771FE7E17E00FC50EF /* ObjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectTableViewCell.swift; sourceTree = "<group>"; };
+		B7EEAB811FEA717800FC50EF /* materials.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = materials.csv; sourceTree = "<group>"; };
+		B7EEAB821FEA717800FC50EF /* orders.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = orders.csv; sourceTree = "<group>"; };
+		B7EEAB831FEA717900FC50EF /* objects.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = objects.csv; sourceTree = "<group>"; };
+		B7EEAB841FEA717900FC50EF /* types.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = types.csv; sourceTree = "<group>"; };
+		B7EEAB851FEA717900FC50EF /* users.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = users.csv; sourceTree = "<group>"; };
+		B7EEAB861FEA717900FC50EF /* projects.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = projects.csv; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,7 +360,7 @@
 		9E730CD91FDAA16A0059C810 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B73108D51FDEC1DE00BB3B07 /* customer.csv */,
+				B7EEAB8D1FEA718600FC50EF /* csv */,
 				9E730D3F1FDAA17A0059C810 /* EasyTime-Bridging-Header.h */,
 				9E730CDC1FDAA16A0059C810 /* Info.plist */,
 				9E730CDA1FDAA16A0059C810 /* LaunchScreen.storyboard */,
@@ -492,6 +504,20 @@
 			path = EasyTime;
 			sourceTree = "<group>";
 		};
+		B7EEAB8D1FEA718600FC50EF /* csv */ = {
+			isa = PBXGroup;
+			children = (
+				B73108D51FDEC1DE00BB3B07 /* customer.csv */,
+				B7EEAB811FEA717800FC50EF /* materials.csv */,
+				B7EEAB831FEA717900FC50EF /* objects.csv */,
+				B7EEAB821FEA717800FC50EF /* orders.csv */,
+				B7EEAB861FEA717900FC50EF /* projects.csv */,
+				B7EEAB841FEA717900FC50EF /* types.csv */,
+				B7EEAB851FEA717900FC50EF /* users.csv */,
+			);
+			path = csv;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -555,11 +581,17 @@
 				B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */,
 				9E730D2F1FDAA16A0059C810 /* ClientsViewController.xib in Resources */,
 				9E730D341FDAA16A0059C810 /* MaterialsViewController.xib in Resources */,
+				B7EEAB891FEA717A00FC50EF /* objects.csv in Resources */,
 				9E730D3A1FDAA16A0059C810 /* SettingsViewController.xib in Resources */,
 				B7EEAB751FE7E14700FC50EF /* OrderTableViewCell.xib in Resources */,
+				B7EEAB8C1FEA717A00FC50EF /* projects.csv in Resources */,
 				9E730D0C1FDAA16A0059C810 /* IQKeyboardManager.bundle in Resources */,
+				B7EEAB8B1FEA717A00FC50EF /* users.csv in Resources */,
 				9E730D2B1FDAA16A0059C810 /* LaunchScreen.storyboard in Resources */,
+				B7EEAB8A1FEA717A00FC50EF /* types.csv in Resources */,
+				B7EEAB871FEA717A00FC50EF /* materials.csv in Resources */,
 				9E730D2D1FDAA16A0059C810 /* Assets.xcassets in Resources */,
+				B7EEAB881FEA717A00FC50EF /* orders.csv in Resources */,
 				9EAE1F281FE0FDC600E8C47E /* ProjectTableViewCell.xib in Resources */,
 				9E730D311FDAA16A0059C810 /* LoginViewController.xib in Resources */,
 				B7EEAB761FE7E14700FC50EF /* ObjectTableViewCell.xib in Resources */,

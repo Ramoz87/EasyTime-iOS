@@ -24,7 +24,7 @@ class ProjectTableViewCell: UITableViewCell {
 
             if let project = project {
 
-                self.lblID.text = project.jobId
+                self.lblID.text = project.number
                 self.lblName.text = project.name
                 self.lblCompanyName.text = project.customer?.companyName
             }

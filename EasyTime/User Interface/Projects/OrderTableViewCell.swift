@@ -24,7 +24,7 @@ class OrderTableViewCell: UITableViewCell {
             
             if let order = order {
                 
-                self.lblID.text = order.jobId
+                self.lblID.text = order.number
                 self.lblName.text = order.name
             }
         }

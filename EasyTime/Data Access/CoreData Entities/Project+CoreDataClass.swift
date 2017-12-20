@@ -39,4 +39,15 @@ public class Project: Job {
         super.init(entity: entity, insertInto: context)
         self.entityType = Project.entityName
     }
+    
+    override func update(object: DataObject) {
+        super.update(object: object)
+        
+        if let csvObject = object as? CSVObject {
+            
+            self.dateEnd = NSDate()
+            self.dateStart = NSDate()
+            self.objects = csvObject[13]
+        }
+    }
 }

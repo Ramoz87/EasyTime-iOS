@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13240" systemVersion="16G29" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="17B1003" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Address" representedClassName=".Address" syncable="YES">
         <attribute name="addressId" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
@@ -64,6 +64,7 @@
         <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="materialId" attributeType="String" syncable="YES"/>
         <attribute name="materialNr" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pricePerUnit" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="serailNr" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stockQuantity" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -76,7 +77,7 @@
     </entity>
     <entity name="Order" representedClassName=".Order" parentEntity="Job" syncable="YES">
         <attribute name="contact" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="deliveryTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="deliveryTime" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="objects" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="deliveryAddress" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Address" inverseName="order" inverseEntity="Address" syncable="YES"/>
     </entity>
@@ -87,7 +88,7 @@
     </entity>
     <entity name="Type" representedClassName=".Type" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="typeId" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName=".User" syncable="YES">
@@ -104,7 +105,7 @@
         <element name="Expense" positionX="34" positionY="-234" width="128" height="180"/>
         <element name="Files" positionX="43" positionY="-9" width="128" height="120"/>
         <element name="Job" positionX="-191" positionY="-238" width="128" height="240"/>
-        <element name="Material" positionX="241" positionY="-153" width="128" height="150"/>
+        <element name="Material" positionX="241" positionY="-153" width="128" height="163"/>
         <element name="Object" positionX="-405" positionY="-171" width="128" height="88"/>
         <element name="Order" positionX="-405" positionY="5" width="128" height="103"/>
         <element name="Project" positionX="-407" positionY="-342" width="128" height="88"/>

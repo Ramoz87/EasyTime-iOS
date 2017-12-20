@@ -14,7 +14,7 @@ import CoreData
 extension Project {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Project> {
-        return NSFetchRequest<Project>(entityName: "Project")
+        return NSFetchRequest<Project>(entityName: Project.entityName)
     }
 
     @NSManaged public var dateEnd: NSDate?

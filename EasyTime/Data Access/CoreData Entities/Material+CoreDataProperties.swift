@@ -14,7 +14,7 @@ import CoreData
 extension Material {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Material> {
-        return NSFetchRequest<Material>(entityName: "Material")
+        return NSFetchRequest<Material>(entityName: Material.entityName)
     }
 
     @NSManaged public var currency: String?
@@ -24,5 +24,6 @@ extension Material {
     @NSManaged public var serailNr: String?
     @NSManaged public var stockQuantity: Float
     @NSManaged public var unitId: String?
+    @NSManaged public var name: String?
 
 }

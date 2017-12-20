@@ -14,7 +14,7 @@ import CoreData
 extension Object {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Object> {
-        return NSFetchRequest<Object>(entityName: "Object")
+        return NSFetchRequest<Object>(entityName: Object.entityName)
     }
 
     @NSManaged public var dateEnd: NSDate?

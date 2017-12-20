@@ -11,6 +11,17 @@ import Foundation
 import CoreData
 
 
-public class User: NSManagedObject {
-
+public class User: NSManagedObject, NSManagedObjectUpdate {
+    static let entityName = "User"
+    
+    func update(object: DataObject) {
+        if let csvObject = object as? CSVObject {
+            
+            self.firstName = csvObject[1]
+            self.lastName = csvObject[2]
+            self.password = csvObject[4]
+            self.userId = csvObject[0]
+            self.userName = csvObject[3]
+        }
+    }
 }

@@ -11,6 +11,12 @@ import UIKit
 fileprivate struct Constants
 {
     static let fileCustomers = "customer.csv"
+    static let fileProjects = "projects.csv"
+    static let fileOrders = "orders.csv"
+    static let fileObjects = "objects.csv"
+    static let fileTypes = "types.csv"
+    static let fileUsers = "users.csv"
+    static let fileMaterials = "materials.csv"
     static let lastSyncDate = "LastSyncDate"
 }
 
@@ -38,7 +44,13 @@ class AppManager {
         self.initialDataCompletion = completion
         
         DispatchQueue.global(qos: .utility).async {
-            let csvFiles = [Customer.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileCustomers, withExtension: nil)!]
+            let csvFiles = [Customer.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileCustomers, withExtension: nil)!,
+                            Project.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileProjects, withExtension: nil)!,
+                            Order.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileOrders, withExtension: nil)!,
+                            Object.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileObjects, withExtension: nil)!,
+                            Type.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileTypes, withExtension: nil)!,
+                            User.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileUsers, withExtension: nil)!,
+                            Material.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileMaterials, withExtension: nil)!]
             
             let parser = CSVParser()
             parser.startIndex = 1

@@ -12,5 +12,5 @@ import CoreData
 
 
 public class Expense: NSManagedObject {
-
+    static let entityName = "Expense"
 }

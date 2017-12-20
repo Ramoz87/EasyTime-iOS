@@ -24,7 +24,7 @@ class ObjectTableViewCell: UITableViewCell {
             
             if let object = object {
                 
-                self.lblID.text = object.jobId
+                self.lblID.text = object.number
                 self.lblName.text = object.name
             }
         }

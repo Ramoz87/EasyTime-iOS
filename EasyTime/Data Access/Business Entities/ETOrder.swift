@@ -11,7 +11,7 @@ import UIKit
 class ETOrder: ETJob {
 
     var contact: String?
-    var deliveryTime: NSDate?
+    var deliveryTime: String?
     var objects: String?
     lazy var deliveryAddress: ETAddress? = {
 
