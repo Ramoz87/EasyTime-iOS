@@ -8,6 +8,11 @@
 
 import UIKit
 
+fileprivate struct Constants
+{
+    static let addressSeparator = ", "
+}
+
 class OrderTableViewCell: UITableViewCell {
 
     static let reuseIdentifier = "OrderTableViewCellReuseIdentifier"
@@ -15,6 +20,7 @@ class OrderTableViewCell: UITableViewCell {
     
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblStatus: UILabel!
+    @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var lblID: UILabel!
     @IBOutlet weak var lblCompanyName: UILabel!
     
@@ -26,8 +32,14 @@ class OrderTableViewCell: UITableViewCell {
                 
                 self.lblID.text = order.number
                 self.lblName.text = order.name
+
+                self.lblAddress.text = ""
+                self.lblAddress.text?.append(order.deliveryAddress?.country, separator: Constants.addressSeparator)
+                self.lblAddress.text?.append(order.deliveryAddress?.city, separator: Constants.addressSeparator)
+                self.lblAddress.text?.append(order.deliveryAddress?.street, separator: Constants.addressSeparator)
+                self.lblAddress.text?.append(order.deliveryAddress?.zip, separator: Constants.addressSeparator)
+                self.lblAddress.text?.append(order.deliveryTime, separator: Constants.addressSeparator)
             }
         }
     }
-    
 }

@@ -145,6 +145,11 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
 
     }
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        return UITableViewAutomaticDimension
+    }
+
     //MARK: - UISearchResultsUpdating
 
     func updateSearchResults(for searchController: UISearchController) {

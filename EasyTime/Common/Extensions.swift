@@ -53,3 +53,18 @@ extension Bundle {
         }
     }
 }
+
+extension String {
+
+    mutating func append(_ string: String?, separator: String) {
+
+        if let string = string {
+
+            if self.characters.count > 0, string.characters.count > 0 {
+
+                self.append(separator)
+            }
+            self.append(string)
+        }
+    }
+}
