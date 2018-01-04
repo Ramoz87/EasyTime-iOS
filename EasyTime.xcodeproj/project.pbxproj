@@ -12,6 +12,7 @@
 		9E1350B81FE3EECF007CAEC3 /* ETObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1350B71FE3EECF007CAEC3 /* ETObject.swift */; };
 		9E1350BA1FE3F6C7007CAEC3 /* ETAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1350B91FE3F6C7007CAEC3 /* ETAddress.swift */; };
 		9E1350BC1FE40015007CAEC3 /* ETCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1350BB1FE40015007CAEC3 /* ETCustomer.swift */; };
+		9E4CAEFB1FFD0095006FF08C /* InputButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4CAEFA1FFD0095006FF08C /* InputButton.swift */; };
 		9E6348971FE116DB00FEDF17 /* ClientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6348961FE116DB00FEDF17 /* ClientsViewModel.swift */; };
 		9E6348991FE1173800FEDF17 /* MaterialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6348981FE1173800FEDF17 /* MaterialsViewModel.swift */; };
 		9E63489B1FE1179B00FEDF17 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63489A1FE1179B00FEDF17 /* SettingsViewModel.swift */; };
@@ -106,6 +107,7 @@
 		9E1350B71FE3EECF007CAEC3 /* ETObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETObject.swift; sourceTree = "<group>"; };
 		9E1350B91FE3F6C7007CAEC3 /* ETAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAddress.swift; sourceTree = "<group>"; };
 		9E1350BB1FE40015007CAEC3 /* ETCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETCustomer.swift; sourceTree = "<group>"; };
+		9E4CAEFA1FFD0095006FF08C /* InputButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputButton.swift; sourceTree = "<group>"; };
 		9E6348961FE116DB00FEDF17 /* ClientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsViewModel.swift; sourceTree = "<group>"; };
 		9E6348981FE1173800FEDF17 /* MaterialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsViewModel.swift; sourceTree = "<group>"; };
 		9E63489A1FE1179B00FEDF17 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -220,6 +222,14 @@
 				9E824D691FE3EC32008538EB /* ETProject.swift */,
 			);
 			path = "Business Entities";
+			sourceTree = "<group>";
+		};
+		9E4CAEF91FFD0081006FF08C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				9E4CAEFA1FFD0095006FF08C /* InputButton.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		9E730C9D1FDAA1690059C810 /* Frameworks */ = {
@@ -453,6 +463,7 @@
 			children = (
 				9E824D671FE3E05E008538EB /* CollectionViewUpdateDelegate.swift */,
 				9E730CF31FDAA16A0059C810 /* View Controllers */,
+				9E4CAEF91FFD0081006FF08C /* Views */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -676,6 +687,7 @@
 				9E730D131FDAA16A0059C810 /* Customer+CoreDataClass.swift in Sources */,
 				9E730D1C1FDAA16A0059C810 /* Material+CoreDataProperties.swift in Sources */,
 				9E730D391FDAA16A0059C810 /* SettingsViewController.swift in Sources */,
+				9E4CAEFB1FFD0095006FF08C /* InputButton.swift in Sources */,
 				9E730CFD1FDAA16A0059C810 /* IQUIScrollView+Additions.swift in Sources */,
 				9E730D011FDAA16A0059C810 /* IQUIWindow+Hierarchy.swift in Sources */,
 				9E730D171FDAA16A0059C810 /* Files+CoreDataClass.swift in Sources */,

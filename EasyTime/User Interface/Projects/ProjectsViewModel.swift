@@ -12,7 +12,8 @@ import CoreData
 fileprivate struct Constants {
     static let sortDescriptor = "name"
     static let sectionName = "entityType"
-    static let searchPredicate = "name CONTAINS[cd] %@"
+    static let searchPredicate1 = "date < %@"
+    static let searchPredicate2 = "name CONTAINS[cd] %@"
 }
 
 class ProjectsViewModel: BaseViewModel {
@@ -30,9 +31,7 @@ class ProjectsViewModel: BaseViewModel {
     required init() {
         super.init()
         
-        do {
-            try self.fetchResultsController.performFetch()
-        } catch {}
+        self.updateSearchResults(date: Date(), text: nil)
     }
 
     subscript(indexPath: IndexPath) -> ETJob {
@@ -73,14 +72,16 @@ class ProjectsViewModel: BaseViewModel {
         return sections[section].name
     }
 
-    func updateSearchResults(text: String?) {
+    func updateSearchResults(date: Date, text: String?) {
 
-        var predicate: NSPredicate?
+        var predicateString = String(format: Constants.searchPredicate1, date as NSDate)
         if let text = text, text.count > 0 {
 
-            predicate = NSPredicate(format: Constants.searchPredicate, text)
+            predicateString += " && " + String(format: Constants.searchPredicate2, text)
         }
-        
+
+        let predicate: NSPredicate = NSPredicate(format: Constants.searchPredicate1, date as NSDate)
+
         self.fetchResultsController.fetchRequest.predicate = predicate
         do {
             try self.fetchResultsController.performFetch()

@@ -12,6 +12,8 @@ import CoreData
 fileprivate struct Constants
 {
     static let searchBarPlaceholder = NSLocalizedString("Search", comment: "")
+    static let datePickerDoneButtonText = NSLocalizedString("Done", comment: "")
+    static let dateFilterButtonDropDownIconSpacing: CGFloat = 8
 }
 
 class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, CollectionViewUpdateDelegate {
@@ -26,6 +28,37 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
         controller.hidesNavigationBarDuringPresentation = false
         controller.searchBar.placeholder = Constants.searchBarPlaceholder
         return controller
+    }()
+
+    lazy var datePicker: UIDatePicker = {
+
+        let picker = UIDatePicker()
+        picker.datePickerMode = .date
+        picker.addTarget(self, action: #selector(ProjectsViewController.didChangeDate(sender:)), for: .valueChanged)
+        return picker
+    }()
+
+    lazy var dateFilterButton: InputButton = {
+
+        let dateString = self.dateFormatter.string(from: self.datePicker.date)
+
+        let button = InputButton()
+        button.setTitle(dateString, for: .normal)
+        button.inputView = self.datePicker
+        button.inputAccessoryView = button.keyboardToolbar
+        button.semanticContentAttribute = .forceRightToLeft
+        button.setImage(UIImage(named: "dropDownIcon"), for: .normal)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -Constants.dateFilterButtonDropDownIconSpacing)
+        button.addDoneOnKeyboardWithTarget(self, action: #selector(ProjectsViewController.didTapDoneOnDatePicker(sender:)), titleText: Constants.datePickerDoneButtonText)
+        return button
+    }()
+
+    lazy var dateFormatter: DateFormatter = {
+
+        let formatter = DateFormatter()
+        formatter.doesRelativeDateFormatting = true
+        formatter.dateStyle = .medium
+        return formatter
     }()
 
     override func viewDidLoad() {
@@ -45,6 +78,23 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
         self.tableView.register(UINib.init(nibName: OrderTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: OrderTableViewCell.reuseIdentifier)
         self.tableView.register(UINib.init(nibName: ObjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ObjectTableViewCell.reuseIdentifier)
         self.viewModel.collectionViewUpdateDelegate = self
+
+        self.navigationItem.titleView = self.dateFilterButton
+    }
+
+    //MARK: - Action handlers
+
+    @objc func didChangeDate(sender: Any) {
+
+        let dateString = self.dateFormatter.string(from: self.datePicker.date)
+        self.dateFilterButton.setTitle(dateString, for: .normal)
+        self.dateFilterButton.sizeToFit()
+        self.viewModel.updateSearchResults(date: self.datePicker.date, text: self.searchController.searchBar.text)
+    }
+
+    @objc func didTapDoneOnDatePicker(sender: Any) {
+
+        self.dateFilterButton.resignFirstResponder()
     }
 
     //MARK: - UITableViewDataSource
@@ -99,7 +149,7 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
 
     func updateSearchResults(for searchController: UISearchController) {
 
-        self.viewModel.updateSearchResults(text: searchController.searchBar.text)
+        self.viewModel.updateSearchResults(date: self.datePicker.date, text: self.searchController.searchBar.text)
     }
 
     //MARK: - CollectionViewUpdateDelegate
