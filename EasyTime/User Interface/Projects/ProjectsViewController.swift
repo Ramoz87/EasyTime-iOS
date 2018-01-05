@@ -143,6 +143,8 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        let controller = ProjectDetailsViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

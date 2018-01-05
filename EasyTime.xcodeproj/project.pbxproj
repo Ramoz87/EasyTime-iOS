@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F07A77E1FFFAAB000BBA74D /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07A77D1FFFAAB000BBA74D /* TabView.swift */; };
+		5F07A7821FFFAB7C00BBA74D /* ProjectDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07A7801FFFAB7C00BBA74D /* ProjectDetailsViewController.swift */; };
+		5F07A7831FFFAB7C00BBA74D /* ProjectDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F07A7811FFFAB7C00BBA74D /* ProjectDetailsViewController.xib */; };
 		9E0AD1731FE3CFBF000244FF /* ETJob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0AD1721FE3CFBF000244FF /* ETJob.swift */; };
 		9E1350B61FE3EEBE007CAEC3 /* ETOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1350B51FE3EEBE007CAEC3 /* ETOrder.swift */; };
 		9E1350B81FE3EECF007CAEC3 /* ETObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1350B71FE3EECF007CAEC3 /* ETObject.swift */; };
@@ -102,6 +105,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5F07A77D1FFFAAB000BBA74D /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		5F07A7801FFFAB7C00BBA74D /* ProjectDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsViewController.swift; sourceTree = "<group>"; };
+		5F07A7811FFFAB7C00BBA74D /* ProjectDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectDetailsViewController.xib; sourceTree = "<group>"; };
 		9E0AD1721FE3CFBF000244FF /* ETJob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETJob.swift; sourceTree = "<group>"; };
 		9E1350B51FE3EEBE007CAEC3 /* ETOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETOrder.swift; sourceTree = "<group>"; };
 		9E1350B71FE3EECF007CAEC3 /* ETObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETObject.swift; sourceTree = "<group>"; };
@@ -211,6 +217,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F07A77F1FFFAB3C00BBA74D /* Project Details */ = {
+			isa = PBXGroup;
+			children = (
+				5F07A7801FFFAB7C00BBA74D /* ProjectDetailsViewController.swift */,
+				5F07A7811FFFAB7C00BBA74D /* ProjectDetailsViewController.xib */,
+			);
+			path = "Project Details";
+			sourceTree = "<group>";
+		};
 		9E0AD1711FE3CF8E000244FF /* Business Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				9E4CAEFA1FFD0095006FF08C /* InputButton.swift */,
+				5F07A77D1FFFAAB000BBA74D /* TabView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -385,6 +401,7 @@
 				9E730CDF1FDAA16A0059C810 /* Clients */,
 				9E730CE21FDAA16A0059C810 /* Login */,
 				9E730CE61FDAA16A0059C810 /* Materials */,
+				5F07A77F1FFFAB3C00BBA74D /* Project Details */,
 				9E730CE91FDAA16A0059C810 /* Projects */,
 				9E730CEC1FDAA16A0059C810 /* Root */,
 				9E730CEF1FDAA16A0059C810 /* Settings */,
@@ -589,6 +606,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F07A7831FFFAB7C00BBA74D /* ProjectDetailsViewController.xib in Resources */,
 				B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */,
 				9E730D2F1FDAA16A0059C810 /* ClientsViewController.xib in Resources */,
 				9E730D341FDAA16A0059C810 /* MaterialsViewController.xib in Resources */,
@@ -682,11 +700,13 @@
 				9E730D071FDAA16A0059C810 /* IQBarButtonItem.swift in Sources */,
 				9E730D101FDAA16A0059C810 /* Address+CoreDataProperties.swift in Sources */,
 				9E1350BA1FE3F6C7007CAEC3 /* ETAddress.swift in Sources */,
+				5F07A7821FFFAB7C00BBA74D /* ProjectDetailsViewController.swift in Sources */,
 				9E730CFF1FDAA16A0059C810 /* IQUIView+Hierarchy.swift in Sources */,
 				9E730D2A1FDAA16A0059C810 /* Authenticator.swift in Sources */,
 				9E730D131FDAA16A0059C810 /* Customer+CoreDataClass.swift in Sources */,
 				9E730D1C1FDAA16A0059C810 /* Material+CoreDataProperties.swift in Sources */,
 				9E730D391FDAA16A0059C810 /* SettingsViewController.swift in Sources */,
+				5F07A77E1FFFAAB000BBA74D /* TabView.swift in Sources */,
 				9E4CAEFB1FFD0095006FF08C /* InputButton.swift in Sources */,
 				9E730CFD1FDAA16A0059C810 /* IQUIScrollView+Additions.swift in Sources */,
 				9E730D011FDAA16A0059C810 /* IQUIWindow+Hierarchy.swift in Sources */,
