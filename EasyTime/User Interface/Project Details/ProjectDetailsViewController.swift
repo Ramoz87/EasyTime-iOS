@@ -23,7 +23,7 @@ class ProjectDetailsViewController: BaseViewController<BaseViewModel>, TabViewDe
     
     func numberOfItemsForTabView(tabView: TabView) -> Int {
     
-        return 3
+        return 2
     }
     
     func tabView(_ tabView: TabView, titleForItemAtIndex index: Int) -> String? {

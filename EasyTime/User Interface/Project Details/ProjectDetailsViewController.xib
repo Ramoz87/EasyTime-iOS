@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,10 +22,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bdw-R5-wvq" customClass="TabView" customModule="EasyTime" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="30" width="375" height="55"/>
+                    <rect key="frame" x="0.0" y="120" width="375" height="53"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="55" id="1QZ-Vj-l7I"/>
+                        <constraint firstAttribute="height" constant="53" id="1QZ-Vj-l7I"/>
                     </constraints>
                 </view>
             </subviews>
@@ -33,7 +33,7 @@
             <constraints>
                 <constraint firstItem="Bdw-R5-wvq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bMG-fh-tDv"/>
                 <constraint firstItem="Bdw-R5-wvq" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="xFi-du-ded"/>
-                <constraint firstItem="Bdw-R5-wvq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="z4u-hY-yuM"/>
+                <constraint firstItem="Bdw-R5-wvq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="z4u-hY-yuM"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="33.5" y="54.5"/>

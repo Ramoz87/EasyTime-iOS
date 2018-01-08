@@ -10,8 +10,9 @@ import UIKit
 fileprivate struct Constants {
     
     static let curveWidthPercent: CGFloat = 0.05
-    static let inclineWidthPercent: CGFloat = 0.1
-    static let controlPointPercent: CGFloat = 0.8
+    static let inclineWidthPercent: CGFloat = 0.07
+    static let controlXPercent: CGFloat = 0.6
+    static let controlYPercent: CGFloat = 0.9
 }
 
 enum TabViewItemPosition {
@@ -166,7 +167,9 @@ private class TabViewItem: UIButton
     override func draw(_ rect: CGRect)
     {
         let curveWidth = rect.width * Constants.curveWidthPercent
-        let controlWidth = curveWidth * Constants.controlPointPercent
+        let controlWidth = curveWidth * Constants.controlXPercent
+        let controlHeight = curveWidth * Constants.controlYPercent
+        let inclineWidth = rect.width * Constants.inclineWidthPercent
         
         let bezierPath = UIBezierPath()
         bezierPath.move(to: CGPoint(x: 0, y: rect.height))
@@ -182,26 +185,26 @@ private class TabViewItem: UIButton
             
             bezierPath.addQuadCurve(to:
                 CGPoint(
-                    x: rect.width * Constants.curveWidthPercent,
-                    y: rect.height * (1 - Constants.curveWidthPercent)),
+                    x: curveWidth,
+                    y: rect.height - curveWidth),
                                     controlPoint:
                 CGPoint(
                     x: controlWidth,
-                    y: rect.height))
+                    y: rect.height - curveWidth + controlHeight))
             
             bezierPath.addLine(to:
                 CGPoint(
-                    x: rect.size.width * Constants.curveWidthPercent + rect.size.width * Constants.inclineWidthPercent,
-                    y: rect.height * Constants.curveWidthPercent))
-            
+                    x: curveWidth + inclineWidth,
+                    y: curveWidth))
+
             bezierPath.addQuadCurve(to:
                 CGPoint(
-                    x: rect.size.width * Constants.curveWidthPercent * 2 + rect.size.width * Constants.inclineWidthPercent,
+                    x: curveWidth * 2 + inclineWidth,
                     y: 0),
                                     controlPoint:
                 CGPoint(
-                    x: rect.size.width * Constants.curveWidthPercent * 2 + rect.size.width * Constants.inclineWidthPercent - controlWidth,
-                    y: 0))
+                    x: curveWidth * 2 + inclineWidth - controlWidth,
+                    y: curveWidth - controlHeight))
         }
         
         if self.position == .right {
@@ -220,22 +223,22 @@ private class TabViewItem: UIButton
             
             bezierPath.addLine(to:
                 CGPoint(
-                    x: rect.size.width * (1 - Constants.curveWidthPercent * 2 - Constants.inclineWidthPercent),
+                    x: rect.size.width - inclineWidth - 2 * curveWidth,
                     y: 0))
             
             bezierPath.addQuadCurve(to:
                 CGPoint(
-                    x: rect.width * (1 - Constants.curveWidthPercent - Constants.inclineWidthPercent),
-                    y: rect.height * Constants.curveWidthPercent),
+                    x: rect.width - inclineWidth - curveWidth,
+                    y: curveWidth),
                                     controlPoint:
                 CGPoint(
-                    x: rect.size.width * (1 - Constants.curveWidthPercent * 2 - Constants.inclineWidthPercent) + controlWidth,
-                    y: 0))
+                    x: rect.size.width - inclineWidth - 2 * curveWidth + controlWidth,
+                    y: curveWidth - controlHeight))
             
             bezierPath.addLine(to:
                 CGPoint(
-                    x: rect.size.width * (1 - Constants.curveWidthPercent),
-                    y: rect.height * (1 - Constants.curveWidthPercent)))
+                    x: rect.size.width - curveWidth,
+                    y: rect.height - controlHeight))
             
             bezierPath.addQuadCurve(to:
                 CGPoint(
@@ -244,7 +247,7 @@ private class TabViewItem: UIButton
                                     controlPoint:
                 CGPoint(
                     x: rect.width - controlWidth,
-                    y: rect.height))
+                    y: rect.height - curveWidth + controlHeight))
         }
         
         bezierPath.close()
