@@ -20,12 +20,21 @@ class ETJob {
     var number: String?
     var statusId: String?
     var typeId: String?
-    var expenses: NSSet?
     var images: Files?
     var entityType: String?
 
+    lazy var expenses: [ETExpense]? = {
+
+        return self.job.expenses?.map({ expense -> ETExpense in
+            return ETExpense(expense: expense as! Expense)
+        })
+    }()
+
+    private let job: Job
+
     init(job: Job) {
 
+        self.job = job
         self.currency = job.currency
         self.customerId = job.customerId
         self.date = job.date
@@ -36,7 +45,6 @@ class ETJob {
         self.number = job.number
         self.statusId = job.statusId
         self.typeId = job.typeId
-        self.expenses = job.expenses
         self.images = job.images
         self.entityType = job.entityType
     }

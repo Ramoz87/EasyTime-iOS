@@ -95,6 +95,9 @@
 		9EC02C7D2004E60F004B83FC /* ProjectInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C7B2004E60F004B83FC /* ProjectInfoViewController.swift */; };
 		9EC02C7E2004E60F004B83FC /* ProjectInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC02C7C2004E60F004B83FC /* ProjectInfoViewController.xib */; };
 		9EC02C802004EA4F004B83FC /* ProjectActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C7F2004EA4F004B83FC /* ProjectActivityViewModel.swift */; };
+		9EC02C832004EF73004B83FC /* ProjectActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C812004EF73004B83FC /* ProjectActivityTableViewCell.swift */; };
+		9EC02C842004EF73004B83FC /* ProjectActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC02C822004EF73004B83FC /* ProjectActivityTableViewCell.xib */; };
+		9EC02C862004F794004B83FC /* ETExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C852004F794004B83FC /* ETExpense.swift */; };
 		B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */ = {isa = PBXBuildFile; fileRef = B73108D51FDEC1DE00BB3B07 /* customer.csv */; };
 		B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D71FDEC28300BB3B07 /* CSV.swift */; };
 		B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */; };
@@ -202,6 +205,9 @@
 		9EC02C7B2004E60F004B83FC /* ProjectInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoViewController.swift; sourceTree = "<group>"; };
 		9EC02C7C2004E60F004B83FC /* ProjectInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoViewController.xib; sourceTree = "<group>"; };
 		9EC02C7F2004EA4F004B83FC /* ProjectActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectActivityViewModel.swift; sourceTree = "<group>"; };
+		9EC02C812004EF73004B83FC /* ProjectActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectActivityTableViewCell.swift; sourceTree = "<group>"; };
+		9EC02C822004EF73004B83FC /* ProjectActivityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectActivityTableViewCell.xib; sourceTree = "<group>"; };
+		9EC02C852004F794004B83FC /* ETExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETExpense.swift; sourceTree = "<group>"; };
 		B73108D51FDEC1DE00BB3B07 /* customer.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customer.csv; sourceTree = "<group>"; };
 		B73108D71FDEC28300BB3B07 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
@@ -246,6 +252,7 @@
 			children = (
 				9E1350B91FE3F6C7007CAEC3 /* ETAddress.swift */,
 				9E1350BB1FE40015007CAEC3 /* ETCustomer.swift */,
+				9EC02C852004F794004B83FC /* ETExpense.swift */,
 				9E0AD1721FE3CFBF000244FF /* ETJob.swift */,
 				9E1350B71FE3EECF007CAEC3 /* ETObject.swift */,
 				9E1350B51FE3EEBE007CAEC3 /* ETOrder.swift */,
@@ -520,6 +527,8 @@
 		9EC02C752004E59C004B83FC /* Project Activity */ = {
 			isa = PBXGroup;
 			children = (
+				9EC02C812004EF73004B83FC /* ProjectActivityTableViewCell.swift */,
+				9EC02C822004EF73004B83FC /* ProjectActivityTableViewCell.xib */,
 				9EC02C762004E59C004B83FC /* ProjectActivityViewController.swift */,
 				9EC02C772004E59C004B83FC /* ProjectActivityViewController.xib */,
 				9EC02C7F2004EA4F004B83FC /* ProjectActivityViewModel.swift */,
@@ -656,6 +665,7 @@
 				B7EEAB8A1FEA717A00FC50EF /* types.csv in Resources */,
 				B7EEAB871FEA717A00FC50EF /* materials.csv in Resources */,
 				9E730D2D1FDAA16A0059C810 /* Assets.xcassets in Resources */,
+				9EC02C842004EF73004B83FC /* ProjectActivityTableViewCell.xib in Resources */,
 				B7EEAB881FEA717A00FC50EF /* orders.csv in Resources */,
 				9EAE1F281FE0FDC600E8C47E /* ProjectTableViewCell.xib in Resources */,
 				9E730D311FDAA16A0059C810 /* LoginViewController.xib in Resources */,
@@ -682,6 +692,7 @@
 				9E730D1A1FDAA16A0059C810 /* Job+CoreDataProperties.swift in Sources */,
 				9E824D6A1FE3EC32008538EB /* ETProject.swift in Sources */,
 				9E730CFC1FDAA16A0059C810 /* IQNSArray+Sort.swift in Sources */,
+				9EC02C862004F794004B83FC /* ETExpense.swift in Sources */,
 				9E730D201FDAA16A0059C810 /* Order+CoreDataProperties.swift in Sources */,
 				9E730D081FDAA16A0059C810 /* IQPreviousNextView.swift in Sources */,
 				9E730D051FDAA16A0059C810 /* IQKeyboardReturnKeyHandler.swift in Sources */,
@@ -723,6 +734,7 @@
 				9E730D021FDAA16A0059C810 /* IQKeyboardManagerConstants.swift in Sources */,
 				9EC02C742004C796004B83FC /* ProjectDetailsViewModel.swift in Sources */,
 				9E730D231FDAA16A0059C810 /* Type+CoreDataClass.swift in Sources */,
+				9EC02C832004EF73004B83FC /* ProjectActivityTableViewCell.swift in Sources */,
 				9E730D321FDAA16A0059C810 /* LoginViewModel.swift in Sources */,
 				9E730D291FDAA16A0059C810 /* AppManager.swift in Sources */,
 				9E730D141FDAA16A0059C810 /* Customer+CoreDataProperties.swift in Sources */,

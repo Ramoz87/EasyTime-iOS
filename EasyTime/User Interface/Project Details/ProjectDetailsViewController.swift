@@ -53,10 +53,15 @@ class ProjectDetailsViewController: BaseViewController<ProjectDetailsViewModel>,
         if let controller = controller {
 
             self.addChildViewController(controller)
-            controller.view.frame = self.vPlaceholder.bounds
             self.vPlaceholder.addSubview(controller.view)
             controller.didMove(toParentViewController: self)
             self.viewController = controller
+            self.vPlaceholder.addConstraints([
+                NSLayoutConstraint(item: controller.view, attribute: .leading, relatedBy: .equal, toItem: self.vPlaceholder, attribute: .leading, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: controller.view, attribute: .top, relatedBy: .equal, toItem: self.vPlaceholder, attribute: .top, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: controller.view, attribute: .trailing, relatedBy: .equal, toItem: self.vPlaceholder, attribute: .trailing, multiplier: 1, constant: 0),
+                NSLayoutConstraint(item: controller.view, attribute: .bottom, relatedBy: .equal, toItem: self.vPlaceholder, attribute: .bottom, multiplier: 1, constant: 0)
+                ])
         }
     }
 }
