@@ -16,7 +16,7 @@ class ProjectDetailsViewController: BaseViewController<BaseViewModel>, TabViewDe
         super.viewDidLoad()
 
         self.tabView.delegate = self
-        self.tabView.selectItem(at: 1)
+        self.tabView.selectedIndex = 1
     }
     
     //MARK: - TabViewDelegate

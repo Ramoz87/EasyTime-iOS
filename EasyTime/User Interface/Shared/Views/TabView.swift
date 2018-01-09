@@ -38,6 +38,14 @@ class TabView: UIView {
             self.reloadData()
         }
     }
+
+    var selectedIndex: Int = 0 {
+
+        didSet {
+
+            self.selectItem(at: self.selectedIndex)
+        }
+    }
     
     func reloadData() {
         
@@ -70,23 +78,7 @@ class TabView: UIView {
                 
                 self.addSubview(item)
             }
-        }
-    }
-    
-    func selectItem(at index: Int) {
-        
-        let numberOfItems = self.subviews.count
-        for i in 0...(numberOfItems - 1) {
-            
-            if let item = self.subviews[i] as? UIButton {
-                
-                item.isSelected = i == index
-                
-                if item.isSelected == true {
-                    
-                    item.bringSubview(toFront: self)
-                }
-            }
+            self.selectItem(at: self.selectedIndex)
         }
     }
     
@@ -116,6 +108,25 @@ class TabView: UIView {
             if let delegate = self.delegate {
                 
                 delegate.tabView(self, didSelectItemAtIndex: index)
+            }
+        }
+    }
+
+    //MARK: - Private functions
+
+    private func selectItem(at index: Int) {
+
+        let numberOfItems = self.subviews.count
+        for i in 0...(numberOfItems - 1) {
+
+            if let item = self.subviews[i] as? UIButton {
+
+                item.isSelected = i == index
+
+                if item.isSelected == true {
+
+                    item.bringSubview(toFront: self)
+                }
             }
         }
     }
