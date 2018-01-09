@@ -143,7 +143,10 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let controller = ProjectDetailsViewController()
+        let job = self.viewModel[indexPath]
+
+        let viewModel = ProjectDetailsViewModel(job: job)
+        let controller = ProjectDetailsViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(controller, animated: true)
     }
 

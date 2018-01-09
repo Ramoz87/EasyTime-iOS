@@ -89,6 +89,12 @@
 		9EAE1F241FE0068300E8C47E /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */; };
 		9EAE1F271FE0FDC600E8C47E /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */; };
 		9EAE1F281FE0FDC600E8C47E /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */; };
+		9EC02C742004C796004B83FC /* ProjectDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C732004C796004B83FC /* ProjectDetailsViewModel.swift */; };
+		9EC02C782004E59C004B83FC /* ProjectActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C762004E59C004B83FC /* ProjectActivityViewController.swift */; };
+		9EC02C792004E59C004B83FC /* ProjectActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC02C772004E59C004B83FC /* ProjectActivityViewController.xib */; };
+		9EC02C7D2004E60F004B83FC /* ProjectInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C7B2004E60F004B83FC /* ProjectInfoViewController.swift */; };
+		9EC02C7E2004E60F004B83FC /* ProjectInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC02C7C2004E60F004B83FC /* ProjectInfoViewController.xib */; };
+		9EC02C802004EA4F004B83FC /* ProjectActivityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C7F2004EA4F004B83FC /* ProjectActivityViewModel.swift */; };
 		B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */ = {isa = PBXBuildFile; fileRef = B73108D51FDEC1DE00BB3B07 /* customer.csv */; };
 		B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D71FDEC28300BB3B07 /* CSV.swift */; };
 		B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */; };
@@ -190,6 +196,12 @@
 		9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
 		9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
+		9EC02C732004C796004B83FC /* ProjectDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsViewModel.swift; sourceTree = "<group>"; };
+		9EC02C762004E59C004B83FC /* ProjectActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectActivityViewController.swift; sourceTree = "<group>"; };
+		9EC02C772004E59C004B83FC /* ProjectActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectActivityViewController.xib; sourceTree = "<group>"; };
+		9EC02C7B2004E60F004B83FC /* ProjectInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoViewController.swift; sourceTree = "<group>"; };
+		9EC02C7C2004E60F004B83FC /* ProjectInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoViewController.xib; sourceTree = "<group>"; };
+		9EC02C7F2004EA4F004B83FC /* ProjectActivityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectActivityViewModel.swift; sourceTree = "<group>"; };
 		B73108D51FDEC1DE00BB3B07 /* customer.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customer.csv; sourceTree = "<group>"; };
 		B73108D71FDEC28300BB3B07 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
@@ -220,8 +232,11 @@
 		5F07A77F1FFFAB3C00BBA74D /* Project Details */ = {
 			isa = PBXGroup;
 			children = (
+				9EC02C752004E59C004B83FC /* Project Activity */,
+				9EC02C7A2004E5EB004B83FC /* Project Information */,
 				5F07A7801FFFAB7C00BBA74D /* ProjectDetailsViewController.swift */,
 				5F07A7811FFFAB7C00BBA74D /* ProjectDetailsViewController.xib */,
+				9EC02C732004C796004B83FC /* ProjectDetailsViewModel.swift */,
 			);
 			path = "Project Details";
 			sourceTree = "<group>";
@@ -502,6 +517,25 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		9EC02C752004E59C004B83FC /* Project Activity */ = {
+			isa = PBXGroup;
+			children = (
+				9EC02C762004E59C004B83FC /* ProjectActivityViewController.swift */,
+				9EC02C772004E59C004B83FC /* ProjectActivityViewController.xib */,
+				9EC02C7F2004EA4F004B83FC /* ProjectActivityViewModel.swift */,
+			);
+			path = "Project Activity";
+			sourceTree = "<group>";
+		};
+		9EC02C7A2004E5EB004B83FC /* Project Information */ = {
+			isa = PBXGroup;
+			children = (
+				9EC02C7B2004E60F004B83FC /* ProjectInfoViewController.swift */,
+				9EC02C7C2004E60F004B83FC /* ProjectInfoViewController.xib */,
+			);
+			path = "Project Information";
+			sourceTree = "<group>";
+		};
 		B7E358BE1FD53F6C006256FC = {
 			isa = PBXGroup;
 			children = (
@@ -610,6 +644,7 @@
 				B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */,
 				9E730D2F1FDAA16A0059C810 /* ClientsViewController.xib in Resources */,
 				9E730D341FDAA16A0059C810 /* MaterialsViewController.xib in Resources */,
+				9EC02C7E2004E60F004B83FC /* ProjectInfoViewController.xib in Resources */,
 				B7EEAB891FEA717A00FC50EF /* objects.csv in Resources */,
 				9E730D3A1FDAA16A0059C810 /* SettingsViewController.xib in Resources */,
 				B7EEAB751FE7E14700FC50EF /* OrderTableViewCell.xib in Resources */,
@@ -617,6 +652,7 @@
 				9E730D0C1FDAA16A0059C810 /* IQKeyboardManager.bundle in Resources */,
 				B7EEAB8B1FEA717A00FC50EF /* users.csv in Resources */,
 				9E730D2B1FDAA16A0059C810 /* LaunchScreen.storyboard in Resources */,
+				9EC02C792004E59C004B83FC /* ProjectActivityViewController.xib in Resources */,
 				B7EEAB8A1FEA717A00FC50EF /* types.csv in Resources */,
 				B7EEAB871FEA717A00FC50EF /* materials.csv in Resources */,
 				9E730D2D1FDAA16A0059C810 /* Assets.xcassets in Resources */,
@@ -660,6 +696,7 @@
 				9E730D161FDAA16A0059C810 /* Expense+CoreDataProperties.swift in Sources */,
 				9E730D1B1FDAA16A0059C810 /* Material+CoreDataClass.swift in Sources */,
 				9E730D111FDAA16A0059C810 /* Contact+CoreDataClass.swift in Sources */,
+				9EC02C802004EA4F004B83FC /* ProjectActivityViewModel.swift in Sources */,
 				9E730D0A1FDAA16A0059C810 /* IQToolbar.swift in Sources */,
 				9E730D2E1FDAA16A0059C810 /* ClientsViewController.swift in Sources */,
 				9E730D151FDAA16A0059C810 /* Expense+CoreDataClass.swift in Sources */,
@@ -684,6 +721,7 @@
 				9E0AD1731FE3CFBF000244FF /* ETJob.swift in Sources */,
 				9E730D0F1FDAA16A0059C810 /* Address+CoreDataClass.swift in Sources */,
 				9E730D021FDAA16A0059C810 /* IQKeyboardManagerConstants.swift in Sources */,
+				9EC02C742004C796004B83FC /* ProjectDetailsViewModel.swift in Sources */,
 				9E730D231FDAA16A0059C810 /* Type+CoreDataClass.swift in Sources */,
 				9E730D321FDAA16A0059C810 /* LoginViewModel.swift in Sources */,
 				9E730D291FDAA16A0059C810 /* AppManager.swift in Sources */,
@@ -707,7 +745,9 @@
 				9E730D1C1FDAA16A0059C810 /* Material+CoreDataProperties.swift in Sources */,
 				9E730D391FDAA16A0059C810 /* SettingsViewController.swift in Sources */,
 				5F07A77E1FFFAAB000BBA74D /* TabView.swift in Sources */,
+				9EC02C782004E59C004B83FC /* ProjectActivityViewController.swift in Sources */,
 				9E4CAEFB1FFD0095006FF08C /* InputButton.swift in Sources */,
+				9EC02C7D2004E60F004B83FC /* ProjectInfoViewController.swift in Sources */,
 				9E730CFD1FDAA16A0059C810 /* IQUIScrollView+Additions.swift in Sources */,
 				9E730D011FDAA16A0059C810 /* IQUIWindow+Hierarchy.swift in Sources */,
 				9E730D171FDAA16A0059C810 /* Files+CoreDataClass.swift in Sources */,

@@ -27,7 +27,7 @@ enum TabViewItemPosition {
     case middle
 }
 
-protocol TabViewDelegate: class {
+@objc protocol TabViewDelegate: class {
     
     func numberOfItemsForTabView(tabView: TabView) -> Int
     func tabView(_ tabView: TabView, titleForItemAtIndex index: Int) -> String?
@@ -36,7 +36,7 @@ protocol TabViewDelegate: class {
 
 class TabView: UIView {
     
-    weak var delegate: TabViewDelegate? {
+    @IBOutlet weak var delegate: TabViewDelegate? {
         
         didSet {
             
@@ -89,7 +89,8 @@ class TabView: UIView {
     }
     
     override func layoutSubviews() {
-        
+
+        //TODO: Make sure TabView works fine when resizing
         super.layoutSubviews()
         
         let numberOfItems = self.subviews.count

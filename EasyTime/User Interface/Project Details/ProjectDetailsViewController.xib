@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProjectDetailsViewController" customModule="EasyTime" customModuleProvider="target">
             <connections>
                 <outlet property="tabView" destination="Bdw-R5-wvq" id="GQw-QO-0EC"/>
+                <outlet property="vPlaceholder" destination="C5E-4u-J1W" id="uWi-ks-oi6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,18 +23,29 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bdw-R5-wvq" customClass="TabView" customModule="EasyTime" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="120" width="375" height="53"/>
+                    <rect key="frame" x="0.0" y="30" width="375" height="53"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="53" id="1QZ-Vj-l7I"/>
                     </constraints>
+                    <connections>
+                        <outlet property="delegate" destination="-1" id="b8y-iE-DYg"/>
+                    </connections>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C5E-4u-J1W">
+                    <rect key="frame" x="0.0" y="83" width="375" height="584"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.24313725490196078" green="0.55686274509803924" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="C5E-4u-J1W" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="3ef-5m-3Ib"/>
+                <constraint firstItem="C5E-4u-J1W" firstAttribute="top" secondItem="Bdw-R5-wvq" secondAttribute="bottom" id="K3X-rm-ECs"/>
+                <constraint firstItem="C5E-4u-J1W" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="ZnH-rB-Brp"/>
                 <constraint firstItem="Bdw-R5-wvq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bMG-fh-tDv"/>
+                <constraint firstItem="C5E-4u-J1W" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="d5e-qi-pLo"/>
                 <constraint firstItem="Bdw-R5-wvq" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="xFi-du-ded"/>
-                <constraint firstItem="Bdw-R5-wvq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="z4u-hY-yuM"/>
+                <constraint firstItem="Bdw-R5-wvq" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="z4u-hY-yuM"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="33.5" y="54.5"/>
