@@ -49,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Private
     func configureScreens() {
         UINavigationBar.appearance().barTintColor = UIColor.et_blueColor
+        UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
 
         window = UIWindow(frame: UIScreen.main.bounds)
