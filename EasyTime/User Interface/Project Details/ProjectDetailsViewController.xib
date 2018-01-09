@@ -29,7 +29,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.24313725490196078" green="0.55686274509803924" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="Bdw-R5-wvq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bMG-fh-tDv"/>
                 <constraint firstItem="Bdw-R5-wvq" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="xFi-du-ded"/>

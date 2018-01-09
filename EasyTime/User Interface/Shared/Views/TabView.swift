@@ -13,6 +13,11 @@ fileprivate struct Constants {
     static let inclineWidthPercent: CGFloat = 0.07
     static let controlXPercent: CGFloat = 0.6
     static let controlYPercent: CGFloat = 0.9
+    static let fontSize: CGFloat = 14
+    static let textColor = UIColor(red: 65 / 255, green: 91 / 255, blue: 128 / 255, alpha: 1)
+    static let selectedTextColor = UIColor.black
+    static let fillColor = UIColor(red: 175 / 255, green: 190 / 255, blue: 211 / 255, alpha: 1)
+    static let selectedFillColor = UIColor.white
 }
 
 enum TabViewItemPosition {
@@ -60,6 +65,7 @@ class TabView: UIView {
             for i in 0...(numberOfItems - 1) {
                 
                 let item = TabViewItem()
+                item.tag = i
                 item.setTitle(delegate.tabView(self, titleForItemAtIndex: i), for: .normal)
                 item.addTarget(self, action: #selector(TabView.didTap(sender:)), for: .touchUpInside)
                 
@@ -87,13 +93,12 @@ class TabView: UIView {
         super.layoutSubviews()
         
         let numberOfItems = self.subviews.count
-        for i in 0...(numberOfItems - 1) {
+        for item in self.subviews {
             
             let itemWidth = self.frame.size.width / CGFloat(numberOfItems)
-            let item = self.subviews[i]
-            
-            item.frame = CGRect(origin: CGPoint(x: itemWidth * CGFloat(i) - itemWidth * (Constants.curveWidthPercent + Constants.inclineWidthPercent / 2), y: 0),
-                   size: CGSize(width: itemWidth * (1 + (Constants.curveWidthPercent + Constants.inclineWidthPercent / 2) * 2), height: self.frame.size.height))
+            let index = item.tag
+            item.frame = CGRect(origin: CGPoint(x: itemWidth * CGFloat(index) - itemWidth * (Constants.curveWidthPercent + Constants.inclineWidthPercent / 2), y: 0),
+                                size: CGSize(width: itemWidth * (1 + (Constants.curveWidthPercent + Constants.inclineWidthPercent / 2) * 2), height: self.frame.size.height))
         }
     }
     
@@ -101,14 +106,12 @@ class TabView: UIView {
     
     @objc func didTap(sender: UIButton) {
         
-        if let index = self.subviews.index(of: sender) {
-        
-            self.selectItem(at: index)
-            
-            if let delegate = self.delegate {
-                
-                delegate.tabView(self, didSelectItemAtIndex: index)
-            }
+        let index = sender.tag
+        self.selectItem(at: index)
+
+        if let delegate = self.delegate {
+
+            delegate.tabView(self, didSelectItemAtIndex: index)
         }
     }
 
@@ -116,16 +119,16 @@ class TabView: UIView {
 
     private func selectItem(at index: Int) {
 
-        let numberOfItems = self.subviews.count
-        for i in 0...(numberOfItems - 1) {
+        for item in self.subviews {
 
-            if let item = self.subviews[i] as? UIButton {
+            let i = item.tag
+            if let item = item as? UIButton {
 
                 item.isSelected = i == index
 
                 if item.isSelected == true {
 
-                    item.bringSubview(toFront: self)
+                    self.bringSubview(toFront: item)
                 }
             }
         }
@@ -149,32 +152,21 @@ private class TabViewItem: UIButton
         }
     }
     
-    var fillColor: UIColor = UIColor.et_borderColor {
-        
-        didSet {
-            
-            self.setNeedsLayout()
-        }
-    }
-    
-    var selectedFillColor: UIColor = UIColor.et_blueColor {
-        
-        didSet {
-            
-            self.setNeedsLayout()
-        }
-    }
-    
-    required override init(frame: CGRect) {
-        
-        super.init(frame: frame)
+    init() {
+
+        super.init(frame: CGRect.zero)
+
+        self.titleLabel?.font = UIFont.systemFont(ofSize: Constants.fontSize)
+        self.titleLabel?.textColor = Constants.textColor
+        self.setTitleColor(Constants.textColor, for: .normal)
+        self.setTitleColor(Constants.selectedTextColor, for: .selected)
         self.backgroundColor = UIColor.clear
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func draw(_ rect: CGRect)
     {
         let curveWidth = rect.width * Constants.curveWidthPercent
@@ -264,7 +256,7 @@ private class TabViewItem: UIButton
         bezierPath.close()
         
         self.shapeLayer.path = bezierPath.cgPath
-        self.shapeLayer.fillColor = self.isSelected ? self.selectedFillColor.cgColor : self.fillColor.cgColor
+        self.shapeLayer.fillColor = self.isSelected ? Constants.selectedFillColor.cgColor : Constants.fillColor.cgColor
         self.layer.insertSublayer(self.shapeLayer, at: 0)
     }
 }
