@@ -18,7 +18,6 @@ fileprivate struct Constants {
 
 class ProjectsViewModel: BaseViewModel {
 
-    
     private lazy var fetchResultsController: NSFetchedResultsController<Job> = {
         
         let fetchedResultsController: NSFetchedResultsController<Job> = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Job.entityName,

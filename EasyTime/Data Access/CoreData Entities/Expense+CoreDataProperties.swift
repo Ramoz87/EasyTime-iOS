@@ -23,6 +23,7 @@ extension Expense {
     @NSManaged public var name: String?
     @NSManaged public var type: Int32
     @NSManaged public var value: Float
+    @NSManaged public var date: Date?
     @NSManaged public var workTypeId: String?
     @NSManaged public var job: Job?
     @NSManaged public var photo: Files?

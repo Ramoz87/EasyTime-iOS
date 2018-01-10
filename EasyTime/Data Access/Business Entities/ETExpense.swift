@@ -15,6 +15,7 @@ class ETExpense {
     var materialId: String?
     var name: String?
     var type: Int32
+    var date: Date?
     var value: Float
     var workTypeId: String?
 
@@ -29,6 +30,7 @@ class ETExpense {
         self.name = expense.name
         self.type = expense.type
         self.value = expense.value
+        self.date = expense.date
         self.workTypeId = expense.workTypeId
     }
 }

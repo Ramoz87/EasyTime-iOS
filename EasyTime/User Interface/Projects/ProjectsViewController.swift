@@ -47,7 +47,7 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
         button.inputView = self.datePicker
         button.inputAccessoryView = button.keyboardToolbar
         button.semanticContentAttribute = .forceRightToLeft
-        button.setImage(UIImage(named: "dropDownIcon"), for: .normal)
+        button.setImage(UIImage(named: "dropDownWhiteIcon"), for: .normal)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -Constants.dateFilterButtonDropDownIconSpacing)
         button.addDoneOnKeyboardWithTarget(self, action: #selector(ProjectsViewController.didTapDoneOnDatePicker(sender:)), titleText: Constants.datePickerDoneButtonText)
         return button
