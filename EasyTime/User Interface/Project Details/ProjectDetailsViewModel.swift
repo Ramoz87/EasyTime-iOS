@@ -8,30 +8,14 @@
 
 import UIKit
 
-private enum ProjectDetailsMode: Int {
+fileprivate struct Constants {
 
-    case activity
-    case information
-
-    func count() -> Int {
-
-        return ProjectDetailsMode.information.hashValue + 1
-    }
-
-    static func title(for mode: ProjectDetailsMode) -> String {
-
-        switch mode {
-        case .activity:
-            return NSLocalizedString("ACTIVITY", comment: "")
-        case .information:
-            return NSLocalizedString("INFORMATION", comment: "")
-        }
-    }
+    static let tabActivity = NSLocalizedString("ACTIVITY", comment: "")
+    static let tabInfo = NSLocalizedString("INFORMATION", comment: "")
 }
 
 class ProjectDetailsViewModel: BaseViewModel {
 
-    private var mode: ProjectDetailsMode = .activity
     private let job: ETJob
     var title: String? {
 
@@ -48,33 +32,15 @@ class ProjectDetailsViewModel: BaseViewModel {
         fatalError("init() has not been implemented")
     }
 
-    func numberOfTabs() -> Int {
+    func viewControllers() -> [UIViewController] {
 
-        return self.mode.count()
-    }
+        let viewModel = ProjectActivityViewModel(job: self.job)
+        let activityController = ProjectActivityViewController(viewModel: viewModel)
+        activityController.title = Constants.tabActivity
 
-    func titleForTab(at index: Int) -> String? {
+        let infoController = ProjectInfoViewController()
+        infoController.title = Constants.tabInfo
 
-        if let mode = ProjectDetailsMode(rawValue: index) {
-
-            return ProjectDetailsMode.title(for: mode)
-        }
-        return nil
-    }
-
-    func viewControllerForTab(at index: Int) -> UIViewController? {
-
-        if let mode = ProjectDetailsMode(rawValue: index) {
-
-            switch mode {
-
-            case .activity:
-                let viewModel = ProjectActivityViewModel(job: self.job)
-                return ProjectActivityViewController(viewModel: viewModel)
-            case .information:
-                return ProjectInfoViewController()
-            }
-        }
-        return nil
+        return [activityController, infoController]
     }
 }

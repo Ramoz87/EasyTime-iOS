@@ -98,6 +98,7 @@
 		9EC02C832004EF73004B83FC /* ProjectActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C812004EF73004B83FC /* ProjectActivityTableViewCell.swift */; };
 		9EC02C842004EF73004B83FC /* ProjectActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC02C822004EF73004B83FC /* ProjectActivityTableViewCell.xib */; };
 		9EC02C862004F794004B83FC /* ETExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C852004F794004B83FC /* ETExpense.swift */; };
+		9EC02C88200609F3004B83FC /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C87200609F3004B83FC /* TabViewController.swift */; };
 		B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */ = {isa = PBXBuildFile; fileRef = B73108D51FDEC1DE00BB3B07 /* customer.csv */; };
 		B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D71FDEC28300BB3B07 /* CSV.swift */; };
 		B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */; };
@@ -208,6 +209,7 @@
 		9EC02C812004EF73004B83FC /* ProjectActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectActivityTableViewCell.swift; sourceTree = "<group>"; };
 		9EC02C822004EF73004B83FC /* ProjectActivityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectActivityTableViewCell.xib; sourceTree = "<group>"; };
 		9EC02C852004F794004B83FC /* ETExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETExpense.swift; sourceTree = "<group>"; };
+		9EC02C87200609F3004B83FC /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		B73108D51FDEC1DE00BB3B07 /* customer.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customer.csv; sourceTree = "<group>"; };
 		B73108D71FDEC28300BB3B07 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 			children = (
 				9E730CF41FDAA16A0059C810 /* BaseViewController.swift */,
 				9E730CF61FDAA16A0059C810 /* BaseViewModel.swift */,
+				9EC02C87200609F3004B83FC /* TabViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -682,6 +685,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E730D431FDAA22A0059C810 /* TabBarViewController.swift in Sources */,
+				9EC02C88200609F3004B83FC /* TabViewController.swift in Sources */,
 				9E6348991FE1173800FEDF17 /* MaterialsViewModel.swift in Sources */,
 				9E730D331FDAA16A0059C810 /* MaterialsViewController.swift in Sources */,
 				9E730D241FDAA16A0059C810 /* Type+CoreDataProperties.swift in Sources */,
