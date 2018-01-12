@@ -101,6 +101,9 @@
 		9EC02C88200609F3004B83FC /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C87200609F3004B83FC /* TabViewController.swift */; };
 		9EC02C8B2007A47D004B83FC /* NumberInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C892007A47D004B83FC /* NumberInputViewController.swift */; };
 		9EC02C8C2007A47D004B83FC /* NumberInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC02C8A2007A47D004B83FC /* NumberInputViewController.xib */; };
+		9EC02C902008A0A4004B83FC /* AddTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C8E2008A0A4004B83FC /* AddTimeViewController.swift */; };
+		9EC02C912008A0A4004B83FC /* AddTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC02C8F2008A0A4004B83FC /* AddTimeViewController.xib */; };
+		9EE0225D2008ED3F00CC01E9 /* AddTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0225C2008ED3F00CC01E9 /* AddTimeViewModel.swift */; };
 		B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */ = {isa = PBXBuildFile; fileRef = B73108D51FDEC1DE00BB3B07 /* customer.csv */; };
 		B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D71FDEC28300BB3B07 /* CSV.swift */; };
 		B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */; };
@@ -214,6 +217,9 @@
 		9EC02C87200609F3004B83FC /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		9EC02C892007A47D004B83FC /* NumberInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputViewController.swift; sourceTree = "<group>"; };
 		9EC02C8A2007A47D004B83FC /* NumberInputViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberInputViewController.xib; sourceTree = "<group>"; };
+		9EC02C8E2008A0A4004B83FC /* AddTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimeViewController.swift; sourceTree = "<group>"; };
+		9EC02C8F2008A0A4004B83FC /* AddTimeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTimeViewController.xib; sourceTree = "<group>"; };
+		9EE0225C2008ED3F00CC01E9 /* AddTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimeViewModel.swift; sourceTree = "<group>"; };
 		B73108D51FDEC1DE00BB3B07 /* customer.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customer.csv; sourceTree = "<group>"; };
 		B73108D71FDEC28300BB3B07 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
@@ -244,6 +250,7 @@
 		5F07A77F1FFFAB3C00BBA74D /* Project Details */ = {
 			isa = PBXGroup;
 			children = (
+				9EC02C8D2008A08C004B83FC /* Add Time */,
 				9EC02C752004E59C004B83FC /* Project Activity */,
 				9EC02C7A2004E5EB004B83FC /* Project Information */,
 				5F07A7801FFFAB7C00BBA74D /* ProjectDetailsViewController.swift */,
@@ -554,6 +561,16 @@
 			path = "Project Information";
 			sourceTree = "<group>";
 		};
+		9EC02C8D2008A08C004B83FC /* Add Time */ = {
+			isa = PBXGroup;
+			children = (
+				9EC02C8E2008A0A4004B83FC /* AddTimeViewController.swift */,
+				9EC02C8F2008A0A4004B83FC /* AddTimeViewController.xib */,
+				9EE0225C2008ED3F00CC01E9 /* AddTimeViewModel.swift */,
+			);
+			path = "Add Time";
+			sourceTree = "<group>";
+		};
 		B7E358BE1FD53F6C006256FC = {
 			isa = PBXGroup;
 			children = (
@@ -667,6 +684,7 @@
 				B7EEAB891FEA717A00FC50EF /* objects.csv in Resources */,
 				9E730D3A1FDAA16A0059C810 /* SettingsViewController.xib in Resources */,
 				B7EEAB751FE7E14700FC50EF /* OrderTableViewCell.xib in Resources */,
+				9EC02C912008A0A4004B83FC /* AddTimeViewController.xib in Resources */,
 				B7EEAB8C1FEA717A00FC50EF /* projects.csv in Resources */,
 				9E730D0C1FDAA16A0059C810 /* IQKeyboardManager.bundle in Resources */,
 				B7EEAB8B1FEA717A00FC50EF /* users.csv in Resources */,
@@ -693,6 +711,7 @@
 			files = (
 				9E730D431FDAA22A0059C810 /* TabBarViewController.swift in Sources */,
 				9EC02C88200609F3004B83FC /* TabViewController.swift in Sources */,
+				9EC02C902008A0A4004B83FC /* AddTimeViewController.swift in Sources */,
 				9E6348991FE1173800FEDF17 /* MaterialsViewModel.swift in Sources */,
 				9E730D331FDAA16A0059C810 /* MaterialsViewController.swift in Sources */,
 				9E730D241FDAA16A0059C810 /* Type+CoreDataProperties.swift in Sources */,
@@ -757,6 +776,7 @@
 				9E730D371FDAA16A0059C810 /* RootViewController.swift in Sources */,
 				9E730D191FDAA16A0059C810 /* Job+CoreDataClass.swift in Sources */,
 				9E6348971FE116DB00FEDF17 /* ClientsViewModel.swift in Sources */,
+				9EE0225D2008ED3F00CC01E9 /* AddTimeViewModel.swift in Sources */,
 				9EAE1F241FE0068300E8C47E /* ProjectsViewModel.swift in Sources */,
 				9E730D041FDAA16A0059C810 /* IQKeyboardManager.swift in Sources */,
 				9E730D071FDAA16A0059C810 /* IQBarButtonItem.swift in Sources */,

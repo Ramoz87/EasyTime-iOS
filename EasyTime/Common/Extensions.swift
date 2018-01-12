@@ -13,7 +13,19 @@ extension UIColor {
     static let et_borderColor = UIColor(red: 109 / 255, green: 137 / 255, blue: 175 / 255, alpha: 0.4)
 }
 
+private var AssociatedObjectHandle: UInt8 = 0
+
 extension UIView {
+
+    open override var inputViewController: UIInputViewController? {
+        get {
+
+            return objc_getAssociatedObject(self, &AssociatedObjectHandle) as? UIInputViewController
+        }
+        set(newValue) {
+            objc_setAssociatedObject(self, &AssociatedObjectHandle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+    }
 
     class func loadFromNib<T : UIView>() -> T {
         return Bundle.main.loadNibNamed(String(describing: T.self), owner: nil, options: nil)![0] as! T

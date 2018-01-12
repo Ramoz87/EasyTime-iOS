@@ -88,6 +88,8 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
 
     @IBAction func addTime(sender: Any) {
 
+        let controller = AddTimeViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
     @IBAction func addMaterials(sender: Any) {

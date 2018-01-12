@@ -46,9 +46,7 @@ class LoginViewController: BaseViewController<LoginViewModel>, UITextFieldDelega
         self.tfPassword.placeholder = Constants.placeholderPassword
         self.btnLogin.setTitle(Constants.titleLogin, for: .normal)
         self.btnForgotPassword.setTitle(Constants.titleForgotPassword, for: .normal)
-    }
-
-    //MARK:- Action handlers
+    }     
 
     @IBAction func login(sender: Any) {
 
