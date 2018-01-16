@@ -12,6 +12,12 @@ fileprivate struct Constants {
 
     static let titleText = NSLocalizedString("Expenses", comment: "")
     static let searchBarPlaceholder = NSLocalizedString("Search", comment: "")
+    static let newExpenseTitlePlaceholderText = NSLocalizedString("Title", comment: "")
+    static let newExpenseTitleText = NSLocalizedString("New expense", comment: "")
+    static let newExpenseMessageText = NSLocalizedString("Enter name for this expense", comment: "")
+    static let saveText = NSLocalizedString("Save", comment: "")
+    static let cancelText = NSLocalizedString("Cancel", comment: "")
+    static let newExpenseTitlePlaceholderFontSize: CGFloat = 13
 }
 
 class ExpenseTypeViewController: BaseViewController<ExpenseTypeViewModel>, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, CollectionViewUpdateDelegate {
@@ -47,6 +53,45 @@ class ExpenseTypeViewController: BaseViewController<ExpenseTypeViewModel>, UITab
             self.tableView.tableHeaderView = self.searchController.searchBar
             self.tableView.contentOffset = CGPoint(x: 0, y: self.searchController.searchBar.frame.height)
         }
+    }
+
+    func showNewExpenseTypeUI() {
+
+        let controller = UIAlertController(title: Constants.newExpenseTitleText, message: Constants.newExpenseMessageText, preferredStyle: .alert)
+
+        controller.addTextField(configurationHandler: { textField in
+
+            textField.placeholder = Constants.newExpenseTitlePlaceholderText
+            textField.font = UIFont.systemFont(ofSize: Constants.newExpenseTitlePlaceholderFontSize)
+        })
+
+        let cancelAction = UIAlertAction(title: Constants.cancelText, style: .cancel, handler: { action in
+
+            controller.dismiss(animated: true, completion: nil)
+        })
+        controller.addAction(cancelAction)
+
+        let saveAction = UIAlertAction(title: Constants.saveText, style: .default, handler: { action in
+
+            if let textField = controller.textFields?.first {
+
+                let name = textField.text
+
+                //TODO: Save new expense
+                // self.showAddExpenseViewController(for: type)
+            }
+            controller.dismiss(animated: true, completion: nil)
+        })
+        controller.addAction(saveAction)
+
+        self.present(controller, animated: true, completion: nil)
+    }
+
+    func showAddExpenseViewController(for type: ETType) {
+
+        let viewModel = AddExpenseViewModel(job: self.viewModel.job, type: type)
+        let controller = AddExpenseViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
     //MARK: - UITableViewDataSource
@@ -87,9 +132,14 @@ class ExpenseTypeViewController: BaseViewController<ExpenseTypeViewModel>, UITab
 
         if let type = self.viewModel[indexPath] {
 
-            let viewModel = AddExpenseViewModel(job: self.viewModel.job, type: type)
-            let controller = AddExpenseViewController(viewModel: viewModel)
-            self.navigationController?.pushViewController(controller, animated: true)
+            if type.typeId == AppManager.sharedInstance.otherExpenseTypeId {
+
+                self.showNewExpenseTypeUI()
+            }
+            else {
+
+                self.showAddExpenseViewController(for: type)
+            }
         }
     }
 
