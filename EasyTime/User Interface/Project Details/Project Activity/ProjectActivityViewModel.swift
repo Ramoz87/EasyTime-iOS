@@ -38,7 +38,7 @@ class ProjectActivityViewModel: BaseViewModel {
         fatalError("init() has not been implemented")
     }
 
-    subscript(indexPath: IndexPath) -> ETExpense? {
+    subscript(indexPath: IndexPath) -> ETExpense {
 
         let expense = self.fetchResultsController.object(at: indexPath)
         return ETExpense(expense: expense)
@@ -61,17 +61,27 @@ class ProjectActivityViewModel: BaseViewModel {
         } catch {}
     }
 
-    func addTimeViewController() -> UIViewController {
+    func nextViewController(expenseType: ETExpenseType) -> UIViewController {
 
         if let project = self.job as? ETProject,
             let objects = project.objects,
             objects.count > 0 {
 
-            let viewModel = ObjectsViewModel(project: project)
+            let viewModel = ObjectsViewModel(project: project, expenseType: expenseType)
             return ObjectsViewController(viewModel: viewModel)
         }
 
-        let viewModel = WorkTypeViewModel(job: self.job)
-        return WorkTypeViewController(viewModel: viewModel)
+        switch expenseType {
+
+            case .time:
+                let viewModel = WorkTypeViewModel(job: self.job)
+                return WorkTypeViewController(viewModel: viewModel)
+            case .money:
+                let viewModel = ExpenseTypeViewModel(job: self.job)
+                return ExpenseTypeViewController(viewModel: viewModel)
+            case .material:
+                return UIViewController() // TODO: Impement
+        }
+
     }
 }

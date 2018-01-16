@@ -20,6 +20,7 @@ fileprivate struct Constants {
 class ObjectsViewModel: BaseViewModel {
 
     private let project: ETProject
+    private let expenseType: ETExpenseType
     private lazy var fetchResultsController: NSFetchedResultsController<Object> = {
 
         let fetchedResultsController: NSFetchedResultsController<Object> = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Object.entityName,
@@ -29,9 +30,10 @@ class ObjectsViewModel: BaseViewModel {
         return fetchedResultsController
     }()
 
-    init(project: ETProject) {
+    init(project: ETProject, expenseType: ETExpenseType) {
 
         self.project = project
+        self.expenseType = expenseType
         super.init()
         self.updateSearchResults()
     }
@@ -40,7 +42,7 @@ class ObjectsViewModel: BaseViewModel {
         fatalError("init() has not been implemented")
     }
 
-    subscript(indexPath: IndexPath) -> ETObject? {
+    subscript(indexPath: IndexPath) -> ETObject {
 
         let object = self.fetchResultsController.object(at: indexPath)
         return ETObject(object: object)
@@ -83,5 +85,21 @@ class ObjectsViewModel: BaseViewModel {
             try self.fetchResultsController.performFetch()
             self.collectionViewUpdateDelegate?.didChangeDataSet()
         } catch {}
+    }
+
+    func nextViewController(indexPath: IndexPath) -> UIViewController {
+
+        let job = self[indexPath]
+        switch self.expenseType {
+
+        case .time:
+            let viewModel = WorkTypeViewModel(job: job)
+            return WorkTypeViewController(viewModel: viewModel)
+        case .money:
+            let viewModel = ExpenseTypeViewModel(job: job)
+            return ExpenseTypeViewController(viewModel: viewModel)
+        case .material:
+            return UIViewController() // TODO: Impement
+        }
     }
 }

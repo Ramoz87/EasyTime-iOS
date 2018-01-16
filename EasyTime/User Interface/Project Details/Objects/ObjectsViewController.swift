@@ -91,12 +91,8 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        if let job = self.viewModel[indexPath] {
-
-            let viewModel = WorkTypeViewModel(job: job)
-            let controller = WorkTypeViewController(viewModel: viewModel)
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
+        let controller = self.viewModel.nextViewController(indexPath: indexPath)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

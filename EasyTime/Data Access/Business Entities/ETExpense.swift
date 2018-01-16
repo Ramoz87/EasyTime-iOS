@@ -8,6 +8,13 @@
 
 import UIKit
 
+enum ETExpenseType: Int32 {
+
+    case time
+    case money
+    case material
+}
+
 class ETExpense {
 
     var discount: Float
