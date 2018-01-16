@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController" customModule="EasyTime" customModuleProvider="target">
             <connections>
+                <outlet property="lbAppVersion" destination="exN-c1-hnX" id="fiu-FA-0Ce"/>
+                <outlet property="tableView" destination="bIW-v9-YtP" id="ei3-2T-kp6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,33 +22,33 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Settings" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X78-xt-dY3">
-                    <rect key="frame" x="129" y="323" width="116" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bIW-v9-YtP">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="7Hh-ad-zgc"/>
+                        <outlet property="delegate" destination="-1" id="dJd-z1-HyO"/>
+                    </connections>
+                </tableView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exN-c1-hnX">
+                    <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Tzi-Bc-FMU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.42745098039215684" green="0.53725490196078429" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fx6-su-kr5">
-                    <rect key="frame" x="12" y="561" width="351" height="54"/>
-                    <color key="backgroundColor" red="0.24313725489999999" green="0.5568627451" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="54" id="k0A-lp-RXK"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <state key="normal" title="LOG OUT">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="logoutWithSender:" destination="-1" eventType="touchUpInside" id="dno-L0-Zje"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="fx6-su-kr5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="5GW-RG-Kmm"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fx6-su-kr5" secondAttribute="trailing" constant="12" id="KVv-rY-fnE"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="fx6-su-kr5" secondAttribute="bottom" constant="52" id="xje-8R-zob"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="bIW-v9-YtP" secondAttribute="trailing" id="IH8-m5-uTQ"/>
+                <constraint firstItem="exN-c1-hnX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="KaF-Lf-cbC"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="exN-c1-hnX" secondAttribute="bottom" id="L6N-kC-RQf"/>
+                <constraint firstItem="bIW-v9-YtP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Lv3-en-pTo"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="exN-c1-hnX" secondAttribute="trailing" id="Sjc-iB-7j1"/>
+                <constraint firstItem="exN-c1-hnX" firstAttribute="top" secondItem="bIW-v9-YtP" secondAttribute="bottom" id="jiD-lk-mPw"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="bIW-v9-YtP" secondAttribute="top" constant="20" id="paf-sh-qMw"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="26.5" y="52.5"/>

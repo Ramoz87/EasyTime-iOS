@@ -24,5 +24,11 @@ class Authenticator: NSObject {
             self.stateUpdateHandler?(self.state)
         }
     }
-
+    
+    var user: ETUser?
+    
+    func logout() {
+        self.user = nil
+        self.state = .Unauthorized
+    }
 }

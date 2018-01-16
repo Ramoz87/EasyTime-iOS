@@ -17,6 +17,7 @@ class ProjectDetailsViewController: BaseViewController<ProjectDetailsViewModel> 
 
         let controller = TabViewController()
         controller.viewControllers = self.viewModel.viewControllers()
+        controller.tabView.backgroundColor = UIColor.et_blueColor
         self.addChildViewController(controller)
         controller.view.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(controller.view)

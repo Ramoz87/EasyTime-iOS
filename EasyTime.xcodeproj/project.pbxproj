@@ -107,6 +107,11 @@
 		B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */ = {isa = PBXBuildFile; fileRef = B73108D51FDEC1DE00BB3B07 /* customer.csv */; };
 		B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D71FDEC28300BB3B07 /* CSV.swift */; };
 		B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */; };
+		B765DB1F200E2DE1002F5773 /* ETUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B765DB1E200E2DE1002F5773 /* ETUser.swift */; };
+		B7D1B682200E0CE80070CC0F /* SettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D1B680200E0CE80070CC0F /* SettingViewCell.swift */; };
+		B7D1B683200E0CE80070CC0F /* SettingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7D1B681200E0CE80070CC0F /* SettingViewCell.xib */; };
+		B7D1B686200E0D2B0070CC0F /* SettingViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D1B684200E0D2B0070CC0F /* SettingViewHeader.swift */; };
+		B7D1B687200E0D2B0070CC0F /* SettingViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7D1B685200E0D2B0070CC0F /* SettingViewHeader.xib */; };
 		B7EEAB711FE7E09600FC50EF /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EEAB6F1FE7E09600FC50EF /* OrderTableViewCell.swift */; };
 		B7EEAB751FE7E14700FC50EF /* OrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7EEAB731FE7E14700FC50EF /* OrderTableViewCell.xib */; };
 		B7EEAB761FE7E14700FC50EF /* ObjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7EEAB741FE7E14700FC50EF /* ObjectTableViewCell.xib */; };
@@ -223,6 +228,11 @@
 		B73108D51FDEC1DE00BB3B07 /* customer.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customer.csv; sourceTree = "<group>"; };
 		B73108D71FDEC28300BB3B07 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
+		B765DB1E200E2DE1002F5773 /* ETUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETUser.swift; sourceTree = "<group>"; };
+		B7D1B680200E0CE80070CC0F /* SettingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewCell.swift; sourceTree = "<group>"; };
+		B7D1B681200E0CE80070CC0F /* SettingViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewCell.xib; sourceTree = "<group>"; };
+		B7D1B684200E0D2B0070CC0F /* SettingViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewHeader.swift; sourceTree = "<group>"; };
+		B7D1B685200E0D2B0070CC0F /* SettingViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewHeader.xib; sourceTree = "<group>"; };
 		B7E358C71FD53F6C006256FC /* EasyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7EEAB6F1FE7E09600FC50EF /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		B7EEAB731FE7E14700FC50EF /* OrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrderTableViewCell.xib; sourceTree = "<group>"; };
@@ -270,6 +280,7 @@
 				9E1350B71FE3EECF007CAEC3 /* ETObject.swift */,
 				9E1350B51FE3EEBE007CAEC3 /* ETOrder.swift */,
 				9E824D691FE3EC32008538EB /* ETProject.swift */,
+				B765DB1E200E2DE1002F5773 /* ETUser.swift */,
 			);
 			path = "Business Entities";
 			sourceTree = "<group>";
@@ -506,6 +517,10 @@
 				9E730CF01FDAA16A0059C810 /* SettingsViewController.swift */,
 				9E730CF11FDAA16A0059C810 /* SettingsViewController.xib */,
 				9E63489A1FE1179B00FEDF17 /* SettingsViewModel.swift */,
+				B7D1B680200E0CE80070CC0F /* SettingViewCell.swift */,
+				B7D1B681200E0CE80070CC0F /* SettingViewCell.xib */,
+				B7D1B684200E0D2B0070CC0F /* SettingViewHeader.swift */,
+				B7D1B685200E0D2B0070CC0F /* SettingViewHeader.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -685,11 +700,13 @@
 				9E730D3A1FDAA16A0059C810 /* SettingsViewController.xib in Resources */,
 				B7EEAB751FE7E14700FC50EF /* OrderTableViewCell.xib in Resources */,
 				9EC02C912008A0A4004B83FC /* AddTimeViewController.xib in Resources */,
+				B7D1B687200E0D2B0070CC0F /* SettingViewHeader.xib in Resources */,
 				B7EEAB8C1FEA717A00FC50EF /* projects.csv in Resources */,
 				9E730D0C1FDAA16A0059C810 /* IQKeyboardManager.bundle in Resources */,
 				B7EEAB8B1FEA717A00FC50EF /* users.csv in Resources */,
 				9E730D2B1FDAA16A0059C810 /* LaunchScreen.storyboard in Resources */,
 				9EC02C792004E59C004B83FC /* ProjectActivityViewController.xib in Resources */,
+				B7D1B683200E0CE80070CC0F /* SettingViewCell.xib in Resources */,
 				B7EEAB8A1FEA717A00FC50EF /* types.csv in Resources */,
 				B7EEAB871FEA717A00FC50EF /* materials.csv in Resources */,
 				9E730D2D1FDAA16A0059C810 /* Assets.xcassets in Resources */,
@@ -722,6 +739,7 @@
 				9E730D1A1FDAA16A0059C810 /* Job+CoreDataProperties.swift in Sources */,
 				9E824D6A1FE3EC32008538EB /* ETProject.swift in Sources */,
 				9E730CFC1FDAA16A0059C810 /* IQNSArray+Sort.swift in Sources */,
+				B765DB1F200E2DE1002F5773 /* ETUser.swift in Sources */,
 				9EC02C862004F794004B83FC /* ETExpense.swift in Sources */,
 				9E730D201FDAA16A0059C810 /* Order+CoreDataProperties.swift in Sources */,
 				9E730D081FDAA16A0059C810 /* IQPreviousNextView.swift in Sources */,
@@ -745,6 +763,7 @@
 				9E730D1F1FDAA16A0059C810 /* Order+CoreDataClass.swift in Sources */,
 				B7EEAB781FE7E17E00FC50EF /* ObjectTableViewCell.swift in Sources */,
 				9E730D181FDAA16A0059C810 /* Files+CoreDataProperties.swift in Sources */,
+				B7D1B686200E0D2B0070CC0F /* SettingViewHeader.swift in Sources */,
 				9E730D251FDAA16A0059C810 /* User+CoreDataClass.swift in Sources */,
 				B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */,
 				9E1350BC1FE40015007CAEC3 /* ETCustomer.swift in Sources */,
@@ -763,6 +782,7 @@
 				9E730D0F1FDAA16A0059C810 /* Address+CoreDataClass.swift in Sources */,
 				9E730D021FDAA16A0059C810 /* IQKeyboardManagerConstants.swift in Sources */,
 				9EC02C742004C796004B83FC /* ProjectDetailsViewModel.swift in Sources */,
+				B7D1B682200E0CE80070CC0F /* SettingViewCell.swift in Sources */,
 				9E730D231FDAA16A0059C810 /* Type+CoreDataClass.swift in Sources */,
 				9EC02C8B2007A47D004B83FC /* NumberInputViewController.swift in Sources */,
 				9EC02C832004EF73004B83FC /* ProjectActivityTableViewCell.swift in Sources */,
