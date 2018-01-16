@@ -28,6 +28,12 @@
 		9E65DE3C200E08B4006107DE /* ETType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E65DE3B200E08B4006107DE /* ETType.swift */; };
 		9E65DE3F200E0B66006107DE /* WorkTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E65DE3D200E0B66006107DE /* WorkTypeTableViewCell.swift */; };
 		9E65DE40200E0B66006107DE /* WorkTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E65DE3E200E0B66006107DE /* WorkTypeTableViewCell.xib */; };
+		9E65DE44200E2C61006107DE /* AddExpenseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E65DE43200E2C61006107DE /* AddExpenseViewModel.swift */; };
+		9E65DE46200E2C91006107DE /* ExpenseTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E65DE45200E2C91006107DE /* ExpenseTypeViewModel.swift */; };
+		9E65DE49200E2CA7006107DE /* AddExpenseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E65DE47200E2CA7006107DE /* AddExpenseViewController.swift */; };
+		9E65DE4A200E2CA7006107DE /* AddExpenseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E65DE48200E2CA7006107DE /* AddExpenseViewController.xib */; };
+		9E65DE4D200E2CC1006107DE /* ExpenseTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E65DE4B200E2CC1006107DE /* ExpenseTypeViewController.swift */; };
+		9E65DE4E200E2CC1006107DE /* ExpenseTypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E65DE4C200E2CC1006107DE /* ExpenseTypeViewController.xib */; };
 		9E730CFB1FDAA16A0059C810 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730C9C1FDAA1690059C810 /* AppDelegate.swift */; };
 		9E730CFC1FDAA16A0059C810 /* IQNSArray+Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730CA01FDAA1690059C810 /* IQNSArray+Sort.swift */; };
 		9E730CFD1FDAA16A0059C810 /* IQUIScrollView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730CA11FDAA1690059C810 /* IQUIScrollView+Additions.swift */; };
@@ -150,6 +156,12 @@
 		9E65DE3B200E08B4006107DE /* ETType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETType.swift; sourceTree = "<group>"; };
 		9E65DE3D200E0B66006107DE /* WorkTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkTypeTableViewCell.swift; sourceTree = "<group>"; };
 		9E65DE3E200E0B66006107DE /* WorkTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WorkTypeTableViewCell.xib; sourceTree = "<group>"; };
+		9E65DE43200E2C61006107DE /* AddExpenseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewModel.swift; sourceTree = "<group>"; };
+		9E65DE45200E2C91006107DE /* ExpenseTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTypeViewModel.swift; sourceTree = "<group>"; };
+		9E65DE47200E2CA7006107DE /* AddExpenseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseViewController.swift; sourceTree = "<group>"; };
+		9E65DE48200E2CA7006107DE /* AddExpenseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddExpenseViewController.xib; sourceTree = "<group>"; };
+		9E65DE4B200E2CC1006107DE /* ExpenseTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTypeViewController.swift; sourceTree = "<group>"; };
+		9E65DE4C200E2CC1006107DE /* ExpenseTypeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseTypeViewController.xib; sourceTree = "<group>"; };
 		9E730C9C1FDAA1690059C810 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E730CA01FDAA1690059C810 /* IQNSArray+Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQNSArray+Sort.swift"; sourceTree = "<group>"; };
 		9E730CA11FDAA1690059C810 /* IQUIScrollView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IQUIScrollView+Additions.swift"; sourceTree = "<group>"; };
@@ -268,8 +280,10 @@
 		5F07A77F1FFFAB3C00BBA74D /* Project Details */ = {
 			isa = PBXGroup;
 			children = (
-				9E65DE2D200DE076006107DE /* Objects */,
+				9E65DE41200E2C38006107DE /* Add Expense */,
 				9EC02C8D2008A08C004B83FC /* Add Time */,
+				9E65DE42200E2C39006107DE /* Expense Type */,
+				9E65DE2D200DE076006107DE /* Objects */,
 				9EC02C752004E59C004B83FC /* Project Activity */,
 				9EC02C7A2004E5EB004B83FC /* Project Information */,
 				5F07A7801FFFAB7C00BBA74D /* ProjectDetailsViewController.swift */,
@@ -324,6 +338,26 @@
 				9E65DE39200E0647006107DE /* WorkTypeViewModel.swift */,
 			);
 			path = "Work Type";
+			sourceTree = "<group>";
+		};
+		9E65DE41200E2C38006107DE /* Add Expense */ = {
+			isa = PBXGroup;
+			children = (
+				9E65DE47200E2CA7006107DE /* AddExpenseViewController.swift */,
+				9E65DE48200E2CA7006107DE /* AddExpenseViewController.xib */,
+				9E65DE43200E2C61006107DE /* AddExpenseViewModel.swift */,
+			);
+			path = "Add Expense";
+			sourceTree = "<group>";
+		};
+		9E65DE42200E2C39006107DE /* Expense Type */ = {
+			isa = PBXGroup;
+			children = (
+				9E65DE4B200E2CC1006107DE /* ExpenseTypeViewController.swift */,
+				9E65DE4C200E2CC1006107DE /* ExpenseTypeViewController.xib */,
+				9E65DE45200E2C91006107DE /* ExpenseTypeViewModel.swift */,
+			);
+			path = "Expense Type";
 			sourceTree = "<group>";
 		};
 		9E730C9D1FDAA1690059C810 /* Frameworks */ = {
@@ -731,6 +765,7 @@
 				9E65DE31200DE0AE006107DE /* ObjectsViewController.xib in Resources */,
 				B7EEAB751FE7E14700FC50EF /* OrderTableViewCell.xib in Resources */,
 				9EC02C912008A0A4004B83FC /* AddTimeViewController.xib in Resources */,
+				9E65DE4A200E2CA7006107DE /* AddExpenseViewController.xib in Resources */,
 				B7EEAB8C1FEA717A00FC50EF /* projects.csv in Resources */,
 				9E730D0C1FDAA16A0059C810 /* IQKeyboardManager.bundle in Resources */,
 				B7EEAB8B1FEA717A00FC50EF /* users.csv in Resources */,
@@ -744,6 +779,7 @@
 				9EAE1F281FE0FDC600E8C47E /* ProjectTableViewCell.xib in Resources */,
 				9E730D311FDAA16A0059C810 /* LoginViewController.xib in Resources */,
 				B7EEAB761FE7E14700FC50EF /* ObjectTableViewCell.xib in Resources */,
+				9E65DE4E200E2CC1006107DE /* ExpenseTypeViewController.xib in Resources */,
 				9E730D361FDAA16A0059C810 /* ProjectsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -763,6 +799,7 @@
 				9E730D241FDAA16A0059C810 /* Type+CoreDataProperties.swift in Sources */,
 				9E65DE3F200E0B66006107DE /* WorkTypeTableViewCell.swift in Sources */,
 				9E730D0E1FDAA16A0059C810 /* EasyTime.xcdatamodeld in Sources */,
+				9E65DE44200E2C61006107DE /* AddExpenseViewModel.swift in Sources */,
 				9E730D001FDAA16A0059C810 /* IQUIViewController+Additions.swift in Sources */,
 				9E730D1D1FDAA16A0059C810 /* Object+CoreDataClass.swift in Sources */,
 				9E730D261FDAA16A0059C810 /* User+CoreDataProperties.swift in Sources */,
@@ -786,6 +823,7 @@
 				9E730D1B1FDAA16A0059C810 /* Material+CoreDataClass.swift in Sources */,
 				9E730D111FDAA16A0059C810 /* Contact+CoreDataClass.swift in Sources */,
 				9EC02C802004EA4F004B83FC /* ProjectActivityViewModel.swift in Sources */,
+				9E65DE49200E2CA7006107DE /* AddExpenseViewController.swift in Sources */,
 				9E730D0A1FDAA16A0059C810 /* IQToolbar.swift in Sources */,
 				9E730D2E1FDAA16A0059C810 /* ClientsViewController.swift in Sources */,
 				9E65DE3C200E08B4006107DE /* ETType.swift in Sources */,
@@ -804,6 +842,7 @@
 				9E1350B81FE3EECF007CAEC3 /* ETObject.swift in Sources */,
 				9E730D0D1FDAA16A0059C810 /* DataHelper.swift in Sources */,
 				9E730D3C1FDAA16A0059C810 /* BaseViewModel.swift in Sources */,
+				9E65DE4D200E2CC1006107DE /* ExpenseTypeViewController.swift in Sources */,
 				9E65DE3A200E0647006107DE /* WorkTypeViewModel.swift in Sources */,
 				9E65DE30200DE0AE006107DE /* ObjectsViewController.swift in Sources */,
 				9E65DE33200DE0D3006107DE /* ObjectsViewModel.swift in Sources */,
@@ -837,6 +876,7 @@
 				5F07A7821FFFAB7C00BBA74D /* ProjectDetailsViewController.swift in Sources */,
 				9E730CFF1FDAA16A0059C810 /* IQUIView+Hierarchy.swift in Sources */,
 				9E730D2A1FDAA16A0059C810 /* Authenticator.swift in Sources */,
+				9E65DE46200E2C91006107DE /* ExpenseTypeViewModel.swift in Sources */,
 				9E730D131FDAA16A0059C810 /* Customer+CoreDataClass.swift in Sources */,
 				9E730D1C1FDAA16A0059C810 /* Material+CoreDataProperties.swift in Sources */,
 				9E730D391FDAA16A0059C810 /* SettingsViewController.swift in Sources */,
