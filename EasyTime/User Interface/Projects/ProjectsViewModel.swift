@@ -73,13 +73,11 @@ class ProjectsViewModel: BaseViewModel {
 
     func updateSearchResults(date: Date, text: String?) {
 
-        var predicateString = String(format: Constants.searchPredicate1, date as NSDate)
+        var predicate = NSPredicate(format: Constants.searchPredicate1, date as NSDate)
         if let text = text, text.count > 0 {
 
-            predicateString += " && " + String(format: Constants.searchPredicate2, text)
+            predicate = NSPredicate(format: Constants.searchPredicate1 + " && " + Constants.searchPredicate2, date as NSDate, text)
         }
-
-        let predicate: NSPredicate = NSPredicate(format: Constants.searchPredicate1, date as NSDate)
 
         self.fetchResultsController.fetchRequest.predicate = predicate
         do {

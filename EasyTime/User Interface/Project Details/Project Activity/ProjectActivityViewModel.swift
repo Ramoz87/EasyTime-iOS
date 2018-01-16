@@ -60,4 +60,18 @@ class ProjectActivityViewModel: BaseViewModel {
             self.collectionViewUpdateDelegate?.didChangeDataSet()
         } catch {}
     }
+
+    func addTimeViewController() -> UIViewController {
+
+        if let project = self.job as? ETProject,
+            let objects = project.objects,
+            objects.count > 0 {
+
+            let viewModel = ObjectsViewModel(project: project)
+            return ObjectsViewController(viewModel: viewModel)
+        }
+
+        let viewModel = AddTimeViewModel(job: self.job)
+        return AddTimeViewController(viewModel: viewModel)
+    }
 }

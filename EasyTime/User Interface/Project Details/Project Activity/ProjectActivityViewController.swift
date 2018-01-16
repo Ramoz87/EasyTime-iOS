@@ -46,6 +46,7 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
         self.viewModel.collectionViewUpdateDelegate = self
         
         self.tableView.register(UINib(nibName: ProjectActivityTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectActivityTableViewCell.reuseIdentifier)
+        self.tableView.tableFooterView = UIView() //To hide separators of empty cells
 
         self.btnDateFilter.setTitle(self.dateFormatter.string(from: self.datePicker.date), for: .normal)
         self.btnDateFilter.inputView = self.datePicker
@@ -61,7 +62,6 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
             button.layer.cornerRadius = Constants.buttonCornerRadius
             button.layer.borderColor = UIColor.et_borderColor.cgColor
         }
-        self.tableView.tableFooterView = UIView() //To hide separators of empty cells
     }
 
     //MARK: - UITableViewDelegate
@@ -88,7 +88,7 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
 
     @IBAction func addTime(sender: Any) {
 
-        let controller = AddTimeViewController()
+        let controller = self.viewModel.addTimeViewController()
         self.navigationController?.pushViewController(controller, animated: true)
     }
 

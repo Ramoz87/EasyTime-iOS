@@ -8,11 +8,9 @@
 
 import UIKit
 
-protocol AddTimeViewModelDelegate {
-
-}
-
 class AddTimeViewModel: BaseViewModel {
+
+    private let job: ETJob
 
     var hours: String = "" {
 
@@ -27,5 +25,15 @@ class AddTimeViewModel: BaseViewModel {
 
             //TODO: Update minutes
         }
+    }
+
+    init(job: ETJob) {
+
+        self.job = job
+        super.init()
+    }
+
+    required init() {
+        fatalError("init() has not been implemented")
     }
 }
