@@ -11,6 +11,7 @@ import UIKit
 class AddTimeViewModel: BaseViewModel {
 
     private let job: ETJob
+    private let type: ETType
 
     var hours: String = "" {
 
@@ -27,9 +28,10 @@ class AddTimeViewModel: BaseViewModel {
         }
     }
 
-    init(job: ETJob) {
+    init(job: ETJob, type: ETType) {
 
         self.job = job
+        self.type = type
         super.init()
     }
 

@@ -71,7 +71,7 @@ class ProjectActivityViewModel: BaseViewModel {
             return ObjectsViewController(viewModel: viewModel)
         }
 
-        let viewModel = AddTimeViewModel(job: self.job)
-        return AddTimeViewController(viewModel: viewModel)
+        let viewModel = WorkTypeViewModel(job: self.job)
+        return WorkTypeViewController(viewModel: viewModel)
     }
 }
