@@ -79,6 +79,9 @@
                             <state key="normal" title="Materials" image="addMaterialsIcon">
                                 <color key="titleColor" red="0.25490196078431371" green="0.35686274509803922" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="addMaterialsWithSender:" destination="-1" eventType="touchUpInside" id="A4F-xa-VIe"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQk-1B-UTF">
                             <rect key="frame" x="244" y="0.0" width="111" height="80"/>
@@ -86,6 +89,9 @@
                             <state key="normal" title="Expenses" image="addExpensesIcon">
                                 <color key="titleColor" red="0.25490196078431371" green="0.35686274509803922" blue="0.50196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="addExpensesWithSender:" destination="-1" eventType="touchUpInside" id="IUw-Co-xab"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>

@@ -10,6 +10,7 @@ import UIKit
 
 fileprivate struct Constants
 {
+    static let newTimeText = NSLocalizedString("New time", comment: "")
     static let hoursText = NSLocalizedString("Hours", comment: "")
     static let minutesText = NSLocalizedString("Minutes", comment: "")
     static let placeholderCornerRadius: CGFloat = 4
@@ -27,6 +28,8 @@ class AddTimeViewController: BaseViewController<AddTimeViewModel>, UITextFieldDe
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.title = Constants.newTimeText
 
         let controller = NumberInputViewController(nibName: "NumberInputViewController", bundle: nil)
         self.tfHours.inputViewController = controller

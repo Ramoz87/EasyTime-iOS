@@ -46,6 +46,7 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
         self.viewModel.collectionViewUpdateDelegate = self
         
         self.tableView.register(UINib(nibName: ProjectActivityTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectActivityTableViewCell.reuseIdentifier)
+        self.tableView.tableFooterView = UIView() //To hide separators of empty cells
 
         self.btnDateFilter.setTitle(self.dateFormatter.string(from: self.datePicker.date), for: .normal)
         self.btnDateFilter.inputView = self.datePicker
@@ -61,7 +62,6 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
             button.layer.cornerRadius = Constants.buttonCornerRadius
             button.layer.borderColor = UIColor.et_borderColor.cgColor
         }
-        self.tableView.tableFooterView = UIView() //To hide separators of empty cells
     }
 
     //MARK: - UITableViewDelegate
@@ -77,9 +77,8 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
 
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectActivityTableViewCell.reuseIdentifier, for: indexPath) as! ProjectActivityTableViewCell
         let expense = self.viewModel[indexPath]
-        cell.textLabel?.text = expense?.name
-        if let value = expense?.value { cell.detailTextLabel?.text = "\(value)" }
-        else { cell.detailTextLabel?.text = nil }
+        cell.textLabel?.text = expense.name
+        cell.detailTextLabel?.text = "\(expense.value)"
 
         return cell
     }
@@ -88,7 +87,7 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
 
     @IBAction func addTime(sender: Any) {
 
-        let controller = AddTimeViewController()
+        let controller = self.viewModel.nextViewController(expenseType: .time)
         self.navigationController?.pushViewController(controller, animated: true)
     }
 
@@ -98,6 +97,8 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
 
     @IBAction func addExpenses(sender: Any) {
 
+        let controller = self.viewModel.nextViewController(expenseType: .money)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
     @objc func didChangeDate(sender: Any) {
