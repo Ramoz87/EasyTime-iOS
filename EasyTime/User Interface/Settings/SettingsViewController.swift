@@ -24,7 +24,7 @@ class SettingsViewController: BaseViewController<SettingsViewModel>, UITableView
         super.viewDidLoad()
         
         let header: SettingViewHeader = UIView.loadFromNib()
-        header.user = AppManager.sharedInstance.authenticator.user
+        header.user = AppManager.sharedInstance.user
         self.tableView.tableHeaderView = header
         self.tableView.tableFooterView = UIView()
         self.tableView.register(UINib.init(nibName: SettingViewCell.cellName, bundle: nil), forCellReuseIdentifier: SettingViewCell.reuseIdentifier)
@@ -55,13 +55,7 @@ class SettingsViewController: BaseViewController<SettingsViewModel>, UITableView
         switch indexPath.row {
         case 0: break
         case 1:
-        if MFMailComposeViewController.canSendMail() {
-            let composeVC = MFMailComposeViewController()
-            composeVC.mailComposeDelegate = self
-            composeVC.setToRecipients([Constants.feedbackEmail])
-            composeVC.setSubject(Constants.subject)
-            self.present(composeVC, animated: true, completion: nil)
-            }
+           self.showEmailComposer()
         case 2:
             self.logout()
         default: break
@@ -69,7 +63,7 @@ class SettingsViewController: BaseViewController<SettingsViewModel>, UITableView
         }
     }
     
-    //MARK: MFMailComposeViewControllerDelegate
+    //MARK: - MFMailComposeViewControllerDelegate
     
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
@@ -78,6 +72,16 @@ class SettingsViewController: BaseViewController<SettingsViewModel>, UITableView
     //MARK: - Action handlers
     
     func logout() {
-        AppManager.sharedInstance.authenticator.logout()
+        AppManager.sharedInstance.logout()
+    }
+    
+    func showEmailComposer() {
+        if MFMailComposeViewController.canSendMail() {
+            let composeVC = MFMailComposeViewController()
+            composeVC.mailComposeDelegate = self
+            composeVC.setToRecipients([Constants.feedbackEmail])
+            composeVC.setSubject(Constants.subject)
+            self.present(composeVC, animated: true, completion: nil)
+        }
     }
 }

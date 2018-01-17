@@ -11,20 +11,18 @@ import UIKit
 class LoginViewModel: BaseViewModel {
 
     func login(completion: @escaping((_ success: Bool, _ error: Error?) -> Void)) {
-
-        let fetchComplete: (Array<User>?, Error?) -> Void = { (result, error) in
-            if let user = result?.first {
-                AppManager.sharedInstance.authenticator.user = ETUser(user:user)
-                AppManager.sharedInstance.authenticator.state = .Authorized
+        
+        AppManager.sharedInstance.dataHelper.fetchData(entityName: User.entityName, predicate: nil) { (result: Array<User>?, error) in
+            
+            if let user = result?.first{
+                AppManager.sharedInstance.login(with: ETUser(user:user))
             }
             else
             {
-                AppManager.sharedInstance.authenticator.logout()
+                AppManager.sharedInstance.logout()
             }
             
-            completion((AppManager.sharedInstance.authenticator.state == .Authorized) , error)
+            completion((AppManager.sharedInstance.user != nil) , error)
         }
-        
-        AppManager.sharedInstance.dataHelper.fetchData(entityName: User.entityName, predicate: nil, completion: fetchComplete)
     }
 }

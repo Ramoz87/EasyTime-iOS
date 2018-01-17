@@ -40,6 +40,11 @@ class AppManager {
         }
     }
     
+    var user: ETUser? {
+        get { return self.authenticator.user }
+    }
+    
+    //MARK: - Initial DataSource
     private var initialDataCounter: Int = 0
     private var initialDataError: Error?
     private var initialDataCompletion: ((Bool, Error?) -> Void)?
@@ -92,4 +97,17 @@ class AppManager {
             }
         }
     }
+    
+    // MARK: - Authentication
+    func logout() {
+        self.authenticator.user = nil
+        self.authenticator.state = .Unauthorized
+    }
+    
+    func login(with user: ETUser?) {
+        self.authenticator.user = user
+        self.authenticator.state = (user == nil) ? .Unauthorized : .Authorized
+    }
+    
+    
 }

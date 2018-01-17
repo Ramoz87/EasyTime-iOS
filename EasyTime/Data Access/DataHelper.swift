@@ -19,7 +19,8 @@ enum DataError : Error {
     case contextFetchError(Error)
 }
 
-typealias CompletionBlock = (Array<Any>?, Error?) -> Swift.Void
+typealias CompletionBlock<Type> = (Array<Type>?, Error?) -> Swift.Void
+typealias ErrorBlock = (Error?) -> Swift.Void
 
 class DataHelper: NSObject {
     
@@ -53,7 +54,7 @@ class DataHelper: NSObject {
                                                       cacheName: nil)
     }
 
-    func fetchData<ResultType: NSFetchRequestResult>(entityName: String, predicate: NSPredicate?, completion: (Array<ResultType>?, Error?) -> Void)
+    func fetchData<ResultType: NSFetchRequestResult>(entityName: String, predicate: NSPredicate?, completion: CompletionBlock<ResultType>) -> Void
     {
         let request: NSFetchRequest<ResultType> = self.fetchRequest(entityName: entityName)
         if let pred = predicate { request.predicate = pred }
@@ -67,20 +68,20 @@ class DataHelper: NSObject {
     }
     
     // MARK: - Save data
-    func save(completion: @escaping CompletionBlock)  {
+    func save(completion: @escaping ErrorBlock)  {
 
         let context = self.mainContext
         if context.hasChanges {
             do {
                 try context.save()
-                completion(nil, nil)
+                completion(nil)
             } catch {
-                completion(nil, DataError.contextSaveError(error))
+                completion(DataError.contextSaveError(error))
             }
         }
     }
     
-    func saveInBackground(data: Array<DataObject>, completion: @escaping CompletionBlock ) {
+    func saveInBackground(data: Array<DataObject>, completion: @escaping CompletionBlock<NSManagedObject> ) {
 
         let context = self.backgroundContext;
         context.perform {
@@ -115,7 +116,7 @@ class DataHelper: NSObject {
     }
     
     // MARK: - Delete data
-    func delete(data: Array<NSManagedObject>, completion: @escaping CompletionBlock) {
+    func delete(data: Array<NSManagedObject>, completion: @escaping ErrorBlock) {
 
         let context = self.mainContext
         for item in data {
@@ -123,9 +124,9 @@ class DataHelper: NSObject {
         }
         do {
             try context.save()
-            completion(nil, nil)
+            completion(nil)
         } catch {
-            completion(nil, DataError.contextSaveError(error))
+            completion(DataError.contextSaveError(error))
         }
     }
     
