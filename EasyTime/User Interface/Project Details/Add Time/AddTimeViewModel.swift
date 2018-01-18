@@ -30,8 +30,9 @@ class AddTimeViewModel: BaseViewModel {
     
     var time: Float {
         get {
-            let hours = Float(self.hours)!
-            let minutes = Float(self.minutes)!
+
+            let hours = (self.hours as NSString).floatValue
+            let minutes = (self.minutes as NSString).floatValue
             
             return hours * 60 + minutes
         }
