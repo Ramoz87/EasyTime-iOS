@@ -31,7 +31,7 @@ class AddTimeViewController: BaseViewController<AddTimeViewModel>, UITextFieldDe
 
         self.title = Constants.newTimeText
 
-        let controller = NumberInputViewController(nibName: "NumberInputViewController", bundle: nil)
+        let controller = NumberInputViewController()
         self.tfHours.inputViewController = controller
         self.tfMinutes.inputViewController = controller
 
