@@ -26,7 +26,7 @@ class ETJob {
     lazy var expenses: [ETExpense]? = {
 
         return self.job.expenses?.map({ expense -> ETExpense in
-            return ETExpense(expense: expense as! Expense)
+            return ETExpense(expense: expense as? Expense)
         })
     }()
 

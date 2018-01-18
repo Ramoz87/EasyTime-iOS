@@ -10,7 +10,7 @@ import UIKit
 
 fileprivate struct Constants
 {
-    static let datePickerDoneButtonText = NSLocalizedString("Done", comment: "")
+    static let datePickerDoneButtonText = NSLocalizedString("Select date", comment: "")
     static let dateFilterButtonDropDownIconSpacing: CGFloat = 8
     static let buttonCornerRadius: CGFloat = 4
     static let buttonBorderWidth: CGFloat = 1 / UIScreen.main.scale
@@ -31,14 +31,17 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
         picker.addTarget(self, action: #selector(ProjectActivityViewController.didChangeDate(sender:)), for: .valueChanged)
         return picker
     }()
-
-    lazy var dateFormatter: DateFormatter = {
-
-        let formatter = DateFormatter()
-        formatter.doesRelativeDateFormatting = true
-        formatter.dateStyle = .medium
-        return formatter
-    }()
+    
+    var selectedDate: Date {
+        get {
+            return self.datePicker.date
+        }
+        set {
+            self.datePicker.date = newValue
+            self.btnDateFilter.setTitle(newValue.toRelativeString(), for: .normal)
+            self.viewModel.updateFilterResults(date: newValue)
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +51,6 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
         self.tableView.register(UINib(nibName: ProjectActivityTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectActivityTableViewCell.reuseIdentifier)
         self.tableView.tableFooterView = UIView() //To hide separators of empty cells
 
-        self.btnDateFilter.setTitle(self.dateFormatter.string(from: self.datePicker.date), for: .normal)
         self.btnDateFilter.inputView = self.datePicker
         self.btnDateFilter.inputAccessoryView = self.btnDateFilter.keyboardToolbar
         self.btnDateFilter.semanticContentAttribute = .forceRightToLeft
@@ -62,10 +64,19 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
             button.layer.cornerRadius = Constants.buttonCornerRadius
             button.layer.borderColor = UIColor.et_borderColor.cgColor
         }
+        
+        self.selectedDate = Date()
     }
 
     //MARK: - UITableViewDelegate
 
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let expense = self.viewModel[indexPath]
+            expense.remove()
+        }
+    }
+    
     //MARK: - UITableViewDataSource
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,12 +87,11 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: ProjectActivityTableViewCell.reuseIdentifier, for: indexPath) as! ProjectActivityTableViewCell
-        let expense = self.viewModel[indexPath]
-        cell.textLabel?.text = expense.name
-        cell.detailTextLabel?.text = "\(expense.value)"
-
+        cell.expense = self.viewModel[indexPath]
+    
         return cell
     }
+    
 
     //MARK: - Action handlers
 
@@ -97,14 +107,12 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
 
     @IBAction func addExpenses(sender: Any) {
 
-        let controller = self.viewModel.nextViewController(expenseType: .money)
+        let controller = self.viewModel.nextViewController(expenseType: .other)
         self.navigationController?.pushViewController(controller, animated: true)
     }
 
     @objc func didChangeDate(sender: Any) {
-
-        let dateString = self.dateFormatter.string(from: self.datePicker.date)
-        self.btnDateFilter.setTitle(dateString, for: .normal)
+        self.selectedDate = self.datePicker.date
     }
 
     @objc func didTapDoneOnDatePicker(sender: Any) {
@@ -116,18 +124,26 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
 
     func didChangeObject(at indexPath: IndexPath?, for type: CollectionViewChangeType, newIndexPath: IndexPath?) {
 
-        guard let indexPath = indexPath else { return }
-
         switch type {
         case .insert:
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
+            if  let indexPath = newIndexPath {
+                self.tableView.insertRows(at: [indexPath], with: .automatic)
+            }
         case .delete:
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            if  let indexPath = indexPath {
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
         case .move:
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
+            if  let indexPath = indexPath {
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            if  let indexPath = newIndexPath {
+                self.tableView.insertRows(at: [indexPath], with: .automatic)
+            }
         case .update:
-            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            if  let indexPath = indexPath {
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
         }
     }
 

@@ -67,6 +67,10 @@ class DataHelper: NSObject {
         }
     }
     
+    func insertEntity<ResultType: NSManagedObject>(entityName: String) -> ResultType {
+        return NSEntityDescription.insertNewObject(forEntityName: entityName, into: self.mainContext) as! ResultType
+    }
+    
     // MARK: - Save data
     func save(completion: @escaping ErrorBlock)  {
 

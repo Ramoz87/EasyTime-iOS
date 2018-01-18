@@ -15,8 +15,7 @@ class SettingsViewModel: BaseViewModel {
                         SettingItem(icon: UIImage(named: "icon logout")!, title: NSLocalizedString("Logout", comment: ""))]
 
     lazy var appVersionString: String = {
-        let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-        return String(format: "EasyTime v%@\nCopyright 2018. All Rights Reserved", version)
+        return String(format: "EasyTime v%@\nCopyright 2018. All Rights Reserved", Bundle.appVersion)
     } ()
     
     subscript(indexPath: IndexPath) -> SettingItem {

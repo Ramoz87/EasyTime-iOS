@@ -58,16 +58,6 @@ class WorkTypeViewModel: BaseViewModel {
         return count
     }
 
-    func sectionForSectionIndexTitle(_ title: String, at index: Int) -> Int {
-
-        return self.fetchResultsController.section(forSectionIndexTitle: title, at: index)
-    }
-
-    func sectionIndexTitles() -> [String]? {
-
-        return self.fetchResultsController.sectionIndexTitles
-    }
-
     func updateSearchResults(text: String? = nil) {
 
         var predicate = NSPredicate(format: Constants.searchPredicate1)

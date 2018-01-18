@@ -27,6 +27,15 @@ class AddTimeViewModel: BaseViewModel {
             //TODO: Update minutes
         }
     }
+    
+    var time: Float {
+        get {
+            let hours = Float(self.hours)!
+            let minutes = Float(self.minutes)!
+            
+            return hours * 60 + minutes
+        }
+    }
 
     init(job: ETJob, type: ETType) {
 
@@ -37,5 +46,15 @@ class AddTimeViewModel: BaseViewModel {
 
     required init() {
         fatalError("init() has not been implemented")
+    }
+    
+    override func save() {
+        let expense = ETExpense()
+        expense.name = self.type.name
+        expense.type = .time
+        expense.value = self.time
+        expense.workTypeId = type.typeId
+        
+        expense.save()
     }
 }

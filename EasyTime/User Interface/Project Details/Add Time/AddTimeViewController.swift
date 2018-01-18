@@ -10,7 +10,7 @@ import UIKit
 
 fileprivate struct Constants
 {
-    static let newTimeText = NSLocalizedString("New time", comment: "")
+    static let newTimeText = NSLocalizedString("Time", comment: "")
     static let hoursText = NSLocalizedString("Hours", comment: "")
     static let minutesText = NSLocalizedString("Minutes", comment: "")
     static let placeholderCornerRadius: CGFloat = 4
@@ -122,9 +122,11 @@ class AddTimeViewController: BaseViewController<AddTimeViewModel>, UITextFieldDe
         if let text = self.tfMinutes.text {
 
             self.viewModel.minutes = text
+            self.viewModel.save()
+            if let vc = self.navigationController?.viewControllers[1] {
+                self.navigationController?.popToViewController(vc, animated: true)
+            }
         }
-
-        //TODO: Push next view controller
     }
 
     func makeTextFieldActive(_ textField: UITextField) {

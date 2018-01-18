@@ -88,12 +88,36 @@ extension Date {
         dateFormatter.dateFormat = format
         return dateFormatter.string(from: self)
     }
+    
+    func toRelativeString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.doesRelativeDateFormatting = true
+        dateFormatter.dateStyle = .medium
+        return dateFormatter.string(from: self)
+    }
+    
+    var startOfDay: Date {
+        return Calendar.current.startOfDay(for: self)
+    }
+    
+    var endOfDay: Date {
+        var components = DateComponents()
+        components.day = 1
+        components.second = -1
+        return Calendar.current.date(byAdding: components, to: startOfDay)!
+    }
 }
 
 extension Bundle {
     class var appName: String {
         get{
             return main.object(forInfoDictionaryKey: "CFBundleName") as! String
+        }
+    }
+    
+    class var appVersion: String {
+        get {
+            return main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
         }
     }
 }

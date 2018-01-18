@@ -13,7 +13,6 @@ class BaseViewController<T>: UIViewController where T: BaseViewModel {
     var viewModel: T
 
     init() {
-
         self.viewModel = T()
         super.init(nibName: nil, bundle: nil)
     }
@@ -27,16 +26,4 @@ class BaseViewController<T>: UIViewController where T: BaseViewModel {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        
-        self.viewModel.save()
-    }
-
 }

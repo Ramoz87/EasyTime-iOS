@@ -10,7 +10,7 @@ import UIKit
 
 fileprivate struct Constants {
 
-    static let titleText = NSLocalizedString("Choose your work", comment: "")
+    static let titleText = NSLocalizedString("Work type", comment: "")
     static let searchBarPlaceholder = NSLocalizedString("Search", comment: "")
 }
 
@@ -69,16 +69,6 @@ class WorkTypeViewController: BaseViewController<WorkTypeViewModel>, UITableView
         cell.textLabel?.text = type?.name
 
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-
-        return self.viewModel.sectionForSectionIndexTitle(title, at: index)
-    }
-
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-
-        return self.viewModel.sectionIndexTitles()
     }
 
     //MARK: - UITableViewDelegate

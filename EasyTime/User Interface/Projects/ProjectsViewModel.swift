@@ -27,12 +27,6 @@ class ProjectsViewModel: BaseViewModel {
         return fetchedResultsController
     }()
 
-    required init() {
-        super.init()
-        
-        self.updateSearchResults(date: Date(), text: nil)
-    }
-
     subscript(indexPath: IndexPath) -> ETJob {
 
         let job = self.fetchResultsController.object(at: indexPath)
@@ -73,13 +67,16 @@ class ProjectsViewModel: BaseViewModel {
 
     func updateSearchResults(date: Date, text: String?) {
 
-        var predicate = NSPredicate(format: Constants.searchPredicate1, date as NSDate)
+        var predicate = NSPredicate(format: Constants.searchPredicate1, date.endOfDay as NSDate)
+        
         if let text = text, text.count > 0 {
 
-            predicate = NSPredicate(format: Constants.searchPredicate1 + " && " + Constants.searchPredicate2, date as NSDate, text)
+            let predicate1 = NSPredicate(format: Constants.searchPredicate2, text)
+            predicate = NSCompoundPredicate(type: .and, subpredicates: [predicate, predicate1])
         }
 
         self.fetchResultsController.fetchRequest.predicate = predicate
+        
         do {
             try self.fetchResultsController.performFetch()
             self.collectionViewUpdateDelegate?.didChangeDataSet()

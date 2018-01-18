@@ -95,7 +95,7 @@ class ObjectsViewModel: BaseViewModel {
         case .time:
             let viewModel = WorkTypeViewModel(job: job)
             return WorkTypeViewController(viewModel: viewModel)
-        case .money:
+        case .other, .driving:
             let viewModel = ExpenseTypeViewModel(job: job)
             return ExpenseTypeViewController(viewModel: viewModel)
         case .material:

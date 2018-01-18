@@ -12,7 +12,7 @@ import CoreData
 fileprivate struct Constants {
 
     static let sortDescriptor = "date"
-    static let searchPredicate = "date > %@ && date < %@"
+    static let searchPredicate = "date >= %@ && date <= %@"
 }
 
 class ProjectActivityViewModel: BaseViewModel {
@@ -31,7 +31,6 @@ class ProjectActivityViewModel: BaseViewModel {
 
         self.job = job
         super.init()
-        self.updateFilterResults()
     }
 
     required init() {
@@ -52,7 +51,7 @@ class ProjectActivityViewModel: BaseViewModel {
 
     func updateFilterResults(date: Date = Date()) {
 
-        let predicate: NSPredicate = NSPredicate(format: Constants.searchPredicate, date as NSDate, date as NSDate) // TODO: start and end date
+        let predicate: NSPredicate = NSPredicate(format: Constants.searchPredicate, date.startOfDay as NSDate, date.endOfDay as NSDate)
 
         self.fetchResultsController.fetchRequest.predicate = predicate
         do {
@@ -70,18 +69,17 @@ class ProjectActivityViewModel: BaseViewModel {
             let viewModel = ObjectsViewModel(project: project, expenseType: expenseType)
             return ObjectsViewController(viewModel: viewModel)
         }
-
+        
         switch expenseType {
-
-            case .time:
-                let viewModel = WorkTypeViewModel(job: self.job)
-                return WorkTypeViewController(viewModel: viewModel)
-            case .money:
-                let viewModel = ExpenseTypeViewModel(job: self.job)
-                return ExpenseTypeViewController(viewModel: viewModel)
-            case .material:
-                return UIViewController() // TODO: Impement
+            
+        case .time:
+            let viewModel = WorkTypeViewModel(job: self.job)
+            return WorkTypeViewController(viewModel: viewModel)
+        case .other, .driving:
+            let viewModel = ExpenseTypeViewModel(job: self.job)
+            return ExpenseTypeViewController(viewModel: viewModel)
+        case .material:
+            return UIViewController() // TODO: Impement
         }
-
     }
 }
