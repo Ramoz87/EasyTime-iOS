@@ -17,11 +17,22 @@ class NumberInputViewController: UIInputViewController {
 
     @IBOutlet weak var btnNext: UIButton!
 
+    init() {
+
+        super.init(nibName: "NumberInputViewController", bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.btnNext.setTitle(Constants.nextText, for: .normal)
         self.btnNext.alignVertical()
+
+        self.view?.translatesAutoresizingMaskIntoConstraints = false
     }
 
     //MAKR: - Action handlers
