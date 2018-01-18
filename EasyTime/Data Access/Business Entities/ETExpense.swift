@@ -26,6 +26,7 @@ class ETExpense {
     var date: Date?
     var value: Float = 0
     var workTypeId: String?
+    var typeId: String?
 
     var formattedValue: String {
         get {
@@ -55,6 +56,7 @@ class ETExpense {
             self.value = expense.value
             self.date = expense.date
             self.workTypeId = expense.workTypeId
+            self.typeId = expense.typeId
         }
     }
     
@@ -80,6 +82,7 @@ class ETExpense {
             expense.value = self.value
             expense.date = self.date
             expense.workTypeId = self.workTypeId
+            expense.typeId = self.typeId
         }
 
         AppManager.sharedInstance.dataHelper.save { (error) in

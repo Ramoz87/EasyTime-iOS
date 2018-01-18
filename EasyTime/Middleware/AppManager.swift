@@ -26,11 +26,6 @@ class AppManager {
     let authenticator = Authenticator()
     let dataHelper = DataHelper()
 
-    lazy var otherExpenseTypeId: String = {
-
-        return "e8e0efb0-785a-4447-88a2-3d1de961eba4"
-    }()
-
     var lastSyncDate: Date? {
         get {
             return UserDefaults.standard.object(forKey: Constants.lastSyncDate) as? Date
@@ -110,4 +105,8 @@ class AppManager {
     }
     
     
+}
+
+extension AppManager {
+    static let typeExpenceOtherId = "e8e0efb0-785a-4447-88a2-3d1de961eba4"
 }

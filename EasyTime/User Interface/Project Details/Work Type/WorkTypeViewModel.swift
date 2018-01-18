@@ -12,7 +12,6 @@ import CoreData
 fileprivate struct Constants {
 
     static let sortDescriptor = "name"
-    static let sectionName = "name"
     static let searchPredicate1 = "type = 'WORK_TYPE'"
     static let searchPredicate2 = "name CONTAINS[cd] %@"
 }
@@ -24,7 +23,7 @@ class WorkTypeViewModel: BaseViewModel {
 
         let fetchedResultsController: NSFetchedResultsController<Type> = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Type.entityName,
                                                                                                                                          sort: [Constants.sortDescriptor],
-                                                                                                                                         sectionNameKeyPath:Constants.sectionName)
+                                                                                                                                         sectionNameKeyPath:nil)
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
@@ -33,14 +32,13 @@ class WorkTypeViewModel: BaseViewModel {
 
         self.job = job
         super.init()
-        self.updateSearchResults()
     }
 
     required init() {
         fatalError("init() has not been implemented")
     }
 
-    subscript(indexPath: IndexPath) -> ETType? {
+    subscript(indexPath: IndexPath) -> ETType {
 
         let type = self.fetchResultsController.object(at: indexPath)
         return ETType(type: type)
@@ -63,7 +61,8 @@ class WorkTypeViewModel: BaseViewModel {
         var predicate = NSPredicate(format: Constants.searchPredicate1)
         if let text = text, text.count > 0 {
 
-            predicate = NSPredicate(format: Constants.searchPredicate1 + " && " + Constants.searchPredicate2, text)
+            let predicate1 = NSPredicate(format: Constants.searchPredicate2, text)
+            predicate = NSCompoundPredicate(type: .and, subpredicates: [predicate, predicate1])
         }
 
         self.fetchResultsController.fetchRequest.predicate = predicate

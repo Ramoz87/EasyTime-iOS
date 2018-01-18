@@ -12,73 +12,94 @@ import CoreData
 fileprivate struct Constants {
 
     static let sortDescriptor = "name"
-    static let sectionName = "name"
-    static let searchPredicate1 = "type = 'EXPENCE_TYPE'"
+    static let searchPredicateBaseExpense = "type = 'EXPENCE_TYPE'"
+    static let searchPredicateBaseHistory = "type = 2 OR type = 3"
     static let searchPredicate2 = "name CONTAINS[cd] %@"
+    static let sectionNumber = 2
 }
 
 class ExpenseTypeViewModel: BaseViewModel {
 
     private(set) var job: ETJob
-    private lazy var fetchResultsController: NSFetchedResultsController<Type> = {
-
-        let fetchedResultsController: NSFetchedResultsController<Type> = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Type.entityName,
-                                                                                                                                       sort: [Constants.sortDescriptor],
-                                                                                                                                       sectionNameKeyPath:Constants.sectionName)
-        fetchedResultsController.delegate = self
-        return fetchedResultsController
+  
+    private lazy var expenseTypeFetchResultsController: NSFetchedResultsController<Type> = {
+        
+        let fetchResultsController: NSFetchedResultsController<Type> = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Type.entityName,
+                                                                                                                                                sort: [Constants.sortDescriptor],
+                                                                                                                                                sectionNameKeyPath:nil)
+        fetchResultsController.delegate = self
+        return fetchResultsController
+    }()
+    
+    private lazy var expenseHistoryFetchResultsController: NSFetchedResultsController<Expense> = {
+        
+        let fetchResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Expense.entityName,
+                                                                                                                                                   sort: [Constants.sortDescriptor],
+                                                                                                                                                   sectionNameKeyPath:nil)
+        fetchResultsController.delegate = self
+        return fetchResultsController
     }()
 
     init(job: ETJob) {
 
         self.job = job
         super.init()
-        self.updateSearchResults()
     }
 
     required init() {
         fatalError("init() has not been implemented")
     }
 
-    subscript(indexPath: IndexPath) -> ETType? {
+    subscript(indexPath: IndexPath) -> Any {
 
-        let type = self.fetchResultsController.object(at: indexPath)
-        return ETType(type: type)
+        if  indexPath.section == 0 {
+            let type = self.expenseTypeFetchResultsController.object(at: indexPath)
+            return ETType(type: type)
+        }
+        else
+        {
+            let expense = self.expenseHistoryFetchResultsController.object(at: indexPath)
+            return ETExpense(expense: expense)
+        }
     }
 
     func numberOfSections() -> Int {
-
-        guard let count = self.fetchResultsController.sections?.count else { return 0 }
-        return count
+        return Constants.sectionNumber
     }
 
     func numberOfRowsInSection(section: Int) -> Int {
 
-        guard let count = self.fetchResultsController.sections?[section].numberOfObjects else { return 0 }
-        return count
-    }
-
-    func sectionForSectionIndexTitle(_ title: String, at index: Int) -> Int {
-
-        return self.fetchResultsController.section(forSectionIndexTitle: title, at: index)
-    }
-
-    func sectionIndexTitles() -> [String]? {
-
-        return self.fetchResultsController.sectionIndexTitles
+        var numberOfRows = 0
+        
+        if  section == 0, let count = self.expenseTypeFetchResultsController.sections?[0].numberOfObjects {
+            numberOfRows = count
+        }
+        
+        if  section == 1, let count = self.expenseHistoryFetchResultsController.sections?[0].numberOfObjects {
+            numberOfRows = count
+        }
+       
+        return numberOfRows
     }
 
     func updateSearchResults(text: String? = nil) {
 
-        var predicate = NSPredicate(format: Constants.searchPredicate1)
+        var predicateExpense = NSPredicate(format: Constants.searchPredicateBaseExpense)
+        var predicateHistory = NSPredicate(format: Constants.searchPredicateBaseHistory)
+        
         if let text = text, text.count > 0 {
-
-            predicate = NSPredicate(format: Constants.searchPredicate1 + " && " + Constants.searchPredicate2, text)
+            
+            let predicate = NSPredicate(format: Constants.searchPredicate2, text)
+            predicateExpense = NSCompoundPredicate(type: .and, subpredicates: [predicateExpense, predicate])
+            predicateHistory = NSCompoundPredicate(type: .and, subpredicates: [predicateHistory, predicate])
         }
 
-        self.fetchResultsController.fetchRequest.predicate = predicate
+        self.expenseTypeFetchResultsController.fetchRequest.predicate = predicateExpense
+        self.expenseHistoryFetchResultsController.fetchRequest.predicate = predicateHistory
+        
         do {
-            try self.fetchResultsController.performFetch()
+            try self.expenseTypeFetchResultsController.performFetch()
+            try self.expenseHistoryFetchResultsController.performFetch()
             self.collectionViewUpdateDelegate?.didChangeDataSet()
         } catch {}
     }

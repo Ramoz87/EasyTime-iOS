@@ -61,11 +61,11 @@ class ProjectActivityViewModel: BaseViewModel {
     }
 
     func nextViewController(expenseType: ETExpenseType) -> UIViewController {
-
+        
         if let project = self.job as? ETProject,
             let objects = project.objects,
             objects.count > 0 {
-
+            
             let viewModel = ObjectsViewModel(project: project, expenseType: expenseType)
             return ObjectsViewController(viewModel: viewModel)
         }
@@ -75,11 +75,11 @@ class ProjectActivityViewModel: BaseViewModel {
         case .time:
             let viewModel = WorkTypeViewModel(job: self.job)
             return WorkTypeViewController(viewModel: viewModel)
+        case .material:
+            return UIViewController()
         case .other, .driving:
             let viewModel = ExpenseTypeViewModel(job: self.job)
             return ExpenseTypeViewController(viewModel: viewModel)
-        case .material:
-            return UIViewController() // TODO: Impement
         }
     }
 }

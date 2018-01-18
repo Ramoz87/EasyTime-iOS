@@ -13,15 +13,11 @@ class WorkTypeTableViewCell: UITableViewCell {
     static let reuseIdentifier = "WorkTypeTableViewCellReuseIdentifier"
     static let cellName = "WorkTypeTableViewCell"
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    var type: ETType? {
+        
+        didSet {
+            self.textLabel?.text = type?.name
+        }
     }
     
 }

@@ -10,9 +10,9 @@ import UIKit
 
 fileprivate struct Constants {
 
-    static let titleText = NSLocalizedString("Expenses", comment: "")
-    static let searchBarPlaceholder = NSLocalizedString("Search", comment: "")
-    static let newExpenseTitlePlaceholderText = NSLocalizedString("Title", comment: "")
+    static let titleText = NSLocalizedString("Expense types", comment: "")
+    static let searchBarPlaceholder = NSLocalizedString("Search by name", comment: "")
+    static let newExpenseTitlePlaceholderText = NSLocalizedString("Expense name", comment: "")
     static let newExpenseTitleText = NSLocalizedString("New expense", comment: "")
     static let newExpenseMessageText = NSLocalizedString("Enter name for this expense", comment: "")
     static let saveText = NSLocalizedString("Save", comment: "")
@@ -43,7 +43,7 @@ class ExpenseTypeViewController: BaseViewController<ExpenseTypeViewModel>, UITab
         self.tableView.tableFooterView = UIView() //To hide separators of empty cells
 
         self.viewModel.collectionViewUpdateDelegate = self
-
+        
         if #available(iOS 11.0, *) {
 
             self.navigationItem.searchController = self.searchController
@@ -53,9 +53,11 @@ class ExpenseTypeViewController: BaseViewController<ExpenseTypeViewModel>, UITab
             self.tableView.tableHeaderView = self.searchController.searchBar
             self.tableView.contentOffset = CGPoint(x: 0, y: self.searchController.searchBar.frame.height)
         }
+        
+        self.viewModel.updateSearchResults()
     }
 
-    func showNewExpenseTypeUI() {
+    func showNewExpenseTypeUI(for type: ETType) {
 
         let controller = UIAlertController(title: Constants.newExpenseTitleText, message: Constants.newExpenseMessageText, preferredStyle: .alert)
 
@@ -74,11 +76,8 @@ class ExpenseTypeViewController: BaseViewController<ExpenseTypeViewModel>, UITab
         let saveAction = UIAlertAction(title: Constants.saveText, style: .default, handler: { action in
 
             if let textField = controller.textFields?.first {
-
-                let name = textField.text
-
-                //TODO: Save new expense
-                // self.showAddExpenseViewController(for: type)
+                type.customName = textField.text
+                self.showAddExpenseViewController(for: type)
             }
             controller.dismiss(animated: true, completion: nil)
         })
@@ -87,8 +86,15 @@ class ExpenseTypeViewController: BaseViewController<ExpenseTypeViewModel>, UITab
         self.present(controller, animated: true, completion: nil)
     }
 
-    func showAddExpenseViewController(for type: ETType) {
+    func showAddExpenseViewController(for expense: ETExpense) {
 
+        let viewModel = AddExpenseViewModel(job: self.viewModel.job, expense: expense)
+        let controller = AddExpenseViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    func showAddExpenseViewController(for type: ETType) {
+        
         let viewModel = AddExpenseViewModel(job: self.viewModel.job, type: type)
         let controller = AddExpenseViewController(viewModel: viewModel)
         self.navigationController?.pushViewController(controller, animated: true)
@@ -109,37 +115,39 @@ class ExpenseTypeViewController: BaseViewController<ExpenseTypeViewModel>, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: ExpenseTypeTableViewCell.reuseIdentifier, for: indexPath) as! ExpenseTypeTableViewCell
-
-        let type = self.viewModel[indexPath]
-        cell.textLabel?.text = type?.name
-
+        
+        let item = self.viewModel[indexPath]
+       
+        if  indexPath.section == 0 {
+            cell.type = item as? ETType
+        }
+        else
+        {
+            cell.expense = item as? ETExpense
+        }
+        
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-
-        return self.viewModel.sectionForSectionIndexTitle(title, at: index)
-    }
-
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-
-        return self.viewModel.sectionIndexTitles()
     }
 
     //MARK: - UITableViewDelegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        if let type = self.viewModel[indexPath] {
-
-            if type.typeId == AppManager.sharedInstance.otherExpenseTypeId {
-
-                self.showNewExpenseTypeUI()
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let item = self.viewModel[indexPath]
+        
+        if indexPath.section == 0, let type = item as? ETType {
+            if type.typeId == AppManager.typeExpenceOtherId {
+                self.showNewExpenseTypeUI(for: type)
             }
             else {
-
                 self.showAddExpenseViewController(for: type)
             }
+        }
+        
+        if indexPath.section == 1, let expense = item as? ETExpense {
+            self.showAddExpenseViewController(for: expense)
         }
     }
 
@@ -149,48 +157,8 @@ class ExpenseTypeViewController: BaseViewController<ExpenseTypeViewModel>, UITab
 
         self.viewModel.updateSearchResults(text: self.searchController.searchBar.text)
     }
-
+    
     //MARK: - CollectionViewUpdateDelegate
-
-    func didChangeObject(at indexPath: IndexPath?, for type: CollectionViewChangeType, newIndexPath: IndexPath?) {
-
-        guard let indexPath = indexPath else { return }
-
-        switch type {
-        case .insert:
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
-        case .delete:
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        case .move:
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
-        case .update:
-            self.tableView.reloadRows(at: [indexPath], with: .automatic)
-        }
-    }
-
-    func didChangeSection(at sectionIndex: Int, for type: CollectionViewChangeType) {
-
-        switch type {
-        case .insert:
-            self.tableView.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
-        case .delete:
-            self.tableView.deleteSections(IndexSet(integer: sectionIndex), with: .automatic)
-        default:
-            break
-        }
-    }
-
-    func willChangeContent() {
-
-        self.tableView.beginUpdates()
-    }
-
-    func didChangeContent() {
-
-        self.tableView.endUpdates()
-    }
-
     func didChangeDataSet() {
         self.tableView.reloadData()
     }

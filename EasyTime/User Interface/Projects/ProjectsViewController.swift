@@ -166,18 +166,26 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
 
     func didChangeObject(at indexPath: IndexPath?, for type: CollectionViewChangeType, newIndexPath: IndexPath?) {
 
-        guard let indexPath = indexPath else { return }
-
         switch type {
         case .insert:
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
+            if  let indexPath = newIndexPath {
+                self.tableView.insertRows(at: [indexPath], with: .automatic)
+            }
         case .delete:
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            if  let indexPath = indexPath {
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
         case .move:
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
+            if  let indexPath = indexPath {
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            }
+            if  let indexPath = newIndexPath {
+                self.tableView.insertRows(at: [indexPath], with: .automatic)
+            }
         case .update:
-            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            if  let indexPath = indexPath {
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
         }
     }
 

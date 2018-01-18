@@ -10,7 +10,7 @@ import UIKit
 
 fileprivate struct Constants {
 
-    static let titleText = NSLocalizedString("Work type", comment: "")
+    static let titleText = NSLocalizedString("Work types", comment: "")
     static let searchBarPlaceholder = NSLocalizedString("Search", comment: "")
 }
 
@@ -35,9 +35,9 @@ class WorkTypeViewController: BaseViewController<WorkTypeViewModel>, UITableView
 
         self.tableView.register(UINib(nibName: WorkTypeTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: WorkTypeTableViewCell.reuseIdentifier)
         self.tableView.tableFooterView = UIView() //To hide separators of empty cells
-
+       
         self.viewModel.collectionViewUpdateDelegate = self
-
+        
         if #available(iOS 11.0, *) {
 
             self.navigationItem.searchController = self.searchController
@@ -47,14 +47,11 @@ class WorkTypeViewController: BaseViewController<WorkTypeViewModel>, UITableView
             self.tableView.tableHeaderView = self.searchController.searchBar
             self.tableView.contentOffset = CGPoint(x: 0, y: self.searchController.searchBar.frame.height)
         }
+        
+        self.viewModel.updateSearchResults()
     }
 
     //MARK: - UITableViewDataSource
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-
-        return self.viewModel.numberOfSections()
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
@@ -64,23 +61,19 @@ class WorkTypeViewController: BaseViewController<WorkTypeViewModel>, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: WorkTypeTableViewCell.reuseIdentifier, for: indexPath) as! WorkTypeTableViewCell
-
-        let type = self.viewModel[indexPath]
-        cell.textLabel?.text = type?.name
-
+        cell.type = self.viewModel[indexPath]
         return cell
     }
 
     //MARK: - UITableViewDelegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        if let type = self.viewModel[indexPath] {
-
-            let viewModel = AddTimeViewModel(job: self.viewModel.job, type: type)
-            let controller = AddTimeViewController(viewModel: viewModel)
-            self.navigationController?.pushViewController(controller, animated: true)
-        }
+        
+        let type = self.viewModel[indexPath]
+        let viewModel = AddTimeViewModel(job: self.viewModel.job, type: type)
+        let controller = AddTimeViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(controller, animated: true)
+        
     }
 
     //MARK: - UISearchResultsUpdating
@@ -89,48 +82,8 @@ class WorkTypeViewController: BaseViewController<WorkTypeViewModel>, UITableView
 
         self.viewModel.updateSearchResults(text: self.searchController.searchBar.text)
     }
-
+    
     //MARK: - CollectionViewUpdateDelegate
-
-    func didChangeObject(at indexPath: IndexPath?, for type: CollectionViewChangeType, newIndexPath: IndexPath?) {
-
-        guard let indexPath = indexPath else { return }
-
-        switch type {
-        case .insert:
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
-        case .delete:
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        case .move:
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
-        case .update:
-            self.tableView.reloadRows(at: [indexPath], with: .automatic)
-        }
-    }
-
-    func didChangeSection(at sectionIndex: Int, for type: CollectionViewChangeType) {
-
-        switch type {
-        case .insert:
-            self.tableView.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
-        case .delete:
-            self.tableView.deleteSections(IndexSet(integer: sectionIndex), with: .automatic)
-        default:
-            break
-        }
-    }
-
-    func willChangeContent() {
-
-        self.tableView.beginUpdates()
-    }
-
-    func didChangeContent() {
-
-        self.tableView.endUpdates()
-    }
-
     func didChangeDataSet() {
         self.tableView.reloadData()
     }

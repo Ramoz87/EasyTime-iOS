@@ -71,16 +71,6 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
         return cell
     }
 
-    func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
-
-        return self.viewModel.sectionForSectionIndexTitle(title, at: index)
-    }
-
-    func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-
-        return self.viewModel.sectionIndexTitles()
-    }
-
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
         guard let title = self.viewModel.sectionIndexTitles()?[section] else { return nil }
@@ -106,48 +96,9 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
 
         self.viewModel.updateSearchResults(text: self.searchController.searchBar.text)
     }
-
+    
     //MARK: - CollectionViewUpdateDelegate
-
-    func didChangeObject(at indexPath: IndexPath?, for type: CollectionViewChangeType, newIndexPath: IndexPath?) {
-
-        guard let indexPath = indexPath else { return }
-
-        switch type {
-        case .insert:
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
-        case .delete:
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-        case .move:
-            self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            self.tableView.insertRows(at: [indexPath], with: .automatic)
-        case .update:
-            self.tableView.reloadRows(at: [indexPath], with: .automatic)
-        }
-    }
-
-    func didChangeSection(at sectionIndex: Int, for type: CollectionViewChangeType) {
-
-        switch type {
-        case .insert:
-            self.tableView.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
-        case .delete:
-            self.tableView.deleteSections(IndexSet(integer: sectionIndex), with: .automatic)
-        default:
-            break
-        }
-    }
-
-    func willChangeContent() {
-
-        self.tableView.beginUpdates()
-    }
-
-    func didChangeContent() {
-
-        self.tableView.endUpdates()
-    }
-
+    
     func didChangeDataSet() {
         self.tableView.reloadData()
     }

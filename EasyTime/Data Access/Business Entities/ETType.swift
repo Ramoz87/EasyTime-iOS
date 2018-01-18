@@ -11,6 +11,7 @@ import UIKit
 class ETType {
 
     var name: String?
+    var customName: String?
     var type: String?
     var typeId: String?
 
