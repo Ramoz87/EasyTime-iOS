@@ -76,7 +76,8 @@ class ProjectActivityViewModel: BaseViewModel {
             let viewModel = WorkTypeViewModel(job: self.job)
             return WorkTypeViewController(viewModel: viewModel)
         case .material:
-            return UIViewController()
+            let viewModel = AddMaterialsViewModel(job: self.job)
+            return AddMaterialsViewController(viewModel: viewModel)
         case .other, .driving:
             let viewModel = ExpenseTypeViewModel(job: self.job)
             return ExpenseTypeViewController(viewModel: viewModel)

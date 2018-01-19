@@ -119,6 +119,13 @@
 		9EC02C8B2007A47D004B83FC /* NumberInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C892007A47D004B83FC /* NumberInputViewController.swift */; };
 		9EC02C8C2007A47D004B83FC /* NumberInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC02C8A2007A47D004B83FC /* NumberInputViewController.xib */; };
 		9EE0225D2008ED3F00CC01E9 /* AddTimeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE0225C2008ED3F00CC01E9 /* AddTimeViewModel.swift */; };
+		9EF59C5420121EA60048A247 /* AddMaterialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF59C5320121EA60048A247 /* AddMaterialsViewModel.swift */; };
+		9EF59C5720121EBD0048A247 /* AddMaterialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF59C5520121EBD0048A247 /* AddMaterialsViewController.swift */; };
+		9EF59C5820121EBD0048A247 /* AddMaterialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EF59C5620121EBD0048A247 /* AddMaterialsViewController.xib */; };
+		9EF59C5B20121F7E0048A247 /* AddMaterialsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF59C5920121F7E0048A247 /* AddMaterialsTableViewCell.swift */; };
+		9EF59C5C20121F7E0048A247 /* AddMaterialsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EF59C5A20121F7E0048A247 /* AddMaterialsTableViewCell.xib */; };
+		9EF59C5E2012207F0048A247 /* ETMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF59C5D2012207F0048A247 /* ETMaterial.swift */; };
+		9EF59C60201225840048A247 /* AddMaterialsTableViewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF59C5F201225840048A247 /* AddMaterialsTableViewCellController.swift */; };
 		B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */ = {isa = PBXBuildFile; fileRef = B73108D51FDEC1DE00BB3B07 /* customer.csv */; };
 		B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D71FDEC28300BB3B07 /* CSV.swift */; };
 		B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */; };
@@ -259,6 +266,13 @@
 		9EC02C892007A47D004B83FC /* NumberInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputViewController.swift; sourceTree = "<group>"; };
 		9EC02C8A2007A47D004B83FC /* NumberInputViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberInputViewController.xib; sourceTree = "<group>"; };
 		9EE0225C2008ED3F00CC01E9 /* AddTimeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimeViewModel.swift; sourceTree = "<group>"; };
+		9EF59C5320121EA60048A247 /* AddMaterialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMaterialsViewModel.swift; sourceTree = "<group>"; };
+		9EF59C5520121EBD0048A247 /* AddMaterialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMaterialsViewController.swift; sourceTree = "<group>"; };
+		9EF59C5620121EBD0048A247 /* AddMaterialsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMaterialsViewController.xib; sourceTree = "<group>"; };
+		9EF59C5920121F7E0048A247 /* AddMaterialsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMaterialsTableViewCell.swift; sourceTree = "<group>"; };
+		9EF59C5A20121F7E0048A247 /* AddMaterialsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMaterialsTableViewCell.xib; sourceTree = "<group>"; };
+		9EF59C5D2012207F0048A247 /* ETMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETMaterial.swift; sourceTree = "<group>"; };
+		9EF59C5F201225840048A247 /* AddMaterialsTableViewCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMaterialsTableViewCellController.swift; sourceTree = "<group>"; };
 		B73108D51FDEC1DE00BB3B07 /* customer.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customer.csv; sourceTree = "<group>"; };
 		B73108D71FDEC28300BB3B07 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
@@ -299,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				9E65DE41200E2C38006107DE /* Add Expense */,
+				9EF59C5220121E8C0048A247 /* Add Materials */,
 				9EC02C8D2008A08C004B83FC /* Add Time */,
 				9E65DE42200E2C39006107DE /* Expense Type */,
 				9E65DE2D200DE076006107DE /* Objects */,
@@ -319,11 +334,12 @@
 				9E1350BB1FE40015007CAEC3 /* ETCustomer.swift */,
 				9EC02C852004F794004B83FC /* ETExpense.swift */,
 				9E0AD1721FE3CFBF000244FF /* ETJob.swift */,
+				9EF59C5D2012207F0048A247 /* ETMaterial.swift */,
 				9E1350B71FE3EECF007CAEC3 /* ETObject.swift */,
 				9E1350B51FE3EEBE007CAEC3 /* ETOrder.swift */,
 				9E824D691FE3EC32008538EB /* ETProject.swift */,
-				B765DB1E200E2DE1002F5773 /* ETUser.swift */,
 				9E65DE3B200E08B4006107DE /* ETType.swift */,
+				B765DB1E200E2DE1002F5773 /* ETUser.swift */,
 			);
 			path = "Business Entities";
 			sourceTree = "<group>";
@@ -675,6 +691,19 @@
 			path = "Add Time";
 			sourceTree = "<group>";
 		};
+		9EF59C5220121E8C0048A247 /* Add Materials */ = {
+			isa = PBXGroup;
+			children = (
+				9EF59C5920121F7E0048A247 /* AddMaterialsTableViewCell.swift */,
+				9EF59C5A20121F7E0048A247 /* AddMaterialsTableViewCell.xib */,
+				9EF59C5F201225840048A247 /* AddMaterialsTableViewCellController.swift */,
+				9EF59C5520121EBD0048A247 /* AddMaterialsViewController.swift */,
+				9EF59C5620121EBD0048A247 /* AddMaterialsViewController.xib */,
+				9EF59C5320121EA60048A247 /* AddMaterialsViewModel.swift */,
+			);
+			path = "Add Materials";
+			sourceTree = "<group>";
+		};
 		B7E358BE1FD53F6C006256FC = {
 			isa = PBXGroup;
 			children = (
@@ -783,11 +812,13 @@
 				B7C5C744200F6AC80027D379 /* AddTimeViewController.xib in Resources */,
 				B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */,
 				9E730D2F1FDAA16A0059C810 /* ClientsViewController.xib in Resources */,
+				9EF59C5C20121F7E0048A247 /* AddMaterialsTableViewCell.xib in Resources */,
 				9EC02C8C2007A47D004B83FC /* NumberInputViewController.xib in Resources */,
 				9E730D341FDAA16A0059C810 /* MaterialsViewController.xib in Resources */,
 				9E65DE40200E0B66006107DE /* WorkTypeTableViewCell.xib in Resources */,
 				9EC02C7E2004E60F004B83FC /* ProjectInfoViewController.xib in Resources */,
 				B7EEAB891FEA717A00FC50EF /* objects.csv in Resources */,
+				9EF59C5820121EBD0048A247 /* AddMaterialsViewController.xib in Resources */,
 				9E65DE38200E0630006107DE /* WorkTypeViewController.xib in Resources */,
 				9E730D3A1FDAA16A0059C810 /* SettingsViewController.xib in Resources */,
 				9E65DE31200DE0AE006107DE /* ObjectsViewController.xib in Resources */,
@@ -834,6 +865,7 @@
 				9E730D1D1FDAA16A0059C810 /* Object+CoreDataClass.swift in Sources */,
 				9E730D261FDAA16A0059C810 /* User+CoreDataProperties.swift in Sources */,
 				9E730D1A1FDAA16A0059C810 /* Job+CoreDataProperties.swift in Sources */,
+				9EF59C5420121EA60048A247 /* AddMaterialsViewModel.swift in Sources */,
 				9E824D6A1FE3EC32008538EB /* ETProject.swift in Sources */,
 				9E730CFC1FDAA16A0059C810 /* IQNSArray+Sort.swift in Sources */,
 				B765DB1F200E2DE1002F5773 /* ETUser.swift in Sources */,
@@ -846,6 +878,7 @@
 				9E65DE37200E0630006107DE /* WorkTypeViewController.swift in Sources */,
 				9E730D351FDAA16A0059C810 /* ProjectsViewController.swift in Sources */,
 				9E730D281FDAA16A0059C810 /* Extensions.swift in Sources */,
+				9EF59C5B20121F7E0048A247 /* AddMaterialsTableViewCell.swift in Sources */,
 				9E63489B1FE1179B00FEDF17 /* SettingsViewModel.swift in Sources */,
 				9E730D031FDAA16A0059C810 /* IQKeyboardManagerConstantsInternal.swift in Sources */,
 				9E730CFB1FDAA16A0059C810 /* AppDelegate.swift in Sources */,
@@ -890,14 +923,17 @@
 				9E730D021FDAA16A0059C810 /* IQKeyboardManagerConstants.swift in Sources */,
 				9EC02C742004C796004B83FC /* ProjectDetailsViewModel.swift in Sources */,
 				B7D1B682200E0CE80070CC0F /* SettingViewCell.swift in Sources */,
+				9EF59C5720121EBD0048A247 /* AddMaterialsViewController.swift in Sources */,
 				9E730D231FDAA16A0059C810 /* Type+CoreDataClass.swift in Sources */,
 				9EC02C8B2007A47D004B83FC /* NumberInputViewController.swift in Sources */,
 				9EC02C832004EF73004B83FC /* ProjectActivityTableViewCell.swift in Sources */,
 				9E730D321FDAA16A0059C810 /* LoginViewModel.swift in Sources */,
 				9E730D291FDAA16A0059C810 /* AppManager.swift in Sources */,
+				9EF59C5E2012207F0048A247 /* ETMaterial.swift in Sources */,
 				9E730D141FDAA16A0059C810 /* Customer+CoreDataProperties.swift in Sources */,
 				9E730D091FDAA16A0059C810 /* IQTitleBarButtonItem.swift in Sources */,
 				9E730D211FDAA16A0059C810 /* Project+CoreDataClass.swift in Sources */,
+				9EF59C60201225840048A247 /* AddMaterialsTableViewCellController.swift in Sources */,
 				9E730D221FDAA16A0059C810 /* Project+CoreDataProperties.swift in Sources */,
 				B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */,
 				9E730D371FDAA16A0059C810 /* RootViewController.swift in Sources */,

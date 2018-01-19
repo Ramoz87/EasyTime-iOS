@@ -91,7 +91,6 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
     
         return cell
     }
-    
 
     //MARK: - Action handlers
 
@@ -103,6 +102,8 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
 
     @IBAction func addMaterials(sender: Any) {
 
+        let controller = self.viewModel.nextViewController(expenseType: .material)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
     @IBAction func addExpenses(sender: Any) {
