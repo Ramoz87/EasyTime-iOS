@@ -13,6 +13,8 @@ class AddExpenseViewModel: BaseViewModel {
     private let job: ETJob
     private let typeId: String
     private(set) var name: String
+    var photo: UIImage?
+    var value: String?
 
     init(job: ETJob, type: ETType) {
 
@@ -38,5 +40,10 @@ class AddExpenseViewModel: BaseViewModel {
     
     required init() {
         fatalError("init() has not been implemented")
+    }
+
+    override func save() {
+
+        
     }
 }
