@@ -17,6 +17,7 @@ fileprivate struct Constants {
     static let buttonIconSpacing: CGFloat = 3
     static let textFieldCornerRadius: CGFloat = 4
     static let textFieldBorderWidth: CGFloat = 1
+    static let buttonBottomPadding: CGFloat = 12
 }
 
 class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
@@ -98,7 +99,7 @@ class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImage
                 keyboardHeight -= tabBarHeight
             }
 
-            self.btnAddBottomConstraint.constant = keyboardHeight
+            self.btnAddBottomConstraint.constant = keyboardHeight + Constants.buttonBottomPadding
         }
     }
 

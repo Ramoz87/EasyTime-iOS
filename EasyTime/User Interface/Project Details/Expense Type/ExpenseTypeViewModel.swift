@@ -53,12 +53,12 @@ class ExpenseTypeViewModel: BaseViewModel {
     subscript(indexPath: IndexPath) -> Any {
 
         if  indexPath.section == 0 {
-            let type = self.expenseTypeFetchResultsController.object(at: indexPath)
+            let type = self.expenseTypeFetchResultsController.object(at: IndexPath(row: indexPath.row, section: 0))
             return ETType(type: type)
         }
         else
         {
-            let expense = self.expenseHistoryFetchResultsController.object(at: indexPath)
+            let expense = self.expenseHistoryFetchResultsController.object(at: IndexPath(row: indexPath.row, section: 0))
             return ETExpense(expense: expense)
         }
     }
