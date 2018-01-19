@@ -14,6 +14,14 @@ public class Customer: NSManagedObject, NSManagedObjectUpdate {
     
     static let entityName = "Customer"
     
+    @objc dynamic var section: String {
+        guard let name = self.companyName, name.count > 0 else {
+            return "#"
+        }
+        
+        return String(describing:name.first!)
+    }
+    
     func update(object: DataObject) {
         if let csvObject = object as? CSVObject {
             

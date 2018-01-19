@@ -15,6 +15,7 @@ class ETCustomer {
     var firstName: String?
     var lastName: String?
     var contacts: NSSet?
+    var jobStatistic: String?
 
     lazy var address: ETAddress? = {
 
@@ -24,7 +25,7 @@ class ETCustomer {
         }
         return nil
     }()
-
+    
     private let customer: Customer
 
     init(customer: Customer) {

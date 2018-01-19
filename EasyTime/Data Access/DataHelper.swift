@@ -54,6 +54,13 @@ class DataHelper: NSObject {
                                                       cacheName: nil)
     }
 
+    func fetchData<ResultType: NSFetchRequestResult>(entityName: String, predicate: NSPredicate?) throws -> Array<ResultType>?
+    {
+        let request: NSFetchRequest<ResultType> = self.fetchRequest(entityName: entityName)
+        if let pred = predicate { request.predicate = pred }
+        return try self.mainContext.fetch(request)
+    }
+    
     func fetchData<ResultType: NSFetchRequestResult>(entityName: String, predicate: NSPredicate?, completion: CompletionBlock<ResultType>) -> Void
     {
         let request: NSFetchRequest<ResultType> = self.fetchRequest(entityName: entityName)

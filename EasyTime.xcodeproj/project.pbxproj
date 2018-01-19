@@ -123,6 +123,8 @@
 		B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D71FDEC28300BB3B07 /* CSV.swift */; };
 		B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */; };
 		B765DB1F200E2DE1002F5773 /* ETUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B765DB1E200E2DE1002F5773 /* ETUser.swift */; };
+		B7BB70752011E8E9001C717E /* ClientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB70732011E8E9001C717E /* ClientTableViewCell.swift */; };
+		B7BB70762011E8E9001C717E /* ClientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BB70742011E8E9001C717E /* ClientTableViewCell.xib */; };
 		B7C5C744200F6AC80027D379 /* AddTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C5C742200F6AC70027D379 /* AddTimeViewController.xib */; };
 		B7C5C745200F6AC80027D379 /* AddTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5C743200F6AC80027D379 /* AddTimeViewController.swift */; };
 		B7D1B682200E0CE80070CC0F /* SettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D1B680200E0CE80070CC0F /* SettingViewCell.swift */; };
@@ -261,6 +263,8 @@
 		B73108D71FDEC28300BB3B07 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
 		B765DB1E200E2DE1002F5773 /* ETUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETUser.swift; sourceTree = "<group>"; };
+		B7BB70732011E8E9001C717E /* ClientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTableViewCell.swift; sourceTree = "<group>"; };
+		B7BB70742011E8E9001C717E /* ClientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientTableViewCell.xib; sourceTree = "<group>"; };
 		B7C5C742200F6AC70027D379 /* AddTimeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTimeViewController.xib; sourceTree = "<group>"; };
 		B7C5C743200F6AC80027D379 /* AddTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTimeViewController.swift; sourceTree = "<group>"; };
 		B7D1B680200E0CE80070CC0F /* SettingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewCell.swift; sourceTree = "<group>"; };
@@ -546,6 +550,8 @@
 				9E730CE01FDAA16A0059C810 /* ClientsViewController.swift */,
 				9E730CE11FDAA16A0059C810 /* ClientsViewController.xib */,
 				9E6348961FE116DB00FEDF17 /* ClientsViewModel.swift */,
+				B7BB70732011E8E9001C717E /* ClientTableViewCell.swift */,
+				B7BB70742011E8E9001C717E /* ClientTableViewCell.xib */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -785,6 +791,7 @@
 				9E65DE38200E0630006107DE /* WorkTypeViewController.xib in Resources */,
 				9E730D3A1FDAA16A0059C810 /* SettingsViewController.xib in Resources */,
 				9E65DE31200DE0AE006107DE /* ObjectsViewController.xib in Resources */,
+				B7BB70762011E8E9001C717E /* ClientTableViewCell.xib in Resources */,
 				B7EEAB751FE7E14700FC50EF /* OrderTableViewCell.xib in Resources */,
 				9E65DE4A200E2CA7006107DE /* AddExpenseViewController.xib in Resources */,
 				B7D1B687200E0D2B0070CC0F /* SettingViewHeader.xib in Resources */,
@@ -830,6 +837,7 @@
 				9E824D6A1FE3EC32008538EB /* ETProject.swift in Sources */,
 				9E730CFC1FDAA16A0059C810 /* IQNSArray+Sort.swift in Sources */,
 				B765DB1F200E2DE1002F5773 /* ETUser.swift in Sources */,
+				B7BB70752011E8E9001C717E /* ClientTableViewCell.swift in Sources */,
 				9EC02C862004F794004B83FC /* ETExpense.swift in Sources */,
 				9E730D201FDAA16A0059C810 /* Order+CoreDataProperties.swift in Sources */,
 				B7C5C745200F6AC80027D379 /* AddTimeViewController.swift in Sources */,
