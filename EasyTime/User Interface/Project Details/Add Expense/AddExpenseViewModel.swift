@@ -12,7 +12,7 @@ class AddExpenseViewModel: BaseViewModel {
 
     private let job: ETJob
     private let typeId: String
-    private let name: String
+    private(set) var name: String
 
     init(job: ETJob, type: ETType) {
 
