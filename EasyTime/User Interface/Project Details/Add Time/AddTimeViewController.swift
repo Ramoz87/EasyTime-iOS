@@ -50,7 +50,7 @@ class AddTimeViewController: BaseViewController<AddTimeViewModel>, UITextFieldDe
 
         self.tfHours.becomeFirstResponder() // TODO: Clears text field
 
-        self.tfMinutes.text = self.viewModel.hours
+        self.tfHours.text = self.viewModel.hours
         self.tfMinutes.text = self.viewModel.minutes
     }
 
