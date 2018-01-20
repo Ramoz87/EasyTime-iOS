@@ -23,13 +23,6 @@ class ETJob {
     var images: Files?
     var entityType: String?
 
-    lazy var expenses: [ETExpense]? = {
-
-        return self.job.expenses?.map({ expense -> ETExpense in
-            return ETExpense(expense: expense as? Expense)
-        })
-    }()
-
     private let job: Job
 
     init(job: Job) {
@@ -47,6 +40,31 @@ class ETJob {
         self.typeId = job.typeId
         self.images = job.images
         self.entityType = job.entityType
+    }
+    
+    func addExpense(expense: ETExpense) {
+        
+        let dbExpense: Expense = AppManager.sharedInstance.dataHelper.insertEntity()
+        dbExpense.expenseId = expense.expenseId
+        dbExpense.discount = expense.discount
+        dbExpense.materialId = expense.materialId
+        dbExpense.name = expense.name
+        dbExpense.type = expense.type.rawValue
+        dbExpense.value = expense.value
+        dbExpense.date = expense.date
+        dbExpense.workTypeId = expense.workTypeId
+        dbExpense.typeId = expense.typeId
+        
+        
+        if let fileUrl = expense.fileUrl {
+            let file: Files = AppManager.sharedInstance.dataHelper.insertEntity()
+            file.fileUrl = fileUrl.absoluteString
+            file.fileId = UUID().uuidString
+            file.name = fileUrl.lastPathComponent
+            file.expense = dbExpense
+        }
+        
+        self.job.addToExpenses(dbExpense)
     }
 }
 

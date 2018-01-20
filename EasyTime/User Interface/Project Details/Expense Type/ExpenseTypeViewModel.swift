@@ -13,9 +13,10 @@ fileprivate struct Constants {
 
     static let sortDescriptor = "name"
     static let searchPredicateBaseExpense = "type = 'EXPENCE_TYPE'"
-    static let searchPredicateBaseHistory = "type = 2 OR type = 3"
+    static let searchPredicateBaseHistory = "type = 3"
     static let searchPredicate2 = "name CONTAINS[cd] %@"
     static let sectionNumber = 2
+    static let lastUsed = NSLocalizedString("Last used", comment: "")
 }
 
 class ExpenseTypeViewModel: BaseViewModel {
@@ -31,7 +32,7 @@ class ExpenseTypeViewModel: BaseViewModel {
     
     private lazy var expenseHistoryFetchResultsController: NSFetchedResultsController<Expense> = {
         
-        let fetchResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor])
+        let fetchResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor], sectionNameKeyPath: Constants.sortDescriptor)
         fetchResultsController.delegate = self
         return fetchResultsController
     }()
@@ -54,13 +55,17 @@ class ExpenseTypeViewModel: BaseViewModel {
         }
         else
         {
-            let expense = self.expenseHistoryFetchResultsController.object(at: IndexPath(row: indexPath.row, section: 0))
+            let expense = self.expenseHistoryFetchResultsController.object(at: IndexPath(row: 0, section: indexPath.row))
             return ETExpense(expense: expense)
         }
     }
 
     func numberOfSections() -> Int {
         return Constants.sectionNumber
+    }
+    
+    func titleForHeader(in section: Int) -> String? {
+        return (section == 1 && self.numberOfRowsInSection(section: section) > 0) ? Constants.lastUsed : nil
     }
 
     func numberOfRowsInSection(section: Int) -> Int {
@@ -71,7 +76,7 @@ class ExpenseTypeViewModel: BaseViewModel {
             numberOfRows = count
         }
         
-        if  section == 1, let count = self.expenseHistoryFetchResultsController.sections?[0].numberOfObjects {
+        if  section == 1, let count = self.expenseHistoryFetchResultsController.sections?.count {
             numberOfRows = count
         }
        

@@ -106,6 +106,10 @@ class ExpenseTypeViewController: BaseViewController<ExpenseTypeViewModel>, UITab
 
         return self.viewModel.numberOfSections()
     }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.viewModel.titleForHeader(in: section)
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 

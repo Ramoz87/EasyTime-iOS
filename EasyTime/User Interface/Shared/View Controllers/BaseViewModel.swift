@@ -14,7 +14,7 @@ class BaseViewModel: NSObject, NSFetchedResultsControllerDelegate {
     weak var collectionViewUpdateDelegate: CollectionViewUpdateDelegate?
        
     func save() {
-
+        AppManager.sharedInstance.dataHelper.save { (error) in }
     }
 
     required override init() {

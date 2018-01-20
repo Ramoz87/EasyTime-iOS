@@ -79,7 +79,11 @@ class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImage
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 
-        self.viewModel.value = self.tfValue.text
+        guard let value = self.tfValue.text, value.count > 0 else {
+            return false
+        }
+        
+        self.viewModel.value = value
         self.viewModel.save()
         if let vc = self.navigationController?.viewControllers[1] {
             self.navigationController?.popToViewController(vc, animated: true)

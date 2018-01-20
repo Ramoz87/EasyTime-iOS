@@ -12,6 +12,7 @@ import CoreData
 fileprivate struct Constants {
 
     static let sortDescriptor = "date"
+    static let basePredicate = "job.jobId = %@"
     static let searchPredicate = "date >= %@ && date <= %@"
 }
 
@@ -49,9 +50,11 @@ class ProjectActivityViewModel: BaseViewModel {
 
     func updateFilterResults(date: Date = Date()) {
 
-        let predicate: NSPredicate = NSPredicate(format: Constants.searchPredicate, date.startOfDay as NSDate, date.endOfDay as NSDate)
+        let predicate1: NSPredicate = NSPredicate(format: Constants.basePredicate, self.job.jobId!)
+        let predicate2: NSPredicate = NSPredicate(format: Constants.searchPredicate, date.startOfDay as NSDate, date.endOfDay as NSDate)
 
-        self.fetchResultsController.fetchRequest.predicate = predicate
+        self.fetchResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1,predicate2])
+        
         do {
             try self.fetchResultsController.performFetch()
             self.collectionViewUpdateDelegate?.didChangeDataSet()

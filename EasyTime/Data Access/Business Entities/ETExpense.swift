@@ -27,6 +27,7 @@ class ETExpense {
     var value: Float = 0
     var workTypeId: String?
     var typeId: String?
+    var fileUrl: URL?
 
     var formattedValue: String {
         get {
@@ -67,29 +68,6 @@ class ETExpense {
         self.date = Date()
     }
     
-    func save() {
-        
-        if self.expense == nil {
-            self.expense = AppManager.sharedInstance.dataHelper.insertEntity()
-        }
-        
-        if let expense = self.expense {
-            expense.expenseId = self.expenseId
-            expense.discount = self.discount
-            expense.materialId = self.materialId
-            expense.name = self.name
-            expense.type = self.type.rawValue
-            expense.value = self.value
-            expense.date = self.date
-            expense.workTypeId = self.workTypeId
-            expense.typeId = self.typeId
-        }
-
-        AppManager.sharedInstance.dataHelper.save { (error) in
-            
-        }
-    }
-    
     func remove() {
         
         guard let expense = self.expense  else {
@@ -100,5 +78,24 @@ class ETExpense {
             
         }
     }
-
+    
+    func saveImage(image: UIImage)
+    {
+        do {
+            let fileManager = FileManager.default
+            let docDir = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let folderPath = docDir.appendingPathComponent(AppConstants.expenseFolder).path
+            let fileName = String(format:"%@.png", self.expenseId!)
+            
+            if !fileManager.fileExists(atPath: folderPath) {
+                try fileManager.createDirectory(atPath: folderPath, withIntermediateDirectories: true, attributes: nil)
+            }
+            
+            let imagePath = NSURL(fileURLWithPath: folderPath).appendingPathComponent(fileName)
+            let imageData = UIImagePNGRepresentation(image)!
+            try imageData.write(to: imagePath!)
+            self.fileUrl = imagePath
+        }
+        catch { }
+    }
 }

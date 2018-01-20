@@ -13,21 +13,8 @@ class AddTimeViewModel: BaseViewModel {
     private let job: ETJob
     private let type: ETType
 
-    var hours: String = "" {
-
-        didSet {
-
-            //TODO: Update hours
-        }
-    }
-    var minutes: String = "" {
-
-        didSet {
-
-            //TODO: Update minutes
-        }
-    }
-    
+    var hours: String = ""
+    var minutes: String = ""
     var time: Float {
         get {
 
@@ -56,6 +43,7 @@ class AddTimeViewModel: BaseViewModel {
         expense.value = self.time
         expense.workTypeId = type.typeId
         
-        expense.save()
+        self.job.addExpense(expense: expense)
+        super.save()
     }
 }
