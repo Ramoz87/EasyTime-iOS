@@ -75,4 +75,19 @@ class AddMaterialsViewModel: BaseViewModel {
         }
         return cellController
     }
+
+    override func save() {
+
+        super.save()
+
+        for cellController in self.cellControllers.values {
+
+            if cellController.isSelected == true {
+
+                // TODO: Save
+                // cellController.material
+                // cellController.quantityString
+            }
+        }
+    }
 }

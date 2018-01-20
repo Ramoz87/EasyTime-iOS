@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddMaterialsViewController" customModule="EasyTime" customModuleProvider="target">
             <connections>
+                <outlet property="btnSave" destination="Kak-pG-C7c" id="C38-GR-4pf"/>
                 <outlet property="tableView" destination="5aV-4y-hUl" id="CSa-D7-cuC"/>
+                <outlet property="vFooter" destination="BIz-xF-CLh" id="Co1-FK-Ise"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,7 +23,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="74" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5aV-4y-hUl">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="74" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5aV-4y-hUl">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
@@ -38,6 +40,34 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="5aV-4y-hUl" secondAttribute="bottom" id="ud4-jr-uAQ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+        </view>
+        <view contentMode="scaleToFill" id="BIz-xF-CLh">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kak-pG-C7c">
+                    <rect key="frame" x="12" y="12" width="351" height="54"/>
+                    <color key="backgroundColor" red="0.24313725489999999" green="0.5568627451" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="54" id="H24-bD-ndx"/>
+                    </constraints>
+                    <state key="normal" title="SAVE">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="didClickSaveButtonWithSender:" destination="-1" eventType="touchUpInside" id="Er4-Wr-K32"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Kak-pG-C7c" firstAttribute="top" secondItem="zae-PS-rYi" secondAttribute="top" constant="12" id="0GQ-6z-GtM"/>
+                <constraint firstAttribute="trailing" secondItem="Kak-pG-C7c" secondAttribute="trailing" constant="12" id="Ies-SL-8at"/>
+                <constraint firstItem="Kak-pG-C7c" firstAttribute="leading" secondItem="BIz-xF-CLh" secondAttribute="leading" constant="12" id="YTq-6j-BEe"/>
+                <constraint firstAttribute="bottom" secondItem="Kak-pG-C7c" secondAttribute="bottom" constant="12" id="nve-o3-SJ4"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="zae-PS-rYi"/>
         </view>
     </objects>
 </document>

@@ -11,11 +11,16 @@ import UIKit
 fileprivate struct Constants {
 
     static let titleText = NSLocalizedString("Choose materials", comment: "")
+    static let btnSaveText = NSLocalizedString("SAVE", comment: "")
+    static let btnSaveCornerRadius: CGFloat = 4
+
 }
 
 class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UITableViewDelegate, UITableViewDataSource, CollectionViewUpdateDelegate, AddMaterialsTableViewCellControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var vFooter: UIView!
+    @IBOutlet weak var btnSave: UIButton!
 
     let numberInputViewController = NumberInputViewController()
 
@@ -25,7 +30,17 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
         self.title = Constants.titleText
 
         self.tableView.register(UINib(nibName: AddMaterialsTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: AddMaterialsTableViewCell.reuseIdentifier)
-        self.tableView.tableFooterView = UIView() //To hide separators of empty cells
+        self.tableView.tableFooterView = self.vFooter
+
+        self.btnSave.layer.cornerRadius = Constants.btnSaveCornerRadius
+        self.btnSave.setTitle(Constants.btnSaveText, for: .normal)
+    }
+
+    //MARK: - Action handlers
+
+    @IBAction func didClickSaveButton(sender: Any) {
+
+        self.viewModel.save()
     }
 
     //MARK: - AddMaterialsTableViewCellControllerDelegate

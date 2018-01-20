@@ -16,8 +16,9 @@ protocol AddMaterialsTableViewCellControllerDelegate: class {
 class AddMaterialsTableViewCellController: AddMaterialsTableViewCellDelegate {
 
     weak var delegate: AddMaterialsTableViewCellControllerDelegate?
-    private let material: ETMaterial
-    private var quantityString: String?
+    private(set) var isSelected = false
+    let material: ETMaterial
+    private(set) var quantityString: String?
 
     var cell: AddMaterialsTableViewCell? {
 
@@ -26,9 +27,11 @@ class AddMaterialsTableViewCellController: AddMaterialsTableViewCellDelegate {
             if let cell = self.cell {
 
                 cell.delegate = self
-                cell.tfQuantity.placeholder = String(describing: self.material.stockQuantity)
+                cell.tfQuantity.placeholder = String(describing: Int(self.material.stockQuantity))
                 cell.tfQuantity.text = self.quantityString
+                cell.tfQuantity.text = self.isSelected ? String(describing: Int(self.material.stockQuantity)) : nil
                 cell.lblName.text = self.material.name
+                cell.accessoryType = self.isSelected ? .checkmark : .none
                 if let controller = self.delegate?.inputViewController(for: cell) {
 
                     cell.tfQuantity.inputViewController = controller
@@ -55,5 +58,18 @@ class AddMaterialsTableViewCellController: AddMaterialsTableViewCellDelegate {
     func addMaterialsTableViewCell(cell: AddMaterialsTableViewCell, didUpdateQuantityText text: String?) {
 
         self.quantityString = text
+    }
+
+    func addMaterialsTableViewCellDidSelect(cell: AddMaterialsTableViewCell) {
+
+        self.isSelected = true
+        cell.accessoryType = .checkmark
+        cell.tfQuantity.text = String(describing: Int(self.material.stockQuantity))
+    }
+
+    func addMaterialsTableViewCellDidDeselect(cell: AddMaterialsTableViewCell) {
+
+        self.isSelected = false
+        cell.accessoryType = .none
     }
 }
