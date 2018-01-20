@@ -18,6 +18,8 @@ protocol AddMaterialsTableViewCellDelegate: class {
 
     func addMaterialsTableViewCellWillPrepareForReuse(cell: AddMaterialsTableViewCell)
     func addMaterialsTableViewCell(cell: AddMaterialsTableViewCell, didUpdateQuantityText text: String?)
+    func addMaterialsTableViewCellDidSelect(cell: AddMaterialsTableViewCell)
+    func addMaterialsTableViewCellDidDeselect(cell: AddMaterialsTableViewCell)
 }
 
 class AddMaterialsTableViewCell: UITableViewCell, UITextFieldDelegate {
@@ -44,6 +46,20 @@ class AddMaterialsTableViewCell: UITableViewCell, UITextFieldDelegate {
         self.delegate?.addMaterialsTableViewCellWillPrepareForReuse(cell: self)
     }
 
+    override func setSelected(_ selected: Bool, animated: Bool) {
+
+        super.setSelected(selected, animated: animated)
+
+        if self.isSelected == true {
+
+            self.delegate?.addMaterialsTableViewCellDidSelect(cell: self)
+        }
+        else {
+
+            self.delegate?.addMaterialsTableViewCellDidDeselect(cell: self)
+        }
+    }
+
     //MARK: - UITextFieldDelegate
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -55,6 +71,17 @@ class AddMaterialsTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
         self.delegate?.addMaterialsTableViewCell(cell: self, didUpdateQuantityText: updatedText)
         
+        return true
+    }
+
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+
+        textField.text = nil
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+        textField.resignFirstResponder()
         return true
     }
 }
