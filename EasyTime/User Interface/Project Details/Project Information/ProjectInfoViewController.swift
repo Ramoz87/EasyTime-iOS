@@ -8,28 +8,53 @@
 
 import UIKit
 
-class ProjectInfoViewController: BaseViewController<BaseViewModel> {
+fileprivate struct Constants
+{
+    
+}
+
+class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITableViewDelegate, UITableViewDataSource {
+
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        self.tableView.register(UINib(nibName: ProjectActivityTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectActivityTableViewCell.reuseIdentifier)
+        self.tableView.tableFooterView = UIView() //To hide separators of empty cells
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //MARK: - UITableViewDelegate
+
+    //MARK: - UITableViewDataSource
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+
+        return self.viewModel.numberOfSections()
     }
-    
 
-    /*
-    // MARK: - Navigation
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        return self.viewModel.numberOfRowsInSection(section: section)
     }
-    */
 
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: ProjectActivityTableViewCell.reuseIdentifier, for: indexPath) as! ProjectActivityTableViewCell
+        //cell.expense = self.viewModel[indexPath]
+
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        return self.viewModel.heightForRow(at: indexPath)
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        let sectionView = ProjectInfoSectionView.createFromXIB()
+        sectionView.lblTitle.text = self.viewModel.titleForHeaderInSection(section: section)
+        return sectionView
+    }
 }

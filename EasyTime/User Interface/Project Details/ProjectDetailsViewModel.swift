@@ -34,11 +34,12 @@ class ProjectDetailsViewModel: BaseViewModel {
 
     func viewControllers() -> [UIViewController] {
 
-        let viewModel = ProjectActivityViewModel(job: self.job)
-        let activityController = ProjectActivityViewController(viewModel: viewModel)
+        let activityViewModel = ProjectActivityViewModel(job: self.job)
+        let activityController = ProjectActivityViewController(viewModel: activityViewModel)
         activityController.title = Constants.tabActivity
 
-        let infoController = ProjectInfoViewController()
+        let infoViewModel = ProjectInfoViewModel(job: self.job)
+        let infoController = ProjectInfoViewController(viewModel: infoViewModel)
         infoController.title = Constants.tabInfo
 
         return [activityController, infoController]

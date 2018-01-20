@@ -103,6 +103,9 @@
 		9E730D431FDAA22A0059C810 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730D411FDAA2290059C810 /* TabBarViewController.swift */; };
 		9E824D681FE3E05E008538EB /* CollectionViewUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E824D671FE3E05E008538EB /* CollectionViewUpdateDelegate.swift */; };
 		9E824D6A1FE3EC32008538EB /* ETProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E824D691FE3EC32008538EB /* ETProject.swift */; };
+		9E90F5C120136BA8009F4896 /* ProjectInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E90F5C020136BA8009F4896 /* ProjectInfoViewModel.swift */; };
+		9E90F5C520137A91009F4896 /* ProjectInfoSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E90F5C420137A91009F4896 /* ProjectInfoSectionView.swift */; };
+		9E90F5C720137A9C009F4896 /* ProjectInfoSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E90F5C620137A9C009F4896 /* ProjectInfoSectionView.xib */; };
 		9EAE1F241FE0068300E8C47E /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */; };
 		9EAE1F271FE0FDC600E8C47E /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */; };
 		9EAE1F281FE0FDC600E8C47E /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */; };
@@ -250,6 +253,9 @@
 		9E730D411FDAA2290059C810 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		9E824D671FE3E05E008538EB /* CollectionViewUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewUpdateDelegate.swift; sourceTree = "<group>"; };
 		9E824D691FE3EC32008538EB /* ETProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETProject.swift; sourceTree = "<group>"; };
+		9E90F5C020136BA8009F4896 /* ProjectInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoViewModel.swift; sourceTree = "<group>"; };
+		9E90F5C420137A91009F4896 /* ProjectInfoSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoSectionView.swift; sourceTree = "<group>"; };
+		9E90F5C620137A9C009F4896 /* ProjectInfoSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoSectionView.xib; sourceTree = "<group>"; };
 		9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
 		9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
@@ -675,8 +681,11 @@
 		9EC02C7A2004E5EB004B83FC /* Project Information */ = {
 			isa = PBXGroup;
 			children = (
+				9E90F5C420137A91009F4896 /* ProjectInfoSectionView.swift */,
+				9E90F5C620137A9C009F4896 /* ProjectInfoSectionView.xib */,
 				9EC02C7B2004E60F004B83FC /* ProjectInfoViewController.swift */,
 				9EC02C7C2004E60F004B83FC /* ProjectInfoViewController.xib */,
+				9E90F5C020136BA8009F4896 /* ProjectInfoViewModel.swift */,
 			);
 			path = "Project Information";
 			sourceTree = "<group>";
@@ -838,6 +847,7 @@
 				9E730D2D1FDAA16A0059C810 /* Assets.xcassets in Resources */,
 				9EC02C842004EF73004B83FC /* ProjectActivityTableViewCell.xib in Resources */,
 				B7EEAB881FEA717A00FC50EF /* orders.csv in Resources */,
+				9E90F5C720137A9C009F4896 /* ProjectInfoSectionView.xib in Resources */,
 				9EAE1F281FE0FDC600E8C47E /* ProjectTableViewCell.xib in Resources */,
 				9E730D311FDAA16A0059C810 /* LoginViewController.xib in Resources */,
 				B7EEAB761FE7E14700FC50EF /* ObjectTableViewCell.xib in Resources */,
@@ -927,6 +937,7 @@
 				9E730D231FDAA16A0059C810 /* Type+CoreDataClass.swift in Sources */,
 				9EC02C8B2007A47D004B83FC /* NumberInputViewController.swift in Sources */,
 				9EC02C832004EF73004B83FC /* ProjectActivityTableViewCell.swift in Sources */,
+				9E90F5C120136BA8009F4896 /* ProjectInfoViewModel.swift in Sources */,
 				9E730D321FDAA16A0059C810 /* LoginViewModel.swift in Sources */,
 				9E730D291FDAA16A0059C810 /* AppManager.swift in Sources */,
 				9EF59C5E2012207F0048A247 /* ETMaterial.swift in Sources */,
@@ -958,6 +969,7 @@
 				9EC02C7D2004E60F004B83FC /* ProjectInfoViewController.swift in Sources */,
 				9E730CFD1FDAA16A0059C810 /* IQUIScrollView+Additions.swift in Sources */,
 				9E730D011FDAA16A0059C810 /* IQUIWindow+Hierarchy.swift in Sources */,
+				9E90F5C520137A91009F4896 /* ProjectInfoSectionView.swift in Sources */,
 				9E730D171FDAA16A0059C810 /* Files+CoreDataClass.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
