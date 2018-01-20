@@ -35,38 +35,7 @@ class NumberInputViewController: UIInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.btnNext.setTitle(Constants.nextText, for: .normal)
-        self.btnNext.alignVertical()
-
         self.view?.translatesAutoresizingMaskIntoConstraints = false
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-
-        super.viewDidAppear(animated)
-
-        if let returnKeyType = self.textDocumentProxy.returnKeyType {
-
-            switch returnKeyType {
-
-            case .next:
-                self.btnNext.setTitle(Constants.nextText, for: .normal)
-            case .default:
-                self.btnNext.setTitle(Constants.returnText, for: .normal)
-            case .go:
-                self.btnNext.setTitle(Constants.goText, for: .normal)
-            case .join:
-                self.btnNext.setTitle(Constants.joinText, for: .normal)
-            case .search:
-                self.btnNext.setTitle(Constants.searchText, for: .normal)
-            case .send:
-                self.btnNext.setTitle(Constants.sendText, for: .normal)
-            case .done:
-                self.btnNext.setTitle(Constants.doneText, for: .normal)
-            default:
-                self.btnNext.setTitle(Constants.returnText, for: .normal)
-            }
-        }
     }
 
     //MAKR: - Action handlers
@@ -87,5 +56,37 @@ class NumberInputViewController: UIInputViewController {
     @IBAction func didTapNext(sender: UIButton) {
 
         self.textDocumentProxy.insertText("\n")
+    }
+
+    override func textDidChange(_ textInput: UITextInput?) {
+
+        super.textDidChange(textInput)
+
+        if self.isViewLoaded == true {
+
+            if let returnKeyType = self.textDocumentProxy.returnKeyType {
+
+                switch returnKeyType {
+
+                case .next:
+                    self.btnNext.setTitle(Constants.nextText, for: .normal)
+                case .default:
+                    self.btnNext.setTitle(Constants.returnText, for: .normal)
+                case .go:
+                    self.btnNext.setTitle(Constants.goText, for: .normal)
+                case .join:
+                    self.btnNext.setTitle(Constants.joinText, for: .normal)
+                case .search:
+                    self.btnNext.setTitle(Constants.searchText, for: .normal)
+                case .send:
+                    self.btnNext.setTitle(Constants.sendText, for: .normal)
+                case .done:
+                    self.btnNext.setTitle(Constants.doneText, for: .normal)
+                default:
+                    self.btnNext.setTitle(Constants.returnText, for: .normal)
+                }
+            }
+            self.btnNext.alignVertical()
+        }
     }
 }
