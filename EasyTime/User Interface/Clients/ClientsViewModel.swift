@@ -19,8 +19,7 @@ class ClientsViewModel: BaseViewModel {
 
     private lazy var fetchResultsController: NSFetchedResultsController<Customer> = {
         
-        let fetchedResultsController: NSFetchedResultsController<Customer> = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Customer.entityName,
-                                                                                                                                      sort: [Constants.sortDescriptor],
+        let fetchedResultsController: NSFetchedResultsController<Customer> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor],
                                                                                                                                       sectionNameKeyPath:Constants.sectionName)
         fetchedResultsController.delegate = self
         return fetchedResultsController
@@ -31,7 +30,7 @@ class ClientsViewModel: BaseViewModel {
         var result: Array<Job>?
         
         do {
-            result = try AppManager.sharedInstance.dataHelper.fetchData(entityName: Job.entityName, predicate: nil)
+            result = try AppManager.sharedInstance.dataHelper.fetchData()
         }
         catch {}
         

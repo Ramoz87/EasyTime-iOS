@@ -11,10 +11,9 @@ import Foundation
 import CoreData
 
 
-public class User: NSManagedObject, NSManagedObjectUpdate {
-    static let entityName = "User"
+public class User: NSManagedObject, DataHelperProtocol {
     
-    func update(object: DataObject) {
+    func update(object: Any) {
         if let csvObject = object as? CSVObject {
             
             self.firstName = csvObject[1]

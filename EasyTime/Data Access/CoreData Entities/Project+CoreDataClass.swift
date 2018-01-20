@@ -16,7 +16,6 @@ fileprivate struct Constants
 }
 
 public class Project: Job {
-    override class var entityName: String  { return "Project" }
     
     var customer: Customer? {
 
@@ -40,7 +39,7 @@ public class Project: Job {
         self.entityType = Project.entityName
     }
     
-    override func update(object: DataObject) {
+    override func update(object: Any) {
         super.update(object: object)
         
         if let csvObject = object as? CSVObject {

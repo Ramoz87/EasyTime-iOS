@@ -19,7 +19,6 @@ enum DataError : Error {
     case contextFetchError(Error)
 }
 
-typealias CompletionBlock<Type> = (Array<Type>?, Error?) -> Swift.Void
 typealias ErrorBlock = (Error?) -> Swift.Void
 
 class DataHelper: NSObject {
@@ -44,9 +43,9 @@ class DataHelper: NSObject {
     
     // MARK: - Fetch data
 
-    func fetchedResultsController<ResultType>(entityName: String, sort: [String]? = nil, predicate: NSPredicate? = nil, sectionNameKeyPath: String? = nil) -> NSFetchedResultsController<ResultType> {
+    func fetchedResultsController<ResultType: NSManagedObject>(sort: [String]? = nil, predicate: NSPredicate? = nil, sectionNameKeyPath: String? = nil) -> NSFetchedResultsController<ResultType> {
 
-        let request: NSFetchRequest<ResultType> = self.fetchRequest(entityName: entityName, sort: sort, predicate: predicate)
+        let request: NSFetchRequest<ResultType> = self.fetchRequest(sort: sort, predicate: predicate)
 
         return NSFetchedResultsController<ResultType>(fetchRequest: request,
                                                       managedObjectContext: self.mainContext,
@@ -54,28 +53,19 @@ class DataHelper: NSObject {
                                                       cacheName: nil)
     }
 
-    func fetchData<ResultType: NSFetchRequestResult>(entityName: String, predicate: NSPredicate?) throws -> Array<ResultType>?
+    func fetchData<ResultType: NSManagedObject>(predicate: NSPredicate? = nil) throws -> Array<ResultType>?
     {
-        let request: NSFetchRequest<ResultType> = self.fetchRequest(entityName: entityName)
-        if let pred = predicate { request.predicate = pred }
-        return try self.mainContext.fetch(request)
-    }
-    
-    func fetchData<ResultType: NSFetchRequestResult>(entityName: String, predicate: NSPredicate?, completion: CompletionBlock<ResultType>) -> Void
-    {
-        let request: NSFetchRequest<ResultType> = self.fetchRequest(entityName: entityName)
-        if let pred = predicate { request.predicate = pred }
-        
+        let request: NSFetchRequest<ResultType> = self.fetchRequest(predicate: predicate)
+
         do {
-            let fetchedData = try self.mainContext.fetch(request)
-            completion(fetchedData, nil)
+            return try self.mainContext.fetch(request)
         } catch {
-            completion(nil, DataError.contextFetchError(error))
+            throw DataError.contextFetchError(error)
         }
     }
-    
-    func insertEntity<ResultType: NSManagedObject>(entityName: String) -> ResultType {
-        return NSEntityDescription.insertNewObject(forEntityName: entityName, into: self.mainContext) as! ResultType
+        
+    func insertEntity<ResultType: NSManagedObject>() -> ResultType {
+        return NSEntityDescription.insertNewObject(forEntityName: ResultType.entityName, into: self.mainContext) as! ResultType
     }
     
     // MARK: - Save data
@@ -92,35 +82,31 @@ class DataHelper: NSObject {
         }
     }
     
-    func saveInBackground(data: Array<DataObject>, completion: @escaping CompletionBlock<NSManagedObject> ) {
+    func saveInBackground<ResultType: NSManagedObject>(for class:ResultType.Type, data: Array<Any>, completion: @escaping ErrorBlock ) where ResultType: DataHelperProtocol {
 
         let context = self.backgroundContext;
         context.perform {
-            var createdObjects = [NSManagedObject]()
             
             for item in data {
-                let dataObject = NSEntityDescription.insertNewObject(forEntityName: item.entityName, into: context)
-                if let updateDataObject = dataObject as? NSManagedObjectUpdate {
-                    updateDataObject.update(object: item)
-                }
-                createdObjects.append(dataObject)
+                let dataObject: ResultType = NSEntityDescription.insertNewObject(forEntityName: ResultType.entityName, into: context) as! ResultType
+                dataObject.update(object: item)
             }
             
             if context.hasChanges {
                 do {
                     try context.save()
                     DispatchQueue.main.async(execute: {() -> () in
-                        completion(createdObjects, nil)
+                        completion(nil)
                     })
                 } catch {
                     DispatchQueue.main.async(execute: {() -> () in
-                        completion(nil, DataError.contextSaveError(error))
+                        completion(DataError.contextSaveError(error))
                     })
                 }
             }
             else {
                 DispatchQueue.main.async(execute: {() -> () in
-                    completion(createdObjects, nil)
+                    completion(nil)
                 })
             }
         }
@@ -143,9 +129,9 @@ class DataHelper: NSObject {
     
     // MARK: - Private
 
-    private func fetchRequest<ResultType>(entityName: String, sort: [String]? = nil, predicate: NSPredicate? = nil) -> NSFetchRequest<ResultType> {
+    private func fetchRequest<ResultType: NSManagedObject>(sort: [String]? = nil, predicate: NSPredicate? = nil) -> NSFetchRequest<ResultType> {
 
-        let request = NSFetchRequest<ResultType>(entityName: entityName)
+        let request = NSFetchRequest<ResultType>(entityName: ResultType.entityName)
         request.predicate = predicate
         request.sortDescriptors = sort?.map({ (key) -> NSSortDescriptor in
 
@@ -155,11 +141,14 @@ class DataHelper: NSObject {
     }
 }
 
-protocol DataObject {
-
-    var entityName: String { get }
+protocol DataHelperProtocol {
+    func update(object: Any)
 }
 
-protocol NSManagedObjectUpdate {
-    func update(object: DataObject)
+extension NSManagedObject {
+    static var entityName: String {
+        get {
+            return String(describing: self)
+        }
+    }
 }

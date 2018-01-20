@@ -12,9 +12,10 @@ class LoginViewModel: BaseViewModel {
 
     func login(completion: @escaping((_ success: Bool, _ error: Error?) -> Void)) {
         
-        AppManager.sharedInstance.dataHelper.fetchData(entityName: User.entityName, predicate: nil) { (result: Array<User>?, error) in
+        do {
+            let users: Array<User>? = try AppManager.sharedInstance.dataHelper.fetchData()
             
-            if let user = result?.first{
+            if let user = users?.first{
                 AppManager.sharedInstance.login(with: ETUser(user:user))
             }
             else
@@ -22,7 +23,10 @@ class LoginViewModel: BaseViewModel {
                 AppManager.sharedInstance.logout()
             }
             
-            completion((AppManager.sharedInstance.user != nil) , error)
+            completion((AppManager.sharedInstance.user != nil) , nil)
+        }
+        catch {
+            completion(false , error)
         }
     }
 }

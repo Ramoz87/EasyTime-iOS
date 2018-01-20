@@ -21,9 +21,7 @@ class AddMaterialsViewModel: BaseViewModel {
     private var cellControllers: [String: AddMaterialsTableViewCellController] = [:]
     private lazy var fetchResultsController: NSFetchedResultsController<Material> = {
 
-        let fetchedResultsController: NSFetchedResultsController<Material> = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Material.entityName,
-                                                                                                                                          sort: [Constants.sortDescriptor],
-                                                                                                                                          sectionNameKeyPath:nil)
+        let fetchedResultsController: NSFetchedResultsController<Material> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor])
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()

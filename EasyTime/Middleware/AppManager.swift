@@ -49,27 +49,40 @@ class AppManager {
         self.initialDataCompletion = completion
         
         DispatchQueue.global(qos: .utility).async {
-            let csvFiles = [Customer.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileCustomers, withExtension: nil)!,
-                            Project.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileProjects, withExtension: nil)!,
-                            Order.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileOrders, withExtension: nil)!,
-                            Object.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileObjects, withExtension: nil)!,
-                            Type.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileTypes, withExtension: nil)!,
-                            User.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileUsers, withExtension: nil)!,
-                            Material.entityName : Bundle(for: type(of: self)).url(forResource: Constants.fileMaterials, withExtension: nil)!]
+            let csvFiles = [Bundle(for: type(of: self)).url(forResource: Constants.fileCustomers, withExtension: nil)!,
+                            Bundle(for: type(of: self)).url(forResource: Constants.fileProjects, withExtension: nil)!,
+                            Bundle(for: type(of: self)).url(forResource: Constants.fileOrders, withExtension: nil)!,
+                            Bundle(for: type(of: self)).url(forResource: Constants.fileObjects, withExtension: nil)!,
+                            Bundle(for: type(of: self)).url(forResource: Constants.fileTypes, withExtension: nil)!,
+                            Bundle(for: type(of: self)).url(forResource: Constants.fileUsers, withExtension: nil)!,
+                            Bundle(for: type(of: self)).url(forResource: Constants.fileMaterials, withExtension: nil)!]
             
             let parser = CSVParser()
             parser.startIndex = 1
             parser.progress = { csvName, objects in
                 self.initialDataCounter += 1
-                self.dataHelper.saveInBackground(data: objects, completion: { (array, error) in
+                
+                let completion: ErrorBlock = { (error) in
                     self.initialDataCounter -= 1
                     self.completePrepareData(error)
-                })
+                }
+                
+                switch csvName {
+                case  Constants.fileCustomers : self.dataHelper.saveInBackground(for: Customer.self, data: objects, completion: completion)
+                case  Constants.fileProjects: self.dataHelper.saveInBackground(for: Project.self, data: objects, completion: completion)
+                case  Constants.fileOrders: self.dataHelper.saveInBackground(for: Order.self, data: objects, completion: completion)
+                case  Constants.fileObjects: self.dataHelper.saveInBackground(for: Object.self, data: objects, completion: completion)
+                case  Constants.fileTypes: self.dataHelper.saveInBackground(for: Type.self, data: objects, completion: completion)
+                case  Constants.fileUsers: self.dataHelper.saveInBackground(for: User.self, data: objects, completion: completion)
+                case  Constants.fileMaterials: self.dataHelper.saveInBackground(for: Material.self, data: objects, completion: completion)
+                default:break
+                }
+                
             }
             
             do {
                 for url in csvFiles {
-                    try parser.parse(url: url.value, entity: url.key)
+                    try parser.parse(url: url)
                 }
 
                 self.completePrepareData(nil)

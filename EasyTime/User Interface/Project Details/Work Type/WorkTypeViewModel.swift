@@ -21,9 +21,7 @@ class WorkTypeViewModel: BaseViewModel {
     private(set) var job: ETJob
     private lazy var fetchResultsController: NSFetchedResultsController<Type> = {
 
-        let fetchedResultsController: NSFetchedResultsController<Type> = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Type.entityName,
-                                                                                                                                         sort: [Constants.sortDescriptor],
-                                                                                                                                         sectionNameKeyPath:nil)
+        let fetchedResultsController: NSFetchedResultsController<Type> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor])
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()

@@ -12,14 +12,13 @@ import CoreData
 
 
 public class Order: Job {
-    override class var entityName: String  { return "Order" }
     
     public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)
         self.entityType = Order.entityName
     }
     
-    override func update(object: DataObject) {
+    override func update(object: Any) {
         super.update(object: object)
         
         if let csvObject = object as? CSVObject {

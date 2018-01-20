@@ -24,18 +24,14 @@ class ExpenseTypeViewModel: BaseViewModel {
   
     private lazy var expenseTypeFetchResultsController: NSFetchedResultsController<Type> = {
         
-        let fetchResultsController: NSFetchedResultsController<Type> = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Type.entityName,
-                                                                                                                                                sort: [Constants.sortDescriptor],
-                                                                                                                                                sectionNameKeyPath:nil)
+        let fetchResultsController: NSFetchedResultsController<Type> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor])
         fetchResultsController.delegate = self
         return fetchResultsController
     }()
     
     private lazy var expenseHistoryFetchResultsController: NSFetchedResultsController<Expense> = {
         
-        let fetchResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Expense.entityName,
-                                                                                                                                                   sort: [Constants.sortDescriptor],
-                                                                                                                                                   sectionNameKeyPath:nil)
+        let fetchResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor])
         fetchResultsController.delegate = self
         return fetchResultsController
     }()

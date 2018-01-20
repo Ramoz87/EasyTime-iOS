@@ -10,9 +10,7 @@
 import Foundation
 import CoreData
 
-public class Customer: NSManagedObject, NSManagedObjectUpdate {
-    
-    static let entityName = "Customer"
+public class Customer: NSManagedObject, DataHelperProtocol {
     
     @objc dynamic var section: String {
         guard let name = self.companyName, name.count > 0 else {
@@ -22,7 +20,7 @@ public class Customer: NSManagedObject, NSManagedObjectUpdate {
         return String(describing:name.first!)
     }
     
-    func update(object: DataObject) {
+    func update(object: Any) {
         if let csvObject = object as? CSVObject {
             
             self.companyName = csvObject[38]
@@ -48,9 +46,9 @@ public class Customer: NSManagedObject, NSManagedObjectUpdate {
                 
                 self.address = address
             }
-
+            
             if (phone != nil || email != nil || fax != nil) {
-               
+                
                 let contact = NSEntityDescription.insertNewObject(forEntityName: Contact.entityName, into: self.managedObjectContext!) as! Contact
                 
                 contact.contactId = UUID().uuidString
@@ -64,6 +62,5 @@ public class Customer: NSManagedObject, NSManagedObjectUpdate {
             }
         }
     }
-    
 }
 

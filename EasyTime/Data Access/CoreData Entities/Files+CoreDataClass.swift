@@ -12,5 +12,5 @@ import CoreData
 
 
 public class Files: NSManagedObject {
-    static let entityName = "Files"
+
 }

@@ -11,10 +11,9 @@ import Foundation
 import CoreData
 
 
-public class Material: NSManagedObject, NSManagedObjectUpdate {
-    static let entityName = "Material"
+public class Material: NSManagedObject, DataHelperProtocol {
     
-    func update(object: DataObject) {
+    func update(object: Any) {
         if let csvObject = object as? CSVObject {
             
             self.materialId = csvObject[0]

@@ -23,8 +23,7 @@ class ObjectsViewModel: BaseViewModel {
     private let expenseType: ETExpenseType
     private lazy var fetchResultsController: NSFetchedResultsController<Object> = {
 
-        let fetchedResultsController: NSFetchedResultsController<Object> = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Object.entityName,
-                                                                                                                                          sort: [Constants.sortDescriptor],
+        let fetchedResultsController: NSFetchedResultsController<Object> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor],
                                                                                                                                           sectionNameKeyPath:Constants.sectionName)
         fetchedResultsController.delegate = self
         return fetchedResultsController

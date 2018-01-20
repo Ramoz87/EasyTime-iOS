@@ -12,23 +12,16 @@ class CSVParser: NSObject, ParserDelegate {
 
     public var startIndex: Int = 0
     public var batchSize: Int = 500
-    public var progress: ((_ csvName: String, _ objects: [DataObject]) -> Void)?
+    public var progress: ((_ csvName: String, _ objects: [Any]) -> Void)?
     
     private var parsedObjects = [CSVObject]()
     private var currentObject: CSVObject?
-    private var entityName: String?
-
 
     public func parse(url fileUrl: URL) throws {
         let parser = CSV.Parser(url: fileUrl, configuration: CSV.Configuration(delimiter: ","))!
         parser.descrtiption = fileUrl.lastPathComponent
         parser.delegate = self
         try parser.parse()
-    }
-    
-    public func parse(url fileUrl: URL, entity name: String) throws {
-        self.entityName = name
-        try self.parse(url: fileUrl)
     }
     
     private func showProgress(for parser: CSV.Parser) {
@@ -50,9 +43,6 @@ class CSVParser: NSObject, ParserDelegate {
         if(index >= startIndex)
         {
             currentObject = CSVObject()
-            if let name = self.entityName {
-                currentObject!.entityName = name
-            }
         }
     }
     
@@ -70,8 +60,7 @@ class CSVParser: NSObject, ParserDelegate {
     }
 }
 
-struct CSVObject: DataObject {
-    var entityName: String = ""
+struct CSVObject {
     var data: Array = [String]()
     
     subscript(index: Int) -> String? {

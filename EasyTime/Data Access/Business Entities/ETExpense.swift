@@ -70,7 +70,7 @@ class ETExpense {
     func save() {
         
         if self.expense == nil {
-            self.expense = AppManager.sharedInstance.dataHelper.insertEntity(entityName: Expense.entityName)
+            self.expense = AppManager.sharedInstance.dataHelper.insertEntity()
         }
         
         if let expense = self.expense {

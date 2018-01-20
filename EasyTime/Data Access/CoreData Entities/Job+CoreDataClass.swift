@@ -11,10 +11,9 @@ import Foundation
 import CoreData
 
 
-public class Job: NSManagedObject, NSManagedObjectUpdate {
-    class var entityName: String  { return "Job" }
+public class Job: NSManagedObject, DataHelperProtocol {
     
-    func update(object: DataObject) {
+    func update(object: Any) {
         if let csvObject = object as? CSVObject {
         
             self.currency = csvObject[10]

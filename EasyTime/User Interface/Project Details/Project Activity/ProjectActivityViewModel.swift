@@ -20,9 +20,7 @@ class ProjectActivityViewModel: BaseViewModel {
     private let job: ETJob
     private lazy var fetchResultsController: NSFetchedResultsController<Expense> = {
 
-        let fetchedResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(entityName: Expense.entityName,
-                                                                                                                                      sort: [Constants.sortDescriptor],
-                                                                                                                                      sectionNameKeyPath:nil)
+        let fetchedResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor])
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
