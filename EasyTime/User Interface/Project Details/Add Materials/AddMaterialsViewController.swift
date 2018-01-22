@@ -40,7 +40,12 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
 
     @IBAction func didClickSaveButton(sender: Any) {
 
-        self.viewModel.save()
+        if self.viewModel.hasMaterialsToAdd {
+            self.viewModel.save()
+            if let vc = self.navigationController?.viewControllers[1] {
+                self.navigationController?.popToViewController(vc, animated: true)
+            }
+        }
     }
 
     //MARK: - AddMaterialsTableViewCellControllerDelegate

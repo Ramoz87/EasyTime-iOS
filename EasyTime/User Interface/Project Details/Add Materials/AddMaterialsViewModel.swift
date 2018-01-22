@@ -25,6 +25,13 @@ class AddMaterialsViewModel: BaseViewModel {
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
+    
+    var hasMaterialsToAdd: Bool {
+        get {
+            let materials = self.cellControllers.values.filter() { $0.isSelected == true && $0.quantityString != nil && $0.quantityString!.count > 0}
+            return materials.count > 0
+        }
+    }
 
     init(job: ETJob) {
 
@@ -78,16 +85,21 @@ class AddMaterialsViewModel: BaseViewModel {
 
     override func save() {
 
-        super.save()
-
         for cellController in self.cellControllers.values {
 
-            if cellController.isSelected == true {
+            if cellController.isSelected == true, let value = cellController.quantityString, value.count > 0  {
 
-                // TODO: Save
-                // cellController.material
-                // cellController.quantityString
+                let expense = ETExpense()
+                expense.materialId = cellController.material.materialId
+                expense.name = cellController.material.name
+                expense.type = .material
+                expense.value = (value as NSString).floatValue
+            
+                self.job.addExpense(expense: expense)
             }
         }
+        
+        super.save()
     }
 }
+
