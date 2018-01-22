@@ -106,6 +106,8 @@
 		9E90F5C120136BA8009F4896 /* ProjectInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E90F5C020136BA8009F4896 /* ProjectInfoViewModel.swift */; };
 		9E90F5C520137A91009F4896 /* ProjectInfoSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E90F5C420137A91009F4896 /* ProjectInfoSectionView.swift */; };
 		9E90F5C720137A9C009F4896 /* ProjectInfoSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E90F5C620137A9C009F4896 /* ProjectInfoSectionView.xib */; };
+		9E9344952015E5D9008AEEEE /* ProjectInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9344932015E5D9008AEEEE /* ProjectInfoTableViewCell.swift */; };
+		9E9344962015E5D9008AEEEE /* ProjectInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E9344942015E5D9008AEEEE /* ProjectInfoTableViewCell.xib */; };
 		9EAE1F241FE0068300E8C47E /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */; };
 		9EAE1F271FE0FDC600E8C47E /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */; };
 		9EAE1F281FE0FDC600E8C47E /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */; };
@@ -256,6 +258,8 @@
 		9E90F5C020136BA8009F4896 /* ProjectInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoViewModel.swift; sourceTree = "<group>"; };
 		9E90F5C420137A91009F4896 /* ProjectInfoSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoSectionView.swift; sourceTree = "<group>"; };
 		9E90F5C620137A9C009F4896 /* ProjectInfoSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoSectionView.xib; sourceTree = "<group>"; };
+		9E9344932015E5D9008AEEEE /* ProjectInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoTableViewCell.swift; sourceTree = "<group>"; };
+		9E9344942015E5D9008AEEEE /* ProjectInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoTableViewCell.xib; sourceTree = "<group>"; };
 		9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
 		9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
@@ -683,6 +687,8 @@
 			children = (
 				9E90F5C420137A91009F4896 /* ProjectInfoSectionView.swift */,
 				9E90F5C620137A9C009F4896 /* ProjectInfoSectionView.xib */,
+				9E9344932015E5D9008AEEEE /* ProjectInfoTableViewCell.swift */,
+				9E9344942015E5D9008AEEEE /* ProjectInfoTableViewCell.xib */,
 				9EC02C7B2004E60F004B83FC /* ProjectInfoViewController.swift */,
 				9EC02C7C2004E60F004B83FC /* ProjectInfoViewController.xib */,
 				9E90F5C020136BA8009F4896 /* ProjectInfoViewModel.swift */,
@@ -840,6 +846,7 @@
 				9E65DE52200E33AF006107DE /* ExpenseTypeTableViewCell.xib in Resources */,
 				B7EEAB8B1FEA717A00FC50EF /* users.csv in Resources */,
 				9E730D2B1FDAA16A0059C810 /* LaunchScreen.storyboard in Resources */,
+				9E9344962015E5D9008AEEEE /* ProjectInfoTableViewCell.xib in Resources */,
 				9EC02C792004E59C004B83FC /* ProjectActivityViewController.xib in Resources */,
 				B7D1B683200E0CE80070CC0F /* SettingViewCell.xib in Resources */,
 				B7EEAB8A1FEA717A00FC50EF /* types.csv in Resources */,
@@ -954,6 +961,7 @@
 				9EAE1F241FE0068300E8C47E /* ProjectsViewModel.swift in Sources */,
 				9E730D041FDAA16A0059C810 /* IQKeyboardManager.swift in Sources */,
 				9E730D071FDAA16A0059C810 /* IQBarButtonItem.swift in Sources */,
+				9E9344952015E5D9008AEEEE /* ProjectInfoTableViewCell.swift in Sources */,
 				9E730D101FDAA16A0059C810 /* Address+CoreDataProperties.swift in Sources */,
 				9E1350BA1FE3F6C7007CAEC3 /* ETAddress.swift in Sources */,
 				5F07A7821FFFAB7C00BBA74D /* ProjectDetailsViewController.swift in Sources */,

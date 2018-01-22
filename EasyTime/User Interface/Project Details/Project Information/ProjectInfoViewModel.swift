@@ -8,102 +8,9 @@
 
 import UIKit
 
-enum ProjectInfoSectionType: Int {
-
-    case customer = 0
-    case status
-    case instructions
-    case objects
-    case employees
-
-    static func count() -> Int {
-
-        return 5
-    }
-}
-
-struct ProjectInfoSectionInfo {
-
-    var isSelected = false
-    private let job: ETJob
-    private let type: ProjectInfoSectionType
-
-    init(type: ProjectInfoSectionType, job: ETJob) {
-
-        self.type = type
-        self.job = job
-    }
-
-    func sectionHeight() -> CGFloat {
-
-        switch self.type {
-
-            case .customer,
-                 .instructions,
-                 .status:
-                return 55
-            case .objects:
-                if let project = self.job as? ETProject,
-                    let objects = project.objects,
-                    objects.count > 0 {
-
-                    return 55
-                }
-                return 0
-            case .employees:
-                return 55
-        }
-    }
-
-    func numberOfRows() -> Int {
-
-        switch self.type {
-
-            case .customer:
-                return 3
-            case .instructions:
-                return 3
-            case .status:
-                return 1
-            case .objects:
-                if let project = self.job as? ETProject,
-                    let objects = project.objects,
-                    objects.count > 0 {
-
-                    return 10
-                }
-                return 0
-            case .employees:
-                return 10
-        }
-    }
-
-    func heightForRow(row: Int) -> CGFloat {
-
-        return self.isSelected ? 50 : 0
-    }
-
-    func titleForHeader() -> String? {
-
-        switch self.type {
-
-        case .customer:
-            return "CUSTOMER"
-        case .instructions:
-            return "INSTRUCTIONS"
-        case .status:
-            return "STATUS"
-        case .objects:
-            return "OBJECTS"
-        case .employees:
-            return "EMPLOYEES"
-        }
-    }
-}
-
 class ProjectInfoViewModel: BaseViewModel {
 
-    private let job: ETJob
+    let job: ETJob
     private let sections: [ProjectInfoSectionInfo]
 
     init(job: ETJob) {
@@ -127,27 +34,99 @@ class ProjectInfoViewModel: BaseViewModel {
         fatalError("init() has not been implemented")
     }
 
+    subscript(index: Int) -> ProjectInfoSectionInfo {
+
+        return self.sections[index]
+    }
+
     func numberOfSections() -> Int {
 
         return ProjectInfoSectionType.count()
     }
+}
 
-    func numberOfRowsInSection(section: Int) -> Int {
+enum ProjectInfoSectionType: Int {
 
-        let section = self.sections[section]
-        return section.numberOfRows()
+    case customer = 0
+    case status
+    case instructions
+    case objects
+    case employees
+
+    static func count() -> Int {
+
+        return 5
+    }
+}
+
+class ProjectInfoSectionInfo {
+
+    var isExpanded = false
+    var isHidden: Bool {
+
+        get {
+
+            switch self.type {
+
+            case .customer,
+                 .instructions,
+                 .status:
+                return false
+            case .objects:
+                return self.numberOfObjects() == 0
+            case .employees:
+                return self.numberOfObjects() == 0
+            }
+        }
+    }
+    let job: ETJob
+    let type: ProjectInfoSectionType
+    private let objects: [String]
+
+    init(type: ProjectInfoSectionType, job: ETJob) {
+
+        self.job = job
+        self.type = type
+
+        switch type {
+
+        case .customer:
+            self.objects = ["Name Surname", "Address", "10 am"]
+        case .instructions:
+            self.objects = ["Name Surname", "Address", "10 am"]
+        case .status:
+            self.objects = []
+        case .objects:
+            self.objects = ["Object 1", "Object 2"]
+        case .employees:
+            self.objects = ["Employee 1", "Employee 2"]
+        }
     }
 
-    func titleForHeaderInSection(section: Int) -> String? {
+    func numberOfObjects() -> Int {
 
-        let section = self.sections[section]
-        return section.titleForHeader()
-        
+        return self.objects.count
     }
 
-    func heightForRow(at indexPath: IndexPath) -> CGFloat {
+    func sectionTitle() -> String? {
 
-        let section = self.sections[indexPath.section]
-        return section.heightForRow(row: indexPath.row)
+        switch self.type {
+
+        case .customer:
+            return "CUSTOMER"
+        case .instructions:
+            return "INSTRUCTIONS"
+        case .status:
+            return "STATUS"
+        case .objects:
+            return "OBJECTS"
+        case .employees:
+            return "EMPLOYEES"
+        }
+    }
+
+    func titleForObject(at index: Int) -> String? {
+
+        return self.objects[index]
     }
 }

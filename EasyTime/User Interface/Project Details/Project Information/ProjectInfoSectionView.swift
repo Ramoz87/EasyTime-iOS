@@ -8,14 +8,48 @@
 
 import UIKit
 
+protocol ProjectInfoSectionViewDelegate: class {
+
+    func didExpandProjectInfoSectionView(view: ProjectInfoSectionView)
+    func didCollapseProjectInfoSectionView(view: ProjectInfoSectionView)
+}
+
 class ProjectInfoSectionView: UIView {
+
+    static let sectionHeight: CGFloat = 55
 
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var imgAccessory: UIImageView!
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var button: InputButton!
+
+    weak var delegate: ProjectInfoSectionViewDelegate?
+    var sectionIndex: Int = 0
+    var isExpanded: Bool = false {
+
+        didSet {
+
+            self.imgAccessory.isHighlighted = self.isExpanded
+        }
+    }
 
     static func createFromXIB() -> ProjectInfoSectionView {
 
         return Bundle.main.loadNibNamed("ProjectInfoSectionView", owner: nil, options: nil)!.first as! ProjectInfoSectionView
+    }
+
+    //MARK: - Actions handlers
+
+    @IBAction func didClick(sender: Any) {
+
+        self.isExpanded = !self.isExpanded
+
+        if self.isExpanded == true {
+
+            self.delegate?.didExpandProjectInfoSectionView(view: self)
+        }
+        else {
+
+            self.delegate?.didCollapseProjectInfoSectionView(view: self)
+        }
     }
 }
