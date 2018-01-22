@@ -25,6 +25,7 @@ class ETExpense {
     var type: ETExpenseType = .other
     var date: Date?
     var value: Float = 0
+    var unit: String?
     var workTypeId: String?
     var typeId: String?
     var fileUrl: URL?
@@ -38,7 +39,7 @@ class ETExpense {
                 
                 return String(format: "%02d:%02d", Int(hours), Int(minutes))
             default:
-                return "\(self.value)"
+                return String(format: "%@ %@", "\(self.value)", self.unit ?? "")
             }
         }
     }
@@ -58,6 +59,7 @@ class ETExpense {
             self.date = expense.date
             self.workTypeId = expense.workTypeId
             self.typeId = expense.typeId
+            self.unit = expense.unit
         }
     }
     

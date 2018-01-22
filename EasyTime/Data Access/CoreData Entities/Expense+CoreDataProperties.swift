@@ -22,6 +22,7 @@ extension Expense {
     @NSManaged public var materialId: String?
     @NSManaged public var typeId: String?
     @NSManaged public var name: String?
+    @NSManaged public var unit: String?
     @NSManaged public var type: Int32
     @NSManaged public var value: Float
     @NSManaged public var date: Date?

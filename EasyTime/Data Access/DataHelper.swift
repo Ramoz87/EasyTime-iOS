@@ -43,9 +43,9 @@ class DataHelper: NSObject {
     
     // MARK: - Fetch data
 
-    func fetchedResultsController<ResultType: NSManagedObject>(sort: [String]? = nil, predicate: NSPredicate? = nil, sectionNameKeyPath: String? = nil) -> NSFetchedResultsController<ResultType> {
+    func fetchedResultsController<ResultType: NSManagedObject>(sort: [String]? = nil, ascending:Bool = true, predicate: NSPredicate? = nil, sectionNameKeyPath: String? = nil) -> NSFetchedResultsController<ResultType> {
 
-        let request: NSFetchRequest<ResultType> = self.fetchRequest(sort: sort, predicate: predicate)
+        let request: NSFetchRequest<ResultType> = self.fetchRequest(sort: sort, ascending: ascending, predicate: predicate)
 
         return NSFetchedResultsController<ResultType>(fetchRequest: request,
                                                       managedObjectContext: self.mainContext,
@@ -129,13 +129,13 @@ class DataHelper: NSObject {
     
     // MARK: - Private
 
-    private func fetchRequest<ResultType: NSManagedObject>(sort: [String]? = nil, predicate: NSPredicate? = nil) -> NSFetchRequest<ResultType> {
+    private func fetchRequest<ResultType: NSManagedObject>(sort: [String]? = nil, ascending: Bool = true, predicate: NSPredicate? = nil) -> NSFetchRequest<ResultType> {
 
         let request = NSFetchRequest<ResultType>(entityName: ResultType.entityName)
         request.predicate = predicate
         request.sortDescriptors = sort?.map({ (key) -> NSSortDescriptor in
 
-            NSSortDescriptor(key: key, ascending: true)
+            NSSortDescriptor(key: key, ascending: ascending)
         })
         return request
     }

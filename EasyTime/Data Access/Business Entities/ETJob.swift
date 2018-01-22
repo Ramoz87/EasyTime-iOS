@@ -54,6 +54,7 @@ class ETJob {
         dbExpense.date = expense.date
         dbExpense.workTypeId = expense.workTypeId
         dbExpense.typeId = expense.typeId
+        dbExpense.unit = expense.unit
         
         
         if let fileUrl = expense.fileUrl {

@@ -8,6 +8,13 @@
 
 import UIKit
 
+fileprivate struct Constants {
+    
+    static let measureCurrency = "CHF"
+    static let measureKm = "km"
+}
+
+
 class AddExpenseViewModel: BaseViewModel {
 
     private let job: ETJob
@@ -16,6 +23,18 @@ class AddExpenseViewModel: BaseViewModel {
     var photo: UIImage?
     var value: String = ""
 
+    var expenseType: ETExpenseType {
+        get {
+            return (self.typeId == AppManager.typeExpenceOtherId) ? .other : .driving
+        }
+    }
+    
+    var measure: String {
+        get {
+            return (self.expenseType == .driving) ? Constants.measureKm : Constants.measureCurrency
+        }
+    }
+    
     init(job: ETJob, type: ETType) {
 
         self.job = job
@@ -46,9 +65,10 @@ class AddExpenseViewModel: BaseViewModel {
 
         let expense = ETExpense()
         expense.name = self.name
-        expense.type = (self.typeId == AppManager.typeExpenceOtherId) ? .other : .driving
+        expense.type = self.expenseType
         expense.typeId = self.typeId
         expense.value = (self.value as NSString).floatValue
+        expense.unit = self.measure
         if let image = self.photo {
             expense.saveImage(image: image)
         }

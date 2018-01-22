@@ -41,6 +41,7 @@ class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImage
 
         self.title = Constants.titleText
         self.lblExpenseType.text = self.viewModel.name
+        self.lblCurrency.text = self.viewModel.measure
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.notificationsHandler(notification:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
 

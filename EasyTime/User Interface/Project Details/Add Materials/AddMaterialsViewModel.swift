@@ -13,6 +13,7 @@ fileprivate struct Constants {
 
     static let sortDescriptor = "name"
     static let searchPredicate = "name CONTAINS[cd] %@"
+    static let unitPredicate = "type = 'UNIT_TYPE'"
 }
 
 class AddMaterialsViewModel: BaseViewModel {
@@ -24,6 +25,17 @@ class AddMaterialsViewModel: BaseViewModel {
         let fetchedResultsController: NSFetchedResultsController<Material> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor])
         fetchedResultsController.delegate = self
         return fetchedResultsController
+    }()
+    
+    private lazy var materialUnits: [Type]? = {
+        
+        do {
+            let units: [Type]? = try AppManager.sharedInstance.dataHelper.fetchData(predicate: NSPredicate(format: Constants.unitPredicate))
+            return units
+        }
+        catch {
+            return nil
+        }
     }()
     
     var hasMaterialsToAdd: Bool {
@@ -89,11 +101,15 @@ class AddMaterialsViewModel: BaseViewModel {
 
             if cellController.isSelected == true, let value = cellController.quantityString, value.count > 0  {
 
+                let material = cellController.material
                 let expense = ETExpense()
-                expense.materialId = cellController.material.materialId
-                expense.name = cellController.material.name
+                expense.materialId = material.materialId
+                expense.name = material.name
                 expense.type = .material
                 expense.value = (value as NSString).floatValue
+                if let unit = self.materialUnits?.filter({$0.typeId == material.unitId}).first {
+                    expense.unit = unit.name
+                }
             
                 self.job.addExpense(expense: expense)
             }
