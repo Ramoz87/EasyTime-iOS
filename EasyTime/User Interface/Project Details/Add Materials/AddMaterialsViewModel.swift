@@ -40,7 +40,7 @@ class AddMaterialsViewModel: BaseViewModel {
     
     var hasMaterialsToAdd: Bool {
         get {
-            let materials = self.cellControllers.values.filter() { $0.isSelected == true && $0.quantityString != nil && $0.quantityString!.count > 0}
+            let materials = self.cellControllers.values.filter { $0.isSelected == true && $0.quantityString != nil && $0.quantityString!.count > 0}
             return materials.count > 0
         }
     }

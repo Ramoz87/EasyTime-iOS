@@ -43,8 +43,7 @@ class ClientsViewModel: BaseViewModel {
         let entity = ETCustomer(customer: customer)
         
         if let result = self.jobs {
-            
-            let customerJobs = result.filter() { $0.customerId == entity.customerId }
+            let customerJobs = result.filter { $0.customerId == entity.customerId }
             
             var projectCount = 0
             var objectCount = 0
