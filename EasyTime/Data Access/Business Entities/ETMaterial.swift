@@ -8,16 +8,25 @@
 
 import UIKit
 
-class ETMaterial {
+class ETMaterial: Hashable {
+    var hashValue: Int {
+        return self.materialId!.hashValue
+    }
+    
+    static func ==(lhs: ETMaterial, rhs: ETMaterial) -> Bool {
+        return lhs.materialId == rhs.materialId
+    }
+    
 
     var currency: String?
     var materialId: String?
     var materialNr: String?
     var pricePerUnit: Float
     var serailNr: String?
-    var stockQuantity: Float
+    var stockQuantity: Float = 0
     var unitId: String?
     var name: String?
+    var quantity: Float = 0
     private let material: Material
 
     init(material: Material) {

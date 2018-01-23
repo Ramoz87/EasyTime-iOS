@@ -39,7 +39,7 @@ class ETExpense {
                 
                 return String(format: "%02d:%02d", Int(hours), Int(minutes))
             default:
-                return String(format: "%@ %@", "\(self.value)", self.unit ?? "")
+                return String(format: "%d %@", Int(self.value), self.unit ?? "")
             }
         }
     }

@@ -19,7 +19,10 @@ fileprivate struct Constants {
 class AddMaterialsViewModel: BaseViewModel {
 
     private let job: ETJob
-    private var cellControllers: [String: AddMaterialsTableViewCellController] = [:]
+    
+    private var selectedMaterails = Set<ETMaterial>()
+    private var materails = Array<ETMaterial>()
+    
     private lazy var fetchResultsController: NSFetchedResultsController<Material> = {
 
         let fetchedResultsController: NSFetchedResultsController<Material> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor])
@@ -40,7 +43,7 @@ class AddMaterialsViewModel: BaseViewModel {
     
     var hasMaterialsToAdd: Bool {
         get {
-            let materials = self.cellControllers.values.filter { $0.isSelected == true && $0.quantityString != nil && $0.quantityString!.count > 0}
+            let materials = self.selectedMaterails.filter { $0.quantity > 0}
             return materials.count > 0
         }
     }
@@ -58,8 +61,27 @@ class AddMaterialsViewModel: BaseViewModel {
 
     subscript(indexPath: IndexPath) -> ETMaterial {
 
-        let material = self.fetchResultsController.object(at: indexPath)
-        return ETMaterial(material: material)
+        let fetchedItem = self.fetchResultsController.object(at: indexPath)
+     
+        guard let material = materails.filter({$0.materialId == fetchedItem.materialId}).first else {
+            let newMaterial = ETMaterial(material:fetchedItem)
+            materails.append(newMaterial)
+            return newMaterial
+        }
+        
+        return material
+    }
+    
+    func select(at indexPath: IndexPath) -> Int {
+        self.selectedMaterails.insert(self[indexPath])
+        
+        return self.selectedMaterails.count
+    }
+    
+    func deselect(at indexPath: IndexPath) -> Int {
+        self.selectedMaterails.remove(self[indexPath])
+        
+        return self.selectedMaterails.count
     }
 
     func numberOfRowsInSection(section: Int) -> Int {
@@ -84,29 +106,17 @@ class AddMaterialsViewModel: BaseViewModel {
         } catch {}
     }
 
-    func dequeueTableViewCellController(for material: ETMaterial) -> AddMaterialsTableViewCellController {
-
-        guard let cellController = self.cellControllers[material.materialId!] else {
-
-            let cellController = AddMaterialsTableViewCellController(material: material)
-            self.cellControllers[material.materialId!] = cellController
-            return cellController
-        }
-        return cellController
-    }
-
     override func save() {
 
-        for cellController in self.cellControllers.values {
+        for material in self.selectedMaterails {
 
-            if cellController.isSelected == true, let value = cellController.quantityString, value.count > 0  {
+            if material.quantity > 0  {
 
-                let material = cellController.material
                 let expense = ETExpense()
                 expense.materialId = material.materialId
                 expense.name = material.name
                 expense.type = .material
-                expense.value = (value as NSString).floatValue
+                expense.value = material.quantity
                 if let unit = self.materialUnits?.filter({$0.typeId == material.unitId}).first {
                     expense.unit = unit.name
                 }

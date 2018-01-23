@@ -130,7 +130,6 @@
 		9EF59C5B20121F7E0048A247 /* AddMaterialsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF59C5920121F7E0048A247 /* AddMaterialsTableViewCell.swift */; };
 		9EF59C5C20121F7E0048A247 /* AddMaterialsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EF59C5A20121F7E0048A247 /* AddMaterialsTableViewCell.xib */; };
 		9EF59C5E2012207F0048A247 /* ETMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF59C5D2012207F0048A247 /* ETMaterial.swift */; };
-		9EF59C60201225840048A247 /* AddMaterialsTableViewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF59C5F201225840048A247 /* AddMaterialsTableViewCellController.swift */; };
 		B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */ = {isa = PBXBuildFile; fileRef = B73108D51FDEC1DE00BB3B07 /* customer.csv */; };
 		B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D71FDEC28300BB3B07 /* CSV.swift */; };
 		B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */; };
@@ -282,7 +281,6 @@
 		9EF59C5920121F7E0048A247 /* AddMaterialsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMaterialsTableViewCell.swift; sourceTree = "<group>"; };
 		9EF59C5A20121F7E0048A247 /* AddMaterialsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMaterialsTableViewCell.xib; sourceTree = "<group>"; };
 		9EF59C5D2012207F0048A247 /* ETMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETMaterial.swift; sourceTree = "<group>"; };
-		9EF59C5F201225840048A247 /* AddMaterialsTableViewCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMaterialsTableViewCellController.swift; sourceTree = "<group>"; };
 		B73108D51FDEC1DE00BB3B07 /* customer.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customer.csv; sourceTree = "<group>"; };
 		B73108D71FDEC28300BB3B07 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
@@ -711,7 +709,6 @@
 			children = (
 				9EF59C5920121F7E0048A247 /* AddMaterialsTableViewCell.swift */,
 				9EF59C5A20121F7E0048A247 /* AddMaterialsTableViewCell.xib */,
-				9EF59C5F201225840048A247 /* AddMaterialsTableViewCellController.swift */,
 				9EF59C5520121EBD0048A247 /* AddMaterialsViewController.swift */,
 				9EF59C5620121EBD0048A247 /* AddMaterialsViewController.xib */,
 				9EF59C5320121EA60048A247 /* AddMaterialsViewModel.swift */,
@@ -951,7 +948,6 @@
 				9E730D141FDAA16A0059C810 /* Customer+CoreDataProperties.swift in Sources */,
 				9E730D091FDAA16A0059C810 /* IQTitleBarButtonItem.swift in Sources */,
 				9E730D211FDAA16A0059C810 /* Project+CoreDataClass.swift in Sources */,
-				9EF59C60201225840048A247 /* AddMaterialsTableViewCellController.swift in Sources */,
 				9E730D221FDAA16A0059C810 /* Project+CoreDataProperties.swift in Sources */,
 				B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */,
 				9E730D371FDAA16A0059C810 /* RootViewController.swift in Sources */,

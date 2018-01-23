@@ -10,19 +10,17 @@ import UIKit
 
 fileprivate struct Constants {
 
-    static let titleText = NSLocalizedString("Choose materials", comment: "")
-    static let btnSaveText = NSLocalizedString("SAVE", comment: "")
+    static let titleText = NSLocalizedString("Materials", comment: "")
+    static let btnSaveText = NSLocalizedString("ADD", comment: "")
+    static let btnSaveTextFormat = NSLocalizedString("ADD %d MATERIALS", comment: "")
     static let btnSaveCornerRadius: CGFloat = 4
 
 }
 
-class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UITableViewDelegate, UITableViewDataSource, CollectionViewUpdateDelegate, AddMaterialsTableViewCellControllerDelegate {
+class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UITableViewDelegate, UITableViewDataSource, CollectionViewUpdateDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var vFooter: UIView!
     @IBOutlet weak var btnSave: UIButton!
-
-    let numberInputViewController = NumberInputViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +28,14 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
         self.title = Constants.titleText
 
         self.tableView.register(UINib(nibName: AddMaterialsTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: AddMaterialsTableViewCell.reuseIdentifier)
-        self.tableView.tableFooterView = self.vFooter
 
         self.btnSave.layer.cornerRadius = Constants.btnSaveCornerRadius
         self.btnSave.setTitle(Constants.btnSaveText, for: .normal)
+    }
+    
+    private func updateButtonTitle(with selectedCount: Int){
+        let title = (selectedCount > 0) ? String(format: Constants.btnSaveTextFormat, selectedCount) : Constants.btnSaveText
+        self.btnSave.setTitle(title, for: .normal)
     }
 
     //MARK: - Action handlers
@@ -48,15 +50,16 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
         }
     }
 
-    //MARK: - AddMaterialsTableViewCellControllerDelegate
-
-    func inputViewController(for cell: AddMaterialsTableViewCell) -> UIInputViewController? {
-
-        return self.numberInputViewController
-    }
-
     //MARK: - UITableViewDelegate
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.updateButtonTitle(with: self.viewModel.select(at: indexPath))
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        self.updateButtonTitle(with: self.viewModel.deselect(at: indexPath))
+    }
+    
     //MARK: - UITableViewDataSource
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -67,11 +70,13 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: AddMaterialsTableViewCell.reuseIdentifier, for: indexPath) as! AddMaterialsTableViewCell
-        let material = self.viewModel[indexPath]
-        let cellController = self.viewModel.dequeueTableViewCellController(for: material)
-        cellController.delegate = self
-        cellController.cell = cell
+        cell.material = self.viewModel[indexPath]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return UITableViewAutomaticDimension
     }
 
     //MARK: - CollectionViewUpdateDelegate
