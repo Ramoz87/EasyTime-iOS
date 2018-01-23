@@ -15,7 +15,6 @@ fileprivate struct Constants {
     static let buttonBorderColor = UIColor(red: 109 / 255, green: 137 / 255, blue: 175 / 255, alpha: 1)
     static let buttonBorderDashPattern: [NSNumber] = [4, 4]
     static let buttonIconSpacing: CGFloat = 3
-    static let statuses = [NSLocalizedString("Active", comment: ""), NSLocalizedString("Not active", comment: "")]
     static let statusPickerDoneButtonText = NSLocalizedString("Done", comment: "")
 }
 
@@ -148,6 +147,18 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
             sectionView.button.inputView = self.pvStatus
             sectionView.button.inputAccessoryView = sectionView.button.keyboardToolbar
             sectionView.button.addDoneOnKeyboardWithTarget(self, action: #selector(ProjectInfoViewController.didTapDoneOnStatusPicker(sender:)), titleText: Constants.statusPickerDoneButtonText)
+            sectionView.delegate = nil
+
+            if let status = self.viewModel.statuses.filter({ type -> Bool in
+                return type.typeId == sectionInfo.job.statusId
+            }).first {
+
+                sectionView.lblDetails.text = status.name
+                if let index = self.viewModel.statuses.index(of: status) {
+
+                    self.pvStatus.selectRow(index, inComponent: 0, animated: false)
+                }
+            }
         }
         return sectionView
     }
@@ -188,6 +199,9 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
+        let status = self.viewModel.statuses[row]
+        self.viewModel.updateStatus(newStatus: status)
+        self.tableView.reloadSections([ProjectInfoSectionType.status.rawValue], with: .none)
     }
 
     //MARK: - UIPickerViewDataSource
@@ -199,11 +213,11 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 
-        return Constants.statuses.count
+        return self.viewModel.statuses.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 
-        return Constants.statuses[row]
+        return self.viewModel.statuses[row].name
     }
 }

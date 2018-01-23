@@ -19,6 +19,7 @@ class ProjectInfoSectionView: UIView {
     static let sectionHeight: CGFloat = 55
 
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var lblDetails: UILabel!
     @IBOutlet weak var imgAccessory: UIImageView!
     @IBOutlet weak var button: InputButton!
 
@@ -41,15 +42,17 @@ class ProjectInfoSectionView: UIView {
 
     @IBAction func didClick(sender: Any) {
 
+        guard let delegate = self.delegate else { return }
+
         self.isExpanded = !self.isExpanded
 
         if self.isExpanded == true {
 
-            self.delegate?.didExpandProjectInfoSectionView(view: self)
+            delegate.didExpandProjectInfoSectionView(view: self)
         }
         else {
 
-            self.delegate?.didCollapseProjectInfoSectionView(view: self)
+            delegate.didCollapseProjectInfoSectionView(view: self)
         }
     }
 }

@@ -8,10 +8,21 @@
 
 import UIKit
 
+fileprivate struct Constants {
+
+    static let statusesPredicate = "type = %@"
+    static let sectionTitleCustomer = "CUSTOMER"
+    static let sectionTitleInstructions = "INSTRCUSTIONS"
+    static let sectionTitleStatus = "STATUS"
+    static let sectionTitleObjects = "OBJECTS"
+    static let sectionTitleEmployees = "EMPLOYEES"
+}
+
 class ProjectInfoViewModel: BaseViewModel {
 
     let job: ETJob
     private let sections: [ProjectInfoSectionInfo]
+    let statuses: [ETType]
 
     init(job: ETJob) {
 
@@ -27,6 +38,25 @@ class ProjectInfoViewModel: BaseViewModel {
             }
         }
         self.sections = sections
+
+        do {
+
+            let predicate = NSPredicate(format: Constants.statusesPredicate, "STATUS")
+            let managedStatuses: Array<Type>? = try AppManager.sharedInstance.dataHelper.fetchData(predicate: predicate)
+            if let statuses = managedStatuses?.map({ type -> ETType in
+                return ETType(type: type)
+            }) {
+                self.statuses = statuses
+            }
+            else {
+                self.statuses = []
+            }
+        }
+        catch {
+
+            self.statuses = []
+        }
+
         super.init()
     }
 
@@ -42,6 +72,12 @@ class ProjectInfoViewModel: BaseViewModel {
     func numberOfSections() -> Int {
 
         return ProjectInfoSectionType.count()
+    }
+
+    func updateStatus(newStatus: ETType) {
+
+        //TODO: Save new status
+        self.job.statusId = newStatus.typeId
     }
 }
 
@@ -91,15 +127,15 @@ class ProjectInfoSectionInfo {
         switch type {
 
         case .customer:
-            self.objects = ["Name Surname", "Address", "10 am"]
+            self.objects = ["Name Surname", "Address", "10 am"] //TODO: Real life data
         case .instructions:
-            self.objects = ["Name Surname", "Address", "10 am"]
+            self.objects = ["Name Surname", "Address", "10 am"] //TODO: Real life data
         case .status:
             self.objects = []
         case .objects:
-            self.objects = ["Object 1", "Object 2"]
+            self.objects = ["Object 1", "Object 2"] //TODO: Real life data
         case .employees:
-            self.objects = ["Employee 1", "Employee 2"]
+            self.objects = ["Employee 1", "Employee 2"] //TODO: Real life data
         }
     }
 
@@ -113,15 +149,15 @@ class ProjectInfoSectionInfo {
         switch self.type {
 
         case .customer:
-            return "CUSTOMER"
+            return Constants.sectionTitleCustomer
         case .instructions:
-            return "INSTRUCTIONS"
+            return Constants.sectionTitleInstructions
         case .status:
-            return "STATUS"
+            return Constants.sectionTitleStatus
         case .objects:
-            return "OBJECTS"
+            return Constants.sectionTitleObjects
         case .employees:
-            return "EMPLOYEES"
+            return Constants.sectionTitleEmployees
         }
     }
 
