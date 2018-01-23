@@ -16,22 +16,29 @@ fileprivate struct Constants {
     static let buttonBorderDashPattern: [NSNumber] = [4, 4]
     static let buttonIconSpacing: CGFloat = 3
     static let statusPickerDoneButtonText = NSLocalizedString("Done", comment: "")
+    static let photosCollectionViewPadding: CGFloat = 10
 }
 
-class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITableViewDelegate, UITableViewDataSource, ProjectInfoSectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITableViewDelegate, UITableViewDataSource, ProjectInfoSectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnAddPhoto: UIButton!
+
     @IBOutlet weak var vTableViewHeader: UIView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblbDate: UILabel!
     @IBOutlet weak var lblID: UILabel!
 
+    @IBOutlet weak var vPhotosPlaceholder: UIView!
+    @IBOutlet weak var btnAddPhotoSmall: UIButton!
+    @IBOutlet weak var cvPhotos: UICollectionView!
+    @IBOutlet weak var pcPhotos: UIPageControl!
+
     lazy var imagePickerController: UIImagePickerController = {
 
         let controller = UIImagePickerController()
-        controller.sourceType = .camera
+        controller.sourceType = .photoLibrary
         controller.delegate = self
         return controller
     }()
@@ -42,6 +49,17 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
         picker.delegate = self
         picker.dataSource = self
         return picker
+    }()
+
+    lazy var btnAddPhotoDashLineLayer: CAShapeLayer = {
+
+        let borderLayer = CAShapeLayer()
+        borderLayer.strokeColor = Constants.buttonBorderColor.cgColor
+        borderLayer.lineDashPattern = Constants.buttonBorderDashPattern
+        borderLayer.frame = self.btnAddPhoto.bounds
+        borderLayer.fillColor = nil
+        borderLayer.cornerRadius = Constants.buttonCornerRadius
+        return borderLayer
     }()
 
     override func viewDidLoad() {
@@ -61,20 +79,33 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
         self.tableView.tableHeaderView = self.vTableViewHeader
         self.tableView.tableFooterView = UIView() //To hide separators of empty cells
 
-        let borderLayer = CAShapeLayer()
-        borderLayer.strokeColor = Constants.buttonBorderColor.cgColor
-        borderLayer.lineDashPattern = Constants.buttonBorderDashPattern
-        borderLayer.frame = self.btnAddPhoto.bounds
-        borderLayer.fillColor = nil
-        borderLayer.path = UIBezierPath(rect: self.btnAddPhoto.bounds).cgPath
-        borderLayer.cornerRadius = Constants.buttonCornerRadius
-        self.btnAddPhoto.layer.addSublayer(borderLayer)
-        self.btnAddPhoto.alignVertical(spacing: Constants.buttonIconSpacing)
-        self.btnAddPhoto.setTitle(Constants.buttonText, for: .normal)
+        self.cvPhotos.layer.cornerRadius = Constants.buttonCornerRadius
+        self.cvPhotos.register(UINib.init(nibName: ProjectPhotoCollectionViewCell.cellName, bundle: nil), forCellWithReuseIdentifier: ProjectPhotoCollectionViewCell.reuseIdentifier)
+
+        self.btnAddPhotoSmall.alignVertical(spacing: Constants.buttonIconSpacing)
+
+        if self.viewModel.photos.count == 0 {
+
+            self.btnAddPhoto.layer.addSublayer(self.btnAddPhotoDashLineLayer)
+            self.btnAddPhoto.alignVertical(spacing: Constants.buttonIconSpacing)
+            self.btnAddPhoto.setTitle(Constants.buttonText, for: .normal)
+        }
+        else {
+
+            self.btnAddPhoto.removeFromSuperview()
+            self.vPhotosPlaceholder.isHidden = false
+            self.pcPhotos.numberOfPages = self.viewModel.photos.count
+            self.view.setNeedsLayout()
+        }
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+
+        if self.viewModel.photos.count == 0 {
+
+            self.btnAddPhotoDashLineLayer.path = UIBezierPath(rect: self.btnAddPhoto.bounds).cgPath
+        }
 
         if let headerView = tableView.tableHeaderView {
             let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
@@ -183,9 +214,17 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if let photo = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
-            //self.viewModel.photo = image
+            if self.viewModel.photos.count == 0 {
+
+                self.btnAddPhoto.removeFromSuperview()
+                self.vPhotosPlaceholder.isHidden = false
+                self.view.setNeedsLayout()
+            }
+            self.viewModel.addPhoto(photo: photo)
+            self.pcPhotos.numberOfPages = self.viewModel.photos.count
+            self.cvPhotos.reloadData()
         }
         picker.dismiss(animated: true, completion: nil)
     }
@@ -219,5 +258,40 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
 
         return self.viewModel.statuses[row].name
+    }
+
+    //MARK: - UICollectionViewDataSource
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        return self.viewModel.photos.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProjectPhotoCollectionViewCell.reuseIdentifier, for: indexPath) as! ProjectPhotoCollectionViewCell
+        cell.imageView.image = self.viewModel.photos[indexPath.item]
+        return cell
+    }
+
+    //MARK: - UICollectionViewDelegate
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+
+        self.pcPhotos.currentPage = indexPath.item
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        return CGSize(width: UIScreen.main.bounds.size.width - Constants.buttonIconSpacing * 2, height: self.vPhotosPlaceholder.frame.size.height)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
 }

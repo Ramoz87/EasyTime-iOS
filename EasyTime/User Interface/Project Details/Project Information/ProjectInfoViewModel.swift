@@ -12,7 +12,7 @@ fileprivate struct Constants {
 
     static let statusesPredicate = "type = %@"
     static let sectionTitleCustomer = "CUSTOMER"
-    static let sectionTitleInstructions = "INSTRCUSTIONS"
+    static let sectionTitleInstructions = "INSTRUCTIONS"
     static let sectionTitleStatus = "STATUS"
     static let sectionTitleObjects = "OBJECTS"
     static let sectionTitleEmployees = "EMPLOYEES"
@@ -23,6 +23,7 @@ class ProjectInfoViewModel: BaseViewModel {
     let job: ETJob
     private let sections: [ProjectInfoSectionInfo]
     let statuses: [ETType]
+    private(set) var photos: [UIImage] = []
 
     init(job: ETJob) {
 
@@ -78,6 +79,11 @@ class ProjectInfoViewModel: BaseViewModel {
 
         //TODO: Save new status
         self.job.statusId = newStatus.typeId
+    }
+
+    func addPhoto(photo: UIImage) {
+
+        self.photos.append(photo)
     }
 }
 

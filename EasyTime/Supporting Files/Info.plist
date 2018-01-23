@@ -32,6 +32,8 @@
 	</array>
 	<key>NSCameraUsageDescription</key>
 	<string>Access camera to take photos and track your expenses</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access photo library to track your expenses</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
