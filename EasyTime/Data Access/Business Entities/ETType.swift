@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ETType {
+class ETType: NSObject {
 
     var name: String?
     var customName: String?

@@ -17,9 +17,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Pq-DV-B18">
-                    <rect key="frame" x="12" y="0.0" width="340" height="50"/>
+                    <rect key="frame" x="12" y="0.0" width="320" height="50"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.18431372549019609" green="0.23529411764705882" blue="0.30980392156862746" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTQ-q1-JPh">
+                    <rect key="frame" x="332" y="0.0" width="0.0" height="50"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.1843137255" green="0.23529411759999999" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expandIcon" highlightedImage="collapseIcon" translatesAutoresizingMaskIntoConstraints="NO" id="v7W-hu-LnK">
@@ -44,12 +50,15 @@
                 <constraint firstItem="hGt-8L-Ry5" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="MX9-t6-22q"/>
                 <constraint firstItem="hGt-8L-Ry5" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="RpZ-56-yz4"/>
                 <constraint firstItem="v7W-hu-LnK" firstAttribute="centerY" secondItem="8Pq-DV-B18" secondAttribute="centerY" id="SVP-lh-Y4x"/>
+                <constraint firstItem="v7W-hu-LnK" firstAttribute="leading" secondItem="hTQ-q1-JPh" secondAttribute="trailing" constant="20" id="UeP-QH-JGN"/>
+                <constraint firstItem="hTQ-q1-JPh" firstAttribute="leading" secondItem="8Pq-DV-B18" secondAttribute="trailing" id="YEt-k0-9du"/>
                 <constraint firstItem="hGt-8L-Ry5" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="bsR-K9-5hC"/>
-                <constraint firstItem="v7W-hu-LnK" firstAttribute="leading" secondItem="8Pq-DV-B18" secondAttribute="trailing" id="dPp-iT-zxu"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="v7W-hu-LnK" secondAttribute="trailing" constant="12" id="eY1-52-q2N"/>
                 <constraint firstItem="hGt-8L-Ry5" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="ji5-x7-6bT"/>
+                <constraint firstItem="hTQ-q1-JPh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="uRJ-ax-VVZ"/>
                 <constraint firstItem="hGt-8L-Ry5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vQU-iK-UJt"/>
                 <constraint firstItem="hGt-8L-Ry5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vji-T1-ml5"/>
+                <constraint firstItem="hTQ-q1-JPh" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="xrh-W6-tPS"/>
                 <constraint firstItem="8Pq-DV-B18" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="yF2-XW-Jvh"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -57,6 +66,7 @@
             <connections>
                 <outlet property="button" destination="hGt-8L-Ry5" id="vOM-NY-JAd"/>
                 <outlet property="imgAccessory" destination="v7W-hu-LnK" id="QXQ-Fh-cxr"/>
+                <outlet property="lblDetails" destination="hTQ-q1-JPh" id="6mW-5F-hjh"/>
                 <outlet property="lblTitle" destination="8Pq-DV-B18" id="FHn-KE-3vj"/>
             </connections>
             <point key="canvasLocation" x="24.5" y="52"/>
