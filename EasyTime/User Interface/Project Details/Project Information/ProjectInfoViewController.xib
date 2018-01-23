@@ -31,7 +31,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="50" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="bDG-kn-sUn">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="50" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="bDG-kn-sUn">
                     <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
@@ -108,6 +108,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="hey-lk-ToL"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="Add photo" image="photoIcon">
                         <color key="titleColor" red="0.43921568630000002" green="0.54117647059999996" blue="0.67843137249999996" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                     </state>
@@ -148,6 +149,13 @@
                     <color key="textColor" red="0.18431372549019609" green="0.23529411764705882" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kug-4Q-MSJ">
+                    <rect key="frame" x="0.0" y="299.5" width="375" height="0.5"/>
+                    <color key="backgroundColor" red="0.42745098040000001" green="0.53725490200000003" blue="0.68627450980000004" alpha="0.3276973084" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="vi3-mX-rcH"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -161,8 +169,11 @@
                 <constraint firstItem="bjr-Ap-VkW" firstAttribute="leading" secondItem="fuG-ik-oY4" secondAttribute="leading" constant="12" id="L9X-rL-vTO"/>
                 <constraint firstItem="fuG-ik-oY4" firstAttribute="trailing" secondItem="m63-DA-ouY" secondAttribute="trailing" constant="12" id="ONC-wP-nn1"/>
                 <constraint firstItem="fuG-ik-oY4" firstAttribute="trailing" secondItem="lhL-b0-Th4" secondAttribute="trailing" constant="12" id="PyH-fA-bfF"/>
+                <constraint firstItem="Kug-4Q-MSJ" firstAttribute="leading" secondItem="6Ud-rl-plF" secondAttribute="leading" id="S2y-fz-fBR"/>
+                <constraint firstAttribute="trailing" secondItem="Kug-4Q-MSJ" secondAttribute="trailing" id="Sdh-vK-Gef"/>
                 <constraint firstItem="0Rw-57-mtv" firstAttribute="leading" secondItem="fuG-ik-oY4" secondAttribute="leading" constant="10" id="UKo-gb-d6T"/>
                 <constraint firstItem="fuG-ik-oY4" firstAttribute="bottom" secondItem="bjr-Ap-VkW" secondAttribute="bottom" constant="30" id="Wr4-ey-OVe"/>
+                <constraint firstItem="fuG-ik-oY4" firstAttribute="bottom" secondItem="Kug-4Q-MSJ" secondAttribute="bottom" id="Wzo-bI-w7b"/>
                 <constraint firstItem="7IE-tJ-yiR" firstAttribute="leading" secondItem="bjr-Ap-VkW" secondAttribute="trailing" id="X2E-uG-yh9"/>
                 <constraint firstItem="PQR-iC-YKK" firstAttribute="top" secondItem="0Rw-57-mtv" secondAttribute="bottom" priority="999" constant="12" id="eFF-0r-7Wz"/>
                 <constraint firstItem="PQR-iC-YKK" firstAttribute="top" secondItem="m63-DA-ouY" secondAttribute="bottom" constant="12" id="ffW-u8-1sX"/>

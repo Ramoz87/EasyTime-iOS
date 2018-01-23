@@ -19,7 +19,7 @@ fileprivate struct Constants {
     static let photosCollectionViewPadding: CGFloat = 10
 }
 
-class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITableViewDelegate, UITableViewDataSource, ProjectInfoSectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITableViewDelegate, UITableViewDataSource, ProjectInfoSectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnAddPhoto: UIButton!
@@ -46,8 +46,8 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
     lazy var pvStatus: UIPickerView = {
 
         let picker = UIPickerView()
-        picker.delegate = self
         picker.dataSource = self
+        picker.delegate = self
         return picker
     }()
 
@@ -99,13 +99,16 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        self.updateAddPhotoButton()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if self.viewModel.photos.count == 0 {
-
-            self.btnAddPhotoDashLineLayer.path = UIBezierPath(rect: self.btnAddPhoto.bounds).cgPath
-        }
+        self.updateAddPhotoButton()
 
         if let headerView = tableView.tableHeaderView {
             let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
@@ -119,6 +122,32 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
         }
     }
 
+    func expandSection(section: Int, isExpanded: Bool) {
+
+        let sectionInfo = self.viewModel[section]
+        sectionInfo.isExpanded = isExpanded
+        UIView.setAnimationsEnabled(false)
+        self.tableView.reloadSections([section], with: .none)
+        UIView.setAnimationsEnabled(true)
+    }
+
+    func updateAddPhotoButton() {
+
+        if self.viewModel.photos.count == 0 {
+
+            self.btnAddPhotoDashLineLayer.path = UIBezierPath(rect: self.btnAddPhoto.bounds).cgPath
+        }
+    }
+
+    func updatePhotosPageControl() {
+
+        if self.viewModel.photos.count > 0 {
+
+            let index = Int(self.cvPhotos.contentOffset.x / (self.cvPhotos.contentSize.width / CGFloat(self.viewModel.photos.count)))
+            self.pcPhotos.currentPage = index
+        }
+    }
+
     //MARK: - Action handlers
 
     @IBAction func didTapAddPhoto(sender: Any) {
@@ -129,9 +158,19 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
     @objc func didTapDoneOnStatusPicker(sender: UIButton) {
 
         self.view.endEditing(true)
+
+        let index = self.pvStatus.selectedRow(inComponent: 0)
+        let status = self.viewModel.statuses[index]
+        self.viewModel.updateStatus(newStatus: status)
+        self.expandSection(section: ProjectInfoSectionType.status.rawValue, isExpanded: false)
     }
 
     //MARK: - UITableViewDelegate
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        //TODO: Implement
+    }
 
     //MARK: - UITableViewDataSource
 
@@ -198,16 +237,12 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
     func didExpandProjectInfoSectionView(view: ProjectInfoSectionView) {
 
-        let sectionInfo = self.viewModel[view.sectionIndex]
-        sectionInfo.isExpanded = true
-        self.tableView.reloadSections([view.sectionIndex], with: .automatic)
+        self.expandSection(section: view.sectionIndex, isExpanded: true)
     }
 
     func didCollapseProjectInfoSectionView(view: ProjectInfoSectionView) {
 
-        let sectionInfo = self.viewModel[view.sectionIndex]
-        sectionInfo.isExpanded = false
-        self.tableView.reloadSections([view.sectionIndex], with: .automatic)
+        self.expandSection(section: view.sectionIndex, isExpanded: false)
     }
 
     //MARK: - UIImagePickerControllerDelegate
@@ -232,15 +267,6 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
 
         picker.dismiss(animated: true, completion: nil)
-    }
-
-    //MARK: - UIPickerViewDelegate
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-
-        let status = self.viewModel.statuses[row]
-        self.viewModel.updateStatus(newStatus: status)
-        self.tableView.reloadSections([ProjectInfoSectionType.status.rawValue], with: .none)
     }
 
     //MARK: - UIPickerViewDataSource
@@ -281,17 +307,36 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
     //MARK: - UICollectionViewDelegate
 
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-
-        self.pcPhotos.currentPage = indexPath.item
-    }
-
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        return CGSize(width: UIScreen.main.bounds.size.width - Constants.buttonIconSpacing * 2, height: self.vPhotosPlaceholder.frame.size.height)
+        return self.vPhotosPlaceholder.frame.size
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+    }
+
+    //MARK: - UIScrollViewDelegate
+
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        if scrollView == self.cvPhotos {
+
+            self.updatePhotosPageControl()
+        }
+    }
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+
+        if scrollView == self.cvPhotos {
+
+            self.updatePhotosPageControl()
+        }
+    }
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+
+        if scrollView == self.cvPhotos {
+
+            self.updatePhotosPageControl()
+        }
     }
 }
