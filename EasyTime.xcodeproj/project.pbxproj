@@ -108,6 +108,8 @@
 		9E90F5C720137A9C009F4896 /* ProjectInfoSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E90F5C620137A9C009F4896 /* ProjectInfoSectionView.xib */; };
 		9E9344952015E5D9008AEEEE /* ProjectInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9344932015E5D9008AEEEE /* ProjectInfoTableViewCell.swift */; };
 		9E9344962015E5D9008AEEEE /* ProjectInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E9344942015E5D9008AEEEE /* ProjectInfoTableViewCell.xib */; };
+		9E934499201734D2008AEEEE /* ProjectPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E934497201734D2008AEEEE /* ProjectPhotoCollectionViewCell.swift */; };
+		9E93449A201734D3008AEEEE /* ProjectPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E934498201734D2008AEEEE /* ProjectPhotoCollectionViewCell.xib */; };
 		9EAE1F241FE0068300E8C47E /* ProjectsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */; };
 		9EAE1F271FE0FDC600E8C47E /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */; };
 		9EAE1F281FE0FDC600E8C47E /* ProjectTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */; };
@@ -259,6 +261,8 @@
 		9E90F5C620137A9C009F4896 /* ProjectInfoSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoSectionView.xib; sourceTree = "<group>"; };
 		9E9344932015E5D9008AEEEE /* ProjectInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoTableViewCell.swift; sourceTree = "<group>"; };
 		9E9344942015E5D9008AEEEE /* ProjectInfoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoTableViewCell.xib; sourceTree = "<group>"; };
+		9E934497201734D2008AEEEE /* ProjectPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		9E934498201734D2008AEEEE /* ProjectPhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectPhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 		9EAE1F231FE0068200E8C47E /* ProjectsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsViewModel.swift; sourceTree = "<group>"; };
 		9EAE1F251FE0FDC600E8C47E /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		9EAE1F261FE0FDC600E8C47E /* ProjectTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectTableViewCell.xib; sourceTree = "<group>"; };
@@ -690,6 +694,8 @@
 				9EC02C7B2004E60F004B83FC /* ProjectInfoViewController.swift */,
 				9EC02C7C2004E60F004B83FC /* ProjectInfoViewController.xib */,
 				9E90F5C020136BA8009F4896 /* ProjectInfoViewModel.swift */,
+				9E934497201734D2008AEEEE /* ProjectPhotoCollectionViewCell.swift */,
+				9E934498201734D2008AEEEE /* ProjectPhotoCollectionViewCell.xib */,
 			);
 			path = "Project Information";
 			sourceTree = "<group>";
@@ -835,6 +841,7 @@
 				9E730D3A1FDAA16A0059C810 /* SettingsViewController.xib in Resources */,
 				9E65DE31200DE0AE006107DE /* ObjectsViewController.xib in Resources */,
 				B7BB70762011E8E9001C717E /* ClientTableViewCell.xib in Resources */,
+				9E93449A201734D3008AEEEE /* ProjectPhotoCollectionViewCell.xib in Resources */,
 				B7EEAB751FE7E14700FC50EF /* OrderTableViewCell.xib in Resources */,
 				9E65DE4A200E2CA7006107DE /* AddExpenseViewController.xib in Resources */,
 				B7D1B687200E0D2B0070CC0F /* SettingViewHeader.xib in Resources */,
@@ -938,6 +945,7 @@
 				9EC02C742004C796004B83FC /* ProjectDetailsViewModel.swift in Sources */,
 				B7D1B682200E0CE80070CC0F /* SettingViewCell.swift in Sources */,
 				9EF59C5720121EBD0048A247 /* AddMaterialsViewController.swift in Sources */,
+				9E934499201734D2008AEEEE /* ProjectPhotoCollectionViewCell.swift in Sources */,
 				9E730D231FDAA16A0059C810 /* Type+CoreDataClass.swift in Sources */,
 				9EC02C8B2007A47D004B83FC /* NumberInputViewController.swift in Sources */,
 				9EC02C832004EF73004B83FC /* ProjectActivityTableViewCell.swift in Sources */,

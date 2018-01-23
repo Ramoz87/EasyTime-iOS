@@ -32,15 +32,25 @@
                         <color key="textColor" red="0.18431372549019609" green="0.23529411764705882" blue="0.30980392156862746" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OEY-zg-cYv">
+                        <rect key="frame" x="21" y="43" width="299" height="0.5"/>
+                        <color key="backgroundColor" red="0.42745098040000001" green="0.53725490200000003" blue="0.68627450980000004" alpha="0.3276973084" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="FAL-qC-Y3Q"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="qd6-3U-bfD" firstAttribute="leading" secondItem="i33-cN-h7a" secondAttribute="trailing" constant="18" id="9kP-Qj-HfQ"/>
+                    <constraint firstAttribute="bottom" secondItem="OEY-zg-cYv" secondAttribute="bottom" id="E6f-Xo-maT"/>
                     <constraint firstAttribute="bottom" secondItem="qd6-3U-bfD" secondAttribute="bottom" id="GbI-dg-pNE"/>
+                    <constraint firstAttribute="trailing" secondItem="OEY-zg-cYv" secondAttribute="trailing" id="Tc0-Q3-rFg"/>
                     <constraint firstItem="i33-cN-h7a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="WCw-Ny-kfM"/>
                     <constraint firstAttribute="trailing" secondItem="qd6-3U-bfD" secondAttribute="trailing" id="fVD-N9-WlZ"/>
                     <constraint firstItem="i33-cN-h7a" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="kab-gt-roX"/>
                     <constraint firstAttribute="bottom" secondItem="i33-cN-h7a" secondAttribute="bottom" constant="-1" id="mOa-Bf-9Og"/>
                     <constraint firstItem="qd6-3U-bfD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="pef-3c-Lwy"/>
+                    <constraint firstItem="OEY-zg-cYv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="21" id="u1M-lQ-JAO"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
