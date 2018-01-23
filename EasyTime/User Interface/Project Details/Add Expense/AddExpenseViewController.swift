@@ -11,6 +11,7 @@ import UIKit
 fileprivate struct Constants {
 
     static let titleText = NSLocalizedString("Expenses", comment: "")
+    static let buttonText = NSLocalizedString("Add Photo", comment: "")
     static let buttonCornerRadius: CGFloat = 4
     static let buttonBorderColor = UIColor(red: 109 / 255, green: 137 / 255, blue: 175 / 255, alpha: 1)
     static let buttonBorderDashPattern: [NSNumber] = [4, 4]
@@ -54,6 +55,7 @@ class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImage
         borderLayer.cornerRadius = Constants.buttonCornerRadius
         self.btnAdd.layer.addSublayer(borderLayer)
         self.btnAdd.alignVertical(spacing: Constants.buttonIconSpacing)
+        self.btnAdd.setTitle(Constants.buttonText, for: .normal)
 
         let controller = NumberInputViewController()
         self.tfValue.inputViewController = controller
