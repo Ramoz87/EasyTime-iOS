@@ -237,6 +237,16 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
     func didExpandProjectInfoSectionView(view: ProjectInfoSectionView) {
 
+        if view.sectionIndex == ProjectInfoSectionType.customer.rawValue,
+            let customer = self.viewModel.customer{
+
+            let viewModel = ClientInfoViewModel(customer: customer)
+            let controller = ClientInfoViewController(viewModel: viewModel)
+            self.navigationController?.pushViewController(controller, animated: true)
+            self.expandSection(section: view.sectionIndex, isExpanded: false)
+            return 
+        }
+
         self.expandSection(section: view.sectionIndex, isExpanded: true)
     }
 

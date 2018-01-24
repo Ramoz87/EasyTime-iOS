@@ -57,10 +57,10 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
 
     @IBAction func didTapOpenMapButton(sender: Any) {
 
-        let application = UIApplication.shared
-        guard let fullAddress = self.viewModel.customer.address?.fullAddress else { return }
+        guard let fullAddress = self.viewModel.customer.address?.fullAddress.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         guard let url = URL(string: "http://maps.apple.com/?address=\(fullAddress)") else { return }
-
+        let application = UIApplication.shared
+        
         if application.canOpenURL(url) == true {
 
             application.open(url, options: [:], completionHandler: nil)
