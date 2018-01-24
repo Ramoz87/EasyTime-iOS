@@ -90,6 +90,10 @@ class ClientsViewController: BaseViewController<ClientsViewModel>, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
+
+        let viewModel = ClientInfoViewModel(customer: self.viewModel[indexPath])
+        let controller = ClientInfoViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     //MARK: - UISearchResultsUpdating

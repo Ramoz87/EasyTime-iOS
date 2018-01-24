@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ClientInfoViewController" customModule="EasyTime" customModuleProvider="target">
+            <connections>
+                <outlet property="btnCallPhone" destination="FIC-63-pd1" id="DCf-gD-Cth"/>
+                <outlet property="btnOpenMap" destination="F6N-R1-1K3" id="p0S-Pi-SX9"/>
+                <outlet property="btnSendEmail" destination="jAK-eT-PwF" id="chW-wt-hrN"/>
+                <outlet property="lblAddress" destination="z9w-s3-tiH" id="kfJ-pa-lS3"/>
+                <outlet property="lblName" destination="pg3-JN-lDW" id="AcN-ON-sGP"/>
+                <outlet property="tabView" destination="VWk-hH-z94" id="I1v-t6-4g1"/>
+                <outlet property="tableView" destination="sIc-xU-LHl" id="9jg-X3-Mow"/>
+                <outlet property="vHeader" destination="WHB-zS-rYx" id="WGQ-es-YHo"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WHB-zS-rYx">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="221"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VWk-hH-z94" customClass="TabView" customModule="EasyTime" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="168" width="375" height="53"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="53" id="9Uc-HG-Hbs"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="dnp-gR-51X"/>
+                            </connections>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pg3-JN-lDW">
+                            <rect key="frame" x="12" y="23" width="351" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="O4Z-mv-Xf4"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z9w-s3-tiH">
+                            <rect key="frame" x="172" y="47" width="31" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="jAc-lX-a3B"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FIC-63-pd1">
+                            <rect key="frame" x="233.5" y="83" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="GBc-jh-H1f"/>
+                                <constraint firstAttribute="width" constant="60" id="HYy-xq-RaG"/>
+                            </constraints>
+                            <state key="normal" image="callPhoneIcon"/>
+                            <connections>
+                                <action selector="didTapCallPhonelButtonWithSender:" destination="-1" eventType="touchUpInside" id="gOh-cu-ZXE"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F6N-R1-1K3">
+                            <rect key="frame" x="157.5" y="83" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="EaS-0i-ejE"/>
+                                <constraint firstAttribute="width" constant="60" id="yaM-Ht-jYW"/>
+                            </constraints>
+                            <state key="normal" image="openMapIcon"/>
+                            <connections>
+                                <action selector="didTapOpenMapButtonWithSender:" destination="-1" eventType="touchUpInside" id="vd7-HI-zon"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jAK-eT-PwF">
+                            <rect key="frame" x="81.5" y="83" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="vAS-y5-gza"/>
+                                <constraint firstAttribute="height" constant="60" id="yei-ww-2uk"/>
+                            </constraints>
+                            <state key="normal" image="sendEmailIcon"/>
+                            <connections>
+                                <action selector="didTapSendEmailButtonWithSender:" destination="-1" eventType="touchUpInside" id="sRj-Eg-bLG"/>
+                            </connections>
+                        </button>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteLocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="d5Q-4f-7Ph">
+                            <rect key="frame" x="155" y="52" width="7" height="10"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="10" id="AsR-v0-yjO"/>
+                                <constraint firstAttribute="width" constant="7" id="C5H-jE-SmJ"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.24313725490196078" green="0.55686274509803924" blue="0.84313725490196079" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="F6N-R1-1K3" firstAttribute="leading" secondItem="jAK-eT-PwF" secondAttribute="trailing" constant="16" id="5NW-md-3QG"/>
+                        <constraint firstAttribute="height" constant="221" id="5n1-sf-qwQ"/>
+                        <constraint firstAttribute="trailing" secondItem="VWk-hH-z94" secondAttribute="trailing" id="E5h-Jt-tnD"/>
+                        <constraint firstItem="d5Q-4f-7Ph" firstAttribute="centerY" secondItem="z9w-s3-tiH" secondAttribute="centerY" id="G6m-Cb-s1K"/>
+                        <constraint firstItem="VWk-hH-z94" firstAttribute="leading" secondItem="WHB-zS-rYx" secondAttribute="leading" id="Pb0-7o-mMQ"/>
+                        <constraint firstItem="jAK-eT-PwF" firstAttribute="centerY" secondItem="F6N-R1-1K3" secondAttribute="centerY" id="TMS-xR-xBt"/>
+                        <constraint firstItem="z9w-s3-tiH" firstAttribute="top" secondItem="pg3-JN-lDW" secondAttribute="bottom" constant="3" id="Xqd-2d-8Tf"/>
+                        <constraint firstItem="F6N-R1-1K3" firstAttribute="top" secondItem="z9w-s3-tiH" secondAttribute="bottom" constant="15" id="bTe-Od-DPR"/>
+                        <constraint firstAttribute="bottom" secondItem="VWk-hH-z94" secondAttribute="bottom" id="bae-Xi-ZHJ"/>
+                        <constraint firstItem="pg3-JN-lDW" firstAttribute="leading" secondItem="WHB-zS-rYx" secondAttribute="leading" constant="12" id="czt-cu-xjW"/>
+                        <constraint firstItem="z9w-s3-tiH" firstAttribute="centerX" secondItem="pg3-JN-lDW" secondAttribute="centerX" id="dQ3-Kt-Haz"/>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="z9w-s3-tiH" secondAttribute="trailing" constant="10" id="ej1-dc-DLB"/>
+                        <constraint firstAttribute="trailing" secondItem="pg3-JN-lDW" secondAttribute="trailing" constant="12" id="ewj-r0-N2G"/>
+                        <constraint firstItem="FIC-63-pd1" firstAttribute="leading" secondItem="F6N-R1-1K3" secondAttribute="trailing" constant="16" id="hv9-af-nvr"/>
+                        <constraint firstItem="pg3-JN-lDW" firstAttribute="top" secondItem="WHB-zS-rYx" secondAttribute="top" constant="23" id="kz4-oX-NJC"/>
+                        <constraint firstItem="F6N-R1-1K3" firstAttribute="centerX" secondItem="WHB-zS-rYx" secondAttribute="centerX" id="mu4-oH-EB4"/>
+                        <constraint firstItem="z9w-s3-tiH" firstAttribute="leading" secondItem="d5Q-4f-7Ph" secondAttribute="trailing" constant="10" id="sVC-Jc-xng"/>
+                        <constraint firstItem="FIC-63-pd1" firstAttribute="centerY" secondItem="F6N-R1-1K3" secondAttribute="centerY" id="wfe-SF-vPV"/>
+                        <constraint firstItem="z9w-s3-tiH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WHB-zS-rYx" secondAttribute="leading" constant="17" id="zCc-Vg-aDg"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="74" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="sIc-xU-LHl">
+                    <rect key="frame" x="0.0" y="221" width="375" height="446"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="C2h-Oa-Cno"/>
+                        <outlet property="delegate" destination="-1" id="ZUJ-A7-xqW"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="sIc-xU-LHl" secondAttribute="bottom" id="4BC-7p-dXT"/>
+                <constraint firstItem="WHB-zS-rYx" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="9db-wx-cUe"/>
+                <constraint firstItem="WHB-zS-rYx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="D4I-CF-hHU"/>
+                <constraint firstItem="sIc-xU-LHl" firstAttribute="top" secondItem="WHB-zS-rYx" secondAttribute="bottom" id="DrL-U5-So9"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sIc-xU-LHl" secondAttribute="trailing" id="cMQ-RG-6Af"/>
+                <constraint firstItem="sIc-xU-LHl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kGr-D4-QFx"/>
+                <constraint firstItem="WHB-zS-rYx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="oF4-fr-djW"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="24.5" y="52.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="callPhoneIcon" width="50" height="50"/>
+        <image name="openMapIcon" width="52" height="52"/>
+        <image name="sendEmailIcon" width="50" height="50"/>
+        <image name="whiteLocationIcon" width="7" height="10"/>
+    </resources>
+</document>

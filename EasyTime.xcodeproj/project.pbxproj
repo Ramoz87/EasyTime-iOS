@@ -16,6 +16,9 @@
 		9E1350BA1FE3F6C7007CAEC3 /* ETAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1350B91FE3F6C7007CAEC3 /* ETAddress.swift */; };
 		9E1350BC1FE40015007CAEC3 /* ETCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1350BB1FE40015007CAEC3 /* ETCustomer.swift */; };
 		9E4CAEFB1FFD0095006FF08C /* InputButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4CAEFA1FFD0095006FF08C /* InputButton.swift */; };
+		9E5A0B8A20187479009AC25E /* ClientInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A0B8820187479009AC25E /* ClientInfoViewController.swift */; };
+		9E5A0B8B20187479009AC25E /* ClientInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E5A0B8920187479009AC25E /* ClientInfoViewController.xib */; };
+		9E5A0B8D201879AB009AC25E /* ClientInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A0B8C201879AB009AC25E /* ClientInfoViewModel.swift */; };
 		9E6348971FE116DB00FEDF17 /* ClientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6348961FE116DB00FEDF17 /* ClientsViewModel.swift */; };
 		9E6348991FE1173800FEDF17 /* StockMaterialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6348981FE1173800FEDF17 /* StockMaterialsViewModel.swift */; };
 		9E63489B1FE1179B00FEDF17 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63489A1FE1179B00FEDF17 /* SettingsViewModel.swift */; };
@@ -173,6 +176,9 @@
 		9E1350B91FE3F6C7007CAEC3 /* ETAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAddress.swift; sourceTree = "<group>"; };
 		9E1350BB1FE40015007CAEC3 /* ETCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETCustomer.swift; sourceTree = "<group>"; };
 		9E4CAEFA1FFD0095006FF08C /* InputButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputButton.swift; sourceTree = "<group>"; };
+		9E5A0B8820187479009AC25E /* ClientInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientInfoViewController.swift; sourceTree = "<group>"; };
+		9E5A0B8920187479009AC25E /* ClientInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientInfoViewController.xib; sourceTree = "<group>"; };
+		9E5A0B8C201879AB009AC25E /* ClientInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientInfoViewModel.swift; sourceTree = "<group>"; };
 		9E6348961FE116DB00FEDF17 /* ClientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsViewModel.swift; sourceTree = "<group>"; };
 		9E6348981FE1173800FEDF17 /* StockMaterialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMaterialsViewModel.swift; sourceTree = "<group>"; };
 		9E63489A1FE1179B00FEDF17 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -379,6 +385,16 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		9E5A0B8720187453009AC25E /* Client Info */ = {
+			isa = PBXGroup;
+			children = (
+				9E5A0B8820187479009AC25E /* ClientInfoViewController.swift */,
+				9E5A0B8920187479009AC25E /* ClientInfoViewController.xib */,
+				9E5A0B8C201879AB009AC25E /* ClientInfoViewModel.swift */,
+			);
+			path = "Client Info";
+			sourceTree = "<group>";
+		};
 		9E65DE2D200DE076006107DE /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -573,6 +589,7 @@
 			isa = PBXGroup;
 			children = (
 				9E730CDE1FDAA16A0059C810 /* Assets.xcassets */,
+				9E5A0B8720187453009AC25E /* Client Info */,
 				9E730CDF1FDAA16A0059C810 /* Clients */,
 				9E730CE21FDAA16A0059C810 /* Login */,
 				9E730CE61FDAA16A0059C810 /* Materials */,
@@ -855,6 +872,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E5A0B8B20187479009AC25E /* ClientInfoViewController.xib in Resources */,
 				5F07A7831FFFAB7C00BBA74D /* ProjectDetailsViewController.xib in Resources */,
 				B7C5C744200F6AC80027D379 /* AddTimeViewController.xib in Resources */,
 				B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */,
@@ -954,6 +972,7 @@
 				B7EEAB781FE7E17E00FC50EF /* ObjectTableViewCell.swift in Sources */,
 				9E730D181FDAA16A0059C810 /* Files+CoreDataProperties.swift in Sources */,
 				B7D1B686200E0D2B0070CC0F /* SettingViewHeader.swift in Sources */,
+				9E5A0B8D201879AB009AC25E /* ClientInfoViewModel.swift in Sources */,
 				9E730D251FDAA16A0059C810 /* User+CoreDataClass.swift in Sources */,
 				B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */,
 				9E1350BC1FE40015007CAEC3 /* ETCustomer.swift in Sources */,
@@ -993,6 +1012,7 @@
 				9E730D221FDAA16A0059C810 /* Project+CoreDataProperties.swift in Sources */,
 				B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */,
 				9E730D371FDAA16A0059C810 /* RootViewController.swift in Sources */,
+				9E5A0B8A20187479009AC25E /* ClientInfoViewController.swift in Sources */,
 				9E730D191FDAA16A0059C810 /* Job+CoreDataClass.swift in Sources */,
 				9E6348971FE116DB00FEDF17 /* ClientsViewModel.swift in Sources */,
 				9EE0225D2008ED3F00CC01E9 /* AddTimeViewModel.swift in Sources */,

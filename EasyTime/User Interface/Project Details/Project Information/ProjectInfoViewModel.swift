@@ -11,19 +11,32 @@ import UIKit
 fileprivate struct Constants {
 
     static let statusesPredicate = "type = %@"
-    static let sectionTitleCustomer = "CUSTOMER"
-    static let sectionTitleInstructions = "INSTRUCTIONS"
-    static let sectionTitleStatus = "STATUS"
-    static let sectionTitleObjects = "OBJECTS"
-    static let sectionTitleEmployees = "EMPLOYEES"
+    static let sectionTitleCustomer = NSLocalizedString("CUSTOMER", comment: "")
+    static let sectionTitleInstructions = NSLocalizedString("INSTRUCTIONS", comment: "")
+    static let sectionTitleStatus = NSLocalizedString("STATUS", comment: "")
+    static let sectionTitleObjects = NSLocalizedString("OBJECTS", comment: "")
+    static let sectionTitleEmployees = NSLocalizedString("EMPLOYEES", comment: "")
 }
 
 class ProjectInfoViewModel: BaseViewModel {
 
-    let job: ETJob
     private let sections: [ProjectInfoSectionInfo]
-    let statuses: [ETType]
     private(set) var photos: [UIImage] = []
+
+    let job: ETJob
+    let statuses: [ETType]
+    lazy var customer: ETCustomer? = {
+
+        do {
+            let predicate = NSPredicate(format: "customerId = %@", self.job.customerId!)
+            if let managedCustomer: Customer = try AppManager.sharedInstance.dataHelper.fetchData(predicate: predicate)?.first {
+
+                return ETCustomer(customer: managedCustomer)
+            }
+            return nil
+        }
+        catch { return nil }
+    }()
 
     init(job: ETJob) {
 
@@ -133,7 +146,7 @@ class ProjectInfoSectionInfo {
         switch type {
 
         case .customer:
-            self.objects = ["Name Surname", "Address", "10 am"] //TODO: Real life data
+            self.objects = []
         case .instructions:
             self.objects = ["Name Surname", "Address", "10 am"] //TODO: Real life data
         case .status:

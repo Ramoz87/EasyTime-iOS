@@ -8,6 +8,11 @@
 
 import UIKit
 
+fileprivate struct Constants {
+
+    static let addressSeparator = ", "
+}
+
 class ETAddress {
 
     var addressId: String?
@@ -15,6 +20,19 @@ class ETAddress {
     var country: String?
     var street: String?
     var zip: String?
+
+    var fullAddress: String {
+
+        get {
+
+            var address = ""
+            address.append(country, separator: Constants.addressSeparator)
+            address.append(city, separator: Constants.addressSeparator)
+            address.append(street, separator: Constants.addressSeparator)
+            address.append(zip, separator: Constants.addressSeparator)
+            return address
+        }
+    }
 
     init(address: Address) {
 
