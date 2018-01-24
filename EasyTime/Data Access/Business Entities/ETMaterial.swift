@@ -23,15 +23,28 @@ class ETMaterial: Hashable {
     var materialNr: String?
     var pricePerUnit: Float
     var serailNr: String?
-    var stockQuantity: Float = 0
     var unitId: String?
+    var unit: String?
     var name: String?
     var quantity: Float = 0
+    var stockQuantity: Float = 0
+    
     private let material: Material
 
     init(material: Material) {
 
         self.material = material
+        self.currency = material.currency
+        self.materialId = material.materialId
+        self.materialNr = material.materialNr
+        self.pricePerUnit = material.pricePerUnit
+        self.serailNr = material.serailNr
+        self.stockQuantity = material.stockQuantity
+        self.unitId = material.unitId
+        self.name = material.name
+    }
+    
+    func update(with material: Material) {
         self.currency = material.currency
         self.materialId = material.materialId
         self.materialNr = material.materialNr

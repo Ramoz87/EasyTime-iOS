@@ -13,6 +13,14 @@ import CoreData
 
 public class Material: NSManagedObject, DataHelperProtocol {
     
+    @objc dynamic var section: String {
+        guard let name = self.name, name.count > 0 else {
+            return "#"
+        }
+        
+        return String(describing:name.first!)
+    }
+    
     func update(object: Any) {
         if let csvObject = object as? CSVObject {
             

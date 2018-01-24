@@ -18,7 +18,7 @@ class TabBarViewController: UITabBarController {
         let ctrlTab1 = UINavigationController(rootViewController: ctrl)
         ctrlTab1.tabBarItem = UITabBarItem(title: ctrl.title, image: UIImage(named: "projectsIcon"), selectedImage: nil)
 
-        ctrl = MaterialsViewController()
+        ctrl = StockMaterialsViewController()
         ctrl.title = NSLocalizedString("Materials", comment: "")
         let ctrlTab2 = UINavigationController(rootViewController: ctrl)
         ctrlTab2.tabBarItem = UITabBarItem(title: ctrl.title, image: UIImage(named: "materialsIcon"), selectedImage: nil)

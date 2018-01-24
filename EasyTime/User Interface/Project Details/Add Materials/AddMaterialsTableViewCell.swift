@@ -23,12 +23,13 @@ class AddMaterialsTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var lblDetails: UILabel!
     @IBOutlet weak var btnSelect: UIButton!
     @IBOutlet weak var tfQuantity: UITextField!
+    @IBOutlet weak var lblUnit: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
         self.tfQuantity.inputViewController = NumberInputViewController()
-        self.tfQuantity.inputAccessoryView = UIView() // To hide IQKeyboardManager toolbar
+        self.tfQuantity.inputAccessoryView = UIView()
         self.tfQuantity.layer.borderColor = UIColor.et_blueColor.cgColor
         self.tfQuantity.layer.borderWidth = Constants.textFieldBorderWidth
         self.tfQuantity.layer.cornerRadius = Constants.textFieldCornerRadius
@@ -40,6 +41,7 @@ class AddMaterialsTableViewCell: UITableViewCell, UITextFieldDelegate {
             self.lblName.text = material!.name
             self.lblDetails.text = material!.materialNr
             self.tfQuantity.placeholder = String(describing: Int(material!.stockQuantity))
+            self.lblUnit.text = material!.unit
         }
     }
     

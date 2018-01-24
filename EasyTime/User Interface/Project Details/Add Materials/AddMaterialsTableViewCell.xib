@@ -40,6 +40,15 @@
                         <color key="textColor" red="0.42745098039215684" green="0.53725490196078429" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wVV-Je-zLm">
+                        <rect key="frame" x="256" y="5" width="52" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="0cb-rn-0mh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.42745098040000001" green="0.53725490200000003" blue="0.68627450980000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zYb-P3-Tl0">
                         <rect key="frame" x="256" y="21" width="52" height="30"/>
                         <constraints>
@@ -56,6 +65,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="QPv-2W-UN1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="4TF-aV-zJ6"/>
+                    <constraint firstItem="zYb-P3-Tl0" firstAttribute="top" secondItem="wVV-Je-zLm" secondAttribute="bottom" constant="2" id="60i-pY-XRJ"/>
+                    <constraint firstItem="wVV-Je-zLm" firstAttribute="width" secondItem="zYb-P3-Tl0" secondAttribute="width" id="Aj8-3b-iax"/>
                     <constraint firstAttribute="trailing" secondItem="zYb-P3-Tl0" secondAttribute="trailing" constant="12" id="Ldm-6g-Qq8"/>
                     <constraint firstItem="w5x-WW-gn6" firstAttribute="leading" secondItem="QPv-2W-UN1" secondAttribute="trailing" constant="14" id="N1p-LQ-vcj"/>
                     <constraint firstAttribute="bottom" secondItem="5NA-va-NSf" secondAttribute="bottom" constant="16" id="U4B-Aq-XAv"/>
@@ -65,6 +76,7 @@
                     <constraint firstItem="5NA-va-NSf" firstAttribute="top" secondItem="w5x-WW-gn6" secondAttribute="bottom" constant="4" id="cEg-34-bCz"/>
                     <constraint firstItem="zYb-P3-Tl0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="e6X-wN-uBO"/>
                     <constraint firstItem="QPv-2W-UN1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="oV1-kW-vDA"/>
+                    <constraint firstAttribute="trailing" secondItem="wVV-Je-zLm" secondAttribute="trailing" constant="12" id="yGU-QH-mcE"/>
                     <constraint firstItem="zYb-P3-Tl0" firstAttribute="leading" secondItem="w5x-WW-gn6" secondAttribute="trailing" constant="10" id="ydK-Oy-5Gv"/>
                 </constraints>
             </tableViewCellContentView>
@@ -73,6 +85,7 @@
                 <outlet property="btnSelect" destination="QPv-2W-UN1" id="aST-W3-fe0"/>
                 <outlet property="lblDetails" destination="5NA-va-NSf" id="Gg9-AC-55e"/>
                 <outlet property="lblName" destination="w5x-WW-gn6" id="CZF-Hy-Ztu"/>
+                <outlet property="lblUnit" destination="wVV-Je-zLm" id="ono-nk-1Li"/>
                 <outlet property="tfQuantity" destination="zYb-P3-Tl0" id="OUe-Pi-KnD"/>
             </connections>
         </tableViewCell>

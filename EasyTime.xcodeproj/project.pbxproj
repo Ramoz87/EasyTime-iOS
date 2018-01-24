@@ -17,7 +17,7 @@
 		9E1350BC1FE40015007CAEC3 /* ETCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1350BB1FE40015007CAEC3 /* ETCustomer.swift */; };
 		9E4CAEFB1FFD0095006FF08C /* InputButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E4CAEFA1FFD0095006FF08C /* InputButton.swift */; };
 		9E6348971FE116DB00FEDF17 /* ClientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6348961FE116DB00FEDF17 /* ClientsViewModel.swift */; };
-		9E6348991FE1173800FEDF17 /* MaterialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6348981FE1173800FEDF17 /* MaterialsViewModel.swift */; };
+		9E6348991FE1173800FEDF17 /* StockMaterialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6348981FE1173800FEDF17 /* StockMaterialsViewModel.swift */; };
 		9E63489B1FE1179B00FEDF17 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63489A1FE1179B00FEDF17 /* SettingsViewModel.swift */; };
 		9E65DE30200DE0AE006107DE /* ObjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E65DE2E200DE0AE006107DE /* ObjectsViewController.swift */; };
 		9E65DE31200DE0AE006107DE /* ObjectsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E65DE2F200DE0AE006107DE /* ObjectsViewController.xib */; };
@@ -91,8 +91,8 @@
 		9E730D301FDAA16A0059C810 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730CE31FDAA16A0059C810 /* LoginViewController.swift */; };
 		9E730D311FDAA16A0059C810 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E730CE41FDAA16A0059C810 /* LoginViewController.xib */; };
 		9E730D321FDAA16A0059C810 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730CE51FDAA16A0059C810 /* LoginViewModel.swift */; };
-		9E730D331FDAA16A0059C810 /* MaterialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730CE71FDAA16A0059C810 /* MaterialsViewController.swift */; };
-		9E730D341FDAA16A0059C810 /* MaterialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E730CE81FDAA16A0059C810 /* MaterialsViewController.xib */; };
+		9E730D331FDAA16A0059C810 /* StockMaterialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730CE71FDAA16A0059C810 /* StockMaterialsViewController.swift */; };
+		9E730D341FDAA16A0059C810 /* StockMaterialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E730CE81FDAA16A0059C810 /* StockMaterialsViewController.xib */; };
 		9E730D351FDAA16A0059C810 /* ProjectsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730CEA1FDAA16A0059C810 /* ProjectsViewController.swift */; };
 		9E730D361FDAA16A0059C810 /* ProjectsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E730CEB1FDAA16A0059C810 /* ProjectsViewController.xib */; };
 		9E730D371FDAA16A0059C810 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730CED1FDAA16A0059C810 /* RootViewController.swift */; };
@@ -135,6 +135,13 @@
 		B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */ = {isa = PBXBuildFile; fileRef = B73108D51FDEC1DE00BB3B07 /* customer.csv */; };
 		B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D71FDEC28300BB3B07 /* CSV.swift */; };
 		B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */; };
+		B761473D2018826A00ABF775 /* AddStockMaterialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761473B2018826A00ABF775 /* AddStockMaterialsViewController.swift */; };
+		B761473E2018826A00ABF775 /* AddStockMaterialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B761473C2018826A00ABF775 /* AddStockMaterialsViewController.xib */; };
+		B76147402018828D00ABF775 /* AddStockMaterialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761473F2018828D00ABF775 /* AddStockMaterialsViewModel.swift */; };
+		B761474320188BA200ABF775 /* MaterialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761474120188BA200ABF775 /* MaterialTableViewCell.swift */; };
+		B761474420188BA200ABF775 /* MaterialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B761474220188BA200ABF775 /* MaterialTableViewCell.xib */; };
+		B761474B2018AC1800ABF775 /* StockMaterialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76147492018AC1800ABF775 /* StockMaterialTableViewCell.swift */; };
+		B761474C2018AC1800ABF775 /* StockMaterialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B761474A2018AC1800ABF775 /* StockMaterialTableViewCell.xib */; };
 		B765DB1F200E2DE1002F5773 /* ETUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B765DB1E200E2DE1002F5773 /* ETUser.swift */; };
 		B7BB70752011E8E9001C717E /* ClientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB70732011E8E9001C717E /* ClientTableViewCell.swift */; };
 		B7BB70762011E8E9001C717E /* ClientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BB70742011E8E9001C717E /* ClientTableViewCell.xib */; };
@@ -167,7 +174,7 @@
 		9E1350BB1FE40015007CAEC3 /* ETCustomer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETCustomer.swift; sourceTree = "<group>"; };
 		9E4CAEFA1FFD0095006FF08C /* InputButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputButton.swift; sourceTree = "<group>"; };
 		9E6348961FE116DB00FEDF17 /* ClientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsViewModel.swift; sourceTree = "<group>"; };
-		9E6348981FE1173800FEDF17 /* MaterialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialsViewModel.swift; sourceTree = "<group>"; };
+		9E6348981FE1173800FEDF17 /* StockMaterialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMaterialsViewModel.swift; sourceTree = "<group>"; };
 		9E63489A1FE1179B00FEDF17 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		9E65DE2E200DE0AE006107DE /* ObjectsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectsViewController.swift; sourceTree = "<group>"; };
 		9E65DE2F200DE0AE006107DE /* ObjectsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ObjectsViewController.xib; sourceTree = "<group>"; };
@@ -243,8 +250,8 @@
 		9E730CE31FDAA16A0059C810 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9E730CE41FDAA16A0059C810 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		9E730CE51FDAA16A0059C810 /* LoginViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		9E730CE71FDAA16A0059C810 /* MaterialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MaterialsViewController.swift; sourceTree = "<group>"; };
-		9E730CE81FDAA16A0059C810 /* MaterialsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MaterialsViewController.xib; sourceTree = "<group>"; };
+		9E730CE71FDAA16A0059C810 /* StockMaterialsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StockMaterialsViewController.swift; sourceTree = "<group>"; };
+		9E730CE81FDAA16A0059C810 /* StockMaterialsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StockMaterialsViewController.xib; sourceTree = "<group>"; };
 		9E730CEA1FDAA16A0059C810 /* ProjectsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectsViewController.swift; sourceTree = "<group>"; };
 		9E730CEB1FDAA16A0059C810 /* ProjectsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProjectsViewController.xib; sourceTree = "<group>"; };
 		9E730CED1FDAA16A0059C810 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -288,6 +295,13 @@
 		B73108D51FDEC1DE00BB3B07 /* customer.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customer.csv; sourceTree = "<group>"; };
 		B73108D71FDEC28300BB3B07 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
+		B761473B2018826A00ABF775 /* AddStockMaterialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStockMaterialsViewController.swift; sourceTree = "<group>"; };
+		B761473C2018826A00ABF775 /* AddStockMaterialsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddStockMaterialsViewController.xib; sourceTree = "<group>"; };
+		B761473F2018828D00ABF775 /* AddStockMaterialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStockMaterialsViewModel.swift; sourceTree = "<group>"; };
+		B761474120188BA200ABF775 /* MaterialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialTableViewCell.swift; sourceTree = "<group>"; };
+		B761474220188BA200ABF775 /* MaterialTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaterialTableViewCell.xib; sourceTree = "<group>"; };
+		B76147492018AC1800ABF775 /* StockMaterialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMaterialTableViewCell.swift; sourceTree = "<group>"; };
+		B761474A2018AC1800ABF775 /* StockMaterialTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockMaterialTableViewCell.xib; sourceTree = "<group>"; };
 		B765DB1E200E2DE1002F5773 /* ETUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETUser.swift; sourceTree = "<group>"; };
 		B7BB70732011E8E9001C717E /* ClientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTableViewCell.swift; sourceTree = "<group>"; };
 		B7BB70742011E8E9001C717E /* ClientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientTableViewCell.xib; sourceTree = "<group>"; };
@@ -597,9 +611,12 @@
 		9E730CE61FDAA16A0059C810 /* Materials */ = {
 			isa = PBXGroup;
 			children = (
-				9E730CE71FDAA16A0059C810 /* MaterialsViewController.swift */,
-				9E730CE81FDAA16A0059C810 /* MaterialsViewController.xib */,
-				9E6348981FE1173800FEDF17 /* MaterialsViewModel.swift */,
+				B761473A2018820E00ABF775 /* Add Stock Materails */,
+				9E730CE71FDAA16A0059C810 /* StockMaterialsViewController.swift */,
+				9E730CE81FDAA16A0059C810 /* StockMaterialsViewController.xib */,
+				9E6348981FE1173800FEDF17 /* StockMaterialsViewModel.swift */,
+				B76147492018AC1800ABF775 /* StockMaterialTableViewCell.swift */,
+				B761474A2018AC1800ABF775 /* StockMaterialTableViewCell.xib */,
 			);
 			path = Materials;
 			sourceTree = "<group>";
@@ -722,6 +739,18 @@
 			path = "Add Materials";
 			sourceTree = "<group>";
 		};
+		B761473A2018820E00ABF775 /* Add Stock Materails */ = {
+			isa = PBXGroup;
+			children = (
+				B761473B2018826A00ABF775 /* AddStockMaterialsViewController.swift */,
+				B761473C2018826A00ABF775 /* AddStockMaterialsViewController.xib */,
+				B761473F2018828D00ABF775 /* AddStockMaterialsViewModel.swift */,
+				B761474120188BA200ABF775 /* MaterialTableViewCell.swift */,
+				B761474220188BA200ABF775 /* MaterialTableViewCell.xib */,
+			);
+			path = "Add Stock Materails";
+			sourceTree = "<group>";
+		};
 		B7E358BE1FD53F6C006256FC = {
 			isa = PBXGroup;
 			children = (
@@ -832,7 +861,7 @@
 				9E730D2F1FDAA16A0059C810 /* ClientsViewController.xib in Resources */,
 				9EF59C5C20121F7E0048A247 /* AddMaterialsTableViewCell.xib in Resources */,
 				9EC02C8C2007A47D004B83FC /* NumberInputViewController.xib in Resources */,
-				9E730D341FDAA16A0059C810 /* MaterialsViewController.xib in Resources */,
+				9E730D341FDAA16A0059C810 /* StockMaterialsViewController.xib in Resources */,
 				9E65DE40200E0B66006107DE /* WorkTypeTableViewCell.xib in Resources */,
 				9EC02C7E2004E60F004B83FC /* ProjectInfoViewController.xib in Resources */,
 				B7EEAB891FEA717A00FC50EF /* objects.csv in Resources */,
@@ -846,6 +875,7 @@
 				9E65DE4A200E2CA7006107DE /* AddExpenseViewController.xib in Resources */,
 				B7D1B687200E0D2B0070CC0F /* SettingViewHeader.xib in Resources */,
 				B7EEAB8C1FEA717A00FC50EF /* projects.csv in Resources */,
+				B761474420188BA200ABF775 /* MaterialTableViewCell.xib in Resources */,
 				9E730D0C1FDAA16A0059C810 /* IQKeyboardManager.bundle in Resources */,
 				9E65DE52200E33AF006107DE /* ExpenseTypeTableViewCell.xib in Resources */,
 				B7EEAB8B1FEA717A00FC50EF /* users.csv in Resources */,
@@ -860,6 +890,8 @@
 				B7EEAB881FEA717A00FC50EF /* orders.csv in Resources */,
 				9E90F5C720137A9C009F4896 /* ProjectInfoSectionView.xib in Resources */,
 				9EAE1F281FE0FDC600E8C47E /* ProjectTableViewCell.xib in Resources */,
+				B761474C2018AC1800ABF775 /* StockMaterialTableViewCell.xib in Resources */,
+				B761473E2018826A00ABF775 /* AddStockMaterialsViewController.xib in Resources */,
 				9E730D311FDAA16A0059C810 /* LoginViewController.xib in Resources */,
 				B7EEAB761FE7E14700FC50EF /* ObjectTableViewCell.xib in Resources */,
 				9E65DE4E200E2CC1006107DE /* ExpenseTypeViewController.xib in Resources */,
@@ -876,8 +908,8 @@
 			files = (
 				9E730D431FDAA22A0059C810 /* TabBarViewController.swift in Sources */,
 				9EC02C88200609F3004B83FC /* TabViewController.swift in Sources */,
-				9E6348991FE1173800FEDF17 /* MaterialsViewModel.swift in Sources */,
-				9E730D331FDAA16A0059C810 /* MaterialsViewController.swift in Sources */,
+				9E6348991FE1173800FEDF17 /* StockMaterialsViewModel.swift in Sources */,
+				9E730D331FDAA16A0059C810 /* StockMaterialsViewController.swift in Sources */,
 				9E730D241FDAA16A0059C810 /* Type+CoreDataProperties.swift in Sources */,
 				9E65DE3F200E0B66006107DE /* WorkTypeTableViewCell.swift in Sources */,
 				9E730D0E1FDAA16A0059C810 /* EasyTime.xcdatamodeld in Sources */,
@@ -892,6 +924,7 @@
 				B765DB1F200E2DE1002F5773 /* ETUser.swift in Sources */,
 				B7BB70752011E8E9001C717E /* ClientTableViewCell.swift in Sources */,
 				9EC02C862004F794004B83FC /* ETExpense.swift in Sources */,
+				B761473D2018826A00ABF775 /* AddStockMaterialsViewController.swift in Sources */,
 				9E730D201FDAA16A0059C810 /* Order+CoreDataProperties.swift in Sources */,
 				B7C5C745200F6AC80027D379 /* AddTimeViewController.swift in Sources */,
 				9E730D081FDAA16A0059C810 /* IQPreviousNextView.swift in Sources */,
@@ -905,6 +938,7 @@
 				9E730CFB1FDAA16A0059C810 /* AppDelegate.swift in Sources */,
 				9E824D681FE3E05E008538EB /* CollectionViewUpdateDelegate.swift in Sources */,
 				9E730D301FDAA16A0059C810 /* LoginViewController.swift in Sources */,
+				B76147402018828D00ABF775 /* AddStockMaterialsViewModel.swift in Sources */,
 				9E730D061FDAA16A0059C810 /* IQTextView.swift in Sources */,
 				9E730D161FDAA16A0059C810 /* Expense+CoreDataProperties.swift in Sources */,
 				9E730D1B1FDAA16A0059C810 /* Material+CoreDataClass.swift in Sources */,
@@ -972,10 +1006,12 @@
 				9E730CFF1FDAA16A0059C810 /* IQUIView+Hierarchy.swift in Sources */,
 				9E730D2A1FDAA16A0059C810 /* Authenticator.swift in Sources */,
 				9E65DE46200E2C91006107DE /* ExpenseTypeViewModel.swift in Sources */,
+				B761474B2018AC1800ABF775 /* StockMaterialTableViewCell.swift in Sources */,
 				9E730D131FDAA16A0059C810 /* Customer+CoreDataClass.swift in Sources */,
 				9E730D1C1FDAA16A0059C810 /* Material+CoreDataProperties.swift in Sources */,
 				9E730D391FDAA16A0059C810 /* SettingsViewController.swift in Sources */,
 				5F07A77E1FFFAAB000BBA74D /* TabView.swift in Sources */,
+				B761474320188BA200ABF775 /* MaterialTableViewCell.swift in Sources */,
 				9EC02C782004E59C004B83FC /* ProjectActivityViewController.swift in Sources */,
 				9E4CAEFB1FFD0095006FF08C /* InputButton.swift in Sources */,
 				9EC02C7D2004E60F004B83FC /* ProjectInfoViewController.swift in Sources */,

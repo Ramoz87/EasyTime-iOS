@@ -1,79 +1,83 @@
 //
-//  AddMaterialsViewController.swift
+//  MaterialsViewController.swift
 //  EasyTime
 //
-//  Created by Mobexs on 1/19/18.
-//  Copyright © 2018 Mobexs. All rights reserved.
+//  Created by Yury Ramazanov on 07/12/2017.
+//  Copyright © 2017 Mobexs. All rights reserved.
 //
 
 import UIKit
 
 fileprivate struct Constants {
-
+    
     static let titleText = NSLocalizedString("Materials", comment: "")
     static let btnSaveText = NSLocalizedString("ADD", comment: "")
     static let btnSaveTextFormat = NSLocalizedString("ADD %d MATERIALS", comment: "")
     static let btnSaveCornerRadius: CGFloat = 4
-
+    
 }
 
-class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UITableViewDelegate, UITableViewDataSource, CollectionViewUpdateDelegate {
+class StockMaterialsViewController: BaseViewController<StockMaterialsViewModel>, UITableViewDelegate, UITableViewDataSource, CollectionViewUpdateDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnSave: UIButton!
-
+    @IBOutlet weak var vHint: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = Constants.titleText
-
-        self.tableView.register(UINib(nibName: AddMaterialsTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: AddMaterialsTableViewCell.reuseIdentifier)
-
+        
+        self.tableView.register(UINib(nibName: StockMaterialTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: StockMaterialTableViewCell.reuseIdentifier)
+        self.tableView.tableFooterView = UIView()
+        
         self.btnSave.layer.cornerRadius = Constants.btnSaveCornerRadius
         self.btnSave.setTitle(Constants.btnSaveText, for: .normal)
-        
         self.viewModel.collectionViewUpdateDelegate = self
         
         self.viewModel.updateResults()
     }
-    
-    private func updateButtonTitle(with selectedCount: Int){
-        let title = (selectedCount > 0) ? String(format: Constants.btnSaveTextFormat, selectedCount) : Constants.btnSaveText
-        self.btnSave.setTitle(title, for: .normal)
-    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateContent()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.viewModel.save()
+    }
+    
+    private func updateContent() {
+        self.vHint.isHidden = self.viewModel.hasData
+        self.tableView.isHidden = !self.viewModel.hasData
+    }
+    
     //MARK: - Action handlers
-
-    @IBAction func didClickSaveButton(sender: Any) {
-
-        if self.viewModel.hasMaterialsToAdd {
-            self.viewModel.save()
-            if let vc = self.navigationController?.viewControllers[1] {
-                self.navigationController?.popToViewController(vc, animated: true)
-            }
-        }
-    }
-
-    //MARK: - UITableViewDelegate
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.updateButtonTitle(with: self.viewModel.select(at: indexPath))
+    
+    @IBAction func didClickAddButton(sender: Any) {
+        let vc = UINavigationController(rootViewController: AddStockMaterialsViewController())
+        self.present(vc, animated: true, completion: nil)
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        self.updateButtonTitle(with: self.viewModel.deselect(at: indexPath))
+    //MARK: - UITableViewDelegate
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            self.viewModel.remove(at: indexPath)
+        }
     }
     
     //MARK: - UITableViewDataSource
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return self.viewModel.numberOfRowsInSection(section: section)
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: AddMaterialsTableViewCell.reuseIdentifier, for: indexPath) as! AddMaterialsTableViewCell
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: StockMaterialTableViewCell.reuseIdentifier, for: indexPath) as! StockMaterialTableViewCell
         cell.material = self.viewModel[indexPath]
         return cell
     }
@@ -82,11 +86,11 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
         
         return UITableViewAutomaticDimension
     }
-
+    
     //MARK: - CollectionViewUpdateDelegate
-
+    
     func didChangeObject(at indexPath: IndexPath?, for type: CollectionViewChangeType, newIndexPath: IndexPath?) {
-
+        
         switch type {
         case .insert:
             if  let indexPath = newIndexPath {
@@ -109,9 +113,9 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
             }
         }
     }
-
+    
     func didChangeSection(at sectionIndex: Int, for type: CollectionViewChangeType) {
-
+        
         switch type {
         case .insert:
             self.tableView.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
@@ -121,17 +125,18 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
             break
         }
     }
-
+    
     func willChangeContent() {
-
+        
         self.tableView.beginUpdates()
     }
-
+    
     func didChangeContent() {
-
+        
         self.tableView.endUpdates()
+        self.updateContent()
     }
-
+    
     func didChangeDataSet() {
         self.tableView.reloadData()
     }

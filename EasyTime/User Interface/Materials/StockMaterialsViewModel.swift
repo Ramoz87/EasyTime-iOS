@@ -1,31 +1,29 @@
 //
-//  AddMaterialsViewModel.swift
+//  MaterialsViewModel.swift
 //  EasyTime
 //
-//  Created by Mobexs on 1/19/18.
-//  Copyright © 2018 Mobexs. All rights reserved.
+//  Created by Mobexs on 12/13/17.
+//  Copyright © 2017 Mobexs. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
 fileprivate struct Constants {
-
+    
     static let sortDescriptor = "name"
-    static let materialPredicate = "inStock = true"
     static let unitPredicate = "type = 'UNIT_TYPE'"
+    static let materialPredicate = "inStock = true"
 }
 
-class AddMaterialsViewModel: BaseViewModel {
+class StockMaterialsViewModel: BaseViewModel {
 
-    private let job: ETJob
-    
-    private var selectedMaterails = Set<ETMaterial>()
     private var materails = Array<ETMaterial>()
     
     private lazy var fetchResultsController: NSFetchedResultsController<Material> = {
-
-        let fetchedResultsController: NSFetchedResultsController<Material> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor], predicate: NSPredicate(format: Constants.materialPredicate))
+        
+        let fetchedResultsController: NSFetchedResultsController<Material> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor],
+                                                                                                                                           predicate: NSPredicate(format: Constants.materialPredicate))
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
@@ -41,27 +39,28 @@ class AddMaterialsViewModel: BaseViewModel {
         }
     }()
     
-    var hasMaterialsToAdd: Bool {
+    var hasData: Bool {
         get {
-            let materials = self.selectedMaterails.filter { $0.quantity > 0}
-            return materials.count > 0
+            return self.numberOfRowsInSection(section: 0) > 0
         }
     }
-
-    init(job: ETJob) {
-
-        self.job = job
-        super.init()
+    
+    func remove(at indexPath: IndexPath) {
+        let item = self.fetchResultsController.object(at: indexPath)
+        item.inStock = false
+        item.stockQuantity = 0
+        
+        self.materails = self.materails.filter {$0.materialId != item.materialId}
     }
     
-    required init() {
-        fatalError("init() has not been implemented")
+    func resetCachedData(){
+        self.materails.removeAll()
     }
-
+    
     subscript(indexPath: IndexPath) -> ETMaterial {
-
+        
         let fetchedItem = self.fetchResultsController.object(at: indexPath)
-     
+        
         guard let material = materails.filter({$0.materialId == fetchedItem.materialId}).first else {
             let newMaterial = ETMaterial(material:fetchedItem)
             if let unit = self.materialUnits?.filter({$0.typeId == fetchedItem.unitId}).first {
@@ -75,50 +74,33 @@ class AddMaterialsViewModel: BaseViewModel {
         return material
     }
     
-    func select(at indexPath: IndexPath) -> Int {
-        self.selectedMaterails.insert(self[indexPath])
-        
-        return self.selectedMaterails.count
-    }
-    
-    func deselect(at indexPath: IndexPath) -> Int {
-        self.selectedMaterails.remove(self[indexPath])
-        
-        return self.selectedMaterails.count
-    }
-
     func numberOfRowsInSection(section: Int) -> Int {
-
+        
         guard let count = self.fetchResultsController.sections?[section].numberOfObjects else { return 0 }
         return count
     }
-
+    
     func updateResults() {
-
+                
         do {
             try self.fetchResultsController.performFetch()
             self.collectionViewUpdateDelegate?.didChangeDataSet()
         } catch {}
     }
-
+    
     override func save() {
+        
+        guard let materials = self.fetchResultsController.fetchedObjects else {
+            return
+        }
 
-        for material in self.selectedMaterails {
-
-            if material.quantity > 0  {
-
-                let expense = ETExpense()
-                expense.materialId = material.materialId
-                expense.name = material.name
-                expense.type = .material
-                expense.value = material.quantity
-                expense.unit = material.unit
-            
-                self.job.addExpense(expense: expense)
+        for item in materials {
+            if let material = self.materails.filter ({$0.materialId == item.materialId}).first {
+                item.stockQuantity = material.stockQuantity
             }
         }
-        
+
         super.save()
     }
+    
 }
-

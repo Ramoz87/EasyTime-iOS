@@ -25,5 +25,6 @@ extension Material {
     @NSManaged public var stockQuantity: Float
     @NSManaged public var unitId: String?
     @NSManaged public var name: String?
+    @NSManaged public var inStock: Bool
 
 }
