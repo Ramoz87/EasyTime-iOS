@@ -17,6 +17,23 @@ class ETCustomer {
     var contacts: NSSet?
     var jobStatistic: String?
 
+    var fullName: String {
+
+        get {
+
+            var name = ""
+            if let firstName = self.firstName {
+
+                name += firstName + " "
+            }
+            if let lastName = self.lastName {
+
+                name += lastName
+            }
+            return name
+        }
+    }
+
     lazy var address: ETAddress? = {
 
         if let address = self.customer.address {
