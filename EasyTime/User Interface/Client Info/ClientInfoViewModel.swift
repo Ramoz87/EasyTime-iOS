@@ -12,49 +12,22 @@ import CoreData
 fileprivate struct Constants {
 
     static let sortDescriptor = "name"
-    static let filterPredicate = "customerId = %@ && entityType = %@"
+    static let sectionName = "entityType"
+    static let filterPredicate = "customerId = %@"
     static let tabViewTitles = [
-        NSLocalizedString("PROJECTS", comment: ""),
-        NSLocalizedString("ORDERS", comment: ""),
-        NSLocalizedString("OBJECTS", comment: "")]
-}
-
-enum ClientInfoTabType: Int {
-
-    case projects
-    case orders
-    case objects
-
-    static func count() -> Int {
-
-        return 3
-    }
-
-    func title() -> String {
-
-        return Constants.tabViewTitles[self.rawValue]
-    }
-
-    func entityType() -> String {
-
-        switch self {
-        case .projects:
-            return Project.entityName
-        case .orders:
-            return Order.entityName
-        case .objects:
-            return Object.entityName
-        }
-    }
+        Project.entityName: NSLocalizedString("PROJECTS", comment: ""),
+        Order.entityName: NSLocalizedString("ORDERS", comment: ""),
+        Object.entityName: NSLocalizedString("OBJECTS", comment: "")]
 }
 
 class ClientInfoViewModel: BaseViewModel {
 
     let customer: ETCustomer
+    var selectedTabIndex: Int = 0
     private lazy var fetchResultsController: NSFetchedResultsController<Job> = {
 
         let fetchedResultsController: NSFetchedResultsController<Job> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor],
-                                                                                                                                      sectionNameKeyPath: nil)
+                                                                                                                                      sectionNameKeyPath: Constants.sectionName)
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
@@ -63,7 +36,7 @@ class ClientInfoViewModel: BaseViewModel {
 
         self.customer = customer
         super.init()
-        self.updateFilterResults()
+        self.fetchData()
     }
 
     required init() {
@@ -72,7 +45,8 @@ class ClientInfoViewModel: BaseViewModel {
 
     subscript(indexPath: IndexPath) -> ETJob {
 
-        let job = self.fetchResultsController.object(at: indexPath)
+        let updatedIndexPath = IndexPath(row: indexPath.row, section: self.selectedTabIndex)
+        let job = self.fetchResultsController.object(at: updatedIndexPath)
 
         if let project = job as? Project {
 
@@ -94,12 +68,14 @@ class ClientInfoViewModel: BaseViewModel {
 
     func numberOfTabs() -> Int {
 
-        return ClientInfoTabType.count()
+        guard let count = self.fetchResultsController.sections?.count else { return 0 }
+        return count
     }
 
     func titleForTab(at index: Int) -> String? {
 
-        return ClientInfoTabType(rawValue: index)?.title()
+        guard let title = self.fetchResultsController.sections?[index].name else { return "" }
+        return Constants.tabViewTitles[title]
     }
 
     //MARK: - TableView
@@ -116,9 +92,9 @@ class ClientInfoViewModel: BaseViewModel {
         return count
     }
 
-    func updateFilterResults(type: ClientInfoTabType = .projects) {
+    private func fetchData() {
 
-        let predicate = NSPredicate(format: Constants.filterPredicate, self.customer.customerId!, type.entityType())
+        let predicate = NSPredicate(format: Constants.filterPredicate, self.customer.customerId!)
         self.fetchResultsController.fetchRequest.predicate = predicate
 
         do {

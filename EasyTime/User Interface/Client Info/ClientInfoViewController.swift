@@ -35,6 +35,7 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
         self.tableView.register(UINib.init(nibName: ProjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectTableViewCell.reuseIdentifier)
         self.tableView.register(UINib.init(nibName: OrderTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: OrderTableViewCell.reuseIdentifier)
         self.tableView.register(UINib.init(nibName: ObjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ObjectTableViewCell.reuseIdentifier)
+        self.tableView.tableHeaderView = self.vHeader
         self.tableView.tableFooterView = UIView() //To hide separators of empty cells
         self.viewModel.collectionViewUpdateDelegate = self
 
@@ -60,7 +61,7 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
         guard let fullAddress = self.viewModel.customer.address?.fullAddress.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         guard let url = URL(string: "http://maps.apple.com/?address=\(fullAddress)") else { return }
         let application = UIApplication.shared
-        
+
         if application.canOpenURL(url) == true {
 
             application.open(url, options: [:], completionHandler: nil)
@@ -91,11 +92,8 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
 
     func tabView(_ tabView: TabView, didSelectItemAtIndex index: Int) {
 
-        if let type = ClientInfoTabType(rawValue: index) {
-
-            self.viewModel.updateFilterResults(type: type)
-            self.tableView.reloadData()
-        }
+        self.viewModel.selectedTabIndex = index
+        self.tableView.reloadData()
     }
 
     //MARK: - UITableViewDataSource
