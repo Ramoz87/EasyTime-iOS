@@ -18,7 +18,7 @@ fileprivate struct Constants {
 
 class StockMaterialsViewModel: BaseViewModel {
 
-    private var materails = Array<ETMaterial>()
+    private var materails = Set<ETMaterial>()
     
     private lazy var fetchResultsController: NSFetchedResultsController<Material> = {
         
@@ -49,12 +49,6 @@ class StockMaterialsViewModel: BaseViewModel {
         let item = self.fetchResultsController.object(at: indexPath)
         item.inStock = false
         item.stockQuantity = 0
-        
-        self.materails = self.materails.filter {$0.materialId != item.materialId}
-    }
-    
-    func resetCachedData(){
-        self.materails.removeAll()
     }
     
     subscript(indexPath: IndexPath) -> ETMaterial {
@@ -67,7 +61,7 @@ class StockMaterialsViewModel: BaseViewModel {
                 newMaterial.unit = unit.name
             }
             
-            materails.append(newMaterial)
+            materails.insert(newMaterial)
             return newMaterial
         }
         
@@ -103,4 +97,28 @@ class StockMaterialsViewModel: BaseViewModel {
         super.save()
     }
     
+    //MARK: - NSFetchedResultsControllerDelegate
+    
+    override func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+        case .delete:
+            let deleteItem = anObject as! Material
+            self.materails = self.materails.filter {$0.materialId != deleteItem.materialId}
+            print(deleteItem.materialId! + " " + String(self.materails.count))
+            break
+        case .update:
+            if  let indexPath = indexPath {
+                let item = self.fetchResultsController.object(at: indexPath)
+                if let material = self.materails.filter({$0.materialId == item.materialId}).first {
+                    material.stockQuantity = item.stockQuantity
+                }
+            }
+            break
+        default: break
+        }
+        
+        super.controller(controller, didChange: anObject, at: indexPath, for: type, newIndexPath: newIndexPath)
+    }
+
 }

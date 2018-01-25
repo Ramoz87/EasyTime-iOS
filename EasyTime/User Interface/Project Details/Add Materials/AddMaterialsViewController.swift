@@ -28,7 +28,8 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
         self.title = Constants.titleText
 
         self.tableView.register(UINib(nibName: AddMaterialsTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: AddMaterialsTableViewCell.reuseIdentifier)
-
+        self.tableView.tableFooterView = UIView()
+        
         self.btnSave.layer.cornerRadius = Constants.btnSaveCornerRadius
         self.btnSave.setTitle(Constants.btnSaveText, for: .normal)
         
@@ -57,11 +58,19 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
     //MARK: - UITableViewDelegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.updateButtonTitle(with: self.viewModel.select(at: indexPath))
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        self.updateButtonTitle(with: self.viewModel.deselect(at: indexPath))
+        
+        let cell = tableView.cellForRow(at: indexPath) as! AddMaterialsTableViewCell
+        var selectedCount = 0
+        if self.viewModel.isSelected(at: indexPath) {
+            selectedCount = self.viewModel.deselect(at: indexPath)
+            cell.isMaterialSelected = false
+        }
+        else {
+            selectedCount = self.viewModel.select(at: indexPath)
+            cell.isMaterialSelected = true
+        }
+        
+        self.updateButtonTitle(with: selectedCount)
     }
     
     //MARK: - UITableViewDataSource
@@ -75,6 +84,7 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
 
         let cell = tableView.dequeueReusableCell(withIdentifier: AddMaterialsTableViewCell.reuseIdentifier, for: indexPath) as! AddMaterialsTableViewCell
         cell.material = self.viewModel[indexPath]
+        cell.isMaterialSelected = self.viewModel.isSelected(at: indexPath)
         return cell
     }
     

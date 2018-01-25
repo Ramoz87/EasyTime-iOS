@@ -41,35 +41,24 @@ class AddMaterialsTableViewCell: UITableViewCell, UITextFieldDelegate {
             self.lblName.text = material!.name
             self.lblDetails.text = material!.materialNr
             self.tfQuantity.placeholder = String(describing: Int(material!.stockQuantity))
+            self.tfQuantity.text = String(describing: Int(material!.quantity))
             self.lblUnit.text = material!.unit
         }
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        
-        super.setSelected(selected, animated: animated)
-        self.btnSelect.isSelected = selected
-        
-        guard !isHidden else {
-            return
+    var isMaterialSelected: Bool = false {
+        didSet {
+            self.btnSelect.isSelected = isMaterialSelected
+            
+            if isMaterialSelected, let material = self.material {
+                self.tfQuantity.text = String(describing: Int(material.quantity))
+            }
+            else {
+                self.tfQuantity.text = nil
+            }
         }
-        
-        guard selected else {
-            self.tfQuantity.text = nil
-            self.material?.quantity = 0
-            return
-        }
-        
-        guard let material = self.material else {
-            self.tfQuantity.text = nil
-            return
-        }
-
-        
-        let quantity = (material.quantity > 0) ? material.quantity : material.stockQuantity
-        self.tfQuantity.text = String(describing: Int(quantity))
     }
-
+    
     //MARK: - UITextFieldDelegate
     
     func textFieldDidBeginEditing(_ textField: UITextField) {

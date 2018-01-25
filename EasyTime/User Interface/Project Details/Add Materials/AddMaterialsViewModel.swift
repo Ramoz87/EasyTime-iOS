@@ -20,8 +20,8 @@ class AddMaterialsViewModel: BaseViewModel {
 
     private let job: ETJob
     
-    private var selectedMaterails = Set<ETMaterial>()
-    private var materails = Array<ETMaterial>()
+    private var selectedMaterails = Set<String>()
+    private var materails = Set<ETMaterial>()
     
     private lazy var fetchResultsController: NSFetchedResultsController<Material> = {
 
@@ -43,7 +43,7 @@ class AddMaterialsViewModel: BaseViewModel {
     
     var hasMaterialsToAdd: Bool {
         get {
-            let materials = self.selectedMaterails.filter { $0.quantity > 0}
+            let materials = self.materails.filter {$0.materialId != nil && self.selectedMaterails.contains($0.materialId!) && $0.quantity > 0}
             return materials.count > 0
         }
     }
@@ -68,24 +68,46 @@ class AddMaterialsViewModel: BaseViewModel {
                 newMaterial.unit = unit.name
             }
             
-            materails.append(newMaterial)
+            materails.insert(newMaterial)
             return newMaterial
         }
         
         return material
     }
-    
+        
     func select(at indexPath: IndexPath) -> Int {
-        self.selectedMaterails.insert(self[indexPath])
+        let material = self.fetchResultsController.object(at: indexPath)
+        if let materialId = material.materialId {
+            self.selectedMaterails.insert(materialId)
+        }
+        
+        let object = self[indexPath]
+        object.quantity = object.stockQuantity
         
         return self.selectedMaterails.count
     }
     
     func deselect(at indexPath: IndexPath) -> Int {
-        self.selectedMaterails.remove(self[indexPath])
+        let material = self.fetchResultsController.object(at: indexPath)
+        if let materialId = material.materialId {
+            self.selectedMaterails.remove(materialId)
+        }
+        
+        let object = self[indexPath]
+        object.quantity = 0
         
         return self.selectedMaterails.count
     }
+    
+    func isSelected(at indexPath: IndexPath) -> Bool {
+        let material = self.fetchResultsController.object(at: indexPath)
+        guard let materialId = material.materialId else {
+            return false
+        }
+        
+        return self.selectedMaterails.contains(materialId)
+    }
+    
 
     func numberOfRowsInSection(section: Int) -> Int {
 
@@ -103,22 +125,50 @@ class AddMaterialsViewModel: BaseViewModel {
 
     override func save() {
 
-        for material in self.selectedMaterails {
-
-            if material.quantity > 0  {
-
+        for material in self.materails {
+            
+            if let materialId = material.materialId, self.selectedMaterails.contains(materialId), material.quantity > 0  {
+                
                 let expense = ETExpense()
                 expense.materialId = material.materialId
                 expense.name = material.name
                 expense.type = .material
                 expense.value = material.quantity
                 expense.unit = material.unit
-            
+                
                 self.job.addExpense(expense: expense)
+                
+                if let dbMaterail = self.fetchResultsController.fetchedObjects?.filter({$0.materialId == materialId}).first {
+                    dbMaterail.stockQuantity -= material.quantity
+                }
             }
         }
         
         super.save()
+    }
+    
+    //MARK: - NSFetchedResultsControllerDelegate
+    
+    override func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        
+        switch type {
+        case .delete:
+            let deleteItem = anObject as! Material
+            self.materails = self.materails.filter {$0.materialId != deleteItem.materialId}
+            self.selectedMaterails = self.selectedMaterails.filter {$0 != deleteItem.materialId}
+            break
+        case .update:
+            if  let indexPath = indexPath {
+                let item = self.fetchResultsController.object(at: indexPath)
+                if let material = self.materails.filter({$0.materialId == item.materialId}).first {
+                    material.stockQuantity = item.stockQuantity
+                }
+            }
+            break
+        default: break
+        }
+        
+        super.controller(controller, didChange: anObject, at: indexPath, for: type, newIndexPath: newIndexPath)
     }
 }
 
