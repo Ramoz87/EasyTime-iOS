@@ -12,11 +12,13 @@ import MapKit
 
 fileprivate struct Constants {
 
+    static let tableViewContentInset = UIEdgeInsets(top: 168, left: 0, bottom: 0, right: 0)
 }
 
 class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITableViewDataSource, UITableViewDelegate, TabViewDelegate, CollectionViewUpdateDelegate, MFMailComposeViewControllerDelegate {
 
-    @IBOutlet weak var vHeader: UIView!
+    @IBOutlet weak var tableBackgroundView: UIView!
+    @IBOutlet weak var tableBackgroundOverlayView: UIView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var btnSendEmail: UIButton!
@@ -30,17 +32,21 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
 
         self.title = self.viewModel.customer.companyName
 
-        self.vHeader.backgroundColor = UIColor.et_blueColor
+        self.tableBackgroundView.backgroundColor = UIColor.et_blueColor
 
         self.tableView.register(UINib.init(nibName: ProjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectTableViewCell.reuseIdentifier)
         self.tableView.register(UINib.init(nibName: OrderTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: OrderTableViewCell.reuseIdentifier)
         self.tableView.register(UINib.init(nibName: ObjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ObjectTableViewCell.reuseIdentifier)
-        self.tableView.tableHeaderView = self.vHeader
+        self.tableView.tableHeaderView = self.tabView
         self.tableView.tableFooterView = UIView() //To hide separators of empty cells
+        self.tableView.contentInset = Constants.tableViewContentInset
+        self.tableView.backgroundView = self.tableBackgroundView
         self.viewModel.collectionViewUpdateDelegate = self
 
         self.lblName.text = self.viewModel.customer.fullName
         self.lblAddress.text = self.viewModel.customer.address?.fullAddress
+
+        NSLayoutConstraint.activate( [NSLayoutConstraint(item: self.tableBackgroundOverlayView, attribute: .top, relatedBy: .equal, toItem: self.tabView, attribute: .bottom, multiplier: 1, constant: 0)])
     }
 
     //MARK: - Action handlers
