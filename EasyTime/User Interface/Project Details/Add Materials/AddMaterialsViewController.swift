@@ -11,6 +11,7 @@ import UIKit
 fileprivate struct Constants {
 
     static let titleText = NSLocalizedString("Materials", comment: "")
+    static let btnSaveNoDataText = NSLocalizedString("GO TO STOCK", comment: "")
     static let btnSaveText = NSLocalizedString("ADD", comment: "")
     static let btnSaveTextFormat = NSLocalizedString("ADD %d MATERIALS", comment: "")
     static let btnSaveCornerRadius: CGFloat = 4
@@ -38,19 +39,40 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
         self.viewModel.updateResults()
     }
     
-    private func updateButtonTitle(with selectedCount: Int){
-        let title = (selectedCount > 0) ? String(format: Constants.btnSaveTextFormat, selectedCount) : Constants.btnSaveText
-        self.btnSave.setTitle(title, for: .normal)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateButtonTitle()
+    }
+    
+    private func updateButtonTitle() {
+        
+        if self.viewModel.hasData {
+            
+            let selectedCount = self.viewModel.selectedCount
+            let title = (selectedCount > 0) ? String(format: Constants.btnSaveTextFormat, selectedCount) : Constants.btnSaveText
+            self.btnSave.setTitle(title, for: .normal)
+        }
+        else {
+            
+            self.btnSave.setTitle(Constants.btnSaveNoDataText, for: .normal)
+        }
     }
 
     //MARK: - Action handlers
 
     @IBAction func didClickSaveButton(sender: Any) {
 
-        if self.viewModel.hasMaterialsToAdd {
-            self.viewModel.save()
-            if let vc = self.navigationController?.viewControllers[1] {
-                self.navigationController?.popToViewController(vc, animated: true)
+        if self.viewModel.hasData {
+            if self.viewModel.hasMaterialsToAdd {
+                self.viewModel.save()
+                if let vc = self.navigationController?.viewControllers[1] {
+                    self.navigationController?.popToViewController(vc, animated: true)
+                }
+            }
+        }
+        else {
+            if let tabBar = self.navigationController?.tabBarController {
+                tabBar.selectedIndex = 1
             }
         }
     }
@@ -60,17 +82,16 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let cell = tableView.cellForRow(at: indexPath) as! AddMaterialsTableViewCell
-        var selectedCount = 0
         if self.viewModel.isSelected(at: indexPath) {
-            selectedCount = self.viewModel.deselect(at: indexPath)
+            self.viewModel.deselect(at: indexPath)
             cell.isMaterialSelected = false
         }
         else {
-            selectedCount = self.viewModel.select(at: indexPath)
+            self.viewModel.select(at: indexPath)
             cell.isMaterialSelected = true
         }
         
-        self.updateButtonTitle(with: selectedCount)
+        self.updateButtonTitle()
     }
     
     //MARK: - UITableViewDataSource

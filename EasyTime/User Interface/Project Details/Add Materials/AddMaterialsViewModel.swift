@@ -47,6 +47,18 @@ class AddMaterialsViewModel: BaseViewModel {
             return materials.count > 0
         }
     }
+    
+    var selectedCount: Int {
+        get {
+            return self.selectedMaterails.count
+        }
+    }
+    
+    var hasData: Bool {
+        get {
+            return self.numberOfRowsInSection(section: 0) > 0
+        }
+    }
 
     init(job: ETJob) {
 
@@ -75,7 +87,7 @@ class AddMaterialsViewModel: BaseViewModel {
         return material
     }
         
-    func select(at indexPath: IndexPath) -> Int {
+    func select(at indexPath: IndexPath) {
         let material = self.fetchResultsController.object(at: indexPath)
         if let materialId = material.materialId {
             self.selectedMaterails.insert(materialId)
@@ -83,11 +95,9 @@ class AddMaterialsViewModel: BaseViewModel {
         
         let object = self[indexPath]
         object.quantity = object.stockQuantity
-        
-        return self.selectedMaterails.count
     }
     
-    func deselect(at indexPath: IndexPath) -> Int {
+    func deselect(at indexPath: IndexPath) {
         let material = self.fetchResultsController.object(at: indexPath)
         if let materialId = material.materialId {
             self.selectedMaterails.remove(materialId)
@@ -95,8 +105,6 @@ class AddMaterialsViewModel: BaseViewModel {
         
         let object = self[indexPath]
         object.quantity = 0
-        
-        return self.selectedMaterails.count
     }
     
     func isSelected(at indexPath: IndexPath) -> Bool {
@@ -107,7 +115,6 @@ class AddMaterialsViewModel: BaseViewModel {
         
         return self.selectedMaterails.contains(materialId)
     }
-    
 
     func numberOfRowsInSection(section: Int) -> Int {
 
