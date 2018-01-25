@@ -19,6 +19,11 @@
 		9E5A0B8A20187479009AC25E /* ClientInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A0B8820187479009AC25E /* ClientInfoViewController.swift */; };
 		9E5A0B8B20187479009AC25E /* ClientInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E5A0B8920187479009AC25E /* ClientInfoViewController.xib */; };
 		9E5A0B8D201879AB009AC25E /* ClientInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A0B8C201879AB009AC25E /* ClientInfoViewModel.swift */; };
+		9E5A0B90201A131E009AC25E /* InvoiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A0B8F201A131E009AC25E /* InvoiceViewModel.swift */; };
+		9E5A0B93201A1334009AC25E /* InvoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A0B91201A1334009AC25E /* InvoiceViewController.swift */; };
+		9E5A0B94201A1334009AC25E /* InvoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E5A0B92201A1334009AC25E /* InvoiceViewController.xib */; };
+		9E5A0B97201A1889009AC25E /* InvoiceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5A0B95201A1889009AC25E /* InvoiceTableViewCell.swift */; };
+		9E5A0B98201A1889009AC25E /* InvoiceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E5A0B96201A1889009AC25E /* InvoiceTableViewCell.xib */; };
 		9E6348971FE116DB00FEDF17 /* ClientsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6348961FE116DB00FEDF17 /* ClientsViewModel.swift */; };
 		9E6348991FE1173800FEDF17 /* StockMaterialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6348981FE1173800FEDF17 /* StockMaterialsViewModel.swift */; };
 		9E63489B1FE1179B00FEDF17 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E63489A1FE1179B00FEDF17 /* SettingsViewModel.swift */; };
@@ -179,6 +184,11 @@
 		9E5A0B8820187479009AC25E /* ClientInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientInfoViewController.swift; sourceTree = "<group>"; };
 		9E5A0B8920187479009AC25E /* ClientInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientInfoViewController.xib; sourceTree = "<group>"; };
 		9E5A0B8C201879AB009AC25E /* ClientInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientInfoViewModel.swift; sourceTree = "<group>"; };
+		9E5A0B8F201A131E009AC25E /* InvoiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewModel.swift; sourceTree = "<group>"; };
+		9E5A0B91201A1334009AC25E /* InvoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceViewController.swift; sourceTree = "<group>"; };
+		9E5A0B92201A1334009AC25E /* InvoiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceViewController.xib; sourceTree = "<group>"; };
+		9E5A0B95201A1889009AC25E /* InvoiceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvoiceTableViewCell.swift; sourceTree = "<group>"; };
+		9E5A0B96201A1889009AC25E /* InvoiceTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InvoiceTableViewCell.xib; sourceTree = "<group>"; };
 		9E6348961FE116DB00FEDF17 /* ClientsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientsViewModel.swift; sourceTree = "<group>"; };
 		9E6348981FE1173800FEDF17 /* StockMaterialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMaterialsViewModel.swift; sourceTree = "<group>"; };
 		9E63489A1FE1179B00FEDF17 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
@@ -395,6 +405,18 @@
 			path = "Client Info";
 			sourceTree = "<group>";
 		};
+		9E5A0B8E201A130B009AC25E /* Invoice */ = {
+			isa = PBXGroup;
+			children = (
+				9E5A0B95201A1889009AC25E /* InvoiceTableViewCell.swift */,
+				9E5A0B96201A1889009AC25E /* InvoiceTableViewCell.xib */,
+				9E5A0B91201A1334009AC25E /* InvoiceViewController.swift */,
+				9E5A0B92201A1334009AC25E /* InvoiceViewController.xib */,
+				9E5A0B8F201A131E009AC25E /* InvoiceViewModel.swift */,
+			);
+			path = Invoice;
+			sourceTree = "<group>";
+		};
 		9E65DE2D200DE076006107DE /* Objects */ = {
 			isa = PBXGroup;
 			children = (
@@ -591,6 +613,7 @@
 				9E730CDE1FDAA16A0059C810 /* Assets.xcassets */,
 				9E5A0B8720187453009AC25E /* Client Info */,
 				9E730CDF1FDAA16A0059C810 /* Clients */,
+				9E5A0B8E201A130B009AC25E /* Invoice */,
 				9E730CE21FDAA16A0059C810 /* Login */,
 				9E730CE61FDAA16A0059C810 /* Materials */,
 				5F07A77F1FFFAB3C00BBA74D /* Project Details */,
@@ -877,6 +900,7 @@
 				B7C5C744200F6AC80027D379 /* AddTimeViewController.xib in Resources */,
 				B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */,
 				9E730D2F1FDAA16A0059C810 /* ClientsViewController.xib in Resources */,
+				9E5A0B94201A1334009AC25E /* InvoiceViewController.xib in Resources */,
 				9EF59C5C20121F7E0048A247 /* AddMaterialsTableViewCell.xib in Resources */,
 				9EC02C8C2007A47D004B83FC /* NumberInputViewController.xib in Resources */,
 				9E730D341FDAA16A0059C810 /* StockMaterialsViewController.xib in Resources */,
@@ -888,6 +912,7 @@
 				9E730D3A1FDAA16A0059C810 /* SettingsViewController.xib in Resources */,
 				9E65DE31200DE0AE006107DE /* ObjectsViewController.xib in Resources */,
 				B7BB70762011E8E9001C717E /* ClientTableViewCell.xib in Resources */,
+				9E5A0B98201A1889009AC25E /* InvoiceTableViewCell.xib in Resources */,
 				9E93449A201734D3008AEEEE /* ProjectPhotoCollectionViewCell.xib in Resources */,
 				B7EEAB751FE7E14700FC50EF /* OrderTableViewCell.xib in Resources */,
 				9E65DE4A200E2CA7006107DE /* AddExpenseViewController.xib in Resources */,
@@ -926,6 +951,7 @@
 			files = (
 				9E730D431FDAA22A0059C810 /* TabBarViewController.swift in Sources */,
 				9EC02C88200609F3004B83FC /* TabViewController.swift in Sources */,
+				9E5A0B93201A1334009AC25E /* InvoiceViewController.swift in Sources */,
 				9E6348991FE1173800FEDF17 /* StockMaterialsViewModel.swift in Sources */,
 				9E730D331FDAA16A0059C810 /* StockMaterialsViewController.swift in Sources */,
 				9E730D241FDAA16A0059C810 /* Type+CoreDataProperties.swift in Sources */,
@@ -990,7 +1016,9 @@
 				9E65DE51200E33AF006107DE /* ExpenseTypeTableViewCell.swift in Sources */,
 				9EAE1F271FE0FDC600E8C47E /* ProjectTableViewCell.swift in Sources */,
 				B7EEAB711FE7E09600FC50EF /* OrderTableViewCell.swift in Sources */,
+				9E5A0B90201A131E009AC25E /* InvoiceViewModel.swift in Sources */,
 				9E730D0B1FDAA16A0059C810 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
+				9E5A0B97201A1889009AC25E /* InvoiceTableViewCell.swift in Sources */,
 				9E1350B61FE3EEBE007CAEC3 /* ETOrder.swift in Sources */,
 				9E0AD1731FE3CFBF000244FF /* ETJob.swift in Sources */,
 				9E730D0F1FDAA16A0059C810 /* Address+CoreDataClass.swift in Sources */,

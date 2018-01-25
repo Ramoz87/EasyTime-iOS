@@ -28,5 +28,16 @@ class ProjectDetailsViewController: BaseViewController<ProjectDetailsViewModel> 
             controller.view.safeTrailingAnchor.constraint(equalTo: self.view.safeTrailingAnchor),
             controller.view.safeBottomAnchor.constraint(equalTo: self.view.safeBottomAnchor)
             ])
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "invoiceIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.didTapInvoiceButton(sender:)))
+    }
+
+    //MARK: - Action handlers
+
+    @objc func didTapInvoiceButton(sender: Any) {
+
+        let viewModel = InvoiceViewModel(job: self.viewModel.job)
+        let controller = InvoiceViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }

@@ -16,7 +16,7 @@ fileprivate struct Constants {
 
 class ProjectDetailsViewModel: BaseViewModel {
 
-    private let job: ETJob
+    let job: ETJob
     var title: String? {
 
         get { return self.job.number }
