@@ -8,11 +8,8 @@
 import UIKit
 
 fileprivate struct Constants {
-    
-    static let curveWidthPercent: CGFloat = 0.05
-    static let inclineWidthPercent: CGFloat = 0.07
-    static let controlXPercent: CGFloat = 0.6
-    static let controlYPercent: CGFloat = 0.9
+
+    static let curveViewWidth: CGFloat = 39
     static let fontSize: CGFloat = 14
     static let textColor = UIColor(red: 65 / 255, green: 91 / 255, blue: 128 / 255, alpha: 1)
     static let selectedTextColor = UIColor.black
@@ -51,7 +48,7 @@ class TabView: UIView {
             self.selectItem(at: self.selectedIndex)
         }
     }
-    
+
     func reloadData() {
         
         for subview in self.subviews {
@@ -62,44 +59,40 @@ class TabView: UIView {
         if let delegate = self.delegate {
             
             let numberOfItems = delegate.numberOfItemsForTabView(tabView: self)
-            for i in 0...(numberOfItems - 1) {
-                
-                let item = TabViewItem()
-                item.tag = i
-                item.setTitle(delegate.tabView(self, titleForItemAtIndex: i), for: .normal)
-                item.addTarget(self, action: #selector(TabView.didTap(sender:)), for: .touchUpInside)
-                
-                if i == 0 && numberOfItems > 1 {
-                    
-                    item.position = .left
-                }
-                else if i == numberOfItems - 1 && numberOfItems > 1 {
-                    
-                    item.position = .right
-                }
-                else {
-                    
-                    item.position = .middle
-                }
-                
-                self.addSubview(item)
-            }
-            self.selectItem(at: self.selectedIndex)
-        }
-    }
-    
-    override func layoutSubviews() {
 
-        //TODO: Make sure TabView works fine when resizing
-        super.layoutSubviews()
-        
-        let numberOfItems = self.subviews.count
-        for item in self.subviews {
-            
-            let itemWidth = self.frame.size.width / CGFloat(numberOfItems)
-            let index = item.tag
-            item.frame = CGRect(origin: CGPoint(x: itemWidth * CGFloat(index) - itemWidth * (Constants.curveWidthPercent + Constants.inclineWidthPercent / 2), y: 0),
-                                size: CGSize(width: itemWidth * (1 + (Constants.curveWidthPercent + Constants.inclineWidthPercent / 2) * 2), height: self.frame.size.height))
+            if numberOfItems > 0 {
+
+                var leadingItem: UIView? = nil
+                for i in 0...(numberOfItems - 1) {
+
+                    var position = TabViewItemPosition.middle
+                    if i == 0 && numberOfItems > 1 {
+
+                        position = .left
+                    }
+                    else if i == numberOfItems - 1 && numberOfItems > 1 {
+
+                        position = .right
+                    }
+
+                    let item = TabViewItem(position: position)
+                    item.tag = i
+                    item.setTitle(delegate.tabView(self, titleForItemAtIndex: i), for: .normal)
+                    item.addTarget(self, action: #selector(TabView.didTap(sender:)), for: .touchUpInside)
+
+                    self.addSubview(item)
+
+                    NSLayoutConstraint.activate( [
+                        NSLayoutConstraint(item: item, attribute: .leading, relatedBy: .equal, toItem: leadingItem == nil ? self : leadingItem, attribute: leadingItem == nil ? .leading : .trailing, multiplier: 1, constant: leadingItem == nil ? -Constants.curveViewWidth / 2 : -Constants.curveViewWidth),
+                        item.safeTopAnchor.constraint(equalTo: self.safeTopAnchor),
+                        item.safeBottomAnchor.constraint(equalTo: self.safeBottomAnchor),
+                        NSLayoutConstraint(item: item, attribute: .width, relatedBy: .equal, toItem: self, attribute: .width, multiplier: 1 / CGFloat(numberOfItems), constant: Constants.curveViewWidth),
+                        ])
+
+                    leadingItem = item
+                }
+                self.selectItem(at: self.selectedIndex)
+            }
         }
     }
     
@@ -138,127 +131,99 @@ class TabView: UIView {
 
 private class TabViewItem: UIButton
 {
-    lazy var shapeLayer: CAShapeLayer = {
-       
-        let layer = CAShapeLayer()
-        layer.backgroundColor = UIColor.clear.cgColor
-        return layer
+    let position: TabViewItemPosition
+
+    lazy var leftCurveImageView: UIImageView = {
+
+        let image = UIImage(named: "tabLeftCurve")?.withRenderingMode(.alwaysTemplate)
+        let imageView = UIImageView(image: image)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = false
+        return imageView
     }()
-    
-    var position: TabViewItemPosition = .middle {
-        
+
+    lazy var rightCurveImageView: UIImageView = {
+
+        let image = UIImage(named: "tabRightCurve")?.withRenderingMode(.alwaysTemplate)
+        let imageView = UIImageView(image: image)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = false
+        return imageView
+    }()
+
+    lazy var middleView: UIView = {
+
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.isUserInteractionEnabled = false
+        return view
+    }()
+
+    override var isSelected: Bool {
+
         didSet {
-            
-            self.setNeedsLayout()
+
+            self.middleView.backgroundColor = self.isSelected ? Constants.selectedFillColor : Constants.fillColor
+
+            if self.position != .left {
+
+                self.leftCurveImageView.tintColor = self.isSelected ? Constants.selectedFillColor : Constants.fillColor
+            }
+            if self.position != .right {
+
+                self.rightCurveImageView.tintColor = self.isSelected ? Constants.selectedFillColor : Constants.fillColor
+            }
         }
     }
-    
-    init() {
 
+    init(position: TabViewItemPosition) {
+
+        self.position = position
         super.init(frame: CGRect.zero)
+
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(self.middleView)
+        var constraints: [NSLayoutConstraint] = [
+            self.middleView.safeLeadingAnchor.constraint(equalTo: self.safeLeadingAnchor, constant: position == .left ? 0 : Constants.curveViewWidth),
+            self.middleView.safeTopAnchor.constraint(equalTo: self.safeTopAnchor),
+            self.middleView.safeTrailingAnchor.constraint(equalTo: self.safeTrailingAnchor, constant: position == .right ? 0 : -Constants.curveViewWidth),
+            self.middleView.safeBottomAnchor.constraint(equalTo: self.safeBottomAnchor)
+        ]
+
+        if position == .left || position == .middle {
+
+            self.addSubview(self.rightCurveImageView)
+            constraints.append(contentsOf: [
+                self.rightCurveImageView.safeTopAnchor.constraint(equalTo: self.safeTopAnchor),
+                self.rightCurveImageView.safeTrailingAnchor.constraint(equalTo: self.safeTrailingAnchor),
+                self.rightCurveImageView.safeBottomAnchor.constraint(equalTo: self.safeBottomAnchor),
+                NSLayoutConstraint(item: self.rightCurveImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: Constants.curveViewWidth),
+                ])
+        }
+
+        if position == .right || position == .middle {
+
+            self.addSubview(self.leftCurveImageView)
+            constraints.append(contentsOf: [
+                self.leftCurveImageView.safeTopAnchor.constraint(equalTo: self.safeTopAnchor),
+                self.leftCurveImageView.safeLeadingAnchor.constraint(equalTo: self.safeLeadingAnchor),
+                self.leftCurveImageView.safeBottomAnchor.constraint(equalTo: self.safeBottomAnchor),
+                NSLayoutConstraint(item: self.leftCurveImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: Constants.curveViewWidth),
+                ])
+        }
+
+        NSLayoutConstraint.activate(constraints)
 
         self.titleLabel?.font = UIFont.systemFont(ofSize: Constants.fontSize)
         self.titleLabel?.textColor = Constants.textColor
         self.setTitleColor(Constants.textColor, for: .normal)
         self.setTitleColor(Constants.selectedTextColor, for: .selected)
         self.backgroundColor = UIColor.clear
+        self.isSelected = false
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func draw(_ rect: CGRect)
-    {
-        let curveWidth = rect.width * Constants.curveWidthPercent
-        let controlWidth = curveWidth * Constants.controlXPercent
-        let controlHeight = curveWidth * Constants.controlYPercent
-        let inclineWidth = rect.width * Constants.inclineWidthPercent
-        
-        let bezierPath = UIBezierPath()
-        bezierPath.move(to: CGPoint(x: 0, y: rect.height))
-        
-        if self.position == .left {
-            
-            bezierPath.addLine(to:
-                CGPoint(
-                    x: 0,
-                    y: 0))
-        }
-        else {
-            
-            bezierPath.addQuadCurve(to:
-                CGPoint(
-                    x: curveWidth,
-                    y: rect.height - curveWidth),
-                                    controlPoint:
-                CGPoint(
-                    x: controlWidth,
-                    y: rect.height - curveWidth + controlHeight))
-            
-            bezierPath.addLine(to:
-                CGPoint(
-                    x: curveWidth + inclineWidth,
-                    y: curveWidth))
-
-            bezierPath.addQuadCurve(to:
-                CGPoint(
-                    x: curveWidth * 2 + inclineWidth,
-                    y: 0),
-                                    controlPoint:
-                CGPoint(
-                    x: curveWidth * 2 + inclineWidth - controlWidth,
-                    y: curveWidth - controlHeight))
-        }
-        
-        if self.position == .right {
-            
-            bezierPath.addLine(to:
-                CGPoint(
-                    x: rect.width,
-                    y: 0))
-            
-            bezierPath.addLine(to:
-                CGPoint(
-                    x: rect.width,
-                    y: rect.height))
-        }
-        else {
-            
-            bezierPath.addLine(to:
-                CGPoint(
-                    x: rect.size.width - inclineWidth - 2 * curveWidth,
-                    y: 0))
-            
-            bezierPath.addQuadCurve(to:
-                CGPoint(
-                    x: rect.width - inclineWidth - curveWidth,
-                    y: curveWidth),
-                                    controlPoint:
-                CGPoint(
-                    x: rect.size.width - inclineWidth - 2 * curveWidth + controlWidth,
-                    y: curveWidth - controlHeight))
-            
-            bezierPath.addLine(to:
-                CGPoint(
-                    x: rect.size.width - curveWidth,
-                    y: rect.height - controlHeight))
-            
-            bezierPath.addQuadCurve(to:
-                CGPoint(
-                    x: rect.width,
-                    y: rect.height),
-                                    controlPoint:
-                CGPoint(
-                    x: rect.width - controlWidth,
-                    y: rect.height - curveWidth + controlHeight))
-        }
-        
-        bezierPath.close()
-        
-        self.shapeLayer.path = bezierPath.cgPath
-        self.shapeLayer.fillColor = self.isSelected ? Constants.selectedFillColor.cgColor : Constants.fillColor.cgColor
-        self.layer.insertSublayer(self.shapeLayer, at: 0)
     }
 }
 
