@@ -28,6 +28,7 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
 
         let picker = UIDatePicker()
         picker.datePickerMode = .date
+        picker.maximumDate = Date()
         picker.addTarget(self, action: #selector(ProjectActivityViewController.didChangeDate(sender:)), for: .valueChanged)
         return picker
     }()

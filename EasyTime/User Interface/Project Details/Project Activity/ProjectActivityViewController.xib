@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProjectActivityViewController" customModule="EasyTime" customModuleProvider="target">
             <connections>
                 <outlet property="btnDateFilter" destination="TU3-Re-7Lm" id="gCg-0f-R9h"/>
+                <outlet property="btnMaterial" destination="izX-WK-cbJ" id="bgC-EC-7rl"/>
                 <outlet property="tableView" destination="mPI-uF-aHV" id="hlG-Cn-Acj"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="buttons" destination="k7Z-sT-G0b" collectionClass="NSMutableArray" id="ugp-Yp-821"/>

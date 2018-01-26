@@ -63,9 +63,7 @@ class ProjectActivityViewModel: BaseViewModel {
 
     func nextViewController(expenseType: ETExpenseType) -> UIViewController {
         
-        if let project = self.job as? ETProject,
-            let objects = project.objects,
-            objects.count > 0 {
+        if let project = self.job as? ETProject, let objects = project.objects, objects.count > 0 {
             
             let viewModel = ObjectsViewModel(project: project, expenseType: expenseType)
             return ObjectsViewController(viewModel: viewModel)
