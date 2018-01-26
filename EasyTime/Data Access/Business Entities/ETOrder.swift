@@ -12,7 +12,14 @@ class ETOrder: ETJob {
 
     var contact: String?
     var deliveryTime: String?
-    var objects: String?
+   
+    override var objects: [String]? {
+        get {
+            let objects = self.order.objects?.components(separatedBy: ",").filter {$0.count > 0}
+            return objects
+        }
+    }
+    
     lazy var deliveryAddress: ETAddress? = {
 
         if let address = self.order.deliveryAddress {
@@ -31,6 +38,5 @@ class ETOrder: ETJob {
 
         self.contact = order.contact
         self.deliveryTime = order.deliveryTime
-        self.objects = order.objects
     }
 }

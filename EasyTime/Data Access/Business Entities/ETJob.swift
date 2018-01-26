@@ -23,6 +23,10 @@ class ETJob {
     var images: Files?
     var entityType: String?
 
+    var objects: [String]? {
+        get { return nil }
+    }
+    
     private let job: Job
 
     init(job: Job) {

@@ -12,29 +12,27 @@ import CoreData
 fileprivate struct Constants {
 
     static let sortDescriptor = "name"
-    static let sectionName = "name"
     static let searchPredicate1 = "jobId IN %@"
     static let searchPredicate2 = "name CONTAINS[cd] %@"
 }
 
 class ObjectsViewModel: BaseViewModel {
 
-    private let project: ETProject
+    private let job: ETJob
     private let expenseType: ETExpenseType
     private lazy var fetchResultsController: NSFetchedResultsController<Object> = {
 
         let fetchedResultsController: NSFetchedResultsController<Object> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor],
-                                                                                                                                          sectionNameKeyPath:Constants.sectionName)
+                                                                                                                                          sectionNameKeyPath:nil)
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
 
-    init(project: ETProject, expenseType: ETExpenseType) {
+    init(job: ETJob, expenseType: ETExpenseType) {
 
-        self.project = project
+        self.job = job
         self.expenseType = expenseType
         super.init()
-        self.updateSearchResults()
     }
 
     required init() {
@@ -59,24 +57,15 @@ class ObjectsViewModel: BaseViewModel {
         return count
     }
 
-    func sectionForSectionIndexTitle(_ title: String, at index: Int) -> Int {
-
-        return self.fetchResultsController.section(forSectionIndexTitle: title, at: index)
-    }
-
-    func sectionIndexTitles() -> [String]? {
-
-        return self.fetchResultsController.sectionIndexTitles
-    }
-
     func updateSearchResults(text: String? = nil) {
-
-        guard let objects = self.project.objects?.components(separatedBy: ",") else { return }
+                
+        guard let objects = self.job.objects else { return }
 
         var predicate = NSPredicate(format: Constants.searchPredicate1, objects)
         if let text = text, text.count > 0 {
-
-            predicate = NSPredicate(format: Constants.searchPredicate1 + " && " + Constants.searchPredicate2, objects, text)
+            
+            let predicate1 = NSPredicate(format: Constants.searchPredicate2, text)
+            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, predicate1])
         }
 
         self.fetchResultsController.fetchRequest.predicate = predicate
@@ -86,9 +75,13 @@ class ObjectsViewModel: BaseViewModel {
         } catch {}
     }
 
-    func nextViewController(indexPath: IndexPath) -> UIViewController {
+    func nextViewController(indexPath: IndexPath? = nil) -> UIViewController {
 
-        let job = self[indexPath]
+        var job = self.job
+        if let indexPath = indexPath {
+            job = self[indexPath]
+        }
+        
         switch self.expenseType {
 
         case .time:
@@ -98,7 +91,8 @@ class ObjectsViewModel: BaseViewModel {
             let viewModel = ExpenseTypeViewModel(job: job)
             return ExpenseTypeViewController(viewModel: viewModel)
         case .material:
-            return UIViewController() // TODO: Impement
+            let viewModel = AddMaterialsViewModel(job: job)
+            return AddMaterialsViewController(viewModel: viewModel)
         }
     }
 }

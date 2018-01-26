@@ -91,8 +91,8 @@ class ExpenseTypeViewModel: BaseViewModel {
         if let text = text, text.count > 0 {
             
             let predicate = NSPredicate(format: Constants.searchPredicate2, text)
-            predicateExpense = NSCompoundPredicate(type: .and, subpredicates: [predicateExpense, predicate])
-            predicateHistory = NSCompoundPredicate(type: .and, subpredicates: [predicateHistory, predicate])
+            predicateExpense = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateExpense, predicate])
+            predicateHistory = NSCompoundPredicate(andPredicateWithSubpredicates: [predicateHistory, predicate])
         }
 
         self.expenseTypeFetchResultsController.fetchRequest.predicate = predicateExpense

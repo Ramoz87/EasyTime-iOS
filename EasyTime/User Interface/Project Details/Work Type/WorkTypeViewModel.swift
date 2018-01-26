@@ -60,7 +60,7 @@ class WorkTypeViewModel: BaseViewModel {
         if let text = text, text.count > 0 {
 
             let predicate1 = NSPredicate(format: Constants.searchPredicate2, text)
-            predicate = NSCompoundPredicate(type: .and, subpredicates: [predicate, predicate1])
+            predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, predicate1])
         }
 
         self.fetchResultsController.fetchRequest.predicate = predicate

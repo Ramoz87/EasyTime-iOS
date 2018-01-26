@@ -12,7 +12,7 @@ import CoreData
 fileprivate struct Constants {
 
     static let sortDescriptor = "date"
-    static let basePredicate = "job.jobId = %@"
+    static let basePredicate = "job.jobId IN %@"
     static let searchPredicate = "date >= %@ && date <= %@"
 }
 
@@ -50,7 +50,17 @@ class ProjectActivityViewModel: BaseViewModel {
 
     func updateFilterResults(date: Date = Date()) {
 
-        let predicate1: NSPredicate = NSPredicate(format: Constants.basePredicate, self.job.jobId!)
+        var arrayOfJobId: [String] = []
+        
+        if let jobId = self.job.jobId {
+            arrayOfJobId.append(jobId)
+        }
+        
+        if let objects = self.job.objects, objects.count > 0 {
+            arrayOfJobId.append(contentsOf: objects)
+        }
+        
+        let predicate1: NSPredicate = NSPredicate(format: Constants.basePredicate, arrayOfJobId)
         let predicate2: NSPredicate = NSPredicate(format: Constants.searchPredicate, date.startOfDay as NSDate, date.endOfDay as NSDate)
 
         self.fetchResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate1,predicate2])
@@ -63,9 +73,9 @@ class ProjectActivityViewModel: BaseViewModel {
 
     func nextViewController(expenseType: ETExpenseType) -> UIViewController {
         
-        if let project = self.job as? ETProject, let objects = project.objects, objects.count > 0 {
+        if let objects = self.job.objects, objects.count > 0 {
             
-            let viewModel = ObjectsViewModel(project: project, expenseType: expenseType)
+            let viewModel = ObjectsViewModel(job: self.job, expenseType: expenseType)
             return ObjectsViewController(viewModel: viewModel)
         }
         

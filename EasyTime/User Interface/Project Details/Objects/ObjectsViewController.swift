@@ -10,8 +10,9 @@ import UIKit
 
 fileprivate struct Constants {
 
-    static let titleText = NSLocalizedString("Objects", comment: "")
+    static let titleText = NSLocalizedString("Select Object", comment: "")
     static let searchBarPlaceholder = NSLocalizedString("Search", comment: "")
+    static let skipButtonTitle = NSLocalizedString("Skip", comment: "")
 }
 
 class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, CollectionViewUpdateDelegate {
@@ -32,7 +33,7 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
         super.viewDidLoad()
 
         self.title = Constants.titleText
-
+        
         self.tableView.register(UINib(nibName: ObjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ObjectTableViewCell.reuseIdentifier)
         self.tableView.tableFooterView = UIView() //To hide separators of empty cells
         
@@ -47,6 +48,16 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
             self.tableView.tableHeaderView = self.searchController.searchBar
             self.tableView.contentOffset = CGPoint(x: 0, y: self.searchController.searchBar.frame.height)
         }
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: Constants.skipButtonTitle, style: .done, target: self, action: #selector(skipButtonClick))
+        
+        self.viewModel.updateSearchResults()
+    }
+    
+    //MARK: - Actions
+    @objc func skipButtonClick(sender: Any) {
+        let controller = self.viewModel.nextViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
     //MARK: - UITableViewDataSource
@@ -69,12 +80,6 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
         cell.object = object
 
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
-        guard let title = self.viewModel.sectionIndexTitles()?[section] else { return nil }
-        return title
     }
 
     //MARK: - UITableViewDelegate

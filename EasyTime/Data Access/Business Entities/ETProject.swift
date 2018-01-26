@@ -12,7 +12,14 @@ class ETProject: ETJob {
 
     var dateEnd: NSDate?
     var dateStart: NSDate?
-    var objects: String?
+    
+    override var objects: [String]? {
+        get {
+            let objects = self.project.objects?.components(separatedBy: ",").filter {$0.count > 0}
+            return objects
+        }
+    }
+    
     lazy var customer: ETCustomer? = {
 
         if let customer = self.project.customer {
@@ -31,6 +38,5 @@ class ETProject: ETJob {
 
         self.dateEnd = project.dateEnd
         self.dateStart = project.dateStart
-        self.objects = project.objects
     }
 }
