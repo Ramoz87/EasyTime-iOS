@@ -12,6 +12,7 @@ import CoreData
 fileprivate struct Constants {
     
     static let sortDescriptor = "name"
+    static let sectionName = "type"
 }
 
 class InvoiceViewModel: BaseViewModel {
@@ -30,8 +31,8 @@ class InvoiceViewModel: BaseViewModel {
     }()
     private lazy var fetchResultsController: NSFetchedResultsController<Expense> = {
 
-        let fetchedResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor],
-                                                                                                                                      sectionNameKeyPath:nil)
+        let fetchedResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sectionName, Constants.sortDescriptor],
+                                                                                                                                      sectionNameKeyPath: Constants.sectionName)
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
@@ -69,6 +70,13 @@ class InvoiceViewModel: BaseViewModel {
 
         guard let sections = self.fetchResultsController.sections, section < sections.count else { return "" }
         return sections[section].name
+    }
+
+    func titleForFooterInSection(section: Int) -> String? {
+
+        guard let expenses = self.fetchResultsController.sections?[section].objects else { return nil }
+        guard let sum = (expenses as NSArray).value(forKeyPath: "@sum.value") as? NSNumber else { return nil }
+        return "\(sum)"
     }
 
     func fetchData() {

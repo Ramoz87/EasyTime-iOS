@@ -12,12 +12,20 @@ fileprivate struct Constants
 {
     static let buttonCornerRadius: CGFloat = 4
     static let buttonBorderWidth: CGFloat = 1 / UIScreen.main.scale
+    static let discountPlaceholderViewCornerRadius: CGFloat = 3
+    static let discountAlertTitle = NSLocalizedString("Add discount", comment: "")
+    static let discountAlertMessage = NSLocalizedString("Enter a total discount", comment: "")
+    static let discountAlertCancelText = NSLocalizedString("Cancel", comment: "")
+    static let discountAlertSaveText = NSLocalizedString("Save", comment: "")
+    static let discountAlertTextFieldPlaceholder = NSLocalizedString("Discount", comment: "")
 }
 
 class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDataSource, UITableViewDelegate, CollectionViewUpdateDelegate, SignatureViewControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet var tableHeaderView: UILabel!
+    @IBOutlet var lblCompanyName: UILabel!
+    @IBOutlet var lblDiscount: UILabel!
+    @IBOutlet var vDiscountPlaceholder: UIView!
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet var btnSign: UIButton!
 
@@ -25,10 +33,10 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
         super.viewDidLoad()
 
         self.title = self.viewModel.job.number
-        self.tableHeaderView.text = self.viewModel.customer?.companyName
+        self.lblCompanyName.text = self.viewModel.customer?.companyName
+        self.vDiscountPlaceholder.layer.cornerRadius = Constants.discountPlaceholderViewCornerRadius
 
         self.tableView.register(UINib.init(nibName: InvoiceTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: InvoiceTableViewCell.reuseIdentifier)
-        self.tableView.tableHeaderView = self.tableHeaderView
         self.viewModel.collectionViewUpdateDelegate = self
 
         for button in self.buttons {
@@ -46,6 +54,29 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
 
     @objc func didTapDiscountButton(sender: Any) {
 
+        let controller = UIAlertController(title: Constants.discountAlertTitle, message: Constants.discountAlertMessage, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(title: Constants.discountAlertCancelText, style: .cancel) { action in
+
+            controller.dismiss(animated: true, completion: nil)
+        })
+        controller.addAction(UIAlertAction(title: Constants.discountAlertSaveText, style: .default) { action in
+
+            if let text = controller.textFields?.first?.text, text.count > 0 {
+
+                self.lblDiscount.text = text
+                self.vDiscountPlaceholder.isHidden = false
+                self.navigationItem.rightBarButtonItem = nil
+                //TODO: Apply discount
+            }
+
+            controller.dismiss(animated: true, completion: nil)
+        })
+        controller.addTextField { textField in
+
+            textField.placeholder = Constants.discountAlertTextFieldPlaceholder
+            textField.inputViewController = NumberInputViewController()
+        }
+        self.present(controller, animated: true, completion: nil)
     }
 
     @IBAction func didTapSignButton(sender: Any) {
@@ -58,6 +89,7 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
 
     @IBAction func didTapSaveButton(sender: Any) {
 
+        self.viewModel.save()
     }
 
     @IBAction func didTapSendButton(sender: Any) {
@@ -98,15 +130,10 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
         let cell = tableView.dequeueReusableCell(withIdentifier: InvoiceTableViewCell.reuseIdentifier, for: indexPath) as! InvoiceTableViewCell
 
         let expense = self.viewModel[indexPath]
-        cell.textLabel?.text = expense.name
-        cell.detailTextLabel?.text = "\(expense.value)"
+        cell.lblText?.text = expense.name
+        cell.lblDetails?.text = "\(expense.value)"
 
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-
-        return self.viewModel.titleForHeaderInSection(section: section)
     }
 
     //MARK: - UITableViewDelegate
@@ -119,6 +146,20 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
         return UITableViewAutomaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        let header = InvoiceSectionHeaderView.createFromXIB()
+        header.lblTitle.text = self.viewModel.titleForHeaderInSection(section: section)
+        return header
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+
+        let footer = InvoiceSectionFooterView.createFromXIB()
+        footer.lblTitle.text = self.viewModel.titleForFooterInSection(section: section)
+        return footer
     }
 
     //MARK: - CollectionViewUpdateDelegate
