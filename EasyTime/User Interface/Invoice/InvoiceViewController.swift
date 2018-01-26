@@ -14,11 +14,12 @@ fileprivate struct Constants
     static let buttonBorderWidth: CGFloat = 1 / UIScreen.main.scale
 }
 
-class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDataSource, UITableViewDelegate, CollectionViewUpdateDelegate {
+class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDataSource, UITableViewDelegate, CollectionViewUpdateDelegate, SignatureViewControllerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var tableHeaderView: UILabel!
     @IBOutlet var buttons: [UIButton]!
+    @IBOutlet var btnSign: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,35 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
 
     @objc func didTapDiscountButton(sender: Any) {
 
+    }
+
+    @IBAction func didTapSignButton(sender: Any) {
+
+        let controller = SignatureViewController()
+        controller.delegate = self
+        controller.title = self.viewModel.job.number
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
+
+    @IBAction func didTapSaveButton(sender: Any) {
+
+    }
+
+    @IBAction func didTapSendButton(sender: Any) {
+
+    }
+
+    //MARK: - SignatureViewControllerDelegate
+
+    func signatureViewController(controller: SignatureViewController, didFinishWithImage image: UIImage?, author type: SignatureAuthorType) {
+
+        controller.navigationController?.popViewController(animated: true)
+
+        if let image = image {
+
+            self.btnSign.isEnabled = false
+            self.viewModel.updateSignature(image: image, author: type)
+        }
     }
 
     //MARK: - UITableViewDataSource
