@@ -67,19 +67,15 @@ class ExpenseTypeViewController: BaseViewController<ExpenseTypeViewModel>, UITab
             textField.font = UIFont.systemFont(ofSize: Constants.newExpenseTitlePlaceholderFontSize)
         })
 
-        let cancelAction = UIAlertAction(title: Constants.cancelText, style: .cancel, handler: { action in
-
-            controller.dismiss(animated: true, completion: nil)
-        })
+        let cancelAction = UIAlertAction(title: Constants.cancelText, style: .cancel, handler: nil)
         controller.addAction(cancelAction)
 
         let saveAction = UIAlertAction(title: Constants.saveText, style: .default, handler: { action in
 
-            if let textField = controller.textFields?.first {
-                type.customName = textField.text
+            if let text = controller.textFields?.first?.text, text.count > 0  {
+                type.customName = text
                 self.showAddExpenseViewController(for: type)
             }
-            controller.dismiss(animated: true, completion: nil)
         })
         controller.addAction(saveAction)
 

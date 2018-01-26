@@ -49,7 +49,7 @@ class AddMaterialsTableViewCell: UITableViewCell, UITextFieldDelegate {
     var isMaterialSelected: Bool = false {
         didSet {
             self.btnSelect.isSelected = isMaterialSelected
-            
+            self.tfQuantity.isEnabled = isMaterialSelected
             if isMaterialSelected, let material = self.material {
                 self.tfQuantity.text = String(describing: Int(material.quantity))
             }
@@ -66,13 +66,24 @@ class AddMaterialsTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        guard let material = self.material else {
+            return
+        }
+        
         if let text = textField.text as NSString! {
+            var quantity = text.floatValue
+            if  quantity > material.stockQuantity {
+                quantity = material.stockQuantity
+                
+                textField.text = String(describing: Int(quantity))
+            }
             
-            self.material?.quantity = text.floatValue
+            material.quantity = quantity
         }
         else
         {
-            self.material?.quantity = 0
+            material.quantity = 0
         }
     }
 
