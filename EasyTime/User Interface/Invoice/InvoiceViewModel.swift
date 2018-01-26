@@ -17,6 +17,17 @@ fileprivate struct Constants {
 class InvoiceViewModel: BaseViewModel {
 
     let job: ETJob
+    lazy var customer: ETCustomer? = {
+
+        do {
+
+            guard let customerId = self.job.customerId else { return nil }
+            let predicate = NSPredicate(format: "customerId = %@", customerId)
+            guard let customer: Customer = try AppManager.sharedInstance.dataHelper.fetchData(predicate: predicate)?.first else { return nil }
+            return ETCustomer(customer: customer)
+        }
+        catch { return nil }
+    }()
     private lazy var fetchResultsController: NSFetchedResultsController<Expense> = {
 
         let fetchedResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor],

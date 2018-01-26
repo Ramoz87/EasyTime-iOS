@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvoiceViewController" customModule="EasyTime" customModuleProvider="target">
             <connections>
+                <outlet property="tableHeaderView" destination="BgF-qY-fvQ" id="G6C-4p-Ns3"/>
                 <outlet property="tableView" destination="lg6-ck-RJL" id="VxW-sD-nO4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="buttons" destination="0Zs-A4-HYX" collectionClass="NSMutableArray" id="wRn-67-558"/>
@@ -32,6 +33,13 @@
                         <outlet property="delegate" destination="-1" id="kg9-0e-lhq"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="im7-T8-H7i" userLabel="Separator View">
+                    <rect key="frame" x="0.0" y="567" width="375" height="0.5"/>
+                    <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="ple-mE-1NW"/>
+                    </constraints>
+                </view>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="W2S-Ox-FGa">
                     <rect key="frame" x="10" y="577" width="355" height="80"/>
                     <subviews>
@@ -68,14 +76,26 @@
                 <constraint firstItem="lg6-ck-RJL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BB1-8A-NPg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="W2S-Ox-FGa" secondAttribute="bottom" constant="10" id="J9A-W2-olN"/>
                 <constraint firstItem="W2S-Ox-FGa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Mbn-Fy-oQX"/>
+                <constraint firstItem="im7-T8-H7i" firstAttribute="top" secondItem="lg6-ck-RJL" secondAttribute="bottom" id="PAn-Aq-R01"/>
                 <constraint firstItem="W2S-Ox-FGa" firstAttribute="top" secondItem="lg6-ck-RJL" secondAttribute="bottom" constant="10" id="Uba-fR-IMy"/>
                 <constraint firstItem="lg6-ck-RJL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="XDT-Sh-CYS"/>
+                <constraint firstItem="im7-T8-H7i" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YRg-E5-Syp"/>
+                <constraint firstAttribute="trailing" secondItem="im7-T8-H7i" secondAttribute="trailing" id="dBH-xB-lOD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="W2S-Ox-FGa" secondAttribute="trailing" constant="10" id="eOA-j6-Awa"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lg6-ck-RJL" secondAttribute="trailing" id="qjQ-iq-KuO"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="26.5" y="52.5"/>
         </view>
+        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BgF-qY-fvQ">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <color key="backgroundColor" red="0.93725490196078431" green="0.94901960784313721" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+            <color key="textColor" red="0.37254901960784315" green="0.45490196078431372" blue="0.63529411764705879" alpha="1" colorSpace="calibratedRGB"/>
+            <nil key="highlightedColor"/>
+            <point key="canvasLocation" x="635" y="2"/>
+        </label>
     </objects>
     <resources>
         <image name="saveInvoiceIcon" width="25" height="26"/>

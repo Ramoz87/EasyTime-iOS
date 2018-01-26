@@ -17,14 +17,17 @@ fileprivate struct Constants
 class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDataSource, UITableViewDelegate, CollectionViewUpdateDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableHeaderView: UILabel!
     @IBOutlet var buttons: [UIButton]!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.title = self.viewModel.job.number
+        self.tableHeaderView.text = self.viewModel.customer?.companyName
 
         self.tableView.register(UINib.init(nibName: InvoiceTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: InvoiceTableViewCell.reuseIdentifier)
+        self.tableView.tableHeaderView = self.tableHeaderView
         self.viewModel.collectionViewUpdateDelegate = self
 
         for button in self.buttons {
