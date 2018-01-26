@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InvoiceViewController" customModule="EasyTime" customModuleProvider="target">
             <connections>
+                <outlet property="btnSign" destination="0Zs-A4-HYX" id="tDJ-B5-1HM"/>
                 <outlet property="tableHeaderView" destination="BgF-qY-fvQ" id="G6C-4p-Ns3"/>
                 <outlet property="tableView" destination="lg6-ck-RJL" id="VxW-sD-nO4"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -49,6 +50,9 @@
                             <state key="normal" title="Sign" image="signInvoiceIcon">
                                 <color key="titleColor" red="0.25490196079999999" green="0.35686274509999999" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="didTapSignButtonWithSender:" destination="-1" eventType="touchUpInside" id="oIG-fw-xOT"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jP9-Sr-TxG">
                             <rect key="frame" x="122" y="0.0" width="111" height="80"/>
@@ -56,6 +60,9 @@
                             <state key="normal" title="Save" image="saveInvoiceIcon">
                                 <color key="titleColor" red="0.25490196079999999" green="0.35686274509999999" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="didTapSaveButtonWithSender:" destination="-1" eventType="touchUpInside" id="RuO-Iw-0Qm"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hvq-ac-a9r">
                             <rect key="frame" x="244" y="0.0" width="111" height="80"/>
@@ -63,6 +70,9 @@
                             <state key="normal" title="Send" image="sendInvoiceIcon">
                                 <color key="titleColor" red="0.25490196079999999" green="0.35686274509999999" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
+                            <connections>
+                                <action selector="didTapSendButtonWithSender:" destination="-1" eventType="touchUpInside" id="Bds-rf-H4a"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>

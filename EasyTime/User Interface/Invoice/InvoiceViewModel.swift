@@ -78,4 +78,9 @@ class InvoiceViewModel: BaseViewModel {
             self.collectionViewUpdateDelegate?.didChangeDataSet()
         } catch {}
     }
+
+    func updateSignature(image: UIImage?, author: SignatureAuthorType) {
+
+        //TODO: Save signature
+    }
 }
