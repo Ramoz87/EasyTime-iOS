@@ -12,6 +12,7 @@ fileprivate struct Constants
 {
     static let buttonCornerRadius: CGFloat = 4
     static let buttonBorderWidth: CGFloat = 1 / UIScreen.main.scale
+    static let buttonDisabledAlpha: CGFloat = 0.3
     static let discountPlaceholderViewCornerRadius: CGFloat = 3
     static let discountAlertTitle = NSLocalizedString("Add discount", comment: "")
     static let discountAlertMessage = NSLocalizedString("Enter a total discount", comment: "")
@@ -109,6 +110,7 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
         if let image = image {
 
             self.btnSign.isEnabled = false
+            self.btnSign.alpha = Constants.buttonDisabledAlpha
             self.viewModel.updateSignature(image: image, author: type)
         }
     }
