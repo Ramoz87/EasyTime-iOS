@@ -90,13 +90,18 @@ class ProjectInfoViewModel: BaseViewModel {
 
     func updateStatus(newStatus: ETType) {
 
-        //TODO: Save new status
         self.job.statusId = newStatus.typeId
     }
 
     func addPhoto(photo: UIImage) {
 
         self.photos.append(photo)
+    }
+
+    override func save() {
+
+        self.job.update()
+        super.save()
     }
 }
 
@@ -124,19 +129,18 @@ class ProjectInfoSectionInfo {
             switch self.type {
 
             case .customer,
-                 .instructions,
                  .status:
                 return false
-            case .objects:
-                return self.numberOfObjects() == 0
-            case .employees:
+            case .objects,
+                 .employees,
+                 .instructions:
                 return self.numberOfObjects() == 0
             }
         }
     }
     let job: ETJob
     let type: ProjectInfoSectionType
-    private let objects: [String]
+    private var objects: [String?] = []
 
     init(type: ProjectInfoSectionType, job: ETJob) {
 
@@ -145,16 +149,49 @@ class ProjectInfoSectionInfo {
 
         switch type {
 
-        case .customer:
-            self.objects = []
-        case .instructions:
-            self.objects = ["Name Surname", "Address", "10 am"] //TODO: Real life data
-        case .status:
-            self.objects = []
-        case .objects:
-            self.objects = ["Object 1", "Object 2"] //TODO: Real life data
-        case .employees:
-            self.objects = ["Employee 1", "Employee 2"] //TODO: Real life data
+            case .instructions:
+                if let order = self.job as? ETOrder {
+
+                    if let contact = order.contact {
+                        self.objects.append(contact)
+                    }
+                    if let deliveryAddress = order.deliveryAddress {
+                        self.objects.append(deliveryAddress.fullAddress)
+                    }
+                    if let deliveryTime = order.deliveryTime {
+                        self.objects.append(deliveryTime)
+                    }
+                }
+            case .objects:
+                if let objectIDs = self.job.objects {
+
+                    do {
+                        let predicate = NSPredicate(format: "jobId IN %@", objectIDs)
+                        if let objects: [Object] = try AppManager.sharedInstance.dataHelper.fetchData(predicate: predicate) {
+
+                            self.objects = objects.map({ object -> String? in
+                                return object.name
+                            })
+                        }
+                    }
+                    catch {}
+                }
+            case .employees:
+                if let memeberIDs = self.job.members {
+
+                    do {
+                        let predicate = NSPredicate(format: "userId IN %@", memeberIDs)
+                        if let users: [User] = try AppManager.sharedInstance.dataHelper.fetchData(predicate: predicate) {
+
+                            self.objects = users.map({ user -> String? in
+                                return ETUser(user: user).fullName
+                            })
+                        }
+                    }
+                    catch {}
+            }
+            default:
+                break
         }
     }
 

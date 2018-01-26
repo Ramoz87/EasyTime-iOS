@@ -15,7 +15,6 @@ class ETJob {
     var date: NSDate?
     var information: String?
     var jobId: String?
-    var members: String?
     var name: String?
     var number: String?
     var statusId: String?
@@ -25,6 +24,13 @@ class ETJob {
 
     var objects: [String]? {
         get { return nil }
+    }
+
+    var members: [String]? {
+        get {
+            let members = self.job.members?.components(separatedBy: ",").filter {$0.count > 0}
+            return members
+        }
     }
     
     private let job: Job
@@ -37,7 +43,6 @@ class ETJob {
         self.date = job.date
         self.information = job.information
         self.jobId = job.jobId
-        self.members = job.members
         self.name = job.name
         self.number = job.number
         self.statusId = job.statusId
@@ -70,6 +75,11 @@ class ETJob {
         }
         
         self.job.addToExpenses(dbExpense)
+    }
+
+    func update() {
+
+        self.job.statusId = self.statusId
     }
 }
 

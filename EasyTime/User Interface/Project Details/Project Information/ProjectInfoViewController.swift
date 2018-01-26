@@ -105,6 +105,12 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
         self.updateAddPhotoButton()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        self.viewModel.save()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
@@ -169,7 +175,7 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        //TODO: Implement
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     //MARK: - UITableViewDataSource
@@ -206,31 +212,36 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
         let sectionInfo = self.viewModel[section]
-        let sectionView = ProjectInfoSectionView.createFromXIB()
-        sectionView.delegate = self
-        sectionView.sectionIndex = section
-        sectionView.isExpanded = sectionInfo.isExpanded
-        sectionView.lblTitle.text = sectionInfo.sectionTitle()
 
-        if sectionInfo.type == .status {
+        if sectionInfo.isHidden == false {
 
-            sectionView.button.inputView = self.pvStatus
-            sectionView.button.inputAccessoryView = sectionView.button.keyboardToolbar
-            sectionView.button.addDoneOnKeyboardWithTarget(self, action: #selector(ProjectInfoViewController.didTapDoneOnStatusPicker(sender:)), titleText: Constants.statusPickerDoneButtonText)
-            sectionView.delegate = nil
+            let sectionView = ProjectInfoSectionView.createFromXIB()
+            sectionView.delegate = self
+            sectionView.sectionIndex = section
+            sectionView.isExpanded = sectionInfo.isExpanded
+            sectionView.lblTitle.text = sectionInfo.sectionTitle()
 
-            if let status = self.viewModel.statuses.filter({ type -> Bool in
-                return type.typeId == sectionInfo.job.statusId
-            }).first {
+            if sectionInfo.type == .status {
 
-                sectionView.lblDetails.text = status.name
-                if let index = self.viewModel.statuses.index(of: status) {
+                sectionView.button.inputView = self.pvStatus
+                sectionView.button.inputAccessoryView = sectionView.button.keyboardToolbar
+                sectionView.button.addDoneOnKeyboardWithTarget(self, action: #selector(ProjectInfoViewController.didTapDoneOnStatusPicker(sender:)), titleText: Constants.statusPickerDoneButtonText)
+                sectionView.delegate = nil
 
-                    self.pvStatus.selectRow(index, inComponent: 0, animated: false)
+                if let status = self.viewModel.statuses.filter({ type -> Bool in
+                    return type.typeId == sectionInfo.job.statusId
+                }).first {
+
+                    sectionView.lblDetails.text = status.name
+                    if let index = self.viewModel.statuses.index(of: status) {
+
+                        self.pvStatus.selectRow(index, inComponent: 0, animated: false)
+                    }
                 }
             }
+            return sectionView
         }
-        return sectionView
+        return nil
     }
 
     //MARK: - ProjectInfoSectionViewDelegate
@@ -323,7 +334,7 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+
     }
 
     //MARK: - UIScrollViewDelegate
