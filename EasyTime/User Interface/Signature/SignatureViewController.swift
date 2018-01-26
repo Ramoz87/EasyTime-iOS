@@ -17,6 +17,7 @@ enum SignatureAuthorType: Int {
 fileprivate struct Constants {
 
     static let signButtonTitle = NSLocalizedString("SIGN", comment: "")
+    static let clearButtonTitle = NSLocalizedString("Clear", comment: "")
     static let signButtonCornerRadius: CGFloat = 4
     static let signatureAuthroTitles = [
         NSLocalizedString("Client", comment: ""),
@@ -47,6 +48,8 @@ class SignatureViewController: BaseViewController<BaseViewModel> {
 
         self.scAuthor.setTitle(Constants.signatureAuthroTitles[0], forSegmentAt: 0)
         self.scAuthor.setTitle(Constants.signatureAuthroTitles[1], forSegmentAt: 1)
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: Constants.clearButtonTitle, style: .plain, target: self, action: #selector(self.didTapClearButton(sender:)))
     }
 
     //MARK: - Action handlers
@@ -55,5 +58,10 @@ class SignatureViewController: BaseViewController<BaseViewModel> {
 
         let type = SignatureAuthorType(rawValue: self.scAuthor.selectedSegmentIndex)!
         self.delegate?.signatureViewController(controller: self, didFinishWithImage: self.vSignature.getSignatureAsImage(), author: type)
+    }
+
+    @objc func didTapClearButton(sender: Any) {
+
+        self.vSignature.clear()
     }
 }

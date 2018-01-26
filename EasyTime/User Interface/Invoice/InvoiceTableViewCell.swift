@@ -13,6 +13,9 @@ class InvoiceTableViewCell: UITableViewCell {
     static let reuseIdentifier = "InvoiceTableViewCellReuseIdentifier"
     static let cellName = "InvoiceTableViewCell"
 
+    @IBOutlet weak var lblText: UILabel!
+    @IBOutlet weak var lblDetails: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
