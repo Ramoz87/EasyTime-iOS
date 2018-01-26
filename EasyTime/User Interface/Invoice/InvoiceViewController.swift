@@ -62,6 +62,10 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
 
     @IBAction func didTapSendButton(sender: Any) {
 
+        CongratulationsView.show {
+
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     //MARK: - SignatureViewControllerDelegate
