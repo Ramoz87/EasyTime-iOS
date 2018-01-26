@@ -63,6 +63,14 @@ class ETExpense {
         }
     }
     
+    convenience init(expenses: [Expense]?) {
+        self.init(expense: expenses?.first)
+        
+        if let expenses = expenses, let sum = (expenses as NSArray).value(forKeyPath: "@sum.value") as? Float {
+            self.value = sum
+        }
+    }
+    
     convenience init() {
         self.init(expense: nil)
         

@@ -20,15 +20,15 @@ class ETProject: ETJob {
         }
     }
     
-    lazy var customer: ETCustomer? = {
-
+    override lazy var customer: ETCustomer? = {
+        
         if let customer = self.project.customer {
-
+            
             return ETCustomer(customer: customer)
         }
         return nil
     }()
-
+    
     private var project: Project
 
     init(project: Project) {

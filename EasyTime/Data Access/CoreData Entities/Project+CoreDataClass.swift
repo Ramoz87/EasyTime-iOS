@@ -10,29 +10,7 @@
 import Foundation
 import CoreData
 
-fileprivate struct Constants
-{
-    static let customerPredicate = "customerId = %@"
-}
-
 public class Project: Job {
-    
-    var customer: Customer? {
-
-        get {
-
-            guard let customerId = self.customerId else { return nil }
-            let request = NSFetchRequest<Customer>(entityName: Customer.entityName)
-            request.predicate = NSPredicate(format: Constants.customerPredicate, customerId)
-            do {
-                return try self.managedObjectContext?.fetch(request).first
-            }
-            catch {
-
-                return nil
-            }
-        }
-    }
     
     public override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
         super.init(entity: entity, insertInto: context)

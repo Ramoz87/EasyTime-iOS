@@ -34,11 +34,12 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
         super.viewDidLoad()
 
         self.title = self.viewModel.job.number
-        self.lblCompanyName.text = self.viewModel.customer?.companyName
+        self.lblCompanyName.text = self.viewModel.job.customer?.companyName
         self.vDiscountPlaceholder.layer.cornerRadius = Constants.discountPlaceholderViewCornerRadius
 
         self.tableView.register(UINib.init(nibName: InvoiceTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: InvoiceTableViewCell.reuseIdentifier)
         self.viewModel.collectionViewUpdateDelegate = self
+        self.viewModel.updateResult()
 
         for button in self.buttons {
 
@@ -48,7 +49,7 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
             button.layer.borderColor = UIColor.et_borderColor.cgColor
         }
 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "discountIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.didTapDiscountButton(sender:)))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "discountIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.didTapDiscountButton(sender:)))   
     }
 
     //MARK: - Action handlers
@@ -66,11 +67,8 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
 
                 self.lblDiscount.text = text
                 self.vDiscountPlaceholder.isHidden = false
-                self.navigationItem.rightBarButtonItem = nil
                 //TODO: Apply discount
             }
-
-            controller.dismiss(animated: true, completion: nil)
         })
         controller.addTextField { textField in
 
@@ -133,7 +131,7 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
 
         let expense = self.viewModel[indexPath]
         cell.lblText?.text = expense.name
-        cell.lblDetails?.text = "\(expense.value)"
+        cell.lblDetails?.text = expense.formattedValue
 
         return cell
     }

@@ -27,6 +27,15 @@ class ETJob {
         get { return nil }
     }
     
+    lazy var customer: ETCustomer? = {
+        
+        if let customer = self.job.customer {
+            
+            return ETCustomer(customer: customer)
+        }
+        return nil
+    }()
+        
     private let job: Job
 
     init(job: Job) {
