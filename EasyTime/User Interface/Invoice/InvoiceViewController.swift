@@ -14,7 +14,8 @@ fileprivate struct Constants
     static let buttonBorderWidth: CGFloat = 1 / UIScreen.main.scale
     static let buttonDisabledAlpha: CGFloat = 0.3
     static let discountPlaceholderViewCornerRadius: CGFloat = 3
-    static let discountAlertTitle = NSLocalizedString("Add discount", comment: "")
+    static let tableFooterHeight: CGFloat = 30
+    static let discountAlertTitle = NSLocalizedString("Request for discount", comment: "")
     static let discountAlertMessage = NSLocalizedString("Enter a total discount", comment: "")
     static let discountAlertCancelText = NSLocalizedString("Cancel", comment: "")
     static let discountAlertSaveText = NSLocalizedString("Save", comment: "")
@@ -35,7 +36,11 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
 
         self.title = self.viewModel.job.number
         self.lblCompanyName.text = self.viewModel.job.customer?.companyName
+        
         self.vDiscountPlaceholder.layer.cornerRadius = Constants.discountPlaceholderViewCornerRadius
+        self.updateDiscountValue()
+        
+        self.updateSignatureButton()
 
         self.tableView.register(UINib.init(nibName: InvoiceTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: InvoiceTableViewCell.reuseIdentifier)
         self.viewModel.collectionViewUpdateDelegate = self
@@ -52,24 +57,45 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "discountIcon")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.didTapDiscountButton(sender:)))   
     }
 
+    private func updateDiscountValue() {
+        let discount = self.viewModel.job.discount
+        
+        if  discount > 0 {
+            self.lblDiscount.text = String(format: "%% %0.f CHF", discount)
+            self.vDiscountPlaceholder.isHidden = false
+        }
+        else {
+            self.lblDiscount.text = nil
+            self.vDiscountPlaceholder.isHidden = true
+        }
+    }
+    
+    private func updateSignatureButton() {
+    
+        if  self.viewModel.job.signature != nil {
+            self.btnSign.isEnabled = false
+            self.btnSign.alpha = Constants.buttonDisabledAlpha
+        }
+        else {
+            self.btnSign.isEnabled = true
+            self.btnSign.alpha = 1
+        }
+    }
+    
     //MARK: - Action handlers
 
     @objc func didTapDiscountButton(sender: Any) {
 
         let controller = UIAlertController(title: Constants.discountAlertTitle, message: Constants.discountAlertMessage, preferredStyle: .alert)
-        controller.addAction(UIAlertAction(title: Constants.discountAlertCancelText, style: .cancel) { action in
-
-            controller.dismiss(animated: true, completion: nil)
-        })
+        controller.addAction(UIAlertAction(title: Constants.discountAlertCancelText, style: .cancel, handler:nil))
         controller.addAction(UIAlertAction(title: Constants.discountAlertSaveText, style: .default) { action in
 
             if let text = controller.textFields?.first?.text, text.count > 0 {
-
-                self.lblDiscount.text = text
-                self.vDiscountPlaceholder.isHidden = false
-                //TODO: Apply discount
+                self.viewModel.job.discount = Float(text)!
+                self.updateDiscountValue()
             }
         })
+        
         controller.addTextField { textField in
 
             textField.placeholder = Constants.discountAlertTextFieldPlaceholder
@@ -95,22 +121,18 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
 
         CongratulationsView.show {
 
-            self.navigationController?.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: false)
         }
     }
 
     //MARK: - SignatureViewControllerDelegate
 
     func signatureViewController(controller: SignatureViewController, didFinishWithImage image: UIImage?, author type: SignatureAuthorType) {
-
+        
         controller.navigationController?.popViewController(animated: true)
-
-        if let image = image {
-
-            self.btnSign.isEnabled = false
-            self.btnSign.alpha = Constants.buttonDisabledAlpha
-            self.viewModel.updateSignature(image: image, author: type)
-        }
+        
+        self.viewModel.updateSignature(image: image, author: type)
+        self.updateSignatureButton()
     }
 
     //MARK: - UITableViewDataSource
@@ -128,20 +150,11 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: InvoiceTableViewCell.reuseIdentifier, for: indexPath) as! InvoiceTableViewCell
-
-        let expense = self.viewModel[indexPath]
-        cell.lblText?.text = expense.name
-        cell.lblDetails?.text = expense.formattedValue
-
+        cell.expense = self.viewModel[indexPath]
         return cell
     }
 
     //MARK: - UITableViewDelegate
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
@@ -150,16 +163,27 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
-        let header = InvoiceSectionHeaderView.createFromXIB()
-        header.lblTitle.text = self.viewModel.titleForHeaderInSection(section: section)
+        guard let title = self.viewModel.titleForHeaderInSection(section: section) else {
+            return UIView()
+        }
+        let header: InvoiceSectionHeaderView = UIView.loadFromNib()
+        header.lblTitle.text = title
         return header
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-
-        let footer = InvoiceSectionFooterView.createFromXIB()
-        footer.lblTitle.text = self.viewModel.titleForFooterInSection(section: section)
+        
+        guard let title = self.viewModel.titleForFooterInSection(section: section) else {
+            return UIView()
+        }
+        
+        let footer: InvoiceSectionFooterView = UIView.loadFromNib()
+        footer.lblTitle.text = title
         return footer
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return (self.viewModel.titleForFooterInSection(section: section) != nil) ? Constants.tableFooterHeight : 0
     }
 
     //MARK: - CollectionViewUpdateDelegate

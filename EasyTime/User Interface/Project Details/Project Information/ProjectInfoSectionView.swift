@@ -33,11 +33,6 @@ class ProjectInfoSectionView: UIView {
         }
     }
 
-    static func createFromXIB() -> ProjectInfoSectionView {
-
-        return Bundle.main.loadNibNamed("ProjectInfoSectionView", owner: nil, options: nil)!.first as! ProjectInfoSectionView
-    }
-
     //MARK: - Actions handlers
 
     @IBAction func didClick(sender: Any) {

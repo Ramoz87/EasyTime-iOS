@@ -31,7 +31,7 @@ class CongratulationsView: UIView {
 
     static func show(hideAfter delay: Double = 2, completion: @escaping () -> Void) {
 
-        let view = CongratulationsView.createFromXIB()
+        let view: CongratulationsView = UIView.loadFromNib()
         view.completion = completion
         if let controller =  UIApplication.shared.keyWindow?.rootViewController {
 
@@ -51,21 +51,17 @@ class CongratulationsView: UIView {
         }
     }
 
-    static func createFromXIB() -> CongratulationsView {
-
-        return Bundle.main.loadNibNamed("CongratulationsView", owner: nil, options: nil)!.first as! CongratulationsView
-    }
-
     func hide() {
 
+        self.completion?()
+        
         UIView.animate(withDuration: Constants.animationDuration, animations: {
 
             self.alpha = 0
 
         }) { result in
-
+            
             self.removeFromSuperview()
-            self.completion?()
         }
     }
 

@@ -21,6 +21,9 @@ class ETJob {
     var typeId: String?
     var images: Files?
     var entityType: String?
+    var discount: Float
+    var signature: UIImage?
+    var signatureType: SignatureAuthorType?
 
     var objects: [String]? {
         get { return nil }
@@ -58,6 +61,7 @@ class ETJob {
         self.typeId = job.typeId
         self.images = job.images
         self.entityType = job.entityType
+        self.discount = job.discount
     }
     
     func addExpense(expense: ETExpense) {
@@ -89,6 +93,7 @@ class ETJob {
     func update() {
 
         self.job.statusId = self.statusId
+        self.job.discount = self.discount
     }
 }
 

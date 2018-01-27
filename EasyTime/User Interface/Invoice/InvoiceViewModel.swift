@@ -12,6 +12,7 @@ import CoreData
 fileprivate struct Constants {
     
     static let sortDescriptor = "name"
+    static let sortDescriptorOther = "type"
     static let sectionName = "name"
     static let basePredicate = "job.jobId IN %@"
     
@@ -27,7 +28,7 @@ fileprivate struct Constants {
 class InvoiceViewModel: BaseViewModel {
 
     let job: ETJob
-    var sections = [NSFetchedResultsController<Expense>]()
+    private var sections = [NSFetchedResultsController<Expense>]()
     
     private var basePredicate: NSPredicate {
         get {
@@ -82,16 +83,30 @@ class InvoiceViewModel: BaseViewModel {
     
     private lazy var fetchResultsControllerExpense: NSFetchedResultsController<Expense> = {
         
-        let fetchedResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor],
+        let fetchedResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptorOther],
                                                                                                                                           predicate: self.predicate(for: .other),
                                                                                                                                           sectionNameKeyPath: Constants.sectionName)
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
     
+    var discountValue: String? {
+        get {
+            if self.job.discount > 0 {
+                return String(format: "%% %0.f CHF", self.job.discount)
+            } else {
+                return nil
+            }
+        }
+        set {
+            
+        }
+    }
+    
     init(job: ETJob) {
 
         self.job = job
+        self.job.signature = nil
         super.init()
     }
 
@@ -102,11 +117,8 @@ class InvoiceViewModel: BaseViewModel {
     subscript(indexPath: IndexPath) -> ETExpense {
 
         let fetchedResultsController = self.sections[indexPath.section]
-        guard let sectionInfo = fetchedResultsController.sections?[indexPath.row] else {
-            return ETExpense()
-        }
-        
-        return ETExpense(expenses: sectionInfo.objects as? [Expense])
+        let expenses = fetchedResultsController.sections?[indexPath.row].objects as? [Expense]
+        return ETExpense(expenses: expenses)
     }
 
     func numberOfSections() -> Int {
@@ -140,9 +152,23 @@ class InvoiceViewModel: BaseViewModel {
 
     func titleForFooterInSection(section: Int) -> String? {
 
-//        guard let expenses = self.fetchResultsController.sections?[section].objects else { return nil }
-//        guard let sum = (expenses as NSArray).value(forKeyPath: "@sum.value") as? NSNumber else { return nil }
-        return "\(0)"
+        let fetchedResultsController = self.sections[section]
+        
+        if  fetchedResultsController==self.fetchResultsControllerTime {
+            guard let expenses = fetchedResultsController.fetchedObjects, expenses.count > 0 else { return nil }
+            guard let sum = (expenses as NSArray).value(forKeyPath: "@sum.value") as? Float else { return nil }
+            let hours = sum / 60
+            let minutes = sum.truncatingRemainder(dividingBy: 60)
+            return String(format: "%02d:%02d", Int(hours), Int(minutes))
+        }
+        
+        if  fetchedResultsController==self.fetchResultsControllerExpense {
+            guard let expenses = fetchedResultsController.fetchedObjects?.filter({$0.type == ETExpenseType.other.rawValue}), expenses.count > 0 else { return nil }
+            guard let sum = (expenses as NSArray).value(forKeyPath: "@sum.value") as? Float else { return nil }
+            return String(format: "%d CHF", Int(sum))
+        }
+
+        return nil
     }
 
     func updateResult() {
@@ -151,27 +177,31 @@ class InvoiceViewModel: BaseViewModel {
         
         do {
             try self.fetchResultsControllerTime.performFetch()
-            try self.fetchResultsControllerMaterial.performFetch()
-            try self.fetchResultsControllerExpense.performFetch()
-            
             if let count = self.fetchResultsControllerTime.sections?.count, count>0 {
                 sections.append(self.fetchResultsControllerTime)
             }
             
+            try self.fetchResultsControllerMaterial.performFetch()
             if let count = self.fetchResultsControllerMaterial.sections?.count, count>0 {
                 sections.append(self.fetchResultsControllerMaterial)
             }
             
+            try self.fetchResultsControllerExpense.performFetch()
             if let count = self.fetchResultsControllerExpense.sections?.count, count>0 {
                 sections.append(self.fetchResultsControllerExpense)
             }
-            
+
             self.collectionViewUpdateDelegate?.didChangeDataSet()
         } catch {}
     }
+    
+    override func save() {
+        self.job.update()
+        super.save()
+    }
 
     func updateSignature(image: UIImage?, author: SignatureAuthorType) {
-
-        //TODO: Save signature
+        self.job.signature = image
+        self.job.signatureType = author
     }
 }

@@ -16,15 +16,14 @@ class InvoiceTableViewCell: UITableViewCell {
     @IBOutlet weak var lblText: UILabel!
     @IBOutlet weak var lblDetails: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    var expense: ETExpense? {
+        
+        didSet {
+            if let expense = expense {
+                self.lblText?.text = expense.name
+                self.lblDetails?.text = expense.formattedValue
+            }
+        }
     }
     
 }

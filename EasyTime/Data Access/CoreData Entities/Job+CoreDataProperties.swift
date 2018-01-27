@@ -30,6 +30,7 @@ extension Job {
     @NSManaged public var expenses: NSSet?
     @NSManaged public var images: Files?
     @NSManaged public var entityType: String?
+    @NSManaged public var discount: Float
 }
 
 // MARK: Generated accessors for expenses

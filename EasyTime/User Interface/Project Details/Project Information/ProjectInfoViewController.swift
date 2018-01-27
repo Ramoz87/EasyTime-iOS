@@ -215,7 +215,7 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
         if sectionInfo.isHidden == false {
 
-            let sectionView = ProjectInfoSectionView.createFromXIB()
+            let sectionView: ProjectInfoSectionView = UIView.loadFromNib()
             sectionView.delegate = self
             sectionView.sectionIndex = section
             sectionView.isExpanded = sectionInfo.isExpanded

@@ -11,9 +11,4 @@ import UIKit
 class InvoiceSectionFooterView: UIView {
 
     @IBOutlet weak var lblTitle: UILabel!
-
-    static func createFromXIB() -> InvoiceSectionFooterView {
-
-        return Bundle.main.loadNibNamed("InvoiceSectionFooterView", owner: nil, options: nil)!.first as! InvoiceSectionFooterView
-    }
 }
