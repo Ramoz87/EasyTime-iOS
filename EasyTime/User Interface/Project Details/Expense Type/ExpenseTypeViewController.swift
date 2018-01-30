@@ -24,9 +24,9 @@ class ExpenseTypeViewController: BaseViewController<ExpenseTypeViewModel>, UITab
 
     @IBOutlet weak var tableView: UITableView!
 
-    lazy var searchController: UISearchController = {
+    lazy var searchController: SearchController = {
 
-        let controller = UISearchController(searchResultsController: nil)
+        let controller = SearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
         controller.obscuresBackgroundDuringPresentation = false
         controller.hidesNavigationBarDuringPresentation = false
