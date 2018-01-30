@@ -120,6 +120,7 @@
 		9E730D431FDAA22A0059C810 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E730D411FDAA2290059C810 /* TabBarViewController.swift */; };
 		9E824D681FE3E05E008538EB /* CollectionViewUpdateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E824D671FE3E05E008538EB /* CollectionViewUpdateDelegate.swift */; };
 		9E824D6A1FE3EC32008538EB /* ETProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E824D691FE3EC32008538EB /* ETProject.swift */; };
+		9E8F638420206BD50075E7A6 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8F638320206BD50075E7A6 /* SearchController.swift */; };
 		9E90F5C120136BA8009F4896 /* ProjectInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E90F5C020136BA8009F4896 /* ProjectInfoViewModel.swift */; };
 		9E90F5C520137A91009F4896 /* ProjectInfoSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E90F5C420137A91009F4896 /* ProjectInfoSectionView.swift */; };
 		9E90F5C720137A9C009F4896 /* ProjectInfoSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9E90F5C620137A9C009F4896 /* ProjectInfoSectionView.xib */; };
@@ -297,6 +298,7 @@
 		9E730D411FDAA2290059C810 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		9E824D671FE3E05E008538EB /* CollectionViewUpdateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewUpdateDelegate.swift; sourceTree = "<group>"; };
 		9E824D691FE3EC32008538EB /* ETProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETProject.swift; sourceTree = "<group>"; };
+		9E8F638320206BD50075E7A6 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		9E90F5C020136BA8009F4896 /* ProjectInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoViewModel.swift; sourceTree = "<group>"; };
 		9E90F5C420137A91009F4896 /* ProjectInfoSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoSectionView.swift; sourceTree = "<group>"; };
 		9E90F5C620137A9C009F4896 /* ProjectInfoSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoSectionView.xib; sourceTree = "<group>"; };
@@ -760,6 +762,7 @@
 				9EC02C892007A47D004B83FC /* NumberInputViewController.swift */,
 				9EC02C8A2007A47D004B83FC /* NumberInputViewController.xib */,
 				9EC02C87200609F3004B83FC /* TabViewController.swift */,
+				9E8F638320206BD50075E7A6 /* SearchController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -1107,6 +1110,7 @@
 				9E730D2A1FDAA16A0059C810 /* Authenticator.swift in Sources */,
 				9E65DE46200E2C91006107DE /* ExpenseTypeViewModel.swift in Sources */,
 				B761474B2018AC1800ABF775 /* StockMaterialTableViewCell.swift in Sources */,
+				9E8F638420206BD50075E7A6 /* SearchController.swift in Sources */,
 				9E730D131FDAA16A0059C810 /* Customer+CoreDataClass.swift in Sources */,
 				9E730D1C1FDAA16A0059C810 /* Material+CoreDataProperties.swift in Sources */,
 				9E730D391FDAA16A0059C810 /* SettingsViewController.swift in Sources */,
