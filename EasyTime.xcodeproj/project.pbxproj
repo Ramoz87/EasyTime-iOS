@@ -160,6 +160,8 @@
 		B761474420188BA200ABF775 /* MaterialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B761474220188BA200ABF775 /* MaterialTableViewCell.xib */; };
 		B761474B2018AC1800ABF775 /* StockMaterialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B76147492018AC1800ABF775 /* StockMaterialTableViewCell.swift */; };
 		B761474C2018AC1800ABF775 /* StockMaterialTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B761474A2018AC1800ABF775 /* StockMaterialTableViewCell.xib */; };
+		B764604C20207468002ED2F0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B764604A20207468002ED2F0 /* Crashlytics.framework */; };
+		B764604D20207468002ED2F0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B764604B20207468002ED2F0 /* Fabric.framework */; };
 		B765DB1F200E2DE1002F5773 /* ETUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B765DB1E200E2DE1002F5773 /* ETUser.swift */; };
 		B7BB70752011E8E9001C717E /* ClientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB70732011E8E9001C717E /* ClientTableViewCell.swift */; };
 		B7BB70762011E8E9001C717E /* ClientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BB70742011E8E9001C717E /* ClientTableViewCell.xib */; };
@@ -338,6 +340,8 @@
 		B761474220188BA200ABF775 /* MaterialTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MaterialTableViewCell.xib; sourceTree = "<group>"; };
 		B76147492018AC1800ABF775 /* StockMaterialTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockMaterialTableViewCell.swift; sourceTree = "<group>"; };
 		B761474A2018AC1800ABF775 /* StockMaterialTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StockMaterialTableViewCell.xib; sourceTree = "<group>"; };
+		B764604A20207468002ED2F0 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		B764604B20207468002ED2F0 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		B765DB1E200E2DE1002F5773 /* ETUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETUser.swift; sourceTree = "<group>"; };
 		B7BB70732011E8E9001C717E /* ClientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTableViewCell.swift; sourceTree = "<group>"; };
 		B7BB70742011E8E9001C717E /* ClientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientTableViewCell.xib; sourceTree = "<group>"; };
@@ -365,6 +369,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B764604C20207468002ED2F0 /* Crashlytics.framework in Frameworks */,
+				B764604D20207468002ED2F0 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,6 +846,8 @@
 		B7E358BE1FD53F6C006256FC = {
 			isa = PBXGroup;
 			children = (
+				B764604A20207468002ED2F0 /* Crashlytics.framework */,
+				B764604B20207468002ED2F0 /* Fabric.framework */,
 				B7E358C91FD53F6C006256FC /* EasyTime */,
 				B7E358C81FD53F6C006256FC /* Products */,
 			);
@@ -891,6 +899,7 @@
 				B7E358C31FD53F6C006256FC /* Sources */,
 				B7E358C41FD53F6C006256FC /* Frameworks */,
 				B7E358C51FD53F6C006256FC /* Resources */,
+				B764604920207448002ED2F0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -993,6 +1002,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B764604920207448002ED2F0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 86ab66c01b6b17b317f5818025b593a83cc913aa b2b8b28124d2184827bbef60deca79a731af496828723c19532356dfd49093db";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B7E358C31FD53F6C006256FC /* Sources */ = {
@@ -1254,6 +1279,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y2V6NG4VN2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "EasyTime/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1273,6 +1302,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y2V6NG4VN2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "EasyTime/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
