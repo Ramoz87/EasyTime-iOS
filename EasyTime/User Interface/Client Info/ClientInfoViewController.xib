@@ -12,15 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ClientInfoViewController" customModule="EasyTime" customModuleProvider="target">
             <connections>
-                <outlet property="btnCallPhone" destination="CEK-8L-vQ5" id="CRM-nC-MIz"/>
-                <outlet property="btnOpenMap" destination="p72-QO-zrH" id="w3y-Nq-XEo"/>
-                <outlet property="btnSendEmail" destination="ozu-1T-w5q" id="xK7-W1-ihx"/>
-                <outlet property="lblAddress" destination="VR9-Vx-qhK" id="iZa-W7-Z09"/>
-                <outlet property="lblName" destination="xuZ-M9-ouc" id="f6q-AC-BvQ"/>
+                <outlet property="cvContacts" destination="69p-kc-055" id="bJx-QU-vYM"/>
                 <outlet property="tabView" destination="QOo-Cl-Ojl" id="roW-gD-6Ut"/>
                 <outlet property="tableBackgroundOverlayView" destination="YM1-79-3vM" id="Tfs-C3-rVU"/>
                 <outlet property="tableBackgroundView" destination="BYa-Rv-G01" id="XDW-gY-0ak"/>
-                <outlet property="tableView" destination="sIc-xU-LHl" id="9jg-X3-Mow"/>
+                <outlet property="tvJobs" destination="sIc-xU-LHl" id="Vxo-LU-H09"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -53,64 +49,20 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteLocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Nve-Rw-fFs">
-                    <rect key="frame" x="155" y="72" width="7" height="10"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="7" id="Tts-O7-0W4"/>
-                        <constraint firstAttribute="height" constant="10" id="rgG-uX-Aps"/>
-                    </constraints>
-                </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p72-QO-zrH">
-                    <rect key="frame" x="157" y="103" width="60" height="60"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="5l7-G4-ZTm"/>
-                        <constraint firstAttribute="height" constant="60" id="U1K-fU-6H9"/>
-                    </constraints>
-                    <state key="normal" image="openMapIcon"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="69p-kc-055">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="241"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="UB5-4O-jit">
+                        <size key="itemSize" width="375" height="241"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
                     <connections>
-                        <action selector="didTapOpenMapButtonWithSender:" destination="-1" eventType="touchUpInside" id="ABN-KI-GzQ"/>
+                        <outlet property="dataSource" destination="-1" id="oFa-f5-zBg"/>
+                        <outlet property="delegate" destination="-1" id="JGj-z4-qMl"/>
                     </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEK-8L-vQ5">
-                    <rect key="frame" x="233" y="103" width="60" height="60"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="60" id="vQU-GF-xME"/>
-                        <constraint firstAttribute="width" constant="60" id="vhU-9T-dh0"/>
-                    </constraints>
-                    <state key="normal" image="callPhoneIcon"/>
-                    <connections>
-                        <action selector="didTapCallPhonelButtonWithSender:" destination="-1" eventType="touchUpInside" id="1zN-BL-FZM"/>
-                    </connections>
-                </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuZ-M9-ouc">
-                    <rect key="frame" x="12" y="43" width="351" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="21" id="4Gv-0v-3uO"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VR9-Vx-qhK">
-                    <rect key="frame" x="172" y="67" width="31" height="21"/>
-                    <constraints>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="pEy-uf-SIT"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ozu-1T-w5q">
-                    <rect key="frame" x="81" y="103" width="60" height="60"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="hWv-FT-bEB"/>
-                        <constraint firstAttribute="height" constant="60" id="rd8-UR-CmK"/>
-                    </constraints>
-                    <state key="normal" image="sendEmailIcon"/>
-                    <connections>
-                        <action selector="didTapSendEmailButtonWithSender:" destination="-1" eventType="touchUpInside" id="THi-Tx-e9l"/>
-                    </connections>
-                </button>
+                </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YM1-79-3vM">
                     <rect key="frame" x="0.0" y="241" width="375" height="426"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -118,23 +70,14 @@
             </subviews>
             <color key="backgroundColor" red="0.31764705882352939" green="0.5490196078431373" blue="0.85882352941176465" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="CEK-8L-vQ5" firstAttribute="centerY" secondItem="p72-QO-zrH" secondAttribute="centerY" id="1JK-sn-Rqr"/>
-                <constraint firstItem="ozu-1T-w5q" firstAttribute="centerY" secondItem="p72-QO-zrH" secondAttribute="centerY" id="1KT-Ja-8Da"/>
-                <constraint firstItem="p72-QO-zrH" firstAttribute="leading" secondItem="ozu-1T-w5q" secondAttribute="trailing" constant="16" id="2hO-NC-mkx"/>
-                <constraint firstItem="VR9-Vx-qhK" firstAttribute="top" secondItem="xuZ-M9-ouc" secondAttribute="bottom" constant="3" id="4ft-RQ-K3a"/>
-                <constraint firstItem="p72-QO-zrH" firstAttribute="top" secondItem="VR9-Vx-qhK" secondAttribute="bottom" constant="15" id="EQv-qi-0e1"/>
+                <constraint firstItem="69p-kc-055" firstAttribute="leading" secondItem="BYa-Rv-G01" secondAttribute="leading" id="27V-aw-ybZ"/>
                 <constraint firstItem="Yii-GN-bJK" firstAttribute="bottom" secondItem="YM1-79-3vM" secondAttribute="bottom" id="KfL-SD-0C9"/>
-                <constraint firstItem="xuZ-M9-ouc" firstAttribute="top" secondItem="Yii-GN-bJK" secondAttribute="top" constant="23" id="LeE-i0-tj5"/>
                 <constraint firstItem="YM1-79-3vM" firstAttribute="leading" secondItem="Yii-GN-bJK" secondAttribute="leading" id="SSY-xO-M4s"/>
-                <constraint firstItem="xuZ-M9-ouc" firstAttribute="leading" secondItem="Yii-GN-bJK" secondAttribute="leading" constant="12" id="Saz-P9-efZ"/>
-                <constraint firstItem="p72-QO-zrH" firstAttribute="centerX" secondItem="VR9-Vx-qhK" secondAttribute="centerX" id="WTz-Aj-hLQ"/>
                 <constraint firstItem="Yii-GN-bJK" firstAttribute="trailing" secondItem="YM1-79-3vM" secondAttribute="trailing" id="c9y-Vt-Wiz"/>
-                <constraint firstItem="VR9-Vx-qhK" firstAttribute="leading" secondItem="Nve-Rw-fFs" secondAttribute="trailing" constant="10" id="eld-VY-1MW"/>
-                <constraint firstItem="Yii-GN-bJK" firstAttribute="trailing" secondItem="xuZ-M9-ouc" secondAttribute="trailing" constant="12" id="gNX-Oq-yyA"/>
+                <constraint firstItem="69p-kc-055" firstAttribute="trailing" secondItem="Yii-GN-bJK" secondAttribute="trailing" id="epe-uH-vp8"/>
+                <constraint firstItem="69p-kc-055" firstAttribute="top" secondItem="BYa-Rv-G01" secondAttribute="top" id="h45-HU-W9t"/>
+                <constraint firstItem="YM1-79-3vM" firstAttribute="top" secondItem="69p-kc-055" secondAttribute="bottom" id="qSe-OD-HQ1"/>
                 <constraint firstItem="YM1-79-3vM" firstAttribute="top" secondItem="Yii-GN-bJK" secondAttribute="top" priority="250" constant="221" id="qVJ-bU-XQo"/>
-                <constraint firstItem="CEK-8L-vQ5" firstAttribute="leading" secondItem="p72-QO-zrH" secondAttribute="trailing" constant="16" id="xTb-vc-pj1"/>
-                <constraint firstItem="VR9-Vx-qhK" firstAttribute="centerX" secondItem="xuZ-M9-ouc" secondAttribute="centerX" id="ypd-WE-Ua0"/>
-                <constraint firstItem="Nve-Rw-fFs" firstAttribute="centerY" secondItem="VR9-Vx-qhK" secondAttribute="centerY" id="zbx-Dm-XMm"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="Yii-GN-bJK"/>
             <point key="canvasLocation" x="-678.5" y="-261.5"/>
@@ -151,10 +94,4 @@
             <point key="canvasLocation" x="304" y="-186"/>
         </view>
     </objects>
-    <resources>
-        <image name="callPhoneIcon" width="50" height="50"/>
-        <image name="openMapIcon" width="52" height="52"/>
-        <image name="sendEmailIcon" width="50" height="50"/>
-        <image name="whiteLocationIcon" width="7" height="10"/>
-    </resources>
 </document>

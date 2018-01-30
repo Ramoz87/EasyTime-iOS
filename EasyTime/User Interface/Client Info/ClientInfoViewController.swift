@@ -15,17 +15,13 @@ fileprivate struct Constants {
     static let tableViewContentInset = UIEdgeInsets(top: 168, left: 0, bottom: 0, right: 0)
 }
 
-class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITableViewDataSource, UITableViewDelegate, TabViewDelegate, CollectionViewUpdateDelegate, MFMailComposeViewControllerDelegate {
+class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITableViewDataSource, UITableViewDelegate, TabViewDelegate, CollectionViewUpdateDelegate, MFMailComposeViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, ClientInfoCollectionViewCellDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var tableBackgroundView: UIView!
     @IBOutlet weak var tableBackgroundOverlayView: UIView!
-    @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var lblAddress: UILabel!
-    @IBOutlet weak var btnSendEmail: UIButton!
-    @IBOutlet weak var btnOpenMap: UIButton!
-    @IBOutlet weak var btnCallPhone: UIButton!
     @IBOutlet weak var tabView: TabView!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tvJobs: UITableView!
+    @IBOutlet weak var cvContacts: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,54 +30,18 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
 
         self.tableBackgroundView.backgroundColor = UIColor.et_blueColor
 
-        self.tableView.register(UINib.init(nibName: ProjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectTableViewCell.reuseIdentifier)
-        self.tableView.register(UINib.init(nibName: OrderTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: OrderTableViewCell.reuseIdentifier)
-        self.tableView.register(UINib.init(nibName: ObjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ObjectTableViewCell.reuseIdentifier)
-        self.tableView.tableHeaderView = self.tabView
-        self.tableView.tableFooterView = UIView() //To hide separators of empty cells
-        self.tableView.contentInset = Constants.tableViewContentInset
-        self.tableView.backgroundView = self.tableBackgroundView
+        self.tvJobs.register(UINib.init(nibName: ProjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectTableViewCell.reuseIdentifier)
+        self.tvJobs.register(UINib.init(nibName: OrderTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: OrderTableViewCell.reuseIdentifier)
+        self.tvJobs.register(UINib.init(nibName: ObjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ObjectTableViewCell.reuseIdentifier)
+        self.tvJobs.tableHeaderView = self.tabView
+        self.tvJobs.tableFooterView = UIView() //To hide separators of empty cells
+        self.tvJobs.contentInset = Constants.tableViewContentInset
+        self.tvJobs.backgroundView = self.tableBackgroundView
         self.viewModel.collectionViewUpdateDelegate = self
 
-        self.lblName.text = self.viewModel.customer.fullName
-        self.lblAddress.text = self.viewModel.customer.address?.fullAddress
+        self.cvContacts.register(UINib.init(nibName: ClientInfoCollectionViewCell.cellName, bundle: nil), forCellWithReuseIdentifier: ClientInfoCollectionViewCell.reuseIdentifier)
 
         NSLayoutConstraint.activate( [NSLayoutConstraint(item: self.tableBackgroundOverlayView, attribute: .top, relatedBy: .equal, toItem: self.tabView, attribute: .bottom, multiplier: 1, constant: 0)])
-    }
-
-    //MARK: - Action handlers
-
-    @IBAction func didTapSendEmailButton(sender: Any) {
-
-        if MFMailComposeViewController.canSendMail() {
-
-            let composeVC = MFMailComposeViewController()
-            composeVC.mailComposeDelegate = self
-            composeVC.setToRecipients(["mail@gmail.com"]) //TODO: Customer email
-            self.present(composeVC, animated: true, completion: nil)
-        }
-    }
-
-    @IBAction func didTapOpenMapButton(sender: Any) {
-
-        guard let fullAddress = self.viewModel.customer.address?.fullAddress.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-        guard let url = URL(string: "http://maps.apple.com/?address=\(fullAddress)") else { return }
-        let application = UIApplication.shared
-
-        if application.canOpenURL(url) == true {
-
-            application.open(url, options: [:], completionHandler: nil)
-        }
-    }
-
-    @IBAction func didTapCallPhonelButton(sender: Any) {
-
-        let phone = "12345678" // TODO:
-        let application = UIApplication.shared
-        if let url = URL(string: "tel://\(phone)"), application.canOpenURL(url) {
-
-            application.open(url, options: [:], completionHandler: nil)
-        }
     }
 
     //MARK: - TabViewDelegate
@@ -99,7 +59,7 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
     func tabView(_ tabView: TabView, didSelectItemAtIndex index: Int) {
 
         self.viewModel.selectedTabIndex = index
-        self.tableView.reloadData()
+        self.tvJobs.reloadData()
     }
 
     //MARK: - UITableViewDataSource
@@ -150,6 +110,98 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
         return UITableViewAutomaticDimension
     }
 
+    //MARK: - UICollectionViewDataSource
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+        guard let count = self.viewModel.customer.contacts?.count else { return 0 }
+        return count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ClientInfoCollectionViewCell.reuseIdentifier, for: indexPath) as! ClientInfoCollectionViewCell
+        cell.delegate = self
+        let contact = self.viewModel.customer.contacts?[indexPath.item]
+        cell.contact = contact
+        cell.lblName.text = self.viewModel.customer.fullName
+        cell.lblAddress.text = self.viewModel.customer.address?.fullAddress
+
+        if let email = contact?.email {
+
+            cell.btnSendEmail.isEnabled = email.count > 0
+        }
+        else {
+
+            cell.btnSendEmail.isEnabled = false
+        }
+
+        if let phone = contact?.phone {
+
+            cell.btnCallPhone.isEnabled = phone.count > 0
+        }
+        else {
+
+            cell.btnCallPhone.isEnabled = false
+        }
+
+        return cell
+    }
+
+    //MARK: - UICollectionViewDelegate
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        return self.cvContacts.frame.size
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+    }
+
+    //MARK: - ClientInfoCollectionViewCellDelegate
+
+    func clientInfoCollectionViewCellDidTapSendEmail(cell: ClientInfoCollectionViewCell) {
+
+        if let contact = cell.contact, MFMailComposeViewController.canSendMail() == true {
+
+            let composeVC = MFMailComposeViewController()
+            composeVC.mailComposeDelegate = self
+            composeVC.setToRecipients([contact.email!]) 
+            self.present(composeVC, animated: true, completion: nil)
+        }
+    }
+
+    func clientInfoCollectionViewCellDidTapOpenMap(cell: ClientInfoCollectionViewCell) {
+
+        guard let fullAddress = self.viewModel.customer.address?.fullAddress.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        guard let url = URL(string: "http://maps.apple.com/?address=\(fullAddress)") else { return }
+        let application = UIApplication.shared
+
+        if application.canOpenURL(url) == true {
+
+            application.open(url, options: [:], completionHandler: nil)
+        }
+    }
+
+    func clientInfoCollectionViewCellDidTapCallPhone(cell: ClientInfoCollectionViewCell) {
+
+        if let phone = cell.contact?.phone {
+
+            let phone = phone.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+            let application = UIApplication.shared
+            if let url = URL(string: "tel://\(phone)"), application.canOpenURL(url) {
+
+                application.open(url, options: [:], completionHandler: nil)
+            }
+        }
+    }
+
     //MARK: - CollectionViewUpdateDelegate
 
     func didChangeObject(at indexPath: IndexPath?, for type: CollectionViewChangeType, newIndexPath: IndexPath?) {
@@ -157,22 +209,22 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
         switch type {
         case .insert:
             if  let indexPath = newIndexPath {
-                self.tableView.insertRows(at: [indexPath], with: .automatic)
+                self.tvJobs.insertRows(at: [indexPath], with: .automatic)
             }
         case .delete:
             if  let indexPath = indexPath {
-                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.tvJobs.deleteRows(at: [indexPath], with: .automatic)
             }
         case .move:
             if  let indexPath = indexPath {
-                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.tvJobs.deleteRows(at: [indexPath], with: .automatic)
             }
             if  let indexPath = newIndexPath {
-                self.tableView.insertRows(at: [indexPath], with: .automatic)
+                self.tvJobs.insertRows(at: [indexPath], with: .automatic)
             }
         case .update:
             if  let indexPath = indexPath {
-                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+                self.tvJobs.reloadRows(at: [indexPath], with: .automatic)
             }
         }
     }
@@ -181,9 +233,9 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
 
         switch type {
         case .insert:
-            self.tableView.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
+            self.tvJobs.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
         case .delete:
-            self.tableView.deleteSections(IndexSet(integer: sectionIndex), with: .automatic)
+            self.tvJobs.deleteSections(IndexSet(integer: sectionIndex), with: .automatic)
         default:
             break
         }
@@ -191,16 +243,16 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
 
     func willChangeContent() {
 
-        self.tableView.beginUpdates()
+        self.tvJobs.beginUpdates()
     }
 
     func didChangeContent() {
 
-        self.tableView.endUpdates()
+        self.tvJobs.endUpdates()
     }
 
     func didChangeDataSet() {
-        self.tableView.reloadData()
+        self.tvJobs.reloadData()
     }
 
     // MARK: - MFMailComposeViewControllerDelegate
