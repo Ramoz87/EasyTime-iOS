@@ -10,11 +10,9 @@ import UIKit
 
 fileprivate struct Constants {
     
-    static let titleText = NSLocalizedString("Materials", comment: "")
-    static let btnSaveText = NSLocalizedString("ADD", comment: "")
-    static let btnSaveTextFormat = NSLocalizedString("ADD %d MATERIALS", comment: "")
+    static let titleText = NSLocalizedString("Stock", comment: "")
+    static let btnSaveText = NSLocalizedString("ADD MATERIALS", comment: "")
     static let btnSaveCornerRadius: CGFloat = 4
-    
 }
 
 class StockMaterialsViewController: BaseViewController<StockMaterialsViewModel>, UITableViewDelegate, UITableViewDataSource, CollectionViewUpdateDelegate {
