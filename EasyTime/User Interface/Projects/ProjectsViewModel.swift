@@ -14,6 +14,10 @@ fileprivate struct Constants {
     static let sectionName = "entityType"
     static let searchPredicate1 = "date < %@"
     static let searchPredicate2 = "name CONTAINS[cd] %@"
+    
+    static let headerProjects = NSLocalizedString("Projects", comment: "")
+    static let headerOrders = NSLocalizedString("Orders", comment: "")
+    static let headerObjects = NSLocalizedString("Objects", comment: "")
 }
 
 class ProjectsViewModel: BaseViewModel {
@@ -61,7 +65,16 @@ class ProjectsViewModel: BaseViewModel {
     func titleForHeaderInSection(section: Int) -> String? {
 
         guard let sections = self.fetchResultsController.sections, section < sections.count else { return "" }
-        return sections[section].name
+        switch sections[section].name {
+        case Project.entityName:
+            return Constants.headerProjects.uppercased()
+        case Order.entityName:
+            return Constants.headerOrders.uppercased()
+        case Object.entityName:
+            return Constants.headerObjects.uppercased()
+        default:
+            return ""
+        }
     }
 
     func updateSearchResults(date: Date, text: String?) {
