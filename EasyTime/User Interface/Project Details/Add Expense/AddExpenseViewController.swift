@@ -22,6 +22,8 @@ fileprivate struct Constants {
     static let buttonBottomPadding: CGFloat = 12
     static let imageShadowRadius: CGFloat = 3
     static let imageShadowOpacity: Float = 0.5
+    static let imageSourcePickerCameraText = NSLocalizedString("Camera", comment: "")
+    static let imageSourcePickerLibraryText = NSLocalizedString("Photo Library", comment: "")
 }
 
 class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
@@ -48,8 +50,23 @@ class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImage
     lazy var imagePickerController: UIImagePickerController = {
 
         let controller = UIImagePickerController()
-        controller.sourceType = .photoLibrary
         controller.delegate = self
+        return controller
+    }()
+
+    lazy var imageSourcePicker: UIAlertController = {
+
+        let controller = UIAlertController(title: Constants.buttonText, message: nil, preferredStyle: .actionSheet)
+        controller.addAction(UIAlertAction(title: Constants.imageSourcePickerCameraText, style: .default, handler: { action in
+
+            self.imagePickerController.sourceType = .camera
+            self.present(self.imagePickerController, animated: true, completion: nil)
+        }))
+        controller.addAction(UIAlertAction(title: Constants.imageSourcePickerLibraryText, style: .default, handler: { action in
+
+            self.imagePickerController.sourceType = .photoLibrary
+            self.present(self.imagePickerController, animated: true, completion: nil)
+        }))
         return controller
     }()
 
@@ -99,7 +116,7 @@ class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImage
 
     @IBAction func didTapAddButton(sender: Any) {
 
-        self.present(self.imagePickerController, animated: true, completion: nil)
+        self.present(self.imageSourcePicker, animated: true, completion: nil)
     }
 
     //MARK: - UITextFieldDelegate

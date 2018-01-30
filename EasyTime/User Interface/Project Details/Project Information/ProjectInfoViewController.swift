@@ -17,6 +17,8 @@ fileprivate struct Constants {
     static let buttonIconSpacing: CGFloat = 3
     static let statusPickerDoneButtonText = NSLocalizedString("Done", comment: "")
     static let photosCollectionViewPadding: CGFloat = 10
+    static let imageSourcePickerCameraText = NSLocalizedString("Camera", comment: "")
+    static let imageSourcePickerLibraryText = NSLocalizedString("Photo Library", comment: "")
 }
 
 class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITableViewDelegate, UITableViewDataSource, ProjectInfoSectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
@@ -40,6 +42,22 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
         let controller = UIImagePickerController()
         controller.sourceType = .photoLibrary
         controller.delegate = self
+        return controller
+    }()
+
+    lazy var imageSourcePicker: UIAlertController = {
+
+        let controller = UIAlertController(title: Constants.buttonText, message: nil, preferredStyle: .actionSheet)
+        controller.addAction(UIAlertAction(title: Constants.imageSourcePickerCameraText, style: .default, handler: { action in
+
+            self.imagePickerController.sourceType = .camera
+            self.present(self.imagePickerController, animated: true, completion: nil)
+        }))
+        controller.addAction(UIAlertAction(title: Constants.imageSourcePickerLibraryText, style: .default, handler: { action in
+
+            self.imagePickerController.sourceType = .photoLibrary
+            self.present(self.imagePickerController, animated: true, completion: nil)
+        }))
         return controller
     }()
 
@@ -158,7 +176,7 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
     @IBAction func didTapAddPhoto(sender: Any) {
 
-        self.present(self.imagePickerController, animated: true, completion: nil)
+        self.present(self.imageSourcePicker, animated: true, completion: nil)
     }
 
     @objc func didTapDoneOnStatusPicker(sender: UIButton) {
