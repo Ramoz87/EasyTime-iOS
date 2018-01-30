@@ -10,4 +10,5 @@ struct AppConstants {
     static let toolBarDateFormat = "EEEE, d MMM yyyy"
     
     static let expenseFolder = "Expenses"
+    static let jobFolder = "Jobs"
 }

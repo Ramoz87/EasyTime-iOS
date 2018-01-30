@@ -22,6 +22,7 @@ class ProjectInfoViewModel: BaseViewModel {
 
     private let sections: [ProjectInfoSectionInfo]
     private(set) var photos: [UIImage] = []
+    private var newPhotos: [UIImage] = []
 
     let job: ETJob
     let statuses: [ETType]
@@ -72,6 +73,17 @@ class ProjectInfoViewModel: BaseViewModel {
         }
 
         super.init()
+
+        if let images = job.images.flatMap({ $0 }) {
+
+            for imageUrl in images {
+
+                if let image = UIImage(contentsOfFile: imageUrl!) {
+
+                    self.photos.append(image)
+                }
+            }
+        }
     }
 
     required init() {
@@ -96,11 +108,13 @@ class ProjectInfoViewModel: BaseViewModel {
     func addPhoto(photo: UIImage) {
 
         self.photos.append(photo)
+        self.newPhotos.append(photo)
     }
 
     override func save() {
 
-        self.job.update()
+        self.job.update(images: self.newPhotos)
+        self.newPhotos = []
         super.save()
     }
 }

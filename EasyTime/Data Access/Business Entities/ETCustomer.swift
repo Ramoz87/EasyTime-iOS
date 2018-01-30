@@ -14,7 +14,6 @@ class ETCustomer {
     var customerId: String?
     var firstName: String?
     var lastName: String?
-    var contacts: NSSet?
     var jobStatistic: String?
 
     var fullName: String {
@@ -42,6 +41,13 @@ class ETCustomer {
         }
         return nil
     }()
+
+    lazy var contacts: [ETContact]? = {
+
+        return self.customer.contacts?.allObjects.map({ contact -> ETContact in
+            return ETContact(contact: (contact as! Contact))
+        })
+    }()
     
     private let customer: Customer
 
@@ -52,6 +58,5 @@ class ETCustomer {
         self.customerId = customer.customerId
         self.firstName = customer.firstName
         self.lastName = customer.lastName
-        self.contacts = customer.contacts
     }
 }
