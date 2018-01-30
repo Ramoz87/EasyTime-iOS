@@ -14,6 +14,8 @@
             <connections>
                 <outlet property="btnAdd" destination="INh-ry-0Tr" id="foY-Dd-Cdz"/>
                 <outlet property="btnAddBottomConstraint" destination="1ZC-m4-V57" id="Gd0-no-vCP"/>
+                <outlet property="btnAddLeadingConstraint" destination="hTZ-Jj-wMi" id="2RP-Jb-KLp"/>
+                <outlet property="imgPhoto" destination="Mvk-My-Kdd" id="Yg8-ZY-ush"/>
                 <outlet property="lblCurrency" destination="4dV-Ea-ETL" id="oW1-t3-ctJ"/>
                 <outlet property="lblExpenseType" destination="nl5-u8-QuN" id="hJH-i7-JEw"/>
                 <outlet property="tfValue" destination="ieS-yI-Sy8" id="WMl-rc-dRx"/>
@@ -63,11 +65,17 @@
                         <constraint firstAttribute="height" constant="1" id="WeY-CE-0pW"/>
                     </constraints>
                 </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mvk-My-Kdd">
+                    <rect key="frame" x="12" y="118" width="351" height="537"/>
+                </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="INh-ry-0Tr">
                     <rect key="frame" x="12" y="599" width="351" height="56"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="width" priority="999" constant="56" id="2lO-Md-2ih"/>
                         <constraint firstAttribute="height" constant="56" id="vd7-eF-sww"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <state key="normal" title="Add photo" image="photoIcon">
                         <color key="titleColor" red="0.4392156862745098" green="0.54117647058823526" blue="0.67843137254901964" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                     </state>
@@ -83,11 +91,15 @@
                 <constraint firstItem="4dV-Ea-ETL" firstAttribute="centerX" secondItem="ieS-yI-Sy8" secondAttribute="centerX" id="8oI-MH-3gv"/>
                 <constraint firstItem="ieS-yI-Sy8" firstAttribute="centerY" secondItem="nl5-u8-QuN" secondAttribute="centerY" id="8yp-OC-X7m"/>
                 <constraint firstItem="ieS-yI-Sy8" firstAttribute="top" secondItem="4dV-Ea-ETL" secondAttribute="bottom" constant="5" id="CSQ-6o-iLP"/>
+                <constraint firstItem="hUL-si-CIm" firstAttribute="trailing" secondItem="Mvk-My-Kdd" secondAttribute="trailing" constant="12" id="HrE-25-8n4"/>
                 <constraint firstItem="4dV-Ea-ETL" firstAttribute="width" secondItem="ieS-yI-Sy8" secondAttribute="width" id="PzK-l3-P3b"/>
+                <constraint firstItem="Mvk-My-Kdd" firstAttribute="top" secondItem="nl5-u8-QuN" secondAttribute="bottom" constant="12" id="Trm-ev-jOW"/>
                 <constraint firstItem="hUL-si-CIm" firstAttribute="trailing" secondItem="ieS-yI-Sy8" secondAttribute="trailing" constant="12" id="TzZ-Hi-AmW"/>
+                <constraint firstItem="Mvk-My-Kdd" firstAttribute="leading" secondItem="hUL-si-CIm" secondAttribute="leading" constant="12" id="Urh-eB-Gyc"/>
                 <constraint firstItem="ieS-yI-Sy8" firstAttribute="leading" secondItem="nl5-u8-QuN" secondAttribute="trailing" id="bCy-i4-hfg"/>
                 <constraint firstItem="nl5-u8-QuN" firstAttribute="leading" secondItem="hUL-si-CIm" secondAttribute="leading" constant="12" id="eTF-Sm-z4x"/>
                 <constraint firstItem="INh-ry-0Tr" firstAttribute="leading" secondItem="hUL-si-CIm" secondAttribute="leading" constant="12" id="hTZ-Jj-wMi"/>
+                <constraint firstItem="INh-ry-0Tr" firstAttribute="bottom" secondItem="Mvk-My-Kdd" secondAttribute="bottom" id="iCM-GK-7Pk"/>
                 <constraint firstItem="01A-or-L5d" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qGj-N1-Ssy"/>
                 <constraint firstItem="hUL-si-CIm" firstAttribute="trailing" secondItem="INh-ry-0Tr" secondAttribute="trailing" constant="12" id="uBu-Op-zaH"/>
                 <constraint firstItem="01A-or-L5d" firstAttribute="top" secondItem="nl5-u8-QuN" secondAttribute="bottom" id="xtD-fT-42v"/>

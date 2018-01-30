@@ -12,6 +12,7 @@ fileprivate struct Constants {
 
     static let titleText = NSLocalizedString("Expenses", comment: "")
     static let buttonText = NSLocalizedString("Add Photo", comment: "")
+    static let buttonChangeText = NSLocalizedString("Change", comment: "")
     static let buttonCornerRadius: CGFloat = 4
     static let buttonBorderColor = UIColor(red: 109 / 255, green: 137 / 255, blue: 175 / 255, alpha: 1)
     static let buttonBorderDashPattern: [NSNumber] = [4, 4]
@@ -19,6 +20,8 @@ fileprivate struct Constants {
     static let textFieldCornerRadius: CGFloat = 4
     static let textFieldBorderWidth: CGFloat = 1
     static let buttonBottomPadding: CGFloat = 12
+    static let imageShadowRadius: CGFloat = 3
+    static let imageShadowOpacity: Float = 0.5
 }
 
 class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
@@ -27,12 +30,25 @@ class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImage
     @IBOutlet weak var lblExpenseType: UILabel!
     @IBOutlet weak var lblCurrency: UILabel!
     @IBOutlet weak var btnAdd: UIButton!
+    @IBOutlet weak var imgPhoto: UIImageView!
     @IBOutlet weak var btnAddBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var btnAddLeadingConstraint: NSLayoutConstraint!
+
+    lazy var btnAddDashLineLayer: CAShapeLayer = {
+
+        let borderLayer = CAShapeLayer()
+        borderLayer.strokeColor = Constants.buttonBorderColor.cgColor
+        borderLayer.lineDashPattern = Constants.buttonBorderDashPattern
+        borderLayer.frame = self.btnAdd.bounds
+        borderLayer.fillColor = nil
+        borderLayer.cornerRadius = Constants.buttonCornerRadius
+        return borderLayer
+    }()
 
     lazy var imagePickerController: UIImagePickerController = {
 
         let controller = UIImagePickerController()
-        controller.sourceType = .camera
+        controller.sourceType = .photoLibrary
         controller.delegate = self
         return controller
     }()
@@ -46,14 +62,8 @@ class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImage
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.notificationsHandler(notification:)), name: Notification.Name.UIKeyboardWillShow, object: nil)
 
-        let borderLayer = CAShapeLayer()
-        borderLayer.strokeColor = Constants.buttonBorderColor.cgColor
-        borderLayer.lineDashPattern = Constants.buttonBorderDashPattern
-        borderLayer.frame = self.btnAdd.bounds
-        borderLayer.fillColor = nil
-        borderLayer.path = UIBezierPath(rect: self.btnAdd.bounds).cgPath
-        borderLayer.cornerRadius = Constants.buttonCornerRadius
-        self.btnAdd.layer.addSublayer(borderLayer)
+        self.btnAdd.layer.addSublayer(self.btnAddDashLineLayer)
+        self.btnAdd.layer.cornerRadius = Constants.buttonCornerRadius
         self.btnAdd.alignVertical(spacing: Constants.buttonIconSpacing)
         self.btnAdd.setTitle(Constants.buttonText, for: .normal)
 
@@ -63,12 +73,26 @@ class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImage
         self.tfValue.layer.borderColor = UIColor.et_blueColor.cgColor
         self.tfValue.layer.borderWidth = Constants.textFieldBorderWidth
         self.tfValue.layer.cornerRadius = Constants.textFieldCornerRadius
+
+        self.imgPhoto.layer.shadowColor = UIColor.black.cgColor
+        self.imgPhoto.layer.shadowOffset = CGSize.zero
+        self.imgPhoto.layer.shadowRadius = Constants.imageShadowRadius
+        self.imgPhoto.layer.shadowOpacity = Constants.imageShadowOpacity
     }
 
     override func viewWillAppear(_ animated: Bool) {
 
         super.viewWillAppear(animated)
         self.tfValue.becomeFirstResponder()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if self.btnAddDashLineLayer.isHidden == false {
+
+            self.btnAddDashLineLayer.path = UIBezierPath(rect: self.btnAdd.bounds).cgPath
+        }
     }
 
     //MARK: - Action handlers
@@ -117,6 +141,15 @@ class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImage
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
             self.viewModel.photo = image
+            self.imgPhoto.image = image
+
+            if let constaint = self.btnAddLeadingConstraint {
+
+                self.btnAddDashLineLayer.isHidden = true
+                constaint.isActive = false
+                self.btnAdd.setTitle(Constants.buttonChangeText, for: .normal)
+                self.btnAdd.alignVertical()
+            }
         }
         picker.dismiss(animated: true, completion: nil)
     }
