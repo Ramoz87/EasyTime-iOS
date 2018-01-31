@@ -21,6 +21,7 @@ fileprivate struct Constants {
     static let imageSourcePickerLibraryText = NSLocalizedString("Photo Library", comment: "")
     static let imageSourcePickerCancelText = NSLocalizedString("Cancel", comment: "")
     static let photoMaxDimension = 1000.0
+    static let projectDescriptionLabelPadding: CGFloat = 12
 }
 
 class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITableViewDelegate, UITableViewDataSource, ProjectInfoSectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
@@ -133,7 +134,7 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
     override func viewDidLayoutSubviews() {
 
-        self.lblDescription.preferredMaxLayoutWidth = self.view.frame.size.width
+        self.lblDescription.preferredMaxLayoutWidth = self.view.frame.size.width - Constants.projectDescriptionLabelPadding * 2
 
         if let headerView = tableView.tableHeaderView {
             let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
