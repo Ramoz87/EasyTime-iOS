@@ -107,6 +107,12 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        if #available(iOS 11.0, *) { } else {
+
+            self.searchController.isActive = false
+        }
+
+        tableView.deselectRow(at: indexPath, animated: true)
         let controller = self.viewModel.nextViewController(indexPath: indexPath)
         self.navigationController?.pushViewController(controller, animated: true)
     }

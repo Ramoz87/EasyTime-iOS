@@ -68,7 +68,12 @@ class WorkTypeViewController: BaseViewController<WorkTypeViewModel>, UITableView
     //MARK: - UITableViewDelegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+
+        if #available(iOS 11.0, *) { } else {
+
+            self.searchController.isActive = false
+        }
+        tableView.deselectRow(at: indexPath, animated: true)
         let type = self.viewModel[indexPath]
         let viewModel = AddTimeViewModel(job: self.viewModel.job, type: type)
         let controller = AddTimeViewController(viewModel: viewModel)
