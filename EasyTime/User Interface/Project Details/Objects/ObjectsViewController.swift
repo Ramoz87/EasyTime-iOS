@@ -13,6 +13,7 @@ fileprivate struct Constants {
     static let titleText = NSLocalizedString("Select Object", comment: "")
     static let searchBarPlaceholder = NSLocalizedString("Search", comment: "")
     static let skipButtonTitle = NSLocalizedString("Skip", comment: "")
+    static let statusPredicate = "type = 'STATUS'"
 }
 
 class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, CollectionViewUpdateDelegate {
@@ -27,6 +28,17 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
         controller.hidesNavigationBarDuringPresentation = false
         controller.searchBar.placeholder = Constants.searchBarPlaceholder
         return controller
+    }()
+
+    private lazy var jobStatuses: [Type]? = {
+
+        do {
+            let statuses: [Type]? = try AppManager.sharedInstance.dataHelper.fetchData(predicate: NSPredicate(format: Constants.statusPredicate))
+            return statuses
+        }
+        catch {
+            return nil
+        }
     }()
 
     override func viewDidLoad() {
@@ -78,6 +90,15 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
 
         let object = self.viewModel[indexPath]
         cell.object = object
+
+        var statusName: String?
+        if let status = self.jobStatuses?.filter({ status-> Bool in
+            return status.typeId == object.statusId
+        }).first {
+
+            statusName = status.name
+        }
+        cell.lblStatus.text = statusName
 
         return cell
     }
