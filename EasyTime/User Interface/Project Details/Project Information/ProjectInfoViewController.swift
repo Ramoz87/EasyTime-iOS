@@ -88,7 +88,6 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
         self.lblName.text = self.viewModel.job.name
         self.lblDescription.text = self.viewModel.job.information
-        self.lblDescription.preferredMaxLayoutWidth = self.view.frame.size.width
         self.lblID.text = self.viewModel.job.number
         if let project = self.viewModel.job as? ETProject, let dateStart = project.dateStart, let dateEnd = project.dateEnd {
 
@@ -133,9 +132,8 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
     }
 
     override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
 
-        self.updateAddPhotoButton()
+        self.lblDescription.preferredMaxLayoutWidth = self.view.frame.size.width
 
         if let headerView = tableView.tableHeaderView {
             let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
@@ -147,6 +145,9 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
                 tableView.tableHeaderView = headerView
             }
         }
+
+        super.viewDidLayoutSubviews()
+        self.updateAddPhotoButton()
     }
 
     func expandSection(section: Int, isExpanded: Bool) {
