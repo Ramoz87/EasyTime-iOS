@@ -82,7 +82,7 @@ class ETJob {
         
         if let fileUrl = expense.fileUrl {
             let file: Files = AppManager.sharedInstance.dataHelper.insertEntity()
-            file.fileUrl = fileUrl.absoluteString
+            file.fileUrl = fileUrl.path
             file.fileId = UUID().uuidString
             file.name = fileUrl.lastPathComponent
             file.expense = dbExpense
@@ -97,30 +97,24 @@ class ETJob {
         self.job.discount = self.discount
 
         guard let images = images else { return }
+        
         for image in images {
-
-            do {
-                let fileManager = FileManager.default
-                let docDir = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-                let folderPath = docDir.appendingPathComponent(AppConstants.jobFolder).path
-                let uuid = UUID().uuidString
-                let fileName = String(format:"%@.png", uuid)
-
-                if !fileManager.fileExists(atPath: folderPath) {
-                    try fileManager.createDirectory(atPath: folderPath, withIntermediateDirectories: true, attributes: nil)
+        
+            let uuid = UUID().uuidString.lowercased()
+            let fileName = String(format:"%@.png", uuid)
+            if let imagePath = FileManager.default.documentPath(folder: AppConstants.jobFolder, file: fileName) {
+                do {
+                    let imageData = UIImagePNGRepresentation(image)!
+                    try imageData.write(to: imagePath)
+                    
+                    let file: Files = AppManager.sharedInstance.dataHelper.insertEntity()
+                    file.fileUrl = imagePath.path
+                    file.fileId = uuid
+                    file.name = fileName
+                    self.job.addToImages(file)
                 }
-
-                let imagePath = NSURL(fileURLWithPath: folderPath).appendingPathComponent(fileName)
-                let imageData = UIImagePNGRepresentation(image)!
-                try imageData.write(to: imagePath!)
-
-                let file: Files = AppManager.sharedInstance.dataHelper.insertEntity()
-                file.fileUrl = imagePath?.path
-                file.fileId = uuid
-                file.name = fileName
-                self.job.addToImages(file)
+                catch {}
             }
-            catch { }
         }
     }
 }

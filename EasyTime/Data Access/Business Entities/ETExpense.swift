@@ -83,7 +83,14 @@ class ETExpense {
         guard let expense = self.expense  else {
             return
         }
-        
+
+        if let filePath = self.expense?.photo?.fileUrl {
+            do {
+                try FileManager.default.removeItem(atPath: filePath)
+            }
+            catch {}
+        }
+
         AppManager.sharedInstance.dataHelper.delete(data: [expense]) { (error) in
             
         }
@@ -91,21 +98,14 @@ class ETExpense {
     
     func saveImage(image: UIImage)
     {
-        do {
-            let fileManager = FileManager.default
-            let docDir = try fileManager.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
-            let folderPath = docDir.appendingPathComponent(AppConstants.expenseFolder).path
-            let fileName = String(format:"%@.png", self.expenseId!)
-            
-            if !fileManager.fileExists(atPath: folderPath) {
-                try fileManager.createDirectory(atPath: folderPath, withIntermediateDirectories: true, attributes: nil)
+        let fileName = String(format:"%@.png", self.expenseId!)
+        if let imagePath = FileManager.default.documentPath(folder: AppConstants.expenseFolder, file: fileName) {
+            do {
+                let imageData = UIImagePNGRepresentation(image)!
+                try imageData.write(to: imagePath)
+                self.fileUrl = imagePath
             }
-            
-            let imagePath = NSURL(fileURLWithPath: folderPath).appendingPathComponent(fileName)
-            let imageData = UIImagePNGRepresentation(image)!
-            try imageData.write(to: imagePath!)
-            self.fileUrl = imagePath
+            catch { }
         }
-        catch { }
     }
 }

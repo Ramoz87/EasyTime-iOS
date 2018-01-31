@@ -153,3 +153,26 @@ extension UIButton {
         self.contentEdgeInsets = UIEdgeInsets(top: edgeOffset, left: 0.0, bottom: edgeOffset, right: 0.0)
     }
 }
+
+extension FileManager {
+    func documentPath(folder folderName:String, file fileName:String? = nil) -> URL? {
+        do {
+            let docDir = try self.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+            let folderUrl = docDir.appendingPathComponent(folderName)
+            
+            if !self.fileExists(atPath: folderUrl.path) {
+                try self.createDirectory(at: folderUrl, withIntermediateDirectories: true, attributes: nil)
+            }
+            
+            guard let fileName = fileName else {
+                return folderUrl
+            }
+            
+            let filePath = folderUrl.appendingPathComponent(fileName)
+            return filePath
+        }
+        catch {
+            return nil
+        }
+    }
+}
