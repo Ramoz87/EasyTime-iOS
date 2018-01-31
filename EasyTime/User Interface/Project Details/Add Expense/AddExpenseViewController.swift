@@ -24,6 +24,7 @@ fileprivate struct Constants {
     static let imageShadowOpacity: Float = 0.5
     static let imageSourcePickerCameraText = NSLocalizedString("Camera", comment: "")
     static let imageSourcePickerLibraryText = NSLocalizedString("Photo Library", comment: "")
+    static let imageSourcePickerCancelText = NSLocalizedString("Cancel", comment: "")
 }
 
 class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
@@ -67,6 +68,7 @@ class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImage
             self.imagePickerController.sourceType = .photoLibrary
             self.present(self.imagePickerController, animated: true, completion: nil)
         }))
+        controller.addAction(UIAlertAction(title: Constants.imageSourcePickerCancelText, style: .cancel, handler: nil))
         return controller
     }()
 

@@ -19,6 +19,7 @@ fileprivate struct Constants {
     static let photosCollectionViewPadding: CGFloat = 10
     static let imageSourcePickerCameraText = NSLocalizedString("Camera", comment: "")
     static let imageSourcePickerLibraryText = NSLocalizedString("Photo Library", comment: "")
+    static let imageSourcePickerCancelText = NSLocalizedString("Cancel", comment: "")
 }
 
 class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITableViewDelegate, UITableViewDataSource, ProjectInfoSectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
@@ -58,6 +59,7 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
             self.imagePickerController.sourceType = .photoLibrary
             self.present(self.imagePickerController, animated: true, completion: nil)
         }))
+        controller.addAction(UIAlertAction(title: Constants.imageSourcePickerCancelText, style: .cancel, handler: nil))
         return controller
     }()
 
