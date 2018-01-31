@@ -50,7 +50,7 @@ class AddTimeViewController: BaseViewController<AddTimeViewModel>, UITextFieldDe
         self.tfHours.inputAccessoryView = UIView() // To hide IQKeyboardManager toolbar
         self.tfMinutes.inputAccessoryView = UIView() // To hide IQKeyboardManager toolbar
 
-        self.tfHours.becomeFirstResponder() // TODO: Clears text field
+        self.tfHours.becomeFirstResponder()
 
         self.tfHours.text = self.viewModel.hours
         self.tfMinutes.text = self.viewModel.minutes

@@ -32,7 +32,6 @@ class ObjectTableViewCell: UITableViewCell {
                 
                 self.lblID.text = object.number
                 self.lblName.text = object.name
-                // TODO: Set lblStatus text
 
                 self.lblAddress.text = ""
                 self.lblAddress.text?.append(object.address?.country, separator: Constants.addressSeparator)
