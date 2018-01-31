@@ -8,7 +8,7 @@
 
 struct AppConstants {
     static let toolBarDateFormat = "EEEE, d MMM yyyy"
-    
+    static let appName = "EasyTime"
     static let expenseFolder = "Expenses"
     static let jobFolder = "Jobs"
 }

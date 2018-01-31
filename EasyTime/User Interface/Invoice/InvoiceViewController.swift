@@ -20,6 +20,7 @@ fileprivate struct Constants
     static let discountAlertCancelText = NSLocalizedString("Cancel", comment: "")
     static let discountAlertSaveText = NSLocalizedString("Save", comment: "")
     static let discountAlertTextFieldPlaceholder = NSLocalizedString("Discount", comment: "")
+    static let saveAlertTextMessage = NSLocalizedString("Order saved!", comment: "")
 }
 
 class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDataSource, UITableViewDelegate, CollectionViewUpdateDelegate, SignatureViewControllerDelegate {
@@ -115,6 +116,9 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
     @IBAction func didTapSaveButton(sender: Any) {
 
         self.viewModel.save()
+        self.showMessage(message: Constants.saveAlertTextMessage) {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     @IBAction func didTapSendButton(sender: Any) {

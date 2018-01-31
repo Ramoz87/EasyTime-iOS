@@ -176,3 +176,18 @@ extension FileManager {
         }
     }
 }
+
+extension UIViewController {
+    
+    func showMessage(message: String, withTitle title: String? = AppConstants.appName, completion: (() -> Swift.Void)? = nil ) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .default) { action in
+            completion?()
+        })
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func showMessage(withError error: Error) {
+        self.showMessage(message: error.localizedDescription)
+    }
+}
