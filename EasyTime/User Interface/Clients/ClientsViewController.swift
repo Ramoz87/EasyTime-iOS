@@ -88,7 +88,12 @@ class ClientsViewController: BaseViewController<ClientsViewModel>, UITableViewDa
     //MARK: - UITableViewDelegate
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+
+        if #available(iOS 11.0, *) { } else {
+
+            self.searchController.isActive = false
+        }
+
         tableView.deselectRow(at: indexPath, animated: true)
 
         let viewModel = ClientInfoViewModel(customer: self.viewModel[indexPath])

@@ -13,6 +13,8 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tabBar.isTranslucent = false // Before iOS 11 UITabBar overlays child view controllers
+
         var ctrl: UIViewController = ProjectsViewController()
         ctrl.title = NSLocalizedString("Projects", comment: "")
         let ctrlTab1 = UINavigationController(rootViewController: ctrl)

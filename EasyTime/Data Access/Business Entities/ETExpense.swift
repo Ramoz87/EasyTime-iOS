@@ -101,7 +101,7 @@ class ETExpense {
         let fileName = String(format:"%@.png", self.expenseId!)
         if let imagePath = FileManager.default.documentPath(folder: AppConstants.expenseFolder, file: fileName) {
             do {
-                let imageData = UIImagePNGRepresentation(image)!
+                let imageData = UIImageJPEGRepresentation(image, 1)!
                 try imageData.write(to: imagePath)
                 self.fileUrl = imagePath
             }

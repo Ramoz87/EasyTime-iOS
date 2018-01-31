@@ -104,7 +104,7 @@ class ETJob {
             let fileName = String(format:"%@.png", uuid)
             if let imagePath = FileManager.default.documentPath(folder: AppConstants.jobFolder, file: fileName) {
                 do {
-                    let imageData = UIImagePNGRepresentation(image)!
+                    let imageData = UIImageJPEGRepresentation(image, 1)!
                     try imageData.write(to: imagePath)
                     
                     let file: Files = AppManager.sharedInstance.dataHelper.insertEntity()

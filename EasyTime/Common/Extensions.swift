@@ -15,6 +15,33 @@ extension UIColor {
 
 private var AssociatedObjectHandle: UInt8 = 0
 
+extension UIImage {
+
+    func scaledImage(maxDimension: Double) -> UIImage {
+
+        let current = max(self.size.width, self.size.height)
+        if current > CGFloat(maxDimension) {
+
+            let scale = CGFloat(maxDimension) / current
+            let newSize = CGSize(width: self.size.width * scale, height: self.size.height * scale)
+            UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0);
+            self.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
+            if let newImage = UIGraphicsGetImageFromCurrentImageContext() {
+
+                UIGraphicsEndImageContext();
+                return newImage
+            }
+
+            UIGraphicsEndImageContext();
+            return self
+        }
+        else {
+
+            return self
+        }
+    }
+}
+
 extension UIView {
 
     open override var inputViewController: UIInputViewController? {

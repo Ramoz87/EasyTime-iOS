@@ -132,6 +132,11 @@ class ExpenseTypeViewController: BaseViewController<ExpenseTypeViewModel>, UITab
     //MARK: - UITableViewDelegate
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        if #available(iOS 11.0, *) { } else {
+
+            self.searchController.isActive = false
+        }
         
         tableView.deselectRow(at: indexPath, animated: true)
         

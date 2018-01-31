@@ -15,6 +15,8 @@ fileprivate struct Constants
     static let minutesText = NSLocalizedString("Minutes", comment: "")
     static let placeholderCornerRadius: CGFloat = 4
     static let placeholderBorderWidth: CGFloat = 1 / UIScreen.main.scale
+    static let maxHours = 24
+    static let maxMinutes = 59
 }
 
 class AddTimeViewController: BaseViewController<AddTimeViewModel>, UITextFieldDelegate {
@@ -48,7 +50,7 @@ class AddTimeViewController: BaseViewController<AddTimeViewModel>, UITextFieldDe
         self.tfHours.inputAccessoryView = UIView() // To hide IQKeyboardManager toolbar
         self.tfMinutes.inputAccessoryView = UIView() // To hide IQKeyboardManager toolbar
 
-        self.tfHours.becomeFirstResponder() // TODO: Clears text field
+        self.tfHours.becomeFirstResponder()
 
         self.tfHours.text = self.viewModel.hours
         self.tfMinutes.text = self.viewModel.minutes
@@ -95,16 +97,23 @@ class AddTimeViewController: BaseViewController<AddTimeViewModel>, UITextFieldDe
 
             if textField == self.tfHours && updatedText.count == 2 {
 
-                self.tfHours.text = updatedText
+                if let intValue = Int(updatedText), intValue > Constants.maxHours {
+
+                    self.tfHours.text = "\(Constants.maxHours)"
+                }
+                else {
+
+                    self.tfHours.text = updatedText
+                }
                 self.tfMinutes.becomeFirstResponder()
                 return false
             }
 
             if textField == self.tfMinutes && updatedText.count == 2 && textField.text?.count == 1 {
 
-                if let intValue = Int(updatedText), intValue > 59 {
+                if let intValue = Int(updatedText), intValue > Constants.maxMinutes {
 
-                    self.tfMinutes.text = "59"
+                    self.tfMinutes.text = "\(Constants.maxMinutes)"
                     return false
                 }
             }

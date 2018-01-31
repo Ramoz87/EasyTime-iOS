@@ -19,6 +19,9 @@ fileprivate struct Constants {
     static let photosCollectionViewPadding: CGFloat = 10
     static let imageSourcePickerCameraText = NSLocalizedString("Camera", comment: "")
     static let imageSourcePickerLibraryText = NSLocalizedString("Photo Library", comment: "")
+    static let imageSourcePickerCancelText = NSLocalizedString("Cancel", comment: "")
+    static let photoMaxDimension = 1000.0
+    static let projectDescriptionLabelPadding: CGFloat = 12
 }
 
 class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITableViewDelegate, UITableViewDataSource, ProjectInfoSectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
@@ -58,6 +61,7 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
             self.imagePickerController.sourceType = .photoLibrary
             self.present(self.imagePickerController, animated: true, completion: nil)
         }))
+        controller.addAction(UIAlertAction(title: Constants.imageSourcePickerCancelText, style: .cancel, handler: nil))
         return controller
     }()
 
@@ -85,7 +89,6 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
         self.lblName.text = self.viewModel.job.name
         self.lblDescription.text = self.viewModel.job.information
-        self.lblDescription.preferredMaxLayoutWidth = self.view.frame.size.width
         self.lblID.text = self.viewModel.job.number
         if let project = self.viewModel.job as? ETProject, let dateStart = project.dateStart, let dateEnd = project.dateEnd {
 
@@ -130,9 +133,8 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
     }
 
     override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
 
-        self.updateAddPhotoButton()
+        self.lblDescription.preferredMaxLayoutWidth = self.view.frame.size.width - Constants.projectDescriptionLabelPadding * 2
 
         if let headerView = tableView.tableHeaderView {
             let height = headerView.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
@@ -144,6 +146,9 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
                 tableView.tableHeaderView = headerView
             }
         }
+
+        super.viewDidLayoutSubviews()
+        self.updateAddPhotoButton()
     }
 
     func expandSection(section: Int, isExpanded: Bool) {
@@ -296,7 +301,7 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
                 self.vPhotosPlaceholder.isHidden = false
                 self.view.setNeedsLayout()
             }
-            self.viewModel.addPhoto(photo: photo)
+            self.viewModel.addPhoto(photo: photo.scaledImage(maxDimension: Constants.photoMaxDimension))
             self.pcPhotos.numberOfPages = self.viewModel.photos.count
             self.cvPhotos.reloadData()
         }
