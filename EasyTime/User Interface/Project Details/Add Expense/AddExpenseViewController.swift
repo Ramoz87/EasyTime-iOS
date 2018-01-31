@@ -25,6 +25,7 @@ fileprivate struct Constants {
     static let imageSourcePickerCameraText = NSLocalizedString("Camera", comment: "")
     static let imageSourcePickerLibraryText = NSLocalizedString("Photo Library", comment: "")
     static let imageSourcePickerCancelText = NSLocalizedString("Cancel", comment: "")
+    static let photoMaxDimension = 1000.0
 }
 
 class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
@@ -157,8 +158,9 @@ class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImage
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 
-        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+        if var image = info[UIImagePickerControllerOriginalImage] as? UIImage {
 
+            image = image.scaledImage(maxDimension: Constants.photoMaxDimension)
             self.viewModel.photo = image
             self.imgPhoto.image = image
 

@@ -20,6 +20,7 @@ fileprivate struct Constants {
     static let imageSourcePickerCameraText = NSLocalizedString("Camera", comment: "")
     static let imageSourcePickerLibraryText = NSLocalizedString("Photo Library", comment: "")
     static let imageSourcePickerCancelText = NSLocalizedString("Cancel", comment: "")
+    static let photoMaxDimension = 1000.0
 }
 
 class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITableViewDelegate, UITableViewDataSource, ProjectInfoSectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
@@ -298,7 +299,7 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
                 self.vPhotosPlaceholder.isHidden = false
                 self.view.setNeedsLayout()
             }
-            self.viewModel.addPhoto(photo: photo)
+            self.viewModel.addPhoto(photo: photo.scaledImage(maxDimension: Constants.photoMaxDimension))
             self.pcPhotos.numberOfPages = self.viewModel.photos.count
             self.cvPhotos.reloadData()
         }
