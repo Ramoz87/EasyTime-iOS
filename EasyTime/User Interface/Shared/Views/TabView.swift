@@ -10,6 +10,7 @@ import UIKit
 fileprivate struct Constants {
 
     static let curveViewWidth: CGFloat = 39
+    static let curverViewOverlayWidth: CGFloat = 0.5
     static let fontSize: CGFloat = 14
     static let textColor = UIColor(red: 65 / 255, green: 91 / 255, blue: 128 / 255, alpha: 1)
     static let selectedTextColor = UIColor.black
@@ -135,8 +136,9 @@ private class TabViewItem: UIButton
 
     lazy var leftCurveImageView: UIImageView = {
 
-        let image = UIImage(named: "tabLeftCurve")?.withRenderingMode(.alwaysTemplate)
+        let image = UIImage(named: "tabLeftCurve")
         let imageView = UIImageView(image: image)
+        imageView.highlightedImage = UIImage(named: "tabLeftCurveSelected")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = false
         return imageView
@@ -144,8 +146,9 @@ private class TabViewItem: UIButton
 
     lazy var rightCurveImageView: UIImageView = {
 
-        let image = UIImage(named: "tabRightCurve")?.withRenderingMode(.alwaysTemplate)
+        let image = UIImage(named: "tabRightCurve")
         let imageView = UIImageView(image: image)
+        imageView.highlightedImage = UIImage(named: "tabRightCurveSelected")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = false
         return imageView
@@ -167,11 +170,11 @@ private class TabViewItem: UIButton
 
             if self.position != .left {
 
-                self.leftCurveImageView.tintColor = self.isSelected ? Constants.selectedFillColor : Constants.fillColor
+                self.leftCurveImageView.isHighlighted = self.isSelected
             }
             if self.position != .right {
 
-                self.rightCurveImageView.tintColor = self.isSelected ? Constants.selectedFillColor : Constants.fillColor
+                self.rightCurveImageView.isHighlighted = self.isSelected
             }
         }
     }
@@ -196,8 +199,8 @@ private class TabViewItem: UIButton
             constraints.append(contentsOf: [
                 self.rightCurveImageView.safeTopAnchor.constraint(equalTo: self.safeTopAnchor),
                 self.rightCurveImageView.safeTrailingAnchor.constraint(equalTo: self.safeTrailingAnchor),
-                self.rightCurveImageView.safeBottomAnchor.constraint(equalTo: self.safeBottomAnchor),
-                NSLayoutConstraint(item: self.rightCurveImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: Constants.curveViewWidth),
+                self.rightCurveImageView.safeBottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: Constants.curverViewOverlayWidth),
+                NSLayoutConstraint(item: self.rightCurveImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: Constants.curveViewWidth + Constants.curverViewOverlayWidth),
                 ])
         }
 
@@ -207,8 +210,8 @@ private class TabViewItem: UIButton
             constraints.append(contentsOf: [
                 self.leftCurveImageView.safeTopAnchor.constraint(equalTo: self.safeTopAnchor),
                 self.leftCurveImageView.safeLeadingAnchor.constraint(equalTo: self.safeLeadingAnchor),
-                self.leftCurveImageView.safeBottomAnchor.constraint(equalTo: self.safeBottomAnchor),
-                NSLayoutConstraint(item: self.leftCurveImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: Constants.curveViewWidth),
+                self.leftCurveImageView.safeBottomAnchor.constraint(equalTo: self.safeBottomAnchor, constant: Constants.curverViewOverlayWidth),
+                NSLayoutConstraint(item: self.leftCurveImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: Constants.curveViewWidth + Constants.curverViewOverlayWidth),
                 ])
         }
 
