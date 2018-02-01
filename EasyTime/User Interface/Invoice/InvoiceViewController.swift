@@ -18,7 +18,7 @@ fileprivate struct Constants
     static let discountAlertTitle = NSLocalizedString("Request for discount", comment: "")
     static let discountAlertMessage = NSLocalizedString("Enter a total discount", comment: "")
     static let discountAlertCancelText = NSLocalizedString("Cancel", comment: "")
-    static let discountAlertSaveText = NSLocalizedString("Save", comment: "")
+    static let discountAlertSaveText = NSLocalizedString("Done", comment: "")
     static let discountAlertTextFieldPlaceholder = NSLocalizedString("Discount", comment: "")
     static let saveAlertTextMessage = NSLocalizedString("Order saved!", comment: "")
 }
@@ -59,7 +59,7 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
     }
 
     private func updateDiscountValue() {
-        let discount = self.viewModel.job.discount
+        let discount = self.viewModel.discount
         
         if  discount > 0 {
             self.lblDiscount.text = String(format: "%% %0.f CHF", discount)
@@ -92,7 +92,7 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
         controller.addAction(UIAlertAction(title: Constants.discountAlertSaveText, style: .default) { action in
 
             if let text = controller.textFields?.first?.text, text.count > 0 {
-                self.viewModel.job.discount = Float(text)!
+                self.viewModel.discount = Float(text)!
                 self.updateDiscountValue()
             }
         })

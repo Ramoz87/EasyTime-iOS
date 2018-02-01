@@ -28,6 +28,7 @@ fileprivate struct Constants {
 class InvoiceViewModel: BaseViewModel {
 
     let job: ETJob
+    var discount: Float
     private var sections = [NSFetchedResultsController<Expense>]()
     
     private var basePredicate: NSPredicate {
@@ -107,6 +108,7 @@ class InvoiceViewModel: BaseViewModel {
 
         self.job = job
         self.job.signature = nil
+        self.discount = job.discount
         super.init()
     }
 
@@ -196,6 +198,11 @@ class InvoiceViewModel: BaseViewModel {
     }
     
     override func save() {
+
+        if self.discount > 0 {
+
+            self.job.discount = self.discount
+        }
         self.job.update()
         super.save()
     }
