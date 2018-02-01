@@ -10,7 +10,9 @@ import UIKit
 
 fileprivate struct Constants
 {
-    static let datePickerDoneButtonText = NSLocalizedString("Select date", comment: "")
+    static let datePickerKeyboardToolbarTitle = NSLocalizedString("Select date", comment: "")
+    static let datePickerKeyboardDoneText = NSLocalizedString("Done", comment: "")
+    static let datePickerKeyboardTodayText = NSLocalizedString("Today", comment: "")
     static let dateFilterButtonDropDownIconSpacing: CGFloat = 8
     static let buttonCornerRadius: CGFloat = 4
     static let buttonBorderWidth: CGFloat = 1 / UIScreen.main.scale
@@ -56,7 +58,9 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
         self.btnDateFilter.inputAccessoryView = self.btnDateFilter.keyboardToolbar
         self.btnDateFilter.semanticContentAttribute = .forceRightToLeft
         self.btnDateFilter.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -Constants.dateFilterButtonDropDownIconSpacing)
-        self.btnDateFilter.addDoneOnKeyboardWithTarget(self, action: #selector(ProjectsViewController.didTapDoneOnDatePicker(sender:)), titleText: Constants.datePickerDoneButtonText)
+
+        self.btnDateFilter.keyboardToolbar.previousBarButton.isSystemItem = true
+        self.btnDateFilter.addRightLeftOnKeyboardWithTarget(self, leftButtonTitle: Constants.datePickerKeyboardTodayText, rightButtonTitle: Constants.datePickerKeyboardDoneText, rightButtonAction: #selector(self.didTapDoneOnDatePicker(sender:)), leftButtonAction: #selector(self.didTapTodayOnDatePicker(sender:)), titleText: Constants.datePickerKeyboardToolbarTitle)
 
         for button in self.buttons {
 
@@ -120,6 +124,12 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
     @objc func didTapDoneOnDatePicker(sender: Any) {
 
         self.btnDateFilter.resignFirstResponder()
+    }
+
+    @objc func didTapTodayOnDatePicker(sender: Any) {
+
+        self.datePicker.date = Date()
+        self.selectedDate = self.datePicker.date
     }
 
     //MARK: - CollectionViewUpdateDelegate

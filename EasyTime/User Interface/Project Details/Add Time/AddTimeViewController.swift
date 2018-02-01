@@ -15,7 +15,7 @@ fileprivate struct Constants
     static let minutesText = NSLocalizedString("Minutes", comment: "")
     static let placeholderCornerRadius: CGFloat = 4
     static let placeholderBorderWidth: CGFloat = 1 / UIScreen.main.scale
-    static let maxHours = 24
+    static let maxHours = 23
     static let maxMinutes = 59
 }
 

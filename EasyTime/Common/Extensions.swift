@@ -218,3 +218,33 @@ extension UIViewController {
         self.showMessage(message: error.localizedDescription)
     }
 }
+
+extension UIViewController {
+
+    public static func topMostViewController() -> UIViewController? { //TODO:
+
+        guard let keyWindow = UIApplication.shared.keyWindow else { return nil }
+
+        if var topViewController = keyWindow.rootViewController?.childViewControllers.first {
+
+            if let selectedViewController = (topViewController as? UITabBarController)?.selectedViewController {
+
+                topViewController = selectedViewController
+            }
+
+            if let visibleViewController = (topViewController as? UINavigationController)?.visibleViewController {
+
+                topViewController = visibleViewController
+            }
+
+            while let childViewController = topViewController.childViewControllers.first {
+
+                topViewController = childViewController
+            }
+
+            return topViewController
+        }
+
+        return nil
+    }
+}
