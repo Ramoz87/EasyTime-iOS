@@ -217,9 +217,6 @@ extension UIViewController {
     func showMessage(withError error: Error) {
         self.showMessage(message: error.localizedDescription)
     }
-}
-
-extension UIViewController {
 
     public static func topMostViewController() -> UIViewController? { //TODO:
 
