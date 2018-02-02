@@ -43,7 +43,7 @@ class DataHelper: NSObject {
     
     // MARK: - Fetch data
 
-    func fetchedResultsController<ResultType: NSManagedObject>(sort: [String]? = nil, ascending:Bool = true, predicate: NSPredicate? = nil, sectionNameKeyPath: String? = nil) -> NSFetchedResultsController<ResultType> {
+    func fetchedResultsController<ResultType: NSManagedObject>(sort: [String], ascending:Bool = true, predicate: NSPredicate? = nil, sectionNameKeyPath: String? = nil) -> NSFetchedResultsController<ResultType> {
 
         let request: NSFetchRequest<ResultType> = self.fetchRequest(sort: sort, ascending: ascending, predicate: predicate)
 
@@ -67,7 +67,14 @@ class DataHelper: NSObject {
     func insertEntity<ResultType: NSManagedObject>() -> ResultType {
         return NSEntityDescription.insertNewObject(forEntityName: ResultType.entityName, into: self.mainContext) as! ResultType
     }
-    
+
+    func count<ResultType: NSManagedObject>(for class:ResultType.Type, predicate: NSPredicate? = nil) -> Int {
+
+        let request: NSFetchRequest<ResultType> = self.fetchRequest(predicate: predicate)
+
+        do { return try self.mainContext.count(for: request) } catch { return 0 }
+    }
+
     // MARK: - Save data
     func save(completion: @escaping ErrorBlock)  {
 

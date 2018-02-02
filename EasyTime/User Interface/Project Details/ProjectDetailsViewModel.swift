@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import CoreData
 
 fileprivate struct Constants {
 
+    static let predicate = "job.jobId IN %@"
+    static let sortDescriptor = "name"
     static let tabActivity = NSLocalizedString("ACTIVITY", comment: "")
     static let tabInfo = NSLocalizedString("INFORMATION", comment: "")
 }
@@ -21,6 +24,25 @@ class ProjectDetailsViewModel: BaseViewModel {
 
         get { return self.job.number }
     }
+
+    private lazy var fetchResultsController: NSFetchedResultsController<Expense> = {
+
+        var arrayOfJobId: [String] = []
+
+        if let jobId = self.job.jobId {
+            arrayOfJobId.append(jobId)
+        }
+
+        if let objects = self.job.objects, objects.count > 0 {
+            arrayOfJobId.append(contentsOf: objects)
+        }
+
+        let predicate = NSPredicate(format: Constants.predicate, arrayOfJobId)
+
+        let fetchedResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor], predicate: predicate)
+        fetchedResultsController.delegate = self
+        return fetchedResultsController
+    }()
 
     init(job: ETJob) {
 
@@ -43,5 +65,19 @@ class ProjectDetailsViewModel: BaseViewModel {
         infoController.title = Constants.tabInfo
 
         return [activityController, infoController]
+    }
+
+    func numberOfExpenses() -> Int {
+
+        guard let count = self.fetchResultsController.sections?[0].numberOfObjects else { return 0 }
+        return count
+    }
+
+    func fetchData() {
+
+        do {
+            try self.fetchResultsController.performFetch()
+            self.collectionViewUpdateDelegate?.didChangeContent()
+        } catch {}
     }
 }
