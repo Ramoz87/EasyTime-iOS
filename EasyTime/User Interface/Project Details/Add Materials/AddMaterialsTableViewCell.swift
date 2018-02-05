@@ -14,6 +14,11 @@ fileprivate struct Constants {
     static let textFieldBorderWidth: CGFloat = 1
 }
 
+protocol AddMaterialsTableViewCellDelegate: class {
+
+    func addMaterialsTableViewCellDidDeleselect(cell: AddMaterialsTableViewCell)
+}
+
 class AddMaterialsTableViewCell: UITableViewCell, UITextFieldDelegate {
 
     static let reuseIdentifier = "AddMaterialsTableViewCellReuseIdentifier"
@@ -24,6 +29,8 @@ class AddMaterialsTableViewCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var btnSelect: UIButton!
     @IBOutlet weak var tfQuantity: UITextField!
     @IBOutlet weak var lblUnit: UILabel!
+
+    weak var delegate: AddMaterialsTableViewCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -78,12 +85,18 @@ class AddMaterialsTableViewCell: UITableViewCell, UITextFieldDelegate {
                 
                 textField.text = String(describing: Int(quantity))
             }
-            
+
             material.quantity = quantity
         }
         else
         {
             material.quantity = 0
+        }
+
+        if material.quantity == 0, self.isMaterialSelected == true {
+
+            self.delegate?.addMaterialsTableViewCellDidDeleselect(cell: self)
+            self.isMaterialSelected = false
         }
     }
 

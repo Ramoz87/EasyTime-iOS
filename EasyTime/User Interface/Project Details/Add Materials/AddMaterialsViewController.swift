@@ -18,7 +18,7 @@ fileprivate struct Constants {
 
 }
 
-class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UITableViewDelegate, UITableViewDataSource, CollectionViewUpdateDelegate {
+class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UITableViewDelegate, UITableViewDataSource, CollectionViewUpdateDelegate, AddMaterialsTableViewCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnSave: UIButton!
@@ -106,12 +106,24 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: AddMaterialsTableViewCell.reuseIdentifier, for: indexPath) as! AddMaterialsTableViewCell
         cell.material = self.viewModel[indexPath]
         cell.isMaterialSelected = self.viewModel.isSelected(at: indexPath)
+        cell.delegate = self
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return UITableViewAutomaticDimension
+    }
+
+    //MARK: - AddMaterialsTableViewCellDelegate
+
+    func addMaterialsTableViewCellDidDeleselect(cell: AddMaterialsTableViewCell) {
+
+        if let indexPath = self.tableView.indexPath(for: cell) {
+
+            self.tableView.deselectRow(at: indexPath, animated: true)
+            self.viewModel.deselect(at: indexPath)
+        }
     }
 
     //MARK: - CollectionViewUpdateDelegate

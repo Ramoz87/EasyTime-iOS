@@ -12,7 +12,9 @@ import CoreData
 fileprivate struct Constants
 {
     static let searchBarPlaceholder = NSLocalizedString("Search by name", comment: "")
-    static let datePickerDoneButtonText = NSLocalizedString("Date of job", comment: "")
+    static let datePickerKeyboardText = NSLocalizedString("Date of job", comment: "")
+    static let datePickerDoneButtonText = NSLocalizedString("Done", comment: "")
+    static let datePickerTodayButtonText = NSLocalizedString("Today", comment: "")
     static let dateFilterButtonDropDownIconSpacing: CGFloat = 8
     static let statusPredicate = "type = 'STATUS'"
 }
@@ -42,12 +44,14 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
     lazy var dateFilterButton: InputButton = {
         
         let button = InputButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
         button.inputView = self.datePicker
         button.inputAccessoryView = button.keyboardToolbar
         button.semanticContentAttribute = .forceRightToLeft
         button.setImage(UIImage(named: "dropDownWhiteIcon"), for: .normal)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -Constants.dateFilterButtonDropDownIconSpacing)
-        button.addDoneOnKeyboardWithTarget(self, action: #selector(ProjectsViewController.didTapDoneOnDatePicker(sender:)), titleText: Constants.datePickerDoneButtonText)
+        button.keyboardToolbar.previousBarButton.isSystemItem = true
+        button.addRightLeftOnKeyboardWithTarget(self, leftButtonTitle: Constants.datePickerTodayButtonText, rightButtonTitle: Constants.datePickerDoneButtonText, rightButtonAction: #selector(self.didTapDoneOnDatePicker(sender:)), leftButtonAction: #selector(self.didTapTodayOnDatePicker(sender:)), titleText: Constants.datePickerKeyboardText)
         return button
     }()
 
@@ -95,18 +99,29 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
         self.viewModel.collectionViewUpdateDelegate = self
 
         self.navigationItem.titleView = self.dateFilterButton
-        self.selectedDate = Date();
+        if let height = self.navigationController?.navigationBar.frame.size.height {
+
+            NSLayoutConstraint.activate([NSLayoutConstraint(item: self.dateFilterButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: height)])
+        }
+        self.selectedDate = Date()
     }
 
     //MARK: - Action handlers
 
     @objc func didChangeDate(sender: Any) {
+
         self.selectedDate = self.datePicker.date
     }
 
     @objc func didTapDoneOnDatePicker(sender: Any) {
 
         self.dateFilterButton.resignFirstResponder()
+    }
+
+    @objc func didTapTodayOnDatePicker(sender: Any) {
+
+        self.datePicker.date = Date()
+        self.selectedDate = self.datePicker.date
     }
 
     //MARK: - UITableViewDataSource
