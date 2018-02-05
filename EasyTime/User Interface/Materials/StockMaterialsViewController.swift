@@ -11,7 +11,8 @@ import UIKit
 fileprivate struct Constants {
     
     static let titleText = NSLocalizedString("Stock", comment: "")
-    static let btnSaveText = NSLocalizedString("ADD MATERIALS", comment: "")
+    static let hintText = NSLocalizedString("Add your materials", comment: "")
+    static let btnSaveText = NSLocalizedString("ADD MATERIALS TO STOCK", comment: "")
     static let btnSaveCornerRadius: CGFloat = 4
 }
 
@@ -20,6 +21,7 @@ class StockMaterialsViewController: BaseViewController<StockMaterialsViewModel>,
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnSave: UIButton!
     @IBOutlet weak var vHint: UIView!
+    @IBOutlet weak var lblHint: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,8 @@ class StockMaterialsViewController: BaseViewController<StockMaterialsViewModel>,
         self.viewModel.collectionViewUpdateDelegate = self
         
         self.viewModel.updateResults()
+
+        self.lblHint.text = Constants.hintText
     }
 
     override func viewWillAppear(_ animated: Bool) {
