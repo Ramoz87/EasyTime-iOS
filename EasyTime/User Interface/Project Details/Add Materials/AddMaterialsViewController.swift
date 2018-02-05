@@ -15,13 +15,15 @@ fileprivate struct Constants {
     static let btnSaveText = NSLocalizedString("ADD", comment: "")
     static let btnSaveTextFormat = NSLocalizedString("ADD %d MATERIALS", comment: "")
     static let btnSaveCornerRadius: CGFloat = 4
-
+    static let hintText = "Nothing here...\nPlease add materials to stock"
 }
 
 class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UITableViewDelegate, UITableViewDataSource, CollectionViewUpdateDelegate, AddMaterialsTableViewCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnSave: UIButton!
+    @IBOutlet weak var vHint: UIView!
+    @IBOutlet weak var lblHint: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +58,16 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
             
             self.btnSave.setTitle(Constants.btnSaveNoDataText, for: .normal)
         }
+
+        self.lblHint.text = Constants.hintText
+        self.updateContent()
+    }
+
+    private func updateContent() {
+
+        let hasData = self.viewModel.numberOfRowsInSection(section: 0)  > 0 ? true : false
+        self.vHint.isHidden = hasData
+        self.tableView.isHidden = !hasData
     }
 
     //MARK: - Action handlers
@@ -177,5 +189,6 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
 
     func didChangeDataSet() {
         self.tableView.reloadData()
+        self.updateContent()
     }
 }

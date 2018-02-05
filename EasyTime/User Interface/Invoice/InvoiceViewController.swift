@@ -14,12 +14,13 @@ fileprivate struct Constants
     static let buttonBorderWidth: CGFloat = 1 / UIScreen.main.scale
     static let buttonDisabledAlpha: CGFloat = 0.3
     static let discountPlaceholderViewCornerRadius: CGFloat = 3
-    static let tableFooterHeight: CGFloat = 30
+    static let tableFooterHeight: CGFloat = 44
     static let discountAlertTitle = NSLocalizedString("Request for discount", comment: "")
-    static let discountAlertMessage = NSLocalizedString("Enter a total discount", comment: "")
+    static let discountAlertMessage = NSLocalizedString("Enter a total discount in CHF", comment: "")
     static let discountAlertCancelText = NSLocalizedString("Cancel", comment: "")
     static let discountAlertSaveText = NSLocalizedString("Done", comment: "")
     static let discountAlertTextFieldPlaceholder = NSLocalizedString("Discount", comment: "")
+    static let discountText = NSLocalizedString("%%   %0.f CHF", comment: "")
     static let saveAlertTextMessage = NSLocalizedString("Order saved!", comment: "")
 }
 
@@ -62,7 +63,7 @@ class InvoiceViewController: BaseViewController<InvoiceViewModel>, UITableViewDa
         let discount = self.viewModel.discount
         
         if  discount > 0 {
-            self.lblDiscount.text = String(format: "%% %0.f CHF", discount)
+            self.lblDiscount.text = String(format: Constants.discountText, discount)
             self.vDiscountPlaceholder.isHidden = false
         }
         else {

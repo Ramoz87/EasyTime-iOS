@@ -12,7 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProjectsViewController" customModule="EasyTime" customModuleProvider="target">
             <connections>
+                <outlet property="lblHint" destination="2fE-sT-yDZ" id="R7S-uB-A2W"/>
                 <outlet property="tableView" destination="ciN-Lv-PgQ" id="QoP-DH-4LP"/>
+                <outlet property="vHint" destination="DHf-ld-TGg" id="2wK-Fo-85O"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -29,11 +31,42 @@
                         <outlet property="delegate" destination="-1" id="htC-7a-bqU"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DHf-ld-TGg">
+                    <rect key="frame" x="12" y="268.5" width="351" height="150"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing here... You can choose another date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fE-sT-yDZ">
+                            <rect key="frame" x="0.0" y="81" width="351" height="69"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.4392156862745098" green="0.54117647058823526" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nothingIcon" translatesAutoresizingMaskIntoConstraints="NO" id="y0a-JK-Doi">
+                            <rect key="frame" x="0.0" y="0.0" width="351" height="81"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="81" id="CXj-Pn-hRq"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="y0a-JK-Doi" firstAttribute="top" secondItem="DHf-ld-TGg" secondAttribute="top" id="AWG-OF-RJK"/>
+                        <constraint firstAttribute="bottom" secondItem="2fE-sT-yDZ" secondAttribute="bottom" id="LLz-Dd-JpO"/>
+                        <constraint firstItem="2fE-sT-yDZ" firstAttribute="top" secondItem="y0a-JK-Doi" secondAttribute="bottom" id="UQC-9N-UZw"/>
+                        <constraint firstAttribute="height" constant="150" id="eu3-2K-dA7"/>
+                        <constraint firstAttribute="trailing" secondItem="y0a-JK-Doi" secondAttribute="trailing" id="lEc-3w-ghp"/>
+                        <constraint firstItem="y0a-JK-Doi" firstAttribute="leading" secondItem="DHf-ld-TGg" secondAttribute="leading" id="rjx-Vh-Ipj"/>
+                        <constraint firstItem="2fE-sT-yDZ" firstAttribute="leading" secondItem="DHf-ld-TGg" secondAttribute="leading" id="uXE-qW-YVU"/>
+                        <constraint firstAttribute="trailing" secondItem="2fE-sT-yDZ" secondAttribute="trailing" id="xMS-Dl-99q"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="ciN-Lv-PgQ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="2uq-2R-Tc3"/>
+                <constraint firstItem="DHf-ld-TGg" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="8YV-3l-zaW"/>
                 <constraint firstItem="ciN-Lv-PgQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Ux5-ek-taj"/>
+                <constraint firstItem="DHf-ld-TGg" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="bfc-CS-jgb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="DHf-ld-TGg" secondAttribute="trailing" constant="12" id="lVT-I6-v83"/>
                 <constraint firstItem="ciN-Lv-PgQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="m4k-zL-M06"/>
                 <constraint firstItem="ciN-Lv-PgQ" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="mtK-rm-TbX"/>
             </constraints>
@@ -41,4 +74,7 @@
             <point key="canvasLocation" x="24.5" y="52.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="nothingIcon" width="92" height="83"/>
+    </resources>
 </document>

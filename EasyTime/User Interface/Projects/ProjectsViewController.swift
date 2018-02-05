@@ -17,11 +17,14 @@ fileprivate struct Constants
     static let datePickerTodayButtonText = NSLocalizedString("Today", comment: "")
     static let dateFilterButtonDropDownIconSpacing: CGFloat = 8
     static let statusPredicate = "type = 'STATUS'"
+    static let hintText = "Nothing here...\nPlease choose another date"
 }
 
 class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, CollectionViewUpdateDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var vHint: UIView!
+    @IBOutlet weak var lblHint: UILabel!
     
     lazy var searchController: SearchController = {
 
@@ -104,6 +107,15 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
             NSLayoutConstraint.activate([NSLayoutConstraint(item: self.dateFilterButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1.0, constant: height)])
         }
         self.selectedDate = Date()
+        self.lblHint.text = Constants.hintText
+        self.updateContent()
+    }
+
+    private func updateContent() {
+
+        let hasData = self.viewModel.numberOfSections()  > 0 ? true : false
+        self.vHint.isHidden = hasData
+        self.tableView.isHidden = !hasData
     }
 
     //MARK: - Action handlers
@@ -258,6 +270,7 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
     
     func didChangeDataSet() {
         self.tableView.reloadData()
+        self.updateContent()
     }
 }
 

@@ -13,7 +13,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddMaterialsViewController" customModule="EasyTime" customModuleProvider="target">
             <connections>
                 <outlet property="btnSave" destination="Kak-pG-C7c" id="C38-GR-4pf"/>
+                <outlet property="lblHint" destination="VNQ-CA-jgb" id="M1b-IH-lBA"/>
                 <outlet property="tableView" destination="5aV-4y-hUl" id="CSa-D7-cuC"/>
+                <outlet property="vHint" destination="IpL-hb-ArZ" id="8QS-FW-bdE"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -57,19 +59,53 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="zae-PS-rYi"/>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IpL-hb-ArZ">
+                    <rect key="frame" x="12" y="219.5" width="351" height="150"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nothing here... You can choose another date" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNQ-CA-jgb">
+                            <rect key="frame" x="0.0" y="81" width="351" height="69"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.43921568630000002" green="0.54117647059999996" blue="0.67843137249999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nothingIcon" translatesAutoresizingMaskIntoConstraints="NO" id="RCK-Ax-Cck">
+                            <rect key="frame" x="0.0" y="0.0" width="351" height="81"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="81" id="dvL-3y-bOU"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="VNQ-CA-jgb" secondAttribute="bottom" id="B3g-ks-LZc"/>
+                        <constraint firstAttribute="trailing" secondItem="RCK-Ax-Cck" secondAttribute="trailing" id="Jnx-MK-dG7"/>
+                        <constraint firstItem="VNQ-CA-jgb" firstAttribute="top" secondItem="RCK-Ax-Cck" secondAttribute="bottom" id="SMw-7P-pDv"/>
+                        <constraint firstAttribute="height" constant="150" id="aeb-wF-ocT"/>
+                        <constraint firstItem="RCK-Ax-Cck" firstAttribute="leading" secondItem="IpL-hb-ArZ" secondAttribute="leading" id="cwc-JG-hTx"/>
+                        <constraint firstItem="RCK-Ax-Cck" firstAttribute="top" secondItem="IpL-hb-ArZ" secondAttribute="top" id="cxF-UZ-ZLF"/>
+                        <constraint firstAttribute="trailing" secondItem="VNQ-CA-jgb" secondAttribute="trailing" id="dpb-hw-Ndx"/>
+                        <constraint firstItem="VNQ-CA-jgb" firstAttribute="leading" secondItem="IpL-hb-ArZ" secondAttribute="leading" id="vkW-zg-Ba1"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="5aV-4y-hUl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="5NW-IM-gJZ"/>
                 <constraint firstItem="5aV-4y-hUl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ATu-JJ-e6H"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="IpL-hb-ArZ" secondAttribute="trailing" constant="12" id="PHD-X7-92e"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BIz-xF-CLh" secondAttribute="bottom" id="QiY-5X-foj"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BIz-xF-CLh" secondAttribute="trailing" id="iyE-2q-ZYC"/>
+                <constraint firstItem="IpL-hb-ArZ" firstAttribute="centerY" secondItem="5aV-4y-hUl" secondAttribute="centerY" id="j1I-0o-c9a"/>
                 <constraint firstItem="BIz-xF-CLh" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jQC-TR-nbx"/>
                 <constraint firstItem="BIz-xF-CLh" firstAttribute="top" secondItem="5aV-4y-hUl" secondAttribute="bottom" id="le7-Rg-Y97"/>
+                <constraint firstItem="IpL-hb-ArZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="nWs-9E-SnO"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5aV-4y-hUl" secondAttribute="trailing" id="uKU-Jp-nJt"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="26.5" y="52.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="nothingIcon" width="92" height="83"/>
+    </resources>
 </document>

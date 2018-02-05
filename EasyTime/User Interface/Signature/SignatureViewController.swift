@@ -18,6 +18,8 @@ fileprivate struct Constants {
 
     static let signButtonTitle = NSLocalizedString("SIGN", comment: "")
     static let clearButtonTitle = NSLocalizedString("Clear", comment: "")
+    static let hintText = NSLocalizedString("Sign here", comment: "")
+    static let hintAnimationDuration: TimeInterval = 2
     static let signButtonCornerRadius: CGFloat = 4
     static let signatureAuthroTitles = [
         NSLocalizedString("Client", comment: ""),
@@ -35,6 +37,8 @@ class SignatureViewController: BaseViewController<BaseViewModel> {
     @IBOutlet weak var vSignature: EPSignatureView!
     @IBOutlet weak var scAuthor: UISegmentedControl!
     @IBOutlet weak var btnSign: UIButton!
+    @IBOutlet weak var vHint: UIView!
+    @IBOutlet weak var lblHint: UILabel!
 
     weak var delegate: SignatureViewControllerDelegate?
 
@@ -50,6 +54,18 @@ class SignatureViewController: BaseViewController<BaseViewModel> {
         self.scAuthor.setTitle(Constants.signatureAuthroTitles[1], forSegmentAt: 1)
 
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: Constants.clearButtonTitle, style: .plain, target: self, action: #selector(self.didTapClearButton(sender:)))
+
+        self.lblHint.text = Constants.hintText
+        self.hideHint()
+    }
+
+    private func hideHint() {
+
+        UIView.animate(withDuration: Constants.hintAnimationDuration, animations: {
+            self.vHint.alpha = 0
+        }) { result in
+            self.vHint.isHidden = true
+        }
     }
 
     //MARK: - Action handlers

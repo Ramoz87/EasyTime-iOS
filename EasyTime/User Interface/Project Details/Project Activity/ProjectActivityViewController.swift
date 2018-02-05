@@ -18,6 +18,8 @@ fileprivate struct Constants
     static let buttonBorderWidth: CGFloat = 1 / UIScreen.main.scale
     static let tableViewBorderWidth: CGFloat = 1 / UIScreen.main.scale
     static let tableViewBorderColor = UIColor.black.withAlphaComponent(0.3)
+    static let nothingHintText = "Nothing here...\nPlease choose another date"
+    static let addHintText = "Please add your activities"
 }
 
 class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel>, UITableViewDelegate, UITableViewDataSource, CollectionViewUpdateDelegate {
@@ -25,6 +27,10 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet var btnDateFilter: InputButton!
+    @IBOutlet weak var vHintNothing: UIView!
+    @IBOutlet weak var lblHintNothing: UILabel!
+    @IBOutlet weak var vHintAdd: UIView!
+    @IBOutlet weak var lblHintAdd: UILabel!
 
     lazy var datePicker: UIDatePicker = {
 
@@ -71,6 +77,20 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
         }
         
         self.selectedDate = Date()
+
+        self.lblHintNothing.text = Constants.nothingHintText
+        self.lblHintAdd.text = Constants.addHintText
+        self.updateContent()
+    }
+
+    private func updateContent() {
+
+        let hasData = self.viewModel.numberOfRowsInSection(section: 0) > 0 ? true : false
+        let isToday = NSCalendar.current.isDateInToday(self.datePicker.date)
+
+        self.vHintNothing.isHidden = !(hasData == false && isToday == false)
+        self.vHintAdd.isHidden = !(hasData == false && isToday == true)
+        self.tableView.isHidden = !hasData
     }
 
     //MARK: - UITableViewDelegate
@@ -179,9 +199,11 @@ class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel
     func didChangeContent() {
 
         self.tableView.endUpdates()
+        self.updateContent()
     }
 
     func didChangeDataSet() {
         self.tableView.reloadData()
+        self.updateContent()
     }
 }
