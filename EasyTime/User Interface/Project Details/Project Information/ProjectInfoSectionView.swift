@@ -18,6 +18,7 @@ class ProjectInfoSectionView: UIView {
 
     static let sectionHeight: CGFloat = 55
 
+    @IBOutlet weak var imgIcon: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDetails: UILabel!
     @IBOutlet weak var imgAccessory: UIImageView!

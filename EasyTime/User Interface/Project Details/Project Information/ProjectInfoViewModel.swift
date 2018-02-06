@@ -235,4 +235,21 @@ class ProjectInfoSectionInfo {
 
         return self.objects[index]
     }
+
+    func sectionIcon() -> String {
+
+        switch self.type {
+
+        case .customer:
+            return "clientIcon"
+        case .instructions:
+            return "jobInstructionsIcon"
+        case .status:
+            return "jobStatusIcon"
+        case .objects:
+            return "jobObjectsIcon"
+        case .employees:
+            return "jobEmployeesIcon"
+        }
+    }
 }

@@ -33,7 +33,6 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var lblbDate: UILabel!
-    @IBOutlet weak var lblID: UILabel!
 
     @IBOutlet weak var vPhotosPlaceholder: UIView!
     @IBOutlet weak var btnAddPhotoSmall: UIButton!
@@ -89,11 +88,15 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
         self.lblName.text = self.viewModel.job.name
         self.lblDescription.text = self.viewModel.job.information
-        self.lblID.text = self.viewModel.job.number
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
         if let project = self.viewModel.job as? ETProject, let dateStart = project.dateStart, let dateEnd = project.dateEnd {
 
-            let dateFormatter = DateFormatter()
             self.lblbDate.text = dateFormatter.string(from: dateStart as Date) + " - " + dateFormatter.string(from: dateEnd as Date)
+        }
+        else if let date = self.viewModel.job.date {
+
+            self.lblbDate.text = dateFormatter.string(from: date as Date)
         }
 
         self.tableView.register(UINib(nibName: ProjectInfoTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectInfoTableViewCell.reuseIdentifier)
@@ -242,6 +245,7 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
             sectionView.delegate = self
             sectionView.sectionIndex = section
             sectionView.isExpanded = sectionInfo.isExpanded
+            sectionView.imgIcon.image = UIImage(named: sectionInfo.sectionIcon())
             sectionView.lblTitle.text = sectionInfo.sectionTitle()
 
             if sectionInfo.type == .status {
@@ -261,6 +265,14 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
                         self.pvStatus.selectRow(index, inComponent: 0, animated: false)
                     }
                 }
+            }
+            else if sectionInfo.type == .customer {
+
+                sectionView.lblDetails.text = self.viewModel.job.customer?.companyName
+            }
+            else {
+
+                sectionView.lblDetails.text = nil
             }
             return sectionView
         }
