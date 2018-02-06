@@ -46,7 +46,7 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
 
         self.title = Constants.titleText
         
-        self.tableView.register(UINib(nibName: ObjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ObjectTableViewCell.reuseIdentifier)
+        self.tableView.register(UINib(nibName: JobTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: JobTableViewCell.reuseIdentifier)
         self.tableView.tableFooterView = UIView() //To hide separators of empty cells
         
         self.viewModel.collectionViewUpdateDelegate = self
@@ -86,18 +86,18 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: ObjectTableViewCell.reuseIdentifier, for: indexPath) as! ObjectTableViewCell
-
-        let object = self.viewModel[indexPath]
-        cell.object = object
+        let cell = tableView.dequeueReusableCell(withIdentifier: JobTableViewCell.reuseIdentifier, for: indexPath) as! JobTableViewCell
+        let job = self.viewModel[indexPath]
 
         var statusName: String?
         if let status = self.jobStatuses?.filter({ status-> Bool in
-            return status.typeId == object.statusId
+            return status.typeId == job.statusId
         }).first {
 
             statusName = status.name
         }
+
+        cell.job = job
         cell.lblStatus.text = statusName
 
         return cell

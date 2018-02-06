@@ -42,9 +42,7 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
 
         self.tableBackgroundView.backgroundColor = UIColor.et_blueColor
 
-        self.tvJobs.register(UINib.init(nibName: ProjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectTableViewCell.reuseIdentifier)
-        self.tvJobs.register(UINib.init(nibName: OrderTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: OrderTableViewCell.reuseIdentifier)
-        self.tvJobs.register(UINib.init(nibName: ObjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ObjectTableViewCell.reuseIdentifier)
+        self.tvJobs.register(UINib.init(nibName: JobTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: JobTableViewCell.reuseIdentifier)
         self.tvJobs.tableHeaderView = self.tabView
         self.tvJobs.tableFooterView = UIView() //To hide separators of empty cells
         self.tvJobs.contentInset = Constants.tableViewContentInset
@@ -88,8 +86,9 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        var cell: UITableViewCell?
+        let cell = tableView.dequeueReusableCell(withIdentifier: JobTableViewCell.reuseIdentifier, for: indexPath) as! JobTableViewCell
         let job = self.viewModel[indexPath]
+
         var statusName: String?
         if let status = self.jobStatuses?.filter({ status-> Bool in
             return status.typeId == job.statusId
@@ -98,28 +97,10 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
             statusName = status.name
         }
 
-        if let project = job as? ETProject {
-            let projectCell = tableView.dequeueReusableCell(withIdentifier: ProjectTableViewCell.reuseIdentifier, for: indexPath) as! ProjectTableViewCell
-            projectCell.project = project
-            projectCell.lblStatus.text = statusName
-            cell = projectCell
-        }
+        cell.job = job
+        cell.lblStatus.text = statusName
 
-        if let order = job as? ETOrder {
-            let orderCell = tableView.dequeueReusableCell(withIdentifier: OrderTableViewCell.reuseIdentifier, for: indexPath) as! OrderTableViewCell
-            orderCell.order = order
-            orderCell.lblStatus.text = statusName
-            cell = orderCell
-        }
-
-        if let object = job as? ETObject {
-            let objectCell = tableView.dequeueReusableCell(withIdentifier: ObjectTableViewCell.reuseIdentifier, for: indexPath) as! ObjectTableViewCell
-            objectCell.object = object
-            objectCell.lblStatus.text = statusName
-            cell = objectCell
-        }
-
-        return cell!
+        return cell
     }
 
     //MARK: - UITableViewDelegate

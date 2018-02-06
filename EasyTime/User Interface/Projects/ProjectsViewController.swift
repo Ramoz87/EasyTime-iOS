@@ -96,9 +96,7 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
             self.tableView.contentOffset = CGPoint(x: 0, y: self.searchController.searchBar.frame.height)
         }
 
-        self.tableView.register(UINib.init(nibName: ProjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectTableViewCell.reuseIdentifier)
-        self.tableView.register(UINib.init(nibName: OrderTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: OrderTableViewCell.reuseIdentifier)
-        self.tableView.register(UINib.init(nibName: ObjectTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ObjectTableViewCell.reuseIdentifier)
+        self.tableView.register(UINib.init(nibName: JobTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: JobTableViewCell.reuseIdentifier)
         self.viewModel.collectionViewUpdateDelegate = self
 
         self.navigationItem.titleView = self.dateFilterButton
@@ -150,7 +148,7 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        var cell: UITableViewCell?
+        let cell = tableView.dequeueReusableCell(withIdentifier: JobTableViewCell.reuseIdentifier, for: indexPath) as! JobTableViewCell
         let job = self.viewModel[indexPath]
 
         var statusName: String?
@@ -160,29 +158,11 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
 
             statusName = status.name
         }
-        
-        if let project = job as? ETProject {
-            let projectCell = tableView.dequeueReusableCell(withIdentifier: ProjectTableViewCell.reuseIdentifier, for: indexPath) as! ProjectTableViewCell
-            projectCell.project = project
-            projectCell.lblStatus.text = statusName
-            cell = projectCell
-        }
-        
-        if let order = job as? ETOrder {
-            let orderCell = tableView.dequeueReusableCell(withIdentifier: OrderTableViewCell.reuseIdentifier, for: indexPath) as! OrderTableViewCell
-            orderCell.order = order
-            orderCell.lblStatus.text = statusName
-            cell = orderCell
-        }
-        
-        if let object = job as? ETObject {
-            let objectCell = tableView.dequeueReusableCell(withIdentifier: ObjectTableViewCell.reuseIdentifier, for: indexPath) as! ObjectTableViewCell
-            objectCell.object = object
-            objectCell.lblStatus.text = statusName
-            cell = objectCell
-        }
 
-        return cell!
+        cell.job = job
+        cell.lblStatus.text = statusName
+        
+        return cell
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
