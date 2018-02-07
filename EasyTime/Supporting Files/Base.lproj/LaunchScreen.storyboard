@@ -19,14 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch" translatesAutoresizingMaskIntoConstraints="NO" id="fNs-p2-Rao">
-                                <rect key="frame" x="132" y="148" width="110" height="97"/>
+                                <rect key="frame" x="132" y="261" width="110" height="97"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="97" id="cxP-oR-yBA"/>
                                     <constraint firstAttribute="width" constant="110" id="gXh-f1-TEy"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EasyTime" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VPH-A0-MoW">
-                                <rect key="frame" x="126.5" y="277" width="122" height="36"/>
+                                <rect key="frame" x="126.5" y="390" width="122" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="xv3-lL-b3z"/>
                                 </constraints>
@@ -35,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cj3-Pa-g8d">
-                                <rect key="frame" x="126.5" y="321" width="122" height="2"/>
+                                <rect key="frame" x="126.5" y="434" width="122" height="2"/>
                                 <color key="backgroundColor" red="0.24313725489999999" green="0.5568627451" blue="0.84313725490000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="fWS-PG-fGE"/>
@@ -46,7 +46,7 @@
                         <constraints>
                             <constraint firstItem="cj3-Pa-g8d" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3bl-Cv-2Q6"/>
                             <constraint firstItem="cj3-Pa-g8d" firstAttribute="top" secondItem="VPH-A0-MoW" secondAttribute="bottom" constant="8" id="AEy-7b-tvg"/>
-                            <constraint firstItem="fNs-p2-Rao" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="128" id="FbI-YD-55H"/>
+                            <constraint firstItem="fNs-p2-Rao" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" constant="-34" id="AuL-p3-LUp"/>
                             <constraint firstItem="VPH-A0-MoW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Ryx-Vc-yqx"/>
                             <constraint firstItem="fNs-p2-Rao" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="V4Z-7w-Cxk"/>
                             <constraint firstItem="VPH-A0-MoW" firstAttribute="top" secondItem="fNs-p2-Rao" secondAttribute="bottom" constant="32" id="uEe-mi-zTK"/>

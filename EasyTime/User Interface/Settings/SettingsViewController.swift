@@ -53,7 +53,8 @@ class SettingsViewController: BaseViewController<SettingsViewModel>, UITableView
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
-        case 0: break
+        case 0: 
+            self.showTutorial()
         case 1:
            self.showEmailComposer()
         case 2:
@@ -83,5 +84,11 @@ class SettingsViewController: BaseViewController<SettingsViewModel>, UITableView
             composeVC.setSubject(Constants.subject)
             self.present(composeVC, animated: true, completion: nil)
         }
+    }
+
+    func showTutorial() {
+
+        let controller = TutorialViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
