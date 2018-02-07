@@ -100,6 +100,7 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
         }
 
         self.tableView.register(UINib(nibName: ProjectInfoTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectInfoTableViewCell.reuseIdentifier)
+        self.tableView.register(UINib(nibName: ProjectInfoInstructionsTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectInfoInstructionsTableViewCell.reuseIdentifier)
         self.tableView.tableHeaderView = self.vTableViewHeader
         self.tableView.tableFooterView = UIView() //To hide separators of empty cells
 
@@ -218,10 +219,24 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: ProjectInfoTableViewCell.reuseIdentifier, for: indexPath) as! ProjectInfoTableViewCell
-        cell.label?.text = self.viewModel[indexPath.section].titleForObject(at: indexPath.row)
+        var cell: UITableViewCell?
+        let sectionInfo = self.viewModel[indexPath.section]
 
-        return cell
+        if sectionInfo.type == .instructions {
+
+            let instructionsCell = tableView.dequeueReusableCell(withIdentifier: ProjectInfoInstructionsTableViewCell.reuseIdentifier, for: indexPath) as! ProjectInfoInstructionsTableViewCell
+            instructionsCell.lblTitle.text = sectionInfo.titleForObject(at: indexPath.row)
+            instructionsCell.lblDetail.text = sectionInfo.detailForObject(at: indexPath.row)
+            cell = instructionsCell
+        }
+        else {
+
+            let commonCell = tableView.dequeueReusableCell(withIdentifier: ProjectInfoTableViewCell.reuseIdentifier, for: indexPath) as! ProjectInfoTableViewCell
+            commonCell.label?.text = sectionInfo.titleForObject(at: indexPath.row)
+            cell = commonCell
+        }
+
+        return cell!
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

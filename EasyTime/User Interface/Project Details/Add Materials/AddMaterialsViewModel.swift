@@ -11,7 +11,7 @@ import CoreData
 
 fileprivate struct Constants {
 
-    static let sortDescriptors = ["stockQuantity", "name"]
+    static let sortDescriptors = [NSSortDescriptor(key: "stockQuantity", ascending: false), NSSortDescriptor(key: "name", ascending: true)]
     static let materialPredicate = "inStock = true"
     static let unitPredicate = "type = 'UNIT_TYPE'"
 }
@@ -25,7 +25,7 @@ class AddMaterialsViewModel: BaseViewModel {
     
     private lazy var fetchResultsController: NSFetchedResultsController<Material> = {
 
-        let fetchedResultsController: NSFetchedResultsController<Material> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: Constants.sortDescriptors, ascending: false, predicate: NSPredicate(format: Constants.materialPredicate))
+        let fetchedResultsController: NSFetchedResultsController<Material> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sortDescriptors: Constants.sortDescriptors, predicate: NSPredicate(format: Constants.materialPredicate))
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()

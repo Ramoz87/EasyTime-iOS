@@ -141,6 +141,8 @@
 		9EC02C88200609F3004B83FC /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C87200609F3004B83FC /* TabViewController.swift */; };
 		9EC02C8B2007A47D004B83FC /* NumberInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC02C892007A47D004B83FC /* NumberInputViewController.swift */; };
 		9EC02C8C2007A47D004B83FC /* NumberInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC02C8A2007A47D004B83FC /* NumberInputViewController.xib */; };
+		9EC6119E202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC6119C202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.swift */; };
+		9EC6119F202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC6119D202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.xib */; };
 		9ECA46EB2020A8E500094C1B /* ETContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA46EA2020A8E400094C1B /* ETContact.swift */; };
 		9ECA46EE2020ABDD00094C1B /* ClientInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA46EC2020ABDD00094C1B /* ClientInfoCollectionViewCell.swift */; };
 		9ECA46EF2020ABDD00094C1B /* ClientInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA46ED2020ABDD00094C1B /* ClientInfoCollectionViewCell.xib */; };
@@ -320,6 +322,8 @@
 		9EC02C87200609F3004B83FC /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		9EC02C892007A47D004B83FC /* NumberInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberInputViewController.swift; sourceTree = "<group>"; };
 		9EC02C8A2007A47D004B83FC /* NumberInputViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberInputViewController.xib; sourceTree = "<group>"; };
+		9EC6119C202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoInstructionsTableViewCell.swift; sourceTree = "<group>"; };
+		9EC6119D202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoInstructionsTableViewCell.xib; sourceTree = "<group>"; };
 		9ECA46EA2020A8E400094C1B /* ETContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETContact.swift; sourceTree = "<group>"; };
 		9ECA46EC2020ABDD00094C1B /* ClientInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		9ECA46ED2020ABDD00094C1B /* ClientInfoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientInfoCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -793,6 +797,8 @@
 		9EC02C7A2004E5EB004B83FC /* Project Information */ = {
 			isa = PBXGroup;
 			children = (
+				9EC6119C202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.swift */,
+				9EC6119D202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.xib */,
 				9E90F5C420137A91009F4896 /* ProjectInfoSectionView.swift */,
 				9E90F5C620137A9C009F4896 /* ProjectInfoSectionView.xib */,
 				9E9344932015E5D9008AEEEE /* ProjectInfoTableViewCell.swift */,
@@ -983,6 +989,7 @@
 				B7EEAB8A1FEA717A00FC50EF /* types.csv in Resources */,
 				B7EEAB871FEA717A00FC50EF /* materials.csv in Resources */,
 				9E66DEB1201B347E0032003C /* CongratulationsView.xib in Resources */,
+				9EC6119F202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.xib in Resources */,
 				9ECA46EF2020ABDD00094C1B /* ClientInfoCollectionViewCell.xib in Resources */,
 				9E730D2D1FDAA16A0059C810 /* Assets.xcassets in Resources */,
 				9EC02C842004EF73004B83FC /* ProjectActivityTableViewCell.xib in Resources */,
@@ -1120,6 +1127,7 @@
 				9EE0225D2008ED3F00CC01E9 /* AddTimeViewModel.swift in Sources */,
 				9EAE1F241FE0068300E8C47E /* ProjectsViewModel.swift in Sources */,
 				9E730D041FDAA16A0059C810 /* IQKeyboardManager.swift in Sources */,
+				9EC6119E202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.swift in Sources */,
 				9E730D071FDAA16A0059C810 /* IQBarButtonItem.swift in Sources */,
 				9E9344952015E5D9008AEEEE /* ProjectInfoTableViewCell.swift in Sources */,
 				9E66DEAF201B34730032003C /* CongratulationsView.swift in Sources */,

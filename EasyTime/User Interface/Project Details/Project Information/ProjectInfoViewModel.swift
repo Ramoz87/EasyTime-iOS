@@ -155,6 +155,7 @@ class ProjectInfoSectionInfo {
     let job: ETJob
     let type: ProjectInfoSectionType
     private var objects: [String?] = []
+    private var objectDetails: [String?] = []
 
     init(type: ProjectInfoSectionType, job: ETJob) {
 
@@ -168,12 +169,15 @@ class ProjectInfoSectionInfo {
 
                     if let contact = order.contact {
                         self.objects.append(contact)
+                        self.objectDetails.append("Contact person")
                     }
                     if let deliveryAddress = order.deliveryAddress {
                         self.objects.append(deliveryAddress.fullAddress)
+                        self.objectDetails.append("Delivery address")
                     }
                     if let deliveryTime = order.deliveryTime {
                         self.objects.append(deliveryTime)
+                        self.objectDetails.append("Time")
                     }
                 }
             case .objects:
@@ -234,6 +238,11 @@ class ProjectInfoSectionInfo {
     func titleForObject(at index: Int) -> String? {
 
         return self.objects[index]
+    }
+
+    func detailForObject(at index: Int) -> String? {
+
+        return self.objectDetails[index]
     }
 
     func sectionIcon() -> String {

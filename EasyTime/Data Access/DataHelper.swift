@@ -53,6 +53,16 @@ class DataHelper: NSObject {
                                                       cacheName: nil)
     }
 
+    func fetchedResultsController<ResultType: NSManagedObject>(sortDescriptors: [NSSortDescriptor], predicate: NSPredicate? = nil, sectionNameKeyPath: String? = nil) -> NSFetchedResultsController<ResultType> {
+
+        let request: NSFetchRequest<ResultType> = self.fetchRequest(sortDescriptors: sortDescriptors, predicate: predicate)
+
+        return NSFetchedResultsController<ResultType>(fetchRequest: request,
+                                                      managedObjectContext: self.mainContext,
+                                                      sectionNameKeyPath: sectionNameKeyPath,
+                                                      cacheName: nil)
+    }
+
     func fetchData<ResultType: NSManagedObject>(predicate: NSPredicate? = nil) throws -> Array<ResultType>?
     {
         let request: NSFetchRequest<ResultType> = self.fetchRequest(predicate: predicate)
@@ -138,12 +148,18 @@ class DataHelper: NSObject {
 
     private func fetchRequest<ResultType: NSManagedObject>(sort: [String]? = nil, ascending: Bool = true, predicate: NSPredicate? = nil) -> NSFetchRequest<ResultType> {
 
-        let request = NSFetchRequest<ResultType>(entityName: ResultType.entityName)
-        request.predicate = predicate
-        request.sortDescriptors = sort?.map({ (key) -> NSSortDescriptor in
+        let sortDescriptors = sort?.map({ (key) -> NSSortDescriptor in
 
             NSSortDescriptor(key: key, ascending: ascending)
         })
+        return self.fetchRequest(sortDescriptors: sortDescriptors, predicate: predicate)
+    }
+
+    private func fetchRequest<ResultType: NSManagedObject>(sortDescriptors: [NSSortDescriptor]? = nil, predicate: NSPredicate? = nil) -> NSFetchRequest<ResultType> {
+
+        let request = NSFetchRequest<ResultType>(entityName: ResultType.entityName)
+        request.predicate = predicate
+        request.sortDescriptors = sortDescriptors
         return request
     }
 }
