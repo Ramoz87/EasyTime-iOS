@@ -13,7 +13,6 @@ import MapKit
 fileprivate struct Constants {
 
     static let tableViewContentInset = UIEdgeInsets(top: 168, left: 0, bottom: 0, right: 0)
-    static let statusPredicate = "type = 'STATUS'"
 }
 
 class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITableViewDataSource, UITableViewDelegate, TabViewDelegate, CollectionViewUpdateDelegate, MFMailComposeViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, ClientInfoCollectionViewCellDelegate, UICollectionViewDelegateFlowLayout {
@@ -23,24 +22,6 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
     @IBOutlet weak var tabView: TabView!
     @IBOutlet weak var tvJobs: UITableView!
     @IBOutlet weak var cvContacts: UICollectionView!
-
-    private lazy var jobStatuses: [Type]? = {
-
-        do {
-            let statuses: [Type]? = try AppManager.sharedInstance.dataHelper.fetchData(predicate: NSPredicate(format: Constants.statusPredicate))
-            return statuses
-        }
-        catch {
-            return nil
-        }
-    }()
-
-    private lazy var dateFormatter: DateFormatter = {
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        return dateFormatter
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,26 +75,7 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: JobTableViewCell.reuseIdentifier, for: indexPath) as! JobTableViewCell
-        let job = self.viewModel[indexPath]
-
-        var statusName: String?
-        if let status = self.jobStatuses?.filter({ status-> Bool in
-            return status.typeId == job.statusId
-        }).first {
-
-            statusName = status.name
-        }
-
-        cell.job = job
-        cell.lblStatus.text = statusName
-
-        if let date = job.date {
-            cell.lblDate.text = self.dateFormatter.string(from: date as Date)
-        }
-        else {
-            cell.lblDate.text = nil
-        }
-
+        cell.job = self.viewModel[indexPath]
         return cell
     }
 

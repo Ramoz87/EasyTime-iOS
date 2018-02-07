@@ -10,10 +10,11 @@ import UIKit
 import CoreData
 
 fileprivate struct Constants {
-    static let sortDescriptor = "name"
+    static let sortDescriptor = "number"
     static let sectionName = "entityType"
     static let searchPredicate1 = "date < %@"
-    static let searchPredicate2 = "name CONTAINS[cd] %@"
+    static let searchPredicate2 = "number CONTAINS[cd] %@ OR name CONTAINS[cd] %@"
+    static let statusPredicate = "type = 'STATUS'"
     
     static let headerProjects = NSLocalizedString("Projects", comment: "")
     static let headerOrders = NSLocalizedString("Orders", comment: "")
@@ -29,25 +30,46 @@ class ProjectsViewModel: BaseViewModel {
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
+    
+    private lazy var jobStatuses: [Type]? = {
+        
+        do {
+            let statuses: [Type]? = try AppManager.sharedInstance.dataHelper.fetchData(predicate: NSPredicate(format: Constants.statusPredicate))
+            return statuses
+        }
+        catch {
+            return nil
+        }
+    }()
 
     subscript(indexPath: IndexPath) -> ETJob {
-
+        
         let job = self.fetchResultsController.object(at: indexPath)
-
+        
+        var item: ETJob?
+        
         if let project = job as? Project {
-
-            return ETProject(project: project)
+            
+            item = ETProject(project: project)
         }
         else if let object = job as? Object {
-
-            return ETObject(object: object)
+            
+            item = ETObject(object: object)
         }
         else if let order = job as? Order {
-
-            return ETOrder(order: order)
+            
+            item = ETOrder(order: order)
         }
-
-        return ETJob(job: job)
+        else {
+            item = ETJob(job: job)
+        }
+        
+        if let status = self.jobStatuses?.filter({$0.typeId == job.statusId}).first {
+            
+            item?.status = status.name
+        }
+        
+        return item!
     }
 
     func numberOfSections() -> Int {
@@ -83,7 +105,7 @@ class ProjectsViewModel: BaseViewModel {
         
         if let text = text, text.count > 0 {
 
-            let predicate1 = NSPredicate(format: Constants.searchPredicate2, text)
+            let predicate1 = NSPredicate(format: Constants.searchPredicate2, text, text)
             predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, predicate1])
         }
 

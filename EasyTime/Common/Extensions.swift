@@ -123,6 +123,12 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    func toDefaultString() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        return dateFormatter.string(from: self)
+    }
+        
     var startOfDay: Date {
         return Calendar.current.startOfDay(for: self)
     }

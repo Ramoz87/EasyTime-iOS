@@ -13,7 +13,6 @@ fileprivate struct Constants {
     static let titleText = NSLocalizedString("Select Object", comment: "")
     static let searchBarPlaceholder = NSLocalizedString("Search", comment: "")
     static let skipButtonTitle = NSLocalizedString("Skip", comment: "")
-    static let statusPredicate = "type = 'STATUS'"
 }
 
 class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, CollectionViewUpdateDelegate {
@@ -28,24 +27,6 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
         controller.hidesNavigationBarDuringPresentation = false
         controller.searchBar.placeholder = Constants.searchBarPlaceholder
         return controller
-    }()
-
-    private lazy var jobStatuses: [Type]? = {
-
-        do {
-            let statuses: [Type]? = try AppManager.sharedInstance.dataHelper.fetchData(predicate: NSPredicate(format: Constants.statusPredicate))
-            return statuses
-        }
-        catch {
-            return nil
-        }
-    }()
-
-    private lazy var dateFormatter: DateFormatter = {
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        return dateFormatter
     }()
 
     override func viewDidLoad() {
@@ -94,26 +75,8 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: JobTableViewCell.reuseIdentifier, for: indexPath) as! JobTableViewCell
-        let job = self.viewModel[indexPath]
-
-        var statusName: String?
-        if let status = self.jobStatuses?.filter({ status-> Bool in
-            return status.typeId == job.statusId
-        }).first {
-
-            statusName = status.name
-        }
-
-        cell.job = job
-        cell.lblStatus.text = statusName
-
-        if let date = job.date {
-            cell.lblDate.text = self.dateFormatter.string(from: date as Date)
-        }
-        else {
-            cell.lblDate.text = nil
-        }
-
+        cell.job = self.viewModel[indexPath]
+        
         return cell
     }
 

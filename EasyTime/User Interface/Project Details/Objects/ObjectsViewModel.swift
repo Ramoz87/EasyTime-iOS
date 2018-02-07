@@ -11,9 +11,10 @@ import CoreData
 
 fileprivate struct Constants {
 
-    static let sortDescriptor = "name"
+    static let sortDescriptor = "number"
     static let searchPredicate1 = "jobId IN %@"
-    static let searchPredicate2 = "name CONTAINS[cd] %@"
+    static let searchPredicate2 = "number CONTAINS[cd] %@"
+    static let statusPredicate = "type = 'STATUS'"
 }
 
 class ObjectsViewModel: BaseViewModel {
@@ -26,6 +27,17 @@ class ObjectsViewModel: BaseViewModel {
                                                                                                                                           sectionNameKeyPath:nil)
         fetchedResultsController.delegate = self
         return fetchedResultsController
+    }()
+    
+    private lazy var jobStatuses: [Type]? = {
+        
+        do {
+            let statuses: [Type]? = try AppManager.sharedInstance.dataHelper.fetchData(predicate: NSPredicate(format: Constants.statusPredicate))
+            return statuses
+        }
+        catch {
+            return nil
+        }
     }()
 
     init(job: ETJob, expenseType: ETExpenseType) {
@@ -42,7 +54,14 @@ class ObjectsViewModel: BaseViewModel {
     subscript(indexPath: IndexPath) -> ETObject {
 
         let object = self.fetchResultsController.object(at: indexPath)
-        return ETObject(object: object)
+        let item = ETObject(object: object)
+       
+        if let status = self.jobStatuses?.filter({$0.typeId == object.statusId}).first {
+            
+            item.status = status.name
+        }
+        
+        return item
     }
 
     func numberOfSections() -> Int {

@@ -11,6 +11,7 @@ import UIKit
 fileprivate struct Constants {
 
     static let statusesPredicate = "type = %@"
+    static let objectSeparator = ": "
     static let sectionTitleCustomer = NSLocalizedString("CLIENT", comment: "")
     static let sectionTitleInstructions = NSLocalizedString("INSTRUCTIONS", comment: "")
     static let sectionTitleStatus = NSLocalizedString("STATUS", comment: "")
@@ -188,7 +189,10 @@ class ProjectInfoSectionInfo {
                         if let objects: [Object] = try AppManager.sharedInstance.dataHelper.fetchData(predicate: predicate) {
 
                             self.objects = objects.map({ object -> String? in
-                                return object.name
+                                var objectStr = "" 
+                                objectStr.append(object.number, separator: Constants.objectSeparator)
+                                objectStr.append(object.name, separator: Constants.objectSeparator)
+                                return objectStr
                             })
                         }
                     }

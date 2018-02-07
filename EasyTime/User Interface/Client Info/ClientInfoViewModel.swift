@@ -14,6 +14,7 @@ fileprivate struct Constants {
     static let sortDescriptor = "name"
     static let sectionName = "entityType"
     static let filterPredicate = "customerId = %@"
+    static let statusPredicate = "type = 'STATUS'"
     static let tabViewTitles = [
         Project.entityName: NSLocalizedString("PROJECTS", comment: ""),
         Order.entityName: NSLocalizedString("ORDERS", comment: ""),
@@ -30,6 +31,17 @@ class ClientInfoViewModel: BaseViewModel {
                                                                                                                                       sectionNameKeyPath: Constants.sectionName)
         fetchedResultsController.delegate = self
         return fetchedResultsController
+    }()
+    
+    private lazy var jobStatuses: [Type]? = {
+        
+        do {
+            let statuses: [Type]? = try AppManager.sharedInstance.dataHelper.fetchData(predicate: NSPredicate(format: Constants.statusPredicate))
+            return statuses
+        }
+        catch {
+            return nil
+        }
     }()
 
     init(customer: ETCustomer) {
@@ -48,20 +60,30 @@ class ClientInfoViewModel: BaseViewModel {
         let updatedIndexPath = IndexPath(row: indexPath.row, section: self.selectedTabIndex)
         let job = self.fetchResultsController.object(at: updatedIndexPath)
 
+        var item: ETJob?
+        
         if let project = job as? Project {
 
-            return ETProject(project: project)
+            item = ETProject(project: project)
         }
         else if let object = job as? Object {
 
-            return ETObject(object: object)
+            item = ETObject(object: object)
         }
         else if let order = job as? Order {
 
-            return ETOrder(order: order)
+            item = ETOrder(order: order)
+        }
+        else {
+            item = ETJob(job: job)
         }
 
-        return ETJob(job: job)
+        if let status = self.jobStatuses?.filter({$0.typeId == job.statusId}).first {
+            
+            item?.status = status.name
+        }
+        
+        return item!
     }
 
     //MARK: - TabView

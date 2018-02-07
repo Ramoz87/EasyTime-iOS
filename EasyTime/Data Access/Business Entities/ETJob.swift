@@ -25,6 +25,8 @@ class ETJob {
     var signature: UIImage?
     var signatureType: SignatureAuthorType?
 
+    var status: String?
+    
     var objects: [String]? {
         get { return nil }
     }

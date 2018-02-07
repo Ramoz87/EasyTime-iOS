@@ -33,6 +33,13 @@ class JobTableViewCell: UITableViewCell {
                 self.lblName.text?.append(job.number, separator: Constants.titleSeparator)
                 self.lblName.text?.append(job.name, separator: Constants.titleSeparator)
                 self.lblCompanyName.text = job.customer?.companyName
+                self.lblStatus.text = job.status
+                if let date = job.date {
+                    self.lblDate.text = (date as Date).toDefaultString()
+                }
+                else {
+                    self.lblDate.text = nil
+                }
             }
         }
     }
