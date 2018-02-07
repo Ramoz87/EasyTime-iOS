@@ -10,9 +10,8 @@ import UIKit
 
 class TutorialCollectionViewCell: UICollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    static let reuseIdentifier = "TutorialCollectionViewCellReuseIdentifier"
+    static let cellName = "TutorialCollectionViewCell"
 
+    @IBOutlet weak var imageView: UIImageView!
 }
