@@ -17,7 +17,7 @@ fileprivate struct Constants
     static let datePickerTodayButtonText = NSLocalizedString("Today", comment: "")
     static let dateFilterButtonDropDownIconSpacing: CGFloat = 8
     static let statusPredicate = "type = 'STATUS'"
-    static let hintText = "Nothing here...\nPlease choose another date"
+    static let hintText = "Nothing here...\nPlease select another date"
 }
 
 class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableViewDataSource, UITableViewDelegate, UISearchResultsUpdating, CollectionViewUpdateDelegate {
