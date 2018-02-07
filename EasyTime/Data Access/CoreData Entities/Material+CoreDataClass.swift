@@ -21,6 +21,18 @@ public class Material: NSManagedObject, DataHelperProtocol {
         return String(describing:name.first!)
     }
     
+    override init(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) {
+        super.init(entity: entity, insertInto: context)
+        addObserver(self, forKeyPath: "inStock", options: [.old, .new], context: nil)
+        addObserver(self, forKeyPath: "stockQuantity", options: [.old, .new], context: nil)
+    }
+    
+    override public func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "inStock" || keyPath == "stockQuantity" {
+            self.hasValueInStock = (self.inStock && self.stockQuantity > 0)
+        }
+    }
+    
     func update(object: Any) {
         if let csvObject = object as? CSVObject {
             

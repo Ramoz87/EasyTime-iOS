@@ -66,6 +66,7 @@
     </entity>
     <entity name="Material" representedClassName=".Material" syncable="YES">
         <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasValueInStock" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="inStock" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="materialId" attributeType="String" syncable="YES"/>
         <attribute name="materialNr" optional="YES" attributeType="String" syncable="YES"/>
@@ -110,7 +111,7 @@
         <element name="Expense" positionX="34" positionY="-234" width="128" height="223"/>
         <element name="Files" positionX="36" positionY="24" width="128" height="120"/>
         <element name="Job" positionX="-191" positionY="-238" width="128" height="253"/>
-        <element name="Material" positionX="241" positionY="-153" width="128" height="178"/>
+        <element name="Material" positionX="241" positionY="-234" width="128" height="193"/>
         <element name="Object" positionX="-405" positionY="-171" width="128" height="88"/>
         <element name="Order" positionX="-405" positionY="5" width="128" height="103"/>
         <element name="Project" positionX="-407" positionY="-342" width="128" height="88"/>

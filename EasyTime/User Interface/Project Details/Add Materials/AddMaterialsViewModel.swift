@@ -11,7 +11,7 @@ import CoreData
 
 fileprivate struct Constants {
 
-    static let sortDescriptors = [NSSortDescriptor(key: "stockQuantity", ascending: false), NSSortDescriptor(key: "name", ascending: true)]
+   static let sortDescriptors = [NSSortDescriptor(key: "hasValueInStock", ascending: false), NSSortDescriptor(key: "name", ascending: true)]
     static let materialPredicate = "inStock = true"
     static let unitPredicate = "type = 'UNIT_TYPE'"
 }

@@ -26,5 +26,6 @@ extension Material {
     @NSManaged public var unitId: String?
     @NSManaged public var name: String?
     @NSManaged public var inStock: Bool
+    @NSManaged public var hasValueInStock: Bool
 
 }
