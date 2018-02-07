@@ -18,8 +18,8 @@ fileprivate struct Constants
     static let buttonBorderWidth: CGFloat = 1 / UIScreen.main.scale
     static let tableViewBorderWidth: CGFloat = 1 / UIScreen.main.scale
     static let tableViewBorderColor = UIColor.black.withAlphaComponent(0.3)
-    static let nothingHintText = "Nothing here...\nPlease choose another date"
-    static let addHintText = "Please add your activities"
+    static let nothingHintText = "Nothing here...\nPlease select another date"
+    static let addHintText = "Start add your activities"
 }
 
 class ProjectActivityViewController: BaseViewController<ProjectActivityViewModel>, UITableViewDelegate, UITableViewDataSource, CollectionViewUpdateDelegate {
