@@ -11,7 +11,7 @@ import UIKit
 fileprivate struct Constants {
 
     static let statusesPredicate = "type = %@"
-    static let sectionTitleCustomer = NSLocalizedString("CUSTOMER", comment: "")
+    static let sectionTitleCustomer = NSLocalizedString("CLIENT", comment: "")
     static let sectionTitleInstructions = NSLocalizedString("INSTRUCTIONS", comment: "")
     static let sectionTitleStatus = NSLocalizedString("STATUS", comment: "")
     static let sectionTitleObjects = NSLocalizedString("OBJECTS", comment: "")

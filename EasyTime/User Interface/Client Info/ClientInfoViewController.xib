@@ -82,7 +82,7 @@
             <viewLayoutGuide key="safeArea" id="Yii-GN-bJK"/>
             <point key="canvasLocation" x="-678.5" y="-261.5"/>
         </view>
-        <view contentMode="scaleToFill" id="QOo-Cl-Ojl" customClass="TabView" customModule="EasyTime" customModuleProvider="target">
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="QOo-Cl-Ojl" customClass="TabView" customModule="EasyTime" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

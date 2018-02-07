@@ -135,6 +135,7 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
 
             self.tableView.deselectRow(at: indexPath, animated: true)
             self.viewModel.deselect(at: indexPath)
+            self.updateButtonTitle()
         }
     }
 

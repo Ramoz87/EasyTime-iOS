@@ -23,10 +23,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="241"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="whiteLocationIcon" translatesAutoresizingMaskIntoConstraints="NO" id="EPB-Pr-KTF">
-                                <rect key="frame" x="155" y="52" width="7" height="10"/>
+                                <rect key="frame" x="153" y="47" width="7" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="7" id="NuK-Zy-RHT"/>
-                                    <constraint firstAttribute="height" constant="10" id="YZ7-St-501"/>
+                                    <constraint firstAttribute="height" constant="20" id="YZ7-St-501"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Fb-Lu-Su0">
@@ -56,16 +56,16 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="qLG-bh-suK"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnu-3D-FQK">
-                                <rect key="frame" x="172" y="47" width="31" height="21"/>
+                                <rect key="frame" x="170" y="47" width="35.5" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="KzE-cD-lFb"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -86,15 +86,17 @@
                             <constraint firstItem="6pP-p8-jOY" firstAttribute="centerY" secondItem="6Fb-Lu-Su0" secondAttribute="centerY" id="AuW-Ce-bBp"/>
                             <constraint firstItem="EXw-68-lHu" firstAttribute="trailing" secondItem="dic-xP-8oW" secondAttribute="trailing" constant="12" id="KXE-eK-Uo1"/>
                             <constraint firstItem="6Fb-Lu-Su0" firstAttribute="centerX" secondItem="xnu-3D-FQK" secondAttribute="centerX" id="L7s-7n-2qI"/>
+                            <constraint firstItem="EXw-68-lHu" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xnu-3D-FQK" secondAttribute="trailing" constant="10" id="MSF-DY-C7F"/>
                             <constraint firstItem="dic-xP-8oW" firstAttribute="top" secondItem="EXw-68-lHu" secondAttribute="top" constant="23" id="MtI-ih-yML"/>
                             <constraint firstItem="xnu-3D-FQK" firstAttribute="centerX" secondItem="dic-xP-8oW" secondAttribute="centerX" id="MzW-sW-PT0"/>
                             <constraint firstItem="AbQ-Gl-uFF" firstAttribute="centerY" secondItem="6Fb-Lu-Su0" secondAttribute="centerY" id="S87-oU-Sed"/>
+                            <constraint firstItem="EPB-Pr-KTF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EXw-68-lHu" secondAttribute="leading" constant="10" id="SIS-eg-zIn"/>
                             <constraint firstItem="dic-xP-8oW" firstAttribute="leading" secondItem="EXw-68-lHu" secondAttribute="leading" constant="12" id="clt-33-Sk0"/>
                             <constraint firstItem="6pP-p8-jOY" firstAttribute="leading" secondItem="6Fb-Lu-Su0" secondAttribute="trailing" constant="16" id="jBU-LJ-CRc"/>
                             <constraint firstItem="xnu-3D-FQK" firstAttribute="leading" secondItem="EPB-Pr-KTF" secondAttribute="trailing" constant="10" id="kMl-jz-em8"/>
                             <constraint firstItem="6Fb-Lu-Su0" firstAttribute="leading" secondItem="AbQ-Gl-uFF" secondAttribute="trailing" constant="16" id="kgk-9u-smb"/>
                             <constraint firstItem="6Fb-Lu-Su0" firstAttribute="top" secondItem="xnu-3D-FQK" secondAttribute="bottom" constant="15" id="m8W-dH-yVS"/>
-                            <constraint firstItem="EPB-Pr-KTF" firstAttribute="centerY" secondItem="xnu-3D-FQK" secondAttribute="centerY" id="mPR-GM-CXg"/>
+                            <constraint firstItem="EPB-Pr-KTF" firstAttribute="top" secondItem="xnu-3D-FQK" secondAttribute="top" id="mPR-GM-CXg"/>
                             <constraint firstItem="xnu-3D-FQK" firstAttribute="top" secondItem="dic-xP-8oW" secondAttribute="bottom" constant="3" id="ysm-qh-CYl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="EXw-68-lHu"/>

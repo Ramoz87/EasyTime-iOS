@@ -12,6 +12,7 @@ fileprivate struct Constants {
     
     static let textFieldCornerRadius: CGFloat = 4
     static let textFieldBorderWidth: CGFloat = 1
+    static let disabledStateAlpha: CGFloat = 0.4
 }
 
 protocol AddMaterialsTableViewCellDelegate: class {
@@ -45,6 +46,10 @@ class AddMaterialsTableViewCell: UITableViewCell, UITextFieldDelegate {
     var material: ETMaterial? {
         
         didSet {
+            let isEnabled = material!.stockQuantity > 0
+            self.isUserInteractionEnabled = isEnabled
+            self.contentView.alpha = isEnabled ? 1 : Constants.disabledStateAlpha
+
             self.lblName.text = material!.name
             self.lblDetails.text = material!.materialNr
             self.tfQuantity.placeholder = String(describing: Int(material!.stockQuantity))
