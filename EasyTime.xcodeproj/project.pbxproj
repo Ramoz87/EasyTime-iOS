@@ -146,6 +146,8 @@
 		9EC611A3202B39CE009B69C0 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC611A1202B39CE009B69C0 /* TutorialViewController.swift */; };
 		9EC611A4202B39CE009B69C0 /* TutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC611A2202B39CE009B69C0 /* TutorialViewController.xib */; };
 		9EC611A6202B39E6009B69C0 /* TutorialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC611A5202B39E6009B69C0 /* TutorialViewModel.swift */; };
+		9EC611A9202B3A5B009B69C0 /* TutorialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC611A7202B3A5B009B69C0 /* TutorialCollectionViewCell.swift */; };
+		9EC611AA202B3A5B009B69C0 /* TutorialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC611A8202B3A5B009B69C0 /* TutorialCollectionViewCell.xib */; };
 		9ECA46EB2020A8E500094C1B /* ETContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA46EA2020A8E400094C1B /* ETContact.swift */; };
 		9ECA46EE2020ABDD00094C1B /* ClientInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA46EC2020ABDD00094C1B /* ClientInfoCollectionViewCell.swift */; };
 		9ECA46EF2020ABDD00094C1B /* ClientInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA46ED2020ABDD00094C1B /* ClientInfoCollectionViewCell.xib */; };
@@ -330,6 +332,8 @@
 		9EC611A1202B39CE009B69C0 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		9EC611A2202B39CE009B69C0 /* TutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialViewController.xib; sourceTree = "<group>"; };
 		9EC611A5202B39E6009B69C0 /* TutorialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewModel.swift; sourceTree = "<group>"; };
+		9EC611A7202B3A5B009B69C0 /* TutorialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollectionViewCell.swift; sourceTree = "<group>"; };
+		9EC611A8202B3A5B009B69C0 /* TutorialCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialCollectionViewCell.xib; sourceTree = "<group>"; };
 		9ECA46EA2020A8E400094C1B /* ETContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETContact.swift; sourceTree = "<group>"; };
 		9ECA46EC2020ABDD00094C1B /* ClientInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		9ECA46ED2020ABDD00094C1B /* ClientInfoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientInfoCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -832,6 +836,8 @@
 		9EC611A0202B3988009B69C0 /* Tutorial */ = {
 			isa = PBXGroup;
 			children = (
+				9EC611A7202B3A5B009B69C0 /* TutorialCollectionViewCell.swift */,
+				9EC611A8202B3A5B009B69C0 /* TutorialCollectionViewCell.xib */,
 				9EC611A1202B39CE009B69C0 /* TutorialViewController.swift */,
 				9EC611A2202B39CE009B69C0 /* TutorialViewController.xib */,
 				9EC611A5202B39E6009B69C0 /* TutorialViewModel.swift */,
@@ -1004,6 +1010,7 @@
 				9E9344962015E5D9008AEEEE /* ProjectInfoTableViewCell.xib in Resources */,
 				9EC02C792004E59C004B83FC /* ProjectActivityViewController.xib in Resources */,
 				B7D1B683200E0CE80070CC0F /* SettingViewCell.xib in Resources */,
+				9EC611AA202B3A5B009B69C0 /* TutorialCollectionViewCell.xib in Resources */,
 				B7EEAB8A1FEA717A00FC50EF /* types.csv in Resources */,
 				B7EEAB871FEA717A00FC50EF /* materials.csv in Resources */,
 				9E66DEB1201B347E0032003C /* CongratulationsView.xib in Resources */,
@@ -1153,6 +1160,7 @@
 				9E66DEAF201B34730032003C /* CongratulationsView.swift in Sources */,
 				9E730D101FDAA16A0059C810 /* Address+CoreDataProperties.swift in Sources */,
 				9E1350BA1FE3F6C7007CAEC3 /* ETAddress.swift in Sources */,
+				9EC611A9202B3A5B009B69C0 /* TutorialCollectionViewCell.swift in Sources */,
 				5F07A7821FFFAB7C00BBA74D /* ProjectDetailsViewController.swift in Sources */,
 				9E730CFF1FDAA16A0059C810 /* IQUIView+Hierarchy.swift in Sources */,
 				9E730D2A1FDAA16A0059C810 /* Authenticator.swift in Sources */,
