@@ -143,6 +143,9 @@
 		9EC02C8C2007A47D004B83FC /* NumberInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC02C8A2007A47D004B83FC /* NumberInputViewController.xib */; };
 		9EC6119E202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC6119C202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.swift */; };
 		9EC6119F202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC6119D202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.xib */; };
+		9EC611A3202B39CE009B69C0 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC611A1202B39CE009B69C0 /* TutorialViewController.swift */; };
+		9EC611A4202B39CE009B69C0 /* TutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EC611A2202B39CE009B69C0 /* TutorialViewController.xib */; };
+		9EC611A6202B39E6009B69C0 /* TutorialViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC611A5202B39E6009B69C0 /* TutorialViewModel.swift */; };
 		9ECA46EB2020A8E500094C1B /* ETContact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA46EA2020A8E400094C1B /* ETContact.swift */; };
 		9ECA46EE2020ABDD00094C1B /* ClientInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECA46EC2020ABDD00094C1B /* ClientInfoCollectionViewCell.swift */; };
 		9ECA46EF2020ABDD00094C1B /* ClientInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECA46ED2020ABDD00094C1B /* ClientInfoCollectionViewCell.xib */; };
@@ -324,6 +327,9 @@
 		9EC02C8A2007A47D004B83FC /* NumberInputViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NumberInputViewController.xib; sourceTree = "<group>"; };
 		9EC6119C202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoInstructionsTableViewCell.swift; sourceTree = "<group>"; };
 		9EC6119D202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProjectInfoInstructionsTableViewCell.xib; sourceTree = "<group>"; };
+		9EC611A1202B39CE009B69C0 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		9EC611A2202B39CE009B69C0 /* TutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialViewController.xib; sourceTree = "<group>"; };
+		9EC611A5202B39E6009B69C0 /* TutorialViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewModel.swift; sourceTree = "<group>"; };
 		9ECA46EA2020A8E400094C1B /* ETContact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETContact.swift; sourceTree = "<group>"; };
 		9ECA46EC2020ABDD00094C1B /* ClientInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		9ECA46ED2020ABDD00094C1B /* ClientInfoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientInfoCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -678,6 +684,7 @@
 				9E730CF21FDAA16A0059C810 /* Shared */,
 				9E66DEA6201B28300032003C /* Signature */,
 				9E730D401FDAA2290059C810 /* TabBar */,
+				9EC611A0202B3988009B69C0 /* Tutorial */,
 			);
 			path = "User Interface";
 			sourceTree = "<group>";
@@ -820,6 +827,16 @@
 				9EE0225C2008ED3F00CC01E9 /* AddTimeViewModel.swift */,
 			);
 			path = "Add Time";
+			sourceTree = "<group>";
+		};
+		9EC611A0202B3988009B69C0 /* Tutorial */ = {
+			isa = PBXGroup;
+			children = (
+				9EC611A1202B39CE009B69C0 /* TutorialViewController.swift */,
+				9EC611A2202B39CE009B69C0 /* TutorialViewController.xib */,
+				9EC611A5202B39E6009B69C0 /* TutorialViewModel.swift */,
+			);
+			path = Tutorial;
 			sourceTree = "<group>";
 		};
 		9EF59C5220121E8C0048A247 /* Add Materials */ = {
@@ -977,6 +994,7 @@
 				9E65DE4A200E2CA7006107DE /* AddExpenseViewController.xib in Resources */,
 				B7D1B687200E0D2B0070CC0F /* SettingViewHeader.xib in Resources */,
 				B7EEAB8C1FEA717A00FC50EF /* projects.csv in Resources */,
+				9EC611A4202B39CE009B69C0 /* TutorialViewController.xib in Resources */,
 				B761474420188BA200ABF775 /* MaterialTableViewCell.xib in Resources */,
 				9E730D0C1FDAA16A0059C810 /* IQKeyboardManager.bundle in Resources */,
 				9E66DEB3201B57050032003C /* InvoiceSectionHeaderView.xib in Resources */,
@@ -1050,6 +1068,7 @@
 				B761473D2018826A00ABF775 /* AddStockMaterialsViewController.swift in Sources */,
 				9E730D201FDAA16A0059C810 /* Order+CoreDataProperties.swift in Sources */,
 				B7C5C745200F6AC80027D379 /* AddTimeViewController.swift in Sources */,
+				9EC611A6202B39E6009B69C0 /* TutorialViewModel.swift in Sources */,
 				9E730D081FDAA16A0059C810 /* IQPreviousNextView.swift in Sources */,
 				9E730D051FDAA16A0059C810 /* IQKeyboardReturnKeyHandler.swift in Sources */,
 				9E65DE37200E0630006107DE /* WorkTypeViewController.swift in Sources */,
@@ -1091,6 +1110,7 @@
 				9E1350B81FE3EECF007CAEC3 /* ETObject.swift in Sources */,
 				9E730D0D1FDAA16A0059C810 /* DataHelper.swift in Sources */,
 				9E730D3C1FDAA16A0059C810 /* BaseViewModel.swift in Sources */,
+				9EC611A3202B39CE009B69C0 /* TutorialViewController.swift in Sources */,
 				9E65DE4D200E2CC1006107DE /* ExpenseTypeViewController.swift in Sources */,
 				9E65DE3A200E0647006107DE /* WorkTypeViewModel.swift in Sources */,
 				9E65DE30200DE0AE006107DE /* ObjectsViewController.swift in Sources */,
