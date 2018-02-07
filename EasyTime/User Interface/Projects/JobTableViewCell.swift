@@ -10,7 +10,7 @@ import UIKit
 
 fileprivate struct Constants
 {
-    static let addressSeparator = ", "
+    static let titleSeparator = ": "
 }
 
 class JobTableViewCell: UITableViewCell {
@@ -28,8 +28,10 @@ class JobTableViewCell: UITableViewCell {
         didSet {
             
             if let job = job {
-                
-                self.lblName.text = job.name
+
+                self.lblName.text = ""
+                self.lblName.text?.append(job.number, separator: Constants.titleSeparator)
+                self.lblName.text?.append(job.name, separator: Constants.titleSeparator)
                 self.lblCompanyName.text = job.customer?.companyName
             }
         }
