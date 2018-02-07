@@ -81,9 +81,8 @@ class ClientInfoViewModel: BaseViewModel {
     //MARK: - TableView
 
     func numberOfSections() -> Int {
-
-        guard let count = self.fetchResultsController.sections?.count else { return 0 }
-        return count
+        
+        return self.numberOfTabs() > 0 ? 1 : 0
     }
 
     func numberOfRowsInSection(section: Int) -> Int {

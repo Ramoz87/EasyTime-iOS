@@ -88,7 +88,7 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return self.viewModel.numberOfRowsInSection(section: section)
+        return self.viewModel.numberOfRowsInSection(section: self.viewModel.selectedTabIndex)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -118,10 +118,6 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
     }
 
     //MARK: - UITableViewDelegate
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 
