@@ -41,6 +41,13 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
         }
     }()
 
+    private lazy var dateFormatter: DateFormatter = {
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        return dateFormatter
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -99,6 +106,13 @@ class ObjectsViewController: BaseViewController<ObjectsViewModel>, UITableViewDa
 
         cell.job = job
         cell.lblStatus.text = statusName
+
+        if let date = job.date {
+            cell.lblDate.text = self.dateFormatter.string(from: date as Date)
+        }
+        else {
+            cell.lblDate.text = nil
+        }
 
         return cell
     }

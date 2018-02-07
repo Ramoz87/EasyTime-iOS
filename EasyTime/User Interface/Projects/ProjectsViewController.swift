@@ -68,6 +68,13 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
             return nil
         }
     }()
+
+    private lazy var dateFormatter: DateFormatter = {
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        return dateFormatter
+    }()
     
     var selectedDate: Date {
         get {
@@ -161,6 +168,13 @@ class ProjectsViewController: BaseViewController<ProjectsViewModel>, UITableView
 
         cell.job = job
         cell.lblStatus.text = statusName
+
+        if let date = job.date {
+            cell.lblDate.text = self.dateFormatter.string(from: date as Date)
+        }
+        else {
+            cell.lblDate.text = nil
+        }
         
         return cell
     }
