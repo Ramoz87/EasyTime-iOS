@@ -122,7 +122,8 @@ class ProjectInfoViewModel: BaseViewModel {
 
 enum ProjectInfoSectionType: Int {
 
-    case customer = 0
+    case address = 0
+    case customer
     case status
     case instructions
     case objects
@@ -130,7 +131,7 @@ enum ProjectInfoSectionType: Int {
 
     static func count() -> Int {
 
-        return 5
+        return 6
     }
 }
 
@@ -150,9 +151,28 @@ class ProjectInfoSectionInfo {
                  .employees,
                  .instructions:
                 return self.numberOfObjects() == 0
+            case .address:
+                guard let object = self.job as? ETObject else { return true }
+                guard let address = object.address else { return true }
+                return address.fullAddress.count == 0
             }
         }
     }
+
+    var isClickable: Bool {
+
+        get {
+
+            switch self.type {
+
+            case .address:
+                 return false
+            default :
+                return true
+            }
+        }
+    }
+
     let job: ETJob
     let type: ProjectInfoSectionType
     private var objects: [String?] = []
@@ -226,6 +246,10 @@ class ProjectInfoSectionInfo {
 
         switch self.type {
 
+        case .address:
+            guard let object = self.job as? ETObject else { return nil }
+            guard let address = object.address else { return nil }
+            return address.fullAddress
         case .customer:
             return Constants.sectionTitleCustomer
         case .instructions:
@@ -253,6 +277,8 @@ class ProjectInfoSectionInfo {
 
         switch self.type {
 
+        case .address:
+            return "jobAddressIcon"
         case .customer:
             return "clientIcon"
         case .instructions:

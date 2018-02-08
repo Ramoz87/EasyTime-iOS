@@ -261,6 +261,7 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
             sectionView.isExpanded = sectionInfo.isExpanded
             sectionView.imgIcon.image = UIImage(named: sectionInfo.sectionIcon())
             sectionView.lblTitle.text = sectionInfo.sectionTitle()
+            sectionView.imgAccessory.isHidden = !sectionInfo.isClickable
 
             if sectionInfo.type == .status {
 
