@@ -13,7 +13,7 @@ import MapKit
 fileprivate struct Constants {
 
     static let tableViewContentInset = UIEdgeInsets(top: 168, left: 0, bottom: 0, right: 0)
-    static let hintText = "Nothing here...\nThis client has no jobs"
+    static let hintText = "Nothing here...\nThe client doesn't have active jobs"
 }
 
 class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITableViewDataSource, UITableViewDelegate, TabViewDelegate, CollectionViewUpdateDelegate, MFMailComposeViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, ClientInfoCollectionViewCellDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
@@ -48,12 +48,15 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
         self.lblHint.text = Constants.hintText
         self.updateContent()
     }
+    
+    override func viewDidLayoutSubviews() {
+        self.updatePageControl()
+    }
 
     private func updateContent() {
 
         let hasData = self.viewModel.numberOfSections() > 0 ? true : false
         self.vHint.isHidden = hasData
-        self.updatePageControl()
         self.tvJobs.isScrollEnabled = hasData
     }
 
@@ -62,10 +65,8 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
         guard let count = self.viewModel.customer.contacts?.count else { return }
 
         self.pageControl.numberOfPages = count
-        if count > 0 && self.cvContacts.contentSize.width > 0 {
-
-            let index = Int(self.cvContacts.contentOffset.x / (self.cvContacts.contentSize.width / CGFloat(count)))
-            self.pageControl.currentPage = index
+        if let index = self.cvContacts.indexPathsForVisibleItems.first {
+            self.pageControl.currentPage = index.row
         }
     }
 
@@ -143,9 +144,6 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
         return self.cvContacts.frame.size
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-    }
 
     //MARK: - ClientInfoCollectionViewCellDelegate
 
@@ -186,60 +184,6 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
         }
     }
 
-    //MARK: - CollectionViewUpdateDelegate
-
-    func didChangeObject(at indexPath: IndexPath?, for type: CollectionViewChangeType, newIndexPath: IndexPath?) {
-
-        switch type {
-        case .insert:
-            if  let indexPath = newIndexPath {
-                self.tvJobs.insertRows(at: [indexPath], with: .automatic)
-            }
-        case .delete:
-            if  let indexPath = indexPath {
-                self.tvJobs.deleteRows(at: [indexPath], with: .automatic)
-            }
-        case .move:
-            if  let indexPath = indexPath {
-                self.tvJobs.deleteRows(at: [indexPath], with: .automatic)
-            }
-            if  let indexPath = newIndexPath {
-                self.tvJobs.insertRows(at: [indexPath], with: .automatic)
-            }
-        case .update:
-            if  let indexPath = indexPath {
-                self.tvJobs.reloadRows(at: [indexPath], with: .automatic)
-            }
-        }
-    }
-
-    func didChangeSection(at sectionIndex: Int, for type: CollectionViewChangeType) {
-
-        switch type {
-        case .insert:
-            self.tvJobs.insertSections(IndexSet(integer: sectionIndex), with: .automatic)
-        case .delete:
-            self.tvJobs.deleteSections(IndexSet(integer: sectionIndex), with: .automatic)
-        default:
-            break
-        }
-    }
-
-    func willChangeContent() {
-
-        self.tvJobs.beginUpdates()
-    }
-
-    func didChangeContent() {
-
-        self.tvJobs.endUpdates()
-    }
-
-    func didChangeDataSet() {
-        self.tvJobs.reloadData()
-        self.updateContent()
-    }
-
     // MARK: - MFMailComposeViewControllerDelegate
 
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
@@ -249,25 +193,7 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
 
     //MARK: - UIScrollViewDelegate
 
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-        if scrollView == self.cvContacts {
-
-            self.updatePageControl()
-        }
-    }
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-
-        if scrollView == self.cvContacts {
-
-            self.updatePageControl()
-        }
-    }
-    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-
-        if scrollView == self.cvContacts {
-
-            self.updatePageControl()
-        }
+        self.updatePageControl()
     }
 }
