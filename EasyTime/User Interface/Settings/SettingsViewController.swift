@@ -89,6 +89,6 @@ class SettingsViewController: BaseViewController<SettingsViewModel>, UITableView
     func showTutorial() {
 
         let controller = TutorialViewController()
-        self.navigationController?.pushViewController(controller, animated: true)
+        self.present(controller, animated: true, completion: nil)
     }
 }

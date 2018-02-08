@@ -8,17 +8,24 @@
 
 import UIKit
 
+fileprivate struct Constants
+{
+    static let skipButtonTitle = NSLocalizedString("Skip", comment: "")
+}
+
 class TutorialViewController: BaseViewController<TutorialViewModel>, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var btnSkip: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.collectionView.register(UINib.init(nibName: TutorialCollectionViewCell.cellName, bundle: nil), forCellWithReuseIdentifier: TutorialCollectionViewCell.reuseIdentifier)
+        self.btnSkip.setTitle(Constants.skipButtonTitle, for: .normal)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -35,6 +42,13 @@ class TutorialViewController: BaseViewController<TutorialViewModel>, UICollectio
         self.lblDescription.text = item.description
         self.pageControl.numberOfPages = self.viewModel.numberOfItemsInSection(section: 0)
         self.pageControl.currentPage = index
+    }
+
+    //MARK: - Action handlers
+
+    @IBAction func skip(sender: Any) {
+
+        self.dismiss(animated: true, completion: nil)
     }
 
     //MARK: - UICollectionViewDataSource

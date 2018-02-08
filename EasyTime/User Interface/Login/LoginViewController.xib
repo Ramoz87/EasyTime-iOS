@@ -124,7 +124,7 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuQ-ya-78O">
-                    <rect key="frame" x="12" y="457" width="351" height="40"/>
+                    <rect key="frame" x="12" y="447" width="351" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="fSC-GN-JRZ"/>
                     </constraints>
@@ -151,7 +151,7 @@
                 <constraint firstItem="j11-Vg-eZV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="100" id="WTt-Kz-tIz"/>
                 <constraint firstItem="lbO-XR-222" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="12" id="WbW-i8-uQN"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="kuQ-ya-78O" secondAttribute="trailing" constant="12" id="awU-X1-KY2"/>
-                <constraint firstItem="kuQ-ya-78O" firstAttribute="top" secondItem="lbO-XR-222" secondAttribute="bottom" constant="30" id="c15-sD-N6b"/>
+                <constraint firstItem="kuQ-ya-78O" firstAttribute="top" secondItem="lbO-XR-222" secondAttribute="bottom" constant="20" id="c15-sD-N6b"/>
                 <constraint firstItem="an5-Yb-55K" firstAttribute="height" secondItem="lbO-XR-222" secondAttribute="height" id="da5-jq-cNM"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="B6N-bh-cGH" secondAttribute="trailing" constant="12" id="fK9-on-fAV"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="lbO-XR-222" secondAttribute="trailing" constant="12" id="jgV-2X-ZNQ"/>
