@@ -27,11 +27,33 @@ class ClientInfoCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var btnCallPhone: UIButton!
 
     weak var delegate: ClientInfoCollectionViewCellDelegate?
-    var contact: ETContact?
+    var contact: ETContact? {
+        
+        didSet {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+            if let contact = contact {
+                
+                self.lblName.text = contact.fullName
+                
+                if let email = contact.email {
+                    
+                    self.btnSendEmail.isEnabled = email.count > 0
+                }
+                else {
+                    
+                    self.btnSendEmail.isEnabled = false
+                }
+                
+                if let phone = contact.phone {
+                    
+                    self.btnCallPhone.isEnabled = phone.count > 0
+                }
+                else {
+                    
+                    self.btnCallPhone.isEnabled = false
+                }
+            }
+        }
     }
 
     //MARK: - Action handlers

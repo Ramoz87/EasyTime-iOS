@@ -88,15 +88,14 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
         self.lblName.text = self.viewModel.job.name
         self.lblDescription.text = self.viewModel.job.information
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
+
         if let project = self.viewModel.job as? ETProject, let dateStart = project.dateStart, let dateEnd = project.dateEnd {
 
-            self.lblbDate.text = dateFormatter.string(from: dateStart as Date) + " - " + dateFormatter.string(from: dateEnd as Date)
+            self.lblbDate.text = (dateStart as Date).toDefaultString() + " - " + (dateEnd as Date).toDefaultString()
         }
         else if let date = self.viewModel.job.date {
 
-            self.lblbDate.text = dateFormatter.string(from: date as Date)
+            self.lblbDate.text = (date as Date).toDefaultString()
         }
 
         self.tableView.register(UINib(nibName: ProjectInfoTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ProjectInfoTableViewCell.reuseIdentifier)

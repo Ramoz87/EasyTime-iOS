@@ -19,6 +19,23 @@ class ETContact {
 
     private let contact: Contact
 
+    var fullName: String {
+        
+        get {
+            
+            var name = ""
+            if let firstName = self.firstName {
+                
+                name += firstName + " "
+            }
+            if let lastName = self.lastName {
+                
+                name += lastName
+            }
+            return name
+        }
+    }
+    
     init(contact: Contact) {
 
         self.contact = contact

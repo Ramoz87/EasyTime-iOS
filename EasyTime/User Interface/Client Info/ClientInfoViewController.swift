@@ -103,28 +103,8 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ClientInfoCollectionViewCell.reuseIdentifier, for: indexPath) as! ClientInfoCollectionViewCell
         cell.delegate = self
-        let contact = self.viewModel.customer.contacts?[indexPath.item]
-        cell.contact = contact
-        cell.lblName.text = self.viewModel.customer.fullName
+        cell.contact = self.viewModel.customer.contacts?[indexPath.item]
         cell.lblAddress.text = self.viewModel.customer.address?.fullAddress
-
-        if let email = contact?.email {
-
-            cell.btnSendEmail.isEnabled = email.count > 0
-        }
-        else {
-
-            cell.btnSendEmail.isEnabled = false
-        }
-
-        if let phone = contact?.phone {
-
-            cell.btnCallPhone.isEnabled = phone.count > 0
-        }
-        else {
-
-            cell.btnCallPhone.isEnabled = false
-        }
 
         return cell
     }
