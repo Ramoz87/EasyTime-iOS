@@ -124,9 +124,7 @@ extension Date {
     }
     
     func toDefaultString() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        return dateFormatter.string(from: self)
+        return toString(AppConstants.defaultDateFormat)
     }
         
     var startOfDay: Date {

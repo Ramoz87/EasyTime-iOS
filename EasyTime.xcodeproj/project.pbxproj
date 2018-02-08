@@ -171,6 +171,8 @@
 		B764604C20207468002ED2F0 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B764604A20207468002ED2F0 /* Crashlytics.framework */; };
 		B764604D20207468002ED2F0 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B764604B20207468002ED2F0 /* Fabric.framework */; };
 		B765DB1F200E2DE1002F5773 /* ETUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B765DB1E200E2DE1002F5773 /* ETUser.swift */; };
+		B790D154202C34A300501187 /* ClientJobTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B790D152202C34A200501187 /* ClientJobTableViewCell.swift */; };
+		B790D155202C34A300501187 /* ClientJobTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B790D153202C34A200501187 /* ClientJobTableViewCell.xib */; };
 		B7BB70752011E8E9001C717E /* ClientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB70732011E8E9001C717E /* ClientTableViewCell.swift */; };
 		B7BB70762011E8E9001C717E /* ClientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BB70742011E8E9001C717E /* ClientTableViewCell.xib */; };
 		B7C5C744200F6AC80027D379 /* AddTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C5C742200F6AC70027D379 /* AddTimeViewController.xib */; };
@@ -357,6 +359,8 @@
 		B764604A20207468002ED2F0 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		B764604B20207468002ED2F0 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		B765DB1E200E2DE1002F5773 /* ETUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETUser.swift; sourceTree = "<group>"; };
+		B790D152202C34A200501187 /* ClientJobTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClientJobTableViewCell.swift; sourceTree = "<group>"; };
+		B790D153202C34A200501187 /* ClientJobTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ClientJobTableViewCell.xib; sourceTree = "<group>"; };
 		B7BB70732011E8E9001C717E /* ClientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientTableViewCell.swift; sourceTree = "<group>"; };
 		B7BB70742011E8E9001C717E /* ClientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientTableViewCell.xib; sourceTree = "<group>"; };
 		B7C5C742200F6AC70027D379 /* AddTimeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTimeViewController.xib; sourceTree = "<group>"; };
@@ -442,6 +446,8 @@
 				9E5A0B8820187479009AC25E /* ClientInfoViewController.swift */,
 				9E5A0B8920187479009AC25E /* ClientInfoViewController.xib */,
 				9E5A0B8C201879AB009AC25E /* ClientInfoViewModel.swift */,
+				B790D152202C34A200501187 /* ClientJobTableViewCell.swift */,
+				B790D153202C34A200501187 /* ClientJobTableViewCell.xib */,
 			);
 			path = "Client Info";
 			sourceTree = "<group>";
@@ -1024,6 +1030,7 @@
 				B761473E2018826A00ABF775 /* AddStockMaterialsViewController.xib in Resources */,
 				9E730D311FDAA16A0059C810 /* LoginViewController.xib in Resources */,
 				B7EEAB761FE7E14700FC50EF /* JobTableViewCell.xib in Resources */,
+				B790D155202C34A300501187 /* ClientJobTableViewCell.xib in Resources */,
 				9E65DE4E200E2CC1006107DE /* ExpenseTypeViewController.xib in Resources */,
 				9E730D361FDAA16A0059C810 /* ProjectsViewController.xib in Resources */,
 			);
@@ -1133,6 +1140,7 @@
 				9EC02C742004C796004B83FC /* ProjectDetailsViewModel.swift in Sources */,
 				B7D1B682200E0CE80070CC0F /* SettingViewCell.swift in Sources */,
 				9EF59C5720121EBD0048A247 /* AddMaterialsViewController.swift in Sources */,
+				B790D154202C34A300501187 /* ClientJobTableViewCell.swift in Sources */,
 				9E934499201734D2008AEEEE /* ProjectPhotoCollectionViewCell.swift in Sources */,
 				9E730D231FDAA16A0059C810 /* Type+CoreDataClass.swift in Sources */,
 				9EC02C8B2007A47D004B83FC /* NumberInputViewController.swift in Sources */,

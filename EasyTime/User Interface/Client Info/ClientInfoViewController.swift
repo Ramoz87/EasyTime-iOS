@@ -30,7 +30,7 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
 
         self.tableBackgroundView.backgroundColor = UIColor.et_blueColor
 
-        self.tvJobs.register(UINib.init(nibName: JobTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: JobTableViewCell.reuseIdentifier)
+        self.tvJobs.register(UINib.init(nibName: ClientJobTableViewCell.cellName, bundle: nil), forCellReuseIdentifier: ClientJobTableViewCell.reuseIdentifier)
         self.tvJobs.tableHeaderView = self.tabView
         self.tvJobs.tableFooterView = UIView() //To hide separators of empty cells
         self.tvJobs.contentInset = Constants.tableViewContentInset
@@ -74,7 +74,7 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: JobTableViewCell.reuseIdentifier, for: indexPath) as! JobTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ClientJobTableViewCell.reuseIdentifier, for: indexPath) as! ClientJobTableViewCell
         cell.job = self.viewModel[indexPath]
         return cell
     }
