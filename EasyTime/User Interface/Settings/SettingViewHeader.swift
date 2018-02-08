@@ -17,7 +17,7 @@ class SettingViewHeader: UIView {
         didSet {
             if let user = user {
                 lbName.text = user.fullName
-                lbTitle.text = "Company Name"
+                lbTitle.text = "Swiss1mobile"
             }
             else
             {

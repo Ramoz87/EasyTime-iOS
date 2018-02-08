@@ -126,7 +126,7 @@ class AddExpenseViewController: BaseViewController<AddExpenseViewModel>, UIImage
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 
-        guard let value = self.tfValue.text, value.count > 0 else {
+        guard let value = self.tfValue.text, value.count > 0, (value as NSString).floatValue > 0 else {
             return false
         }
         

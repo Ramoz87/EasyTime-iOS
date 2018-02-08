@@ -66,6 +66,11 @@ class AddTimeViewController: BaseViewController<AddTimeViewModel>, UITextFieldDe
         }
         else if textField == self.tfMinutes {
 
+            if let hours = self.tfHours.text, (hours as NSString).floatValue==0,
+               let minutes = self.tfMinutes.text, (minutes as NSString).floatValue==0 {
+                return true
+            }
+            
             self.tfMinutes.resignFirstResponder()
             self.next()
         }
