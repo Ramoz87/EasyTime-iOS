@@ -79,6 +79,7 @@ class SettingsViewController: BaseViewController<SettingsViewModel>, UITableView
     func showEmailComposer() {
         if MFMailComposeViewController.canSendMail() {
             let composeVC = MFMailComposeViewController()
+            composeVC.navigationBar.tintColor = UIColor.white;
             composeVC.mailComposeDelegate = self
             composeVC.setToRecipients([Constants.feedbackEmail])
             composeVC.setSubject(Constants.subject)

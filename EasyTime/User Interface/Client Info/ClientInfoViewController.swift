@@ -127,6 +127,7 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
         if let contact = cell.contact, MFMailComposeViewController.canSendMail() == true {
 
             let composeVC = MFMailComposeViewController()
+            composeVC.navigationBar.tintColor = UIColor.white;
             composeVC.mailComposeDelegate = self
             composeVC.setToRecipients([contact.email!]) 
             self.present(composeVC, animated: true, completion: nil)
