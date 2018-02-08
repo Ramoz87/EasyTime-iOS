@@ -21,11 +21,11 @@ class TutorialViewModel: BaseViewModel {
 
     required init() {
 
-        self.items = [TutoriaItem(title: NSLocalizedString("Main page", comment: ""),
-                                  description: NSLocalizedString("You can see all your projects and choose what you need", comment: ""),
+        self.items = [TutoriaItem(title: NSLocalizedString("Task list", comment: ""),
+                                  description: NSLocalizedString("Manage your projects, orders, objects in one place", comment: ""),
                                   imageName: "tutorial_1_Icon"),
                       TutoriaItem(title: NSLocalizedString("Stock", comment: ""),
-                                  description: NSLocalizedString("Manage your storage in a few seconds", comment: ""),
+                                  description: NSLocalizedString("Manage your materials in stock", comment: ""),
                                   imageName: "tutorial_2_Icon"),
                       TutoriaItem(title: NSLocalizedString("Materials", comment: ""),
                                   description: NSLocalizedString("Add materials to your project\nYou can’t add more than in your stock", comment: ""),

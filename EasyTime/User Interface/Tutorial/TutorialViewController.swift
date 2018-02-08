@@ -26,22 +26,23 @@ class TutorialViewController: BaseViewController<TutorialViewModel>, UICollectio
 
         self.collectionView.register(UINib.init(nibName: TutorialCollectionViewCell.cellName, bundle: nil), forCellWithReuseIdentifier: TutorialCollectionViewCell.reuseIdentifier)
         self.btnSkip.setTitle(Constants.skipButtonTitle, for: .normal)
+        
+        
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-
+    
+    override func viewDidLayoutSubviews() {
         self.updateControls()
     }
 
     func updateControls() {
 
-        let index = Int(self.collectionView.contentOffset.x / (self.collectionView.contentSize.width / CGFloat(self.viewModel.numberOfItemsInSection(section: 0))))
-        let item = self.viewModel[IndexPath(item: index, section: 0)]
-        self.lblTitle.text = item.title
-        self.lblDescription.text = item.description
-        self.pageControl.numberOfPages = self.viewModel.numberOfItemsInSection(section: 0)
-        self.pageControl.currentPage = index
+        if let index = self.collectionView.indexPathsForVisibleItems.first {
+            let item = self.viewModel[index]
+            self.lblTitle.text = item.title
+            self.lblDescription.text = item.description
+            self.pageControl.numberOfPages = self.viewModel.numberOfItemsInSection(section: 0)
+            self.pageControl.currentPage = index.row
+        }
     }
 
     //MARK: - Action handlers
@@ -84,16 +85,7 @@ class TutorialViewController: BaseViewController<TutorialViewModel>, UICollectio
 
     //MARK: - UIScrollViewDelegate
 
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-        self.updateControls()
-    }
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-
-        self.updateControls()
-    }
-    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-
         self.updateControls()
     }
 }
