@@ -13,15 +13,19 @@ import MapKit
 fileprivate struct Constants {
 
     static let tableViewContentInset = UIEdgeInsets(top: 168, left: 0, bottom: 0, right: 0)
+    static let hintText = "Nothing here...\nThis client has no jobs"
 }
 
-class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITableViewDataSource, UITableViewDelegate, TabViewDelegate, CollectionViewUpdateDelegate, MFMailComposeViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, ClientInfoCollectionViewCellDelegate, UICollectionViewDelegateFlowLayout {
+class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITableViewDataSource, UITableViewDelegate, TabViewDelegate, CollectionViewUpdateDelegate, MFMailComposeViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, ClientInfoCollectionViewCellDelegate, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
 
     @IBOutlet weak var tableBackgroundView: UIView!
     @IBOutlet weak var tableBackgroundOverlayView: UIView!
     @IBOutlet weak var tabView: TabView!
     @IBOutlet weak var tvJobs: UITableView!
     @IBOutlet weak var cvContacts: UICollectionView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var vHint: UIView!
+    @IBOutlet weak var lblHint: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +44,29 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
         self.cvContacts.register(UINib.init(nibName: ClientInfoCollectionViewCell.cellName, bundle: nil), forCellWithReuseIdentifier: ClientInfoCollectionViewCell.reuseIdentifier)
 
         NSLayoutConstraint.activate( [NSLayoutConstraint(item: self.tableBackgroundOverlayView, attribute: .top, relatedBy: .equal, toItem: self.tabView, attribute: .bottom, multiplier: 1, constant: 0)])
+
+        self.lblHint.text = Constants.hintText
+        self.updateContent()
+    }
+
+    private func updateContent() {
+
+        let hasData = self.viewModel.numberOfSections() > 0 ? true : false
+        self.vHint.isHidden = hasData
+        self.updatePageControl()
+        self.tvJobs.isScrollEnabled = hasData
+    }
+
+    func updatePageControl() {
+
+        guard let count = self.viewModel.customer.contacts?.count else { return }
+
+        self.pageControl.numberOfPages = count
+        if count > 0 && self.cvContacts.contentSize.width > 0 {
+
+            let index = Int(self.cvContacts.contentOffset.x / (self.cvContacts.contentSize.width / CGFloat(count)))
+            self.pageControl.currentPage = index
+        }
     }
 
     //MARK: - TabViewDelegate
@@ -210,6 +237,7 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
 
     func didChangeDataSet() {
         self.tvJobs.reloadData()
+        self.updateContent()
     }
 
     // MARK: - MFMailComposeViewControllerDelegate
@@ -217,5 +245,29 @@ class ClientInfoViewController: BaseViewController<ClientInfoViewModel>, UITable
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         
         controller.dismiss(animated: true, completion: nil)
+    }
+
+    //MARK: - UIScrollViewDelegate
+
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        if scrollView == self.cvContacts {
+
+            self.updatePageControl()
+        }
+    }
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+
+        if scrollView == self.cvContacts {
+
+            self.updatePageControl()
+        }
+    }
+    public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+
+        if scrollView == self.cvContacts {
+
+            self.updatePageControl()
+        }
     }
 }
