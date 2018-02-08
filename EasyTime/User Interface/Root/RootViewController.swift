@@ -30,6 +30,17 @@ class RootViewController: UINavigationController {
         self.authenticatorStateDidChange(AppManager.sharedInstance.authenticator.state);
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if !AppManager.sharedInstance.isTutorialShown {
+            let controller = TutorialViewController()
+            self.present(controller, animated: true, completion: nil)
+            
+            AppManager.sharedInstance.isTutorialShown = true
+        }
+    }
+    
     // MARK: - Logic
     
     func authenticatorStateDidChange(_ state: AuthenticatorState) {

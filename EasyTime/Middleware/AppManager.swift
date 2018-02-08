@@ -18,6 +18,7 @@ fileprivate struct Constants
     static let fileUsers = "users.csv"
     static let fileMaterials = "materials.csv"
     static let lastSyncDate = "LastSyncDate"
+    static let isTutorialShown = "TutorialShown"
 }
 
 class AppManager {
@@ -32,6 +33,15 @@ class AppManager {
         }
         set(newDate) {
             UserDefaults.standard.set(newDate, forKey: Constants.lastSyncDate)
+        }
+    }
+    
+    var isTutorialShown: Bool {
+        get {
+            return UserDefaults.standard.bool(forKey: Constants.isTutorialShown)
+        }
+        set(newValue) {
+            UserDefaults.standard.set(newValue, forKey: Constants.isTutorialShown)
         }
     }
     
