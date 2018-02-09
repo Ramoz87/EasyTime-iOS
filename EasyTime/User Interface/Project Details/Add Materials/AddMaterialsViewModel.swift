@@ -169,6 +169,11 @@ class AddMaterialsViewModel: BaseViewModel {
                 let item = self.fetchResultsController.object(at: indexPath)
                 if let material = self.materails.filter({$0.materialId == item.materialId}).first {
                     material.stockQuantity = item.stockQuantity
+
+                    if material.stockQuantity == 0 {
+
+                        self.deselect(at: indexPath)
+                    }
                 }
             }
             break

@@ -16,8 +16,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="124"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="User Icon" translatesAutoresizingMaskIntoConstraints="NO" id="Nnz-s4-bgk">
-                    <rect key="frame" x="16" y="38" width="60" height="48"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="swissFlagIcon" translatesAutoresizingMaskIntoConstraints="NO" id="Nnz-s4-bgk">
+                    <rect key="frame" x="16" y="38" width="60" height="60"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ivan Petrov" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fg3-gB-Ch1">
@@ -47,6 +47,6 @@
         </view>
     </objects>
     <resources>
-        <image name="User Icon" width="60" height="48"/>
+        <image name="swissFlagIcon" width="288" height="288"/>
     </resources>
 </document>

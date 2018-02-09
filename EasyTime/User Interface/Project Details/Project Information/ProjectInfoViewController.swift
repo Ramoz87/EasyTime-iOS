@@ -15,7 +15,7 @@ fileprivate struct Constants {
     static let buttonBorderColor = UIColor(red: 109 / 255, green: 137 / 255, blue: 175 / 255, alpha: 1)
     static let buttonBorderDashPattern: [NSNumber] = [4, 4]
     static let buttonIconSpacing: CGFloat = 3
-    static let statusPickerDoneButtonText = NSLocalizedString("Done", comment: "")
+    static let statusPickerTitleText = NSLocalizedString("Select status", comment: "")
     static let photosCollectionViewPadding: CGFloat = 10
     static let imageSourcePickerCameraText = NSLocalizedString("Camera", comment: "")
     static let imageSourcePickerLibraryText = NSLocalizedString("Photo Library", comment: "")
@@ -267,7 +267,7 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
 
                 sectionView.button.inputView = self.pvStatus
                 sectionView.button.inputAccessoryView = sectionView.button.keyboardToolbar
-                sectionView.button.addDoneOnKeyboardWithTarget(self, action: #selector(ProjectInfoViewController.didTapDoneOnStatusPicker(sender:)), titleText: Constants.statusPickerDoneButtonText)
+                sectionView.button.addDoneOnKeyboardWithTarget(self, action: #selector(ProjectInfoViewController.didTapDoneOnStatusPicker(sender:)), titleText: Constants.statusPickerTitleText)
                 sectionView.delegate = nil
 
                 if let status = self.viewModel.statuses.filter({ type -> Bool in

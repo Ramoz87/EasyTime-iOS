@@ -186,6 +186,7 @@ class AddMaterialsViewController: BaseViewController<AddMaterialsViewModel>, UIT
     func didChangeContent() {
 
         self.tableView.endUpdates()
+        self.updateButtonTitle()
     }
 
     func didChangeDataSet() {
