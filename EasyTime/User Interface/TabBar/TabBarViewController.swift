@@ -31,9 +31,9 @@ class TabBarViewController: UITabBarController {
         ctrlTab3.tabBarItem = UITabBarItem(title:  ctrl.title, image: UIImage(named: "clientsIcon"), selectedImage: nil)
 
         ctrl = SettingsViewController()
-        ctrl.title = NSLocalizedString("Settings", comment: "")
+        ctrl.title = NSLocalizedString("Profile", comment: "")
         let ctrlTab4 = UINavigationController(rootViewController: ctrl)
-        ctrlTab4.tabBarItem = UITabBarItem(title:  ctrl.title, image: UIImage(named: "settingsIcon"), selectedImage: nil)
+        ctrlTab4.tabBarItem = UITabBarItem(title:  ctrl.title, image: UIImage(named: "profile"), selectedImage: nil)
 
         self.viewControllers = [ctrlTab1, ctrlTab2, ctrlTab3, ctrlTab4]
     }

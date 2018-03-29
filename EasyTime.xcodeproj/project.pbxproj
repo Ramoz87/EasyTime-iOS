@@ -158,6 +158,12 @@
 		9EF59C5B20121F7E0048A247 /* AddMaterialsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF59C5920121F7E0048A247 /* AddMaterialsTableViewCell.swift */; };
 		9EF59C5C20121F7E0048A247 /* AddMaterialsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EF59C5A20121F7E0048A247 /* AddMaterialsTableViewCell.xib */; };
 		9EF59C5E2012207F0048A247 /* ETMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF59C5D2012207F0048A247 /* ETMaterial.swift */; };
+		B7090BAE206CD97E000CB938 /* SegmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7090BAD206CD97E000CB938 /* SegmentView.swift */; };
+		B7090BB5206D270F000CB938 /* StatisticTimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7090BB3206D270F000CB938 /* StatisticTimeCollectionViewCell.swift */; };
+		B7090BB6206D270F000CB938 /* StatisticTimeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7090BB4206D270F000CB938 /* StatisticTimeCollectionViewCell.xib */; };
+		B7090BB9206D2728000CB938 /* StatisticExpenseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7090BB7206D2728000CB938 /* StatisticExpenseCollectionViewCell.swift */; };
+		B7090BBA206D2728000CB938 /* StatisticExpenseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7090BB8206D2728000CB938 /* StatisticExpenseCollectionViewCell.xib */; };
+		B7090BBC206D2E94000CB938 /* StatisticCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7090BBB206D2E94000CB938 /* StatisticCollectionViewCell.swift */; };
 		B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */ = {isa = PBXBuildFile; fileRef = B73108D51FDEC1DE00BB3B07 /* customer.csv */; };
 		B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D71FDEC28300BB3B07 /* CSV.swift */; };
 		B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */; };
@@ -177,10 +183,6 @@
 		B7BB70762011E8E9001C717E /* ClientTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BB70742011E8E9001C717E /* ClientTableViewCell.xib */; };
 		B7C5C744200F6AC80027D379 /* AddTimeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7C5C742200F6AC70027D379 /* AddTimeViewController.xib */; };
 		B7C5C745200F6AC80027D379 /* AddTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5C743200F6AC80027D379 /* AddTimeViewController.swift */; };
-		B7D1B682200E0CE80070CC0F /* SettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D1B680200E0CE80070CC0F /* SettingViewCell.swift */; };
-		B7D1B683200E0CE80070CC0F /* SettingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7D1B681200E0CE80070CC0F /* SettingViewCell.xib */; };
-		B7D1B686200E0D2B0070CC0F /* SettingViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D1B684200E0D2B0070CC0F /* SettingViewHeader.swift */; };
-		B7D1B687200E0D2B0070CC0F /* SettingViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7D1B685200E0D2B0070CC0F /* SettingViewHeader.xib */; };
 		B7EEAB761FE7E14700FC50EF /* JobTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7EEAB741FE7E14700FC50EF /* JobTableViewCell.xib */; };
 		B7EEAB781FE7E17E00FC50EF /* JobTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7EEAB771FE7E17E00FC50EF /* JobTableViewCell.swift */; };
 		B7EEAB871FEA717A00FC50EF /* materials.csv in Resources */ = {isa = PBXBuildFile; fileRef = B7EEAB811FEA717800FC50EF /* materials.csv */; };
@@ -346,6 +348,12 @@
 		9EF59C5920121F7E0048A247 /* AddMaterialsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMaterialsTableViewCell.swift; sourceTree = "<group>"; };
 		9EF59C5A20121F7E0048A247 /* AddMaterialsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddMaterialsTableViewCell.xib; sourceTree = "<group>"; };
 		9EF59C5D2012207F0048A247 /* ETMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETMaterial.swift; sourceTree = "<group>"; };
+		B7090BAD206CD97E000CB938 /* SegmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentView.swift; sourceTree = "<group>"; };
+		B7090BB3206D270F000CB938 /* StatisticTimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticTimeCollectionViewCell.swift; sourceTree = "<group>"; };
+		B7090BB4206D270F000CB938 /* StatisticTimeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatisticTimeCollectionViewCell.xib; sourceTree = "<group>"; };
+		B7090BB7206D2728000CB938 /* StatisticExpenseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticExpenseCollectionViewCell.swift; sourceTree = "<group>"; };
+		B7090BB8206D2728000CB938 /* StatisticExpenseCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatisticExpenseCollectionViewCell.xib; sourceTree = "<group>"; };
+		B7090BBB206D2E94000CB938 /* StatisticCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticCollectionViewCell.swift; sourceTree = "<group>"; };
 		B73108D51FDEC1DE00BB3B07 /* customer.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customer.csv; sourceTree = "<group>"; };
 		B73108D71FDEC28300BB3B07 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
@@ -365,10 +373,6 @@
 		B7BB70742011E8E9001C717E /* ClientTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ClientTableViewCell.xib; sourceTree = "<group>"; };
 		B7C5C742200F6AC70027D379 /* AddTimeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddTimeViewController.xib; sourceTree = "<group>"; };
 		B7C5C743200F6AC80027D379 /* AddTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTimeViewController.swift; sourceTree = "<group>"; };
-		B7D1B680200E0CE80070CC0F /* SettingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewCell.swift; sourceTree = "<group>"; };
-		B7D1B681200E0CE80070CC0F /* SettingViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewCell.xib; sourceTree = "<group>"; };
-		B7D1B684200E0D2B0070CC0F /* SettingViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewHeader.swift; sourceTree = "<group>"; };
-		B7D1B685200E0D2B0070CC0F /* SettingViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewHeader.xib; sourceTree = "<group>"; };
 		B7E358C71FD53F6C006256FC /* EasyTime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyTime.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7EEAB741FE7E14700FC50EF /* JobTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JobTableViewCell.xib; sourceTree = "<group>"; };
 		B7EEAB771FE7E17E00FC50EF /* JobTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobTableViewCell.swift; sourceTree = "<group>"; };
@@ -434,6 +438,7 @@
 			children = (
 				9E4CAEFA1FFD0095006FF08C /* InputButton.swift */,
 				5F07A77D1FFFAAB000BBA74D /* TabView.swift */,
+				B7090BAD206CD97E000CB938 /* SegmentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -760,10 +765,11 @@
 				9E730CF01FDAA16A0059C810 /* SettingsViewController.swift */,
 				9E730CF11FDAA16A0059C810 /* SettingsViewController.xib */,
 				9E63489A1FE1179B00FEDF17 /* SettingsViewModel.swift */,
-				B7D1B680200E0CE80070CC0F /* SettingViewCell.swift */,
-				B7D1B681200E0CE80070CC0F /* SettingViewCell.xib */,
-				B7D1B684200E0D2B0070CC0F /* SettingViewHeader.swift */,
-				B7D1B685200E0D2B0070CC0F /* SettingViewHeader.xib */,
+				B7090BBB206D2E94000CB938 /* StatisticCollectionViewCell.swift */,
+				B7090BB3206D270F000CB938 /* StatisticTimeCollectionViewCell.swift */,
+				B7090BB4206D270F000CB938 /* StatisticTimeCollectionViewCell.xib */,
+				B7090BB7206D2728000CB938 /* StatisticExpenseCollectionViewCell.swift */,
+				B7090BB8206D2728000CB938 /* StatisticExpenseCollectionViewCell.xib */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -992,6 +998,7 @@
 				9EC02C8C2007A47D004B83FC /* NumberInputViewController.xib in Resources */,
 				9E66DEAA201B28720032003C /* SignatureViewController.xib in Resources */,
 				9E66DEB9201B57320032003C /* InvoiceSectionFooterView.xib in Resources */,
+				B7090BBA206D2728000CB938 /* StatisticExpenseCollectionViewCell.xib in Resources */,
 				9E730D341FDAA16A0059C810 /* StockMaterialsViewController.xib in Resources */,
 				9E65DE40200E0B66006107DE /* WorkTypeTableViewCell.xib in Resources */,
 				9EC02C7E2004E60F004B83FC /* ProjectInfoViewController.xib in Resources */,
@@ -1004,7 +1011,6 @@
 				9E5A0B98201A1889009AC25E /* InvoiceTableViewCell.xib in Resources */,
 				9E93449A201734D3008AEEEE /* ProjectPhotoCollectionViewCell.xib in Resources */,
 				9E65DE4A200E2CA7006107DE /* AddExpenseViewController.xib in Resources */,
-				B7D1B687200E0D2B0070CC0F /* SettingViewHeader.xib in Resources */,
 				B7EEAB8C1FEA717A00FC50EF /* projects.csv in Resources */,
 				9EC611A4202B39CE009B69C0 /* TutorialViewController.xib in Resources */,
 				B761474420188BA200ABF775 /* MaterialTableViewCell.xib in Resources */,
@@ -1015,7 +1021,6 @@
 				9E730D2B1FDAA16A0059C810 /* LaunchScreen.storyboard in Resources */,
 				9E9344962015E5D9008AEEEE /* ProjectInfoTableViewCell.xib in Resources */,
 				9EC02C792004E59C004B83FC /* ProjectActivityViewController.xib in Resources */,
-				B7D1B683200E0CE80070CC0F /* SettingViewCell.xib in Resources */,
 				9EC611AA202B3A5B009B69C0 /* TutorialCollectionViewCell.xib in Resources */,
 				B7EEAB8A1FEA717A00FC50EF /* types.csv in Resources */,
 				B7EEAB871FEA717A00FC50EF /* materials.csv in Resources */,
@@ -1028,6 +1033,7 @@
 				9E90F5C720137A9C009F4896 /* ProjectInfoSectionView.xib in Resources */,
 				B761474C2018AC1800ABF775 /* StockMaterialTableViewCell.xib in Resources */,
 				B761473E2018826A00ABF775 /* AddStockMaterialsViewController.xib in Resources */,
+				B7090BB6206D270F000CB938 /* StatisticTimeCollectionViewCell.xib in Resources */,
 				9E730D311FDAA16A0059C810 /* LoginViewController.xib in Resources */,
 				B7EEAB761FE7E14700FC50EF /* JobTableViewCell.xib in Resources */,
 				B790D155202C34A300501187 /* ClientJobTableViewCell.xib in Resources */,
@@ -1112,11 +1118,11 @@
 				9E730D1F1FDAA16A0059C810 /* Order+CoreDataClass.swift in Sources */,
 				B7EEAB781FE7E17E00FC50EF /* JobTableViewCell.swift in Sources */,
 				9E730D181FDAA16A0059C810 /* Files+CoreDataProperties.swift in Sources */,
-				B7D1B686200E0D2B0070CC0F /* SettingViewHeader.swift in Sources */,
 				9E5A0B8D201879AB009AC25E /* ClientInfoViewModel.swift in Sources */,
 				9E730D251FDAA16A0059C810 /* User+CoreDataClass.swift in Sources */,
 				B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */,
 				9E1350BC1FE40015007CAEC3 /* ETCustomer.swift in Sources */,
+				B7090BAE206CD97E000CB938 /* SegmentView.swift in Sources */,
 				9E730D121FDAA16A0059C810 /* Contact+CoreDataProperties.swift in Sources */,
 				9E730D271FDAA16A0059C810 /* Constants.swift in Sources */,
 				9E730CFE1FDAA16A0059C810 /* IQUITextFieldView+Additions.swift in Sources */,
@@ -1132,13 +1138,14 @@
 				9E65DE51200E33AF006107DE /* ExpenseTypeTableViewCell.swift in Sources */,
 				9E5A0B90201A131E009AC25E /* InvoiceViewModel.swift in Sources */,
 				9E730D0B1FDAA16A0059C810 /* IQUIView+IQKeyboardToolbar.swift in Sources */,
+				B7090BBC206D2E94000CB938 /* StatisticCollectionViewCell.swift in Sources */,
 				9E5A0B97201A1889009AC25E /* InvoiceTableViewCell.swift in Sources */,
 				9E1350B61FE3EEBE007CAEC3 /* ETOrder.swift in Sources */,
+				B7090BB5206D270F000CB938 /* StatisticTimeCollectionViewCell.swift in Sources */,
 				9E0AD1731FE3CFBF000244FF /* ETJob.swift in Sources */,
 				9E730D0F1FDAA16A0059C810 /* Address+CoreDataClass.swift in Sources */,
 				9E730D021FDAA16A0059C810 /* IQKeyboardManagerConstants.swift in Sources */,
 				9EC02C742004C796004B83FC /* ProjectDetailsViewModel.swift in Sources */,
-				B7D1B682200E0CE80070CC0F /* SettingViewCell.swift in Sources */,
 				9EF59C5720121EBD0048A247 /* AddMaterialsViewController.swift in Sources */,
 				B790D154202C34A300501187 /* ClientJobTableViewCell.swift in Sources */,
 				9E934499201734D2008AEEEE /* ProjectPhotoCollectionViewCell.swift in Sources */,
@@ -1159,6 +1166,7 @@
 				9E5A0B8A20187479009AC25E /* ClientInfoViewController.swift in Sources */,
 				9E730D191FDAA16A0059C810 /* Job+CoreDataClass.swift in Sources */,
 				9E6348971FE116DB00FEDF17 /* ClientsViewModel.swift in Sources */,
+				B7090BB9206D2728000CB938 /* StatisticExpenseCollectionViewCell.swift in Sources */,
 				9EE0225D2008ED3F00CC01E9 /* AddTimeViewModel.swift in Sources */,
 				9EAE1F241FE0068300E8C47E /* ProjectsViewModel.swift in Sources */,
 				9E730D041FDAA16A0059C810 /* IQKeyboardManager.swift in Sources */,
@@ -1236,7 +1244,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1317,8 +1325,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y2V6NG4VN2;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = LZZX277PR7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1328,6 +1338,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiss1mobile.EasyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "EasyTime/Supporting Files/EasyTime-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1340,8 +1351,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y2V6NG4VN2;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = LZZX277PR7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1351,6 +1364,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.swiss1mobile.EasyTime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "EasyTime/Supporting Files/EasyTime-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
