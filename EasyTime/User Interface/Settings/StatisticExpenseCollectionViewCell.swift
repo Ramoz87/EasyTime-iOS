@@ -16,7 +16,15 @@ class StatisticExpenseCollectionViewCell: StatisticCollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+    }
+    
+    var statistic: ExpenseStatistic? {
+        
+        didSet {
+            if let statistic = statistic {
+                self.lbValue?.text =  String(format: "%0.2f %@", statistic.value, statistic.currency)
+            }
+        }
     }
 
 }

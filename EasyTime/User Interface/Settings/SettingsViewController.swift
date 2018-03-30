@@ -16,7 +16,7 @@ fileprivate struct Constants
     static let btnSaveCornerRadius: CGFloat = 4
 }
 
-class SettingsViewController: BaseViewController<SettingsViewModel>, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+class SettingsViewController: BaseViewController<SettingsViewModel>, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, CollectionViewUpdateDelegate {
 
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
@@ -44,10 +44,11 @@ class SettingsViewController: BaseViewController<SettingsViewModel>, UICollectio
         
         self.btnFullStatistic.layer.cornerRadius = Constants.btnSaveCornerRadius
         
-        
         self.collectionView.register(UINib.init(nibName: StatisticTimeCollectionViewCell.cellName, bundle: nil), forCellWithReuseIdentifier: StatisticTimeCollectionViewCell.reuseIdentifier)
         self.collectionView.register(UINib.init(nibName: StatisticExpenseCollectionViewCell.cellName, bundle: nil), forCellWithReuseIdentifier: StatisticExpenseCollectionViewCell.reuseIdentifier)
        
+        self.viewModel.collectionViewUpdateDelegate = self
+        
         if let user = AppManager.sharedInstance.user {
             lbName.text = user.fullName
             lbTitle.text = "Swiss1mobile"
@@ -57,6 +58,8 @@ class SettingsViewController: BaseViewController<SettingsViewModel>, UICollectio
             lbName.text = ""
             lbTitle.text = ""
         }
+        
+        self.onPeriodChanged(sender: scPeriod)
     }
     
     //MARK: - UICollectionViewDataSource
@@ -73,12 +76,16 @@ class SettingsViewController: BaseViewController<SettingsViewModel>, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        var cell: UICollectionViewCell?
+        var cell: StatisticCollectionViewCell?
         if indexPath.row == 0 {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: StatisticTimeCollectionViewCell.reuseIdentifier, for: indexPath) as! StatisticTimeCollectionViewCell
+            let statCell = collectionView.dequeueReusableCell(withReuseIdentifier: StatisticTimeCollectionViewCell.reuseIdentifier, for: indexPath) as! StatisticTimeCollectionViewCell
+            statCell.statistic = self.viewModel.timeStatistic
+            cell = statCell
         }
         else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: StatisticExpenseCollectionViewCell.reuseIdentifier, for: indexPath) as! StatisticExpenseCollectionViewCell
+            let statCell = collectionView.dequeueReusableCell(withReuseIdentifier: StatisticExpenseCollectionViewCell.reuseIdentifier, for: indexPath) as! StatisticExpenseCollectionViewCell
+            statCell.statistic = self.viewModel.expenseStatistic
+            cell = statCell
         }
 
         return cell!
@@ -106,10 +113,21 @@ class SettingsViewController: BaseViewController<SettingsViewModel>, UICollectio
     }
     
     @IBAction func onPeriodChanged(sender: Any) {
-        
+
+        self.viewModel.updateForPeriod(period: StatPeriod(rawValue:scPeriod.selectedIndex)!, date: Date())
+        lbPeriod.text = self.viewModel.periodString
     }
     
     @IBAction func onFullStatClick(sender: Any) {
         
+    }
+    
+    //MARK: - CollectionViewUpdateDelegate
+    func didChangeContent() {
+        self.collectionView.reloadData()
+    }
+    
+    func didChangeDataSet() {
+        self.collectionView.reloadData()
     }
 }
