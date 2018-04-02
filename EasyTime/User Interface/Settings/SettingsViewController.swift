@@ -120,6 +120,8 @@ class SettingsViewController: BaseViewController<SettingsViewModel>, UICollectio
     
     @IBAction func onFullStatClick(sender: Any) {
         
+        let controller = StatisticDetailsViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     //MARK: - CollectionViewUpdateDelegate

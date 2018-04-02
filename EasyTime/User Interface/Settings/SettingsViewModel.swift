@@ -12,8 +12,7 @@ import CoreData
 fileprivate struct Constants {
     
     static let sortDescriptor = "name"
-    static let timePredicate = NSPredicate(format: "type = 0")
-    static let expensePredicate = NSPredicate(format: "type = 3")
+    static let expensePredicate = NSPredicate(format: "type = 0 OR type = 3")
     static let currency = "CHF"
     static let periodDay = 480
     static let periodWeek = 2400
@@ -30,7 +29,7 @@ class SettingsViewModel: BaseViewModel {
 
     var expenseStatistic: ExpenseStatistic {
         get {
-            guard let expenses = fetchResultsControllerExpense.fetchedObjects, expenses.count > 0 else { return ExpenseStatistic(0) }
+            guard let expenses = fetchResultsController.fetchedObjects?.filter({$0.type == ETExpenseType.other.rawValue}), expenses.count > 0 else { return ExpenseStatistic(0) }
             guard let value = (expenses as NSArray).value(forKeyPath: "@sum.value") as? Float else { return ExpenseStatistic(0) }
             let stat = ExpenseStatistic(value)
             return stat
@@ -39,7 +38,7 @@ class SettingsViewModel: BaseViewModel {
     
     var timeStatistic: TimeStatistic {
         get {
-            guard let times = fetchResultsControllerTime.fetchedObjects, times.count > 0 else { return TimeStatistic(value: 0, periodValue: 40) }
+            guard let times = fetchResultsController.fetchedObjects?.filter({$0.type == ETExpenseType.time.rawValue}), times.count > 0 else { return TimeStatistic(value: 0, periodValue: 40) }
             guard let value = (times as NSArray).value(forKeyPath: "@sum.value") as? Float else { return TimeStatistic(value: 0, periodValue: 40) }
             let stat = TimeStatistic(value: value, periodValue: Float(periodValue))
             return stat
@@ -49,16 +48,9 @@ class SettingsViewModel: BaseViewModel {
     var periodValue: Int = Constants.periodDay
     var periodString: String?
     
-    private lazy var fetchResultsControllerTime: NSFetchedResultsController<Expense> = {
+    private lazy var fetchResultsController: NSFetchedResultsController<Expense> = {
         
-        let fetchedResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor],predicate: Constants.timePredicate)
-        fetchedResultsController.delegate = self
-        return fetchedResultsController
-    }()
-    
-    private lazy var fetchResultsControllerExpense: NSFetchedResultsController<Expense> = {
-        
-        let fetchedResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor], predicate: Constants.expensePredicate)
+        let fetchedResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor],predicate: Constants.expensePredicate)
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
@@ -92,12 +84,9 @@ class SettingsViewModel: BaseViewModel {
             
             let datePredicate = NSPredicate(format:"date >= %@ && date <= %@", start as NSDate, end as NSDate)
             
-            self.fetchResultsControllerTime.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [Constants.timePredicate, datePredicate])
-            try self.fetchResultsControllerTime.performFetch()
+            self.fetchResultsController.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [Constants.expensePredicate, datePredicate])
+            try self.fetchResultsController.performFetch()
             
-            self.fetchResultsControllerExpense.fetchRequest.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [Constants.expensePredicate, datePredicate])
-            try self.fetchResultsControllerExpense.performFetch()
-
             self.collectionViewUpdateDelegate?.didChangeDataSet()
         } catch {}
     }
