@@ -167,6 +167,11 @@
 		B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */ = {isa = PBXBuildFile; fileRef = B73108D51FDEC1DE00BB3B07 /* customer.csv */; };
 		B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D71FDEC28300BB3B07 /* CSV.swift */; };
 		B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */; };
+		B747A6142073963C00C5AB94 /* StatisticFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B747A6122073963C00C5AB94 /* StatisticFilterViewController.swift */; };
+		B747A6152073963C00C5AB94 /* StatisticFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B747A6132073963C00C5AB94 /* StatisticFilterViewController.xib */; };
+		B747A6172073965B00C5AB94 /* StatisticFilterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B747A6162073965B00C5AB94 /* StatisticFilterViewModel.swift */; };
+		B747A61A207398BD00C5AB94 /* StatisticFilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B747A618207398BD00C5AB94 /* StatisticFilterCollectionViewCell.swift */; };
+		B747A61B207398BD00C5AB94 /* StatisticFilterCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B747A619207398BD00C5AB94 /* StatisticFilterCollectionViewCell.xib */; };
 		B761473D2018826A00ABF775 /* AddStockMaterialsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761473B2018826A00ABF775 /* AddStockMaterialsViewController.swift */; };
 		B761473E2018826A00ABF775 /* AddStockMaterialsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B761473C2018826A00ABF775 /* AddStockMaterialsViewController.xib */; };
 		B76147402018828D00ABF775 /* AddStockMaterialsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B761473F2018828D00ABF775 /* AddStockMaterialsViewModel.swift */; };
@@ -364,6 +369,11 @@
 		B73108D51FDEC1DE00BB3B07 /* customer.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customer.csv; sourceTree = "<group>"; };
 		B73108D71FDEC28300BB3B07 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
+		B747A6122073963C00C5AB94 /* StatisticFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticFilterViewController.swift; sourceTree = "<group>"; };
+		B747A6132073963C00C5AB94 /* StatisticFilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatisticFilterViewController.xib; sourceTree = "<group>"; };
+		B747A6162073965B00C5AB94 /* StatisticFilterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticFilterViewModel.swift; sourceTree = "<group>"; };
+		B747A618207398BD00C5AB94 /* StatisticFilterCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticFilterCollectionViewCell.swift; sourceTree = "<group>"; };
+		B747A619207398BD00C5AB94 /* StatisticFilterCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatisticFilterCollectionViewCell.xib; sourceTree = "<group>"; };
 		B761473B2018826A00ABF775 /* AddStockMaterialsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStockMaterialsViewController.swift; sourceTree = "<group>"; };
 		B761473C2018826A00ABF775 /* AddStockMaterialsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddStockMaterialsViewController.xib; sourceTree = "<group>"; };
 		B761473F2018828D00ABF775 /* AddStockMaterialsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStockMaterialsViewModel.swift; sourceTree = "<group>"; };
@@ -906,6 +916,11 @@
 				B7E06740207262BC00609876 /* StatisticSectionView.xib */,
 				B7E067422072656900609876 /* StatisticTableViewCell.swift */,
 				B7E067432072656900609876 /* StatisticTableViewCell.xib */,
+				B747A6122073963C00C5AB94 /* StatisticFilterViewController.swift */,
+				B747A6132073963C00C5AB94 /* StatisticFilterViewController.xib */,
+				B747A6162073965B00C5AB94 /* StatisticFilterViewModel.swift */,
+				B747A618207398BD00C5AB94 /* StatisticFilterCollectionViewCell.swift */,
+				B747A619207398BD00C5AB94 /* StatisticFilterCollectionViewCell.xib */,
 			);
 			path = "Statistic Details";
 			sourceTree = "<group>";
@@ -1028,6 +1043,7 @@
 				9EC02C8C2007A47D004B83FC /* NumberInputViewController.xib in Resources */,
 				B79A8ABA206E5D22009716F8 /* StatisticDetailsViewController.xib in Resources */,
 				9E66DEAA201B28720032003C /* SignatureViewController.xib in Resources */,
+				B747A61B207398BD00C5AB94 /* StatisticFilterCollectionViewCell.xib in Resources */,
 				9E66DEB9201B57320032003C /* InvoiceSectionFooterView.xib in Resources */,
 				B7090BBA206D2728000CB938 /* StatisticExpenseCollectionViewCell.xib in Resources */,
 				9E730D341FDAA16A0059C810 /* StockMaterialsViewController.xib in Resources */,
@@ -1056,6 +1072,7 @@
 				9EC611AA202B3A5B009B69C0 /* TutorialCollectionViewCell.xib in Resources */,
 				B7EEAB8A1FEA717A00FC50EF /* types.csv in Resources */,
 				B7EEAB871FEA717A00FC50EF /* materials.csv in Resources */,
+				B747A6152073963C00C5AB94 /* StatisticFilterViewController.xib in Resources */,
 				9E66DEB1201B347E0032003C /* CongratulationsView.xib in Resources */,
 				9EC6119F202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.xib in Resources */,
 				9ECA46EF2020ABDD00094C1B /* ClientInfoCollectionViewCell.xib in Resources */,
@@ -1118,6 +1135,7 @@
 				9E730CFC1FDAA16A0059C810 /* IQNSArray+Sort.swift in Sources */,
 				B765DB1F200E2DE1002F5773 /* ETUser.swift in Sources */,
 				B7BB70752011E8E9001C717E /* ClientTableViewCell.swift in Sources */,
+				B747A61A207398BD00C5AB94 /* StatisticFilterCollectionViewCell.swift in Sources */,
 				9EC02C862004F794004B83FC /* ETExpense.swift in Sources */,
 				B761473D2018826A00ABF775 /* AddStockMaterialsViewController.swift in Sources */,
 				9E730D201FDAA16A0059C810 /* Order+CoreDataProperties.swift in Sources */,
@@ -1207,11 +1225,13 @@
 				9EAE1F241FE0068300E8C47E /* ProjectsViewModel.swift in Sources */,
 				9E730D041FDAA16A0059C810 /* IQKeyboardManager.swift in Sources */,
 				9EC6119E202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.swift in Sources */,
+				B747A6172073965B00C5AB94 /* StatisticFilterViewModel.swift in Sources */,
 				9E730D071FDAA16A0059C810 /* IQBarButtonItem.swift in Sources */,
 				9E9344952015E5D9008AEEEE /* ProjectInfoTableViewCell.swift in Sources */,
 				9E66DEAF201B34730032003C /* CongratulationsView.swift in Sources */,
 				9E730D101FDAA16A0059C810 /* Address+CoreDataProperties.swift in Sources */,
 				9E1350BA1FE3F6C7007CAEC3 /* ETAddress.swift in Sources */,
+				B747A6142073963C00C5AB94 /* StatisticFilterViewController.swift in Sources */,
 				9EC611A9202B3A5B009B69C0 /* TutorialCollectionViewCell.swift in Sources */,
 				5F07A7821FFFAB7C00BBA74D /* ProjectDetailsViewController.swift in Sources */,
 				9E730CFF1FDAA16A0059C810 /* IQUIView+Hierarchy.swift in Sources */,

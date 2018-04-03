@@ -18,6 +18,11 @@ class StatisticTableViewCell: UITableViewCell {
     @IBOutlet weak var lbTime: UILabel!
     @IBOutlet weak var lbExpense: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.separatorInset = UIEdgeInsets.zero
+    }
+    
     var statisticRecord: StatisticSectionObject? {
         
         didSet {

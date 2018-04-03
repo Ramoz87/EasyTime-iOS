@@ -27,6 +27,9 @@ enum StatPeriod: Int {
 
 class SettingsViewModel: BaseViewModel {
 
+    var periodValue: Int = Constants.periodDay
+    var periodString: String?
+    
     var expenseStatistic: ExpenseStatistic {
         get {
             guard let expenses = fetchResultsController.fetchedObjects?.filter({$0.type == ETExpenseType.other.rawValue}), expenses.count > 0 else { return ExpenseStatistic(0) }
@@ -44,10 +47,7 @@ class SettingsViewModel: BaseViewModel {
             return stat
         }
     }
-    
-    var periodValue: Int = Constants.periodDay
-    var periodString: String?
-    
+
     private lazy var fetchResultsController: NSFetchedResultsController<Expense> = {
         
         let fetchedResultsController: NSFetchedResultsController<Expense> = AppManager.sharedInstance.dataHelper.fetchedResultsController(sort: [Constants.sortDescriptor],predicate: Constants.expensePredicate)

@@ -46,7 +46,7 @@ class StatisticDetailsViewModel: BaseViewModel {
     
     func numberOfSections() -> Int {
         
-        return sections.count
+        return self.sections.count
     }
     
     func numberOfObjects(at section: Int) -> Int {
@@ -78,7 +78,7 @@ class StatisticDetailsViewModel: BaseViewModel {
                     
                     if dayRecords.count > 0 {
                         
-                        var section = StatisticSectionInfo(date: date)
+                        let section = StatisticSectionInfo(date: date)
                         self.sections.append(section)
                         
                         for item in dayRecords {
@@ -111,7 +111,7 @@ class StatisticDetailsViewModel: BaseViewModel {
     }
 }
 
-struct StatisticSectionObject {
+class StatisticSectionObject {
     var jobId: String
     var name: String
     var time: Float
@@ -130,7 +130,7 @@ struct StatisticSectionObject {
     }
 }
 
-struct StatisticSectionInfo {
+class StatisticSectionInfo {
     
     var date: Date
     var objects: [StatisticSectionObject] = []
