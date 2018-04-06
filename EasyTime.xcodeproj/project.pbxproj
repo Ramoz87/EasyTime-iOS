@@ -164,6 +164,7 @@
 		B7090BB9206D2728000CB938 /* StatisticExpenseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7090BB7206D2728000CB938 /* StatisticExpenseCollectionViewCell.swift */; };
 		B7090BBA206D2728000CB938 /* StatisticExpenseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7090BB8206D2728000CB938 /* StatisticExpenseCollectionViewCell.xib */; };
 		B7090BBC206D2E94000CB938 /* StatisticCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7090BBB206D2E94000CB938 /* StatisticCollectionViewCell.swift */; };
+		B70A101E207504FB00729FC3 /* ExpandedSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70A101D207504FB00729FC3 /* ExpandedSectionView.swift */; };
 		B73108D61FDEC1DF00BB3B07 /* customer.csv in Resources */ = {isa = PBXBuildFile; fileRef = B73108D51FDEC1DE00BB3B07 /* customer.csv */; };
 		B73108D81FDEC28300BB3B07 /* CSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D71FDEC28300BB3B07 /* CSV.swift */; };
 		B73108DA1FDFD2AF00BB3B07 /* CSVParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */; };
@@ -366,6 +367,7 @@
 		B7090BB7206D2728000CB938 /* StatisticExpenseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticExpenseCollectionViewCell.swift; sourceTree = "<group>"; };
 		B7090BB8206D2728000CB938 /* StatisticExpenseCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatisticExpenseCollectionViewCell.xib; sourceTree = "<group>"; };
 		B7090BBB206D2E94000CB938 /* StatisticCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticCollectionViewCell.swift; sourceTree = "<group>"; };
+		B70A101D207504FB00729FC3 /* ExpandedSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandedSectionView.swift; sourceTree = "<group>"; };
 		B73108D51FDEC1DE00BB3B07 /* customer.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = customer.csv; sourceTree = "<group>"; };
 		B73108D71FDEC28300BB3B07 /* CSV.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CSV.swift; sourceTree = "<group>"; };
 		B73108D91FDFD2AF00BB3B07 /* CSVParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CSVParser.swift; sourceTree = "<group>"; };
@@ -463,6 +465,7 @@
 				9E4CAEFA1FFD0095006FF08C /* InputButton.swift */,
 				5F07A77D1FFFAAB000BBA74D /* TabView.swift */,
 				B7090BAD206CD97E000CB938 /* SegmentView.swift */,
+				B70A101D207504FB00729FC3 /* ExpandedSectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1226,6 +1229,7 @@
 				9E730D041FDAA16A0059C810 /* IQKeyboardManager.swift in Sources */,
 				9EC6119E202B029B009B69C0 /* ProjectInfoInstructionsTableViewCell.swift in Sources */,
 				B747A6172073965B00C5AB94 /* StatisticFilterViewModel.swift in Sources */,
+				B70A101E207504FB00729FC3 /* ExpandedSectionView.swift in Sources */,
 				9E730D071FDAA16A0059C810 /* IQBarButtonItem.swift in Sources */,
 				9E9344952015E5D9008AEEEE /* ProjectInfoTableViewCell.swift in Sources */,
 				9E66DEAF201B34730032003C /* CongratulationsView.swift in Sources */,

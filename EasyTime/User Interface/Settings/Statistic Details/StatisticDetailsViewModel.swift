@@ -28,6 +28,31 @@ class StatisticDetailsViewModel: BaseViewModel {
         return fetchedResultsController
     }()
     
+    var totalTime: String {
+        get {
+            var result: Float = 0
+            for object in sections {
+                result += object.time
+            }
+            
+            let hours = result / 60
+            let minutes = result.truncatingRemainder(dividingBy: 60)
+ 
+            return String(format: "%02d:%02d", Int(hours), Int(minutes))
+        }
+    }
+    
+    var totalExpense: String {
+        get {
+            var result: Float = 0
+            for object in sections {
+                result += object.expense
+            }
+            
+            return String(format: "%0.2f %@", result, Constants.currency)
+        }
+    }
+    
     subscript(index: Int) -> StatisticSectionInfo? {
         guard index < self.sections.count else {
             return nil
@@ -51,10 +76,10 @@ class StatisticDetailsViewModel: BaseViewModel {
     
     func numberOfObjects(at section: Int) -> Int {
         
-        guard let section = self[section] else {
+        guard let section = self[section], section.isExpanded else {
             return 0
         }
-        
+
         return section.objects.count
     }
     
@@ -106,6 +131,11 @@ class StatisticDetailsViewModel: BaseViewModel {
                 }
             }
             
+            if self.sections.count == 1
+            {
+                self.sections.first!.isExpanded = true
+            }
+            
             self.collectionViewUpdateDelegate?.didChangeDataSet()
         } catch {}
     }
@@ -138,14 +168,22 @@ class StatisticSectionInfo {
     
     var time: Float {
         get {
-            guard let sum = (objects as NSArray).value(forKeyPath: "@sum.time") as? Float else { return 0 }
-            return sum
+            var result: Float = 0
+            for object in objects {
+                result += object.time
+            }
+            
+            return result
         }
     }
     var expense: Float {
         get {
-            guard let sum = (objects as NSArray).value(forKeyPath: "@sum.expense") as? Float else { return 0 }
-            return sum
+            var result: Float = 0
+            for object in objects {
+                result += object.expense
+            }
+            
+            return result
         }
     }
     

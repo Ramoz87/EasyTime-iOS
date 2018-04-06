@@ -133,10 +133,7 @@ extension Date {
     }
     
     var endOfDay: Date {
-        var components = DateComponents()
-        components.day = 1
-        components.second = -1
-        return Calendar.current.date(byAdding: components, to: startOfDay)!
+        return Calendar.current.date(byAdding: DateComponents(day: 1, second: -1), to: self.startOfDay)!
     }
     
     var startOfWeek: Date {
@@ -144,7 +141,7 @@ extension Date {
     }
     
     var endOfWeek: Date {
-        return Calendar.current.date(byAdding: DateComponents(day: 7), to: self.startOfWeek)!
+        return Calendar.current.date(byAdding: DateComponents(day: 7, second: -1), to: self.startOfWeek)!
     }
     
     var startOfMonth: Date {
@@ -152,7 +149,7 @@ extension Date {
     }
     
     var endOfMonth: Date {
-        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth)!
+        return Calendar.current.date(byAdding: DateComponents(month: 1, second: -1), to: self.startOfMonth)!
     }
 }
 

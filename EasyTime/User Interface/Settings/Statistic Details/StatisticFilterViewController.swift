@@ -16,6 +16,8 @@ class StatisticFilterViewController: BaseViewController<StatisticFilterViewModel
     
     weak var delegate: StatisticFilterDelegate?
     
+    var selectedCell: StatisticFilterCollectionViewCell?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,14 +50,15 @@ class StatisticFilterViewController: BaseViewController<StatisticFilterViewModel
         
         if let object = self.viewModel[indexPath.row]
         {
-            
             cell.lbTitle.text = object.title
             cell.lbHeader.text = object.header
+            cell.isCellSelected = object.selected
         }
         else
         {
             cell.lbTitle.text = nil
             cell.lbHeader.text = nil
+            cell.isCellSelected = false
         }
         
         return cell
@@ -65,8 +68,22 @@ class StatisticFilterViewController: BaseViewController<StatisticFilterViewModel
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let delegate = self.delegate, let object = self.viewModel[indexPath.row] else { return }
-        delegate.dateRangeDidChnage(filter: self, start: object.start, end: object.end)
+        guard let object = self.viewModel[indexPath.row] else { return }
+        
+        if self.viewModel.selectedIndex > -1 {
+            
+            let cell = collectionView.cellForItem(at: IndexPath(row: self.viewModel.selectedIndex, section: 0)) as! StatisticFilterCollectionViewCell
+            cell.isCellSelected = false
+        }
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! StatisticFilterCollectionViewCell
+        cell.isCellSelected = true
+        self.viewModel.selectedIndex = indexPath.row
+        
+        if let delegate = self.delegate {
+            
+            delegate.dateRangeDidChange(filter: self, start: object.start, end: object.end)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -88,5 +105,5 @@ class StatisticFilterViewController: BaseViewController<StatisticFilterViewModel
 
 protocol StatisticFilterDelegate: class {
     
-    func dateRangeDidChnage(filter: StatisticFilterViewController, start: Date, end: Date)
+    func dateRangeDidChange(filter: StatisticFilterViewController, start: Date, end: Date)
 }

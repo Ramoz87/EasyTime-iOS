@@ -24,8 +24,8 @@ fileprivate struct Constants {
     static let projectDescriptionLabelPadding: CGFloat = 12
 }
 
-class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITableViewDelegate, UITableViewDataSource, ProjectInfoSectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
-
+class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITableViewDelegate, UITableViewDataSource, SectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UIScrollViewDelegate {
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var btnAddPhoto: UIButton!
 
@@ -294,9 +294,8 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
         return nil
     }
 
-    //MARK: - ProjectInfoSectionViewDelegate
-
-    func didExpandProjectInfoSectionView(view: ProjectInfoSectionView) {
+    //MARK: - SectionViewDelegate
+    func didExpandSectionView(view: ExpandedSectionView) {
 
         if view.sectionIndex == ProjectInfoSectionType.customer.rawValue,
             let customer = self.viewModel.customer{
@@ -311,7 +310,7 @@ class ProjectInfoViewController: BaseViewController<ProjectInfoViewModel>, UITab
         self.expandSection(section: view.sectionIndex, isExpanded: true)
     }
 
-    func didCollapseProjectInfoSectionView(view: ProjectInfoSectionView) {
+    func didCollapseSectionView(view: ExpandedSectionView) {
 
         self.expandSection(section: view.sectionIndex, isExpanded: false)
     }

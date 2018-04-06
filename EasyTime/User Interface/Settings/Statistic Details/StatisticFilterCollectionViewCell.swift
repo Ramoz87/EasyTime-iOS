@@ -10,6 +10,7 @@ import UIKit
 
 fileprivate struct Constants {
     static let borderColor = UIColor(red: 175 / 255, green: 190 / 255, blue: 211 / 255, alpha: 1)
+    static let selectedColor = UIColor(red: 62 / 255, green: 142 / 255, blue: 215 / 255, alpha: 1)
 }
 
 class StatisticFilterCollectionViewCell: UICollectionViewCell {
@@ -26,6 +27,18 @@ class StatisticFilterCollectionViewCell: UICollectionViewCell {
         
         layer.cornerRadius = 2
         layer.borderWidth = 1
-        layer.borderColor = Constants.borderColor.cgColor;
+    }
+    
+    var isCellSelected: Bool = false {
+        didSet {
+            if isCellSelected {
+                layer.borderColor = Constants.selectedColor.cgColor;
+                layer.borderWidth = 2
+            }
+            else {
+                layer.borderColor = Constants.borderColor.cgColor;
+                layer.borderWidth = 1
+            }
+        }
     }
 }

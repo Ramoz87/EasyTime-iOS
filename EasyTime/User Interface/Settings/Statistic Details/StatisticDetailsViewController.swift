@@ -13,8 +13,8 @@ fileprivate struct Constants
     static let dateFilterButtonDropDownIconSpacing: CGFloat = 8
 }
 
-class StatisticDetailsViewController: BaseViewController<StatisticDetailsViewModel>, CollectionViewUpdateDelegate, StatisticFilterDelegate, UITableViewDelegate, UITableViewDataSource {
-
+class StatisticDetailsViewController: BaseViewController<StatisticDetailsViewModel>, CollectionViewUpdateDelegate, StatisticFilterDelegate, UITableViewDelegate, UITableViewDataSource, SectionViewDelegate {
+    
     @IBOutlet weak var vTop: UIView!
     @IBOutlet weak var vBottom: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -40,6 +40,9 @@ class StatisticDetailsViewController: BaseViewController<StatisticDetailsViewMod
         return controller
     }()
     
+    var startDate = Date()
+    var endDate = Date()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -61,9 +64,7 @@ class StatisticDetailsViewController: BaseViewController<StatisticDetailsViewMod
         
         self.navigationItem.titleView = self.dateFilterButton
 
-        let date = Date()
-        self.dateFilterButton.setTitle(date.toRelativeString(), for: .normal)
-        self.viewModel.updateFor(start: date, end: date)
+        self.update(from: startDate, to: endDate)
     }
     
     //MARK: - Private
@@ -93,6 +94,40 @@ class StatisticDetailsViewController: BaseViewController<StatisticDetailsViewMod
         
     }
     
+    func expandSection(section: Int, isExpanded: Bool) {
+        
+        guard let sectionInfo = self.viewModel[section] else { return }
+        
+        sectionInfo.isExpanded = isExpanded
+        
+        UIView.setAnimationsEnabled(false)
+        self.tableView.reloadSections([section], with: .none)
+        UIView.setAnimationsEnabled(true)
+    }
+    
+    func update(from start:Date, to end:Date)
+    {
+        var title: String
+        if Calendar.current.isDate(start, equalTo: end, toGranularity: .day) {
+            title = start.toString("dd MMMM")
+        }
+        else if Calendar.current.isDate(start, equalTo: end, toGranularity: .month){
+            title = String(format: "%@-%@ %@", start.toString("dd"), end.toString("dd"), start.toString("MMM, YYYY"))
+        }
+        else if Calendar.current.isDate(start, equalTo: end, toGranularity: .year){
+            title = String(format: "%@-%@, %@", start.toString("dd.MM"), end.toString("dd.MM"), start.toString("YYYY"))
+        }
+        else {
+            title = String(format: "%@-%@", start.toDefaultString(), end.toDefaultString())
+        }
+        
+        self.dateFilterButton.setTitle(title, for: .normal)
+        self.viewModel.updateFor(start: start, end: end)
+        
+        self.lbTotalTime.text = self.viewModel.totalTime
+        self.lbTotalExpense.text = self.viewModel.totalExpense
+    }
+    
     //MARK: - Actions
     @objc func onDateFilterClick(sender: Any) {
         
@@ -106,10 +141,24 @@ class StatisticDetailsViewController: BaseViewController<StatisticDetailsViewMod
         }
     }
     
+    //MARK: - SectionViewDelegate
+    
+    func didExpandSectionView(view: ExpandedSectionView) {
+        
+       self.expandSection(section: view.sectionIndex, isExpanded: true)
+    }
+    
+    func didCollapseSectionView(view: ExpandedSectionView) {
+        
+        self.expandSection(section: view.sectionIndex, isExpanded: false)
+    }
+    
     //MARK: - StatisticFilterDelegate
 
-    func dateRangeDidChnage(filter: StatisticFilterViewController, start: Date, end: Date) {
-        self.viewModel.updateFor(start: start, end: end)
+    func dateRangeDidChange(filter: StatisticFilterViewController, start: Date, end: Date) {
+        self.startDate = start
+        self.endDate = end
+        self.update(from: start, to: end)
         self.hideDateFilter()
     }
     
@@ -135,8 +184,7 @@ class StatisticDetailsViewController: BaseViewController<StatisticDetailsViewMod
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        //let sectionInfo = self.viewModel[indexPath.section]
-        return StatisticTableViewCell.cellHeight//(sectionInfo.isExpanded == true && sectionInfo.isHidden == false) ? ProjectInfoTableViewCell.cellHeight : 0
+        return StatisticTableViewCell.cellHeight
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -150,6 +198,8 @@ class StatisticDetailsViewController: BaseViewController<StatisticDetailsViewMod
        
         let sectionView: StatisticSectionView = UIView.loadFromNib()
         sectionView.statisticInfo = self.viewModel[section]
+        sectionView.delegate = self
+        sectionView.sectionIndex = section
         
         return sectionView
     }
@@ -163,12 +213,13 @@ class StatisticDetailsViewController: BaseViewController<StatisticDetailsViewMod
     //MARK: - CollectionViewUpdateDelegate
     
     func didChangeContent() {
-        
-        let date = Date()
-        self.viewModel.updateFor(start: date, end: date)
+
+        self.update(from: startDate, to: endDate)
     }
     
     func didChangeDataSet() {
+        
         self.tableView.reloadData()
+        
     }
 }

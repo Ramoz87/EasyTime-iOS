@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatisticSectionView: UIView {
+class StatisticSectionView: ExpandedSectionView {
 
     static let sectionHeight: CGFloat = 60
     
@@ -22,6 +22,7 @@ class StatisticSectionView: UIView {
         didSet {
             if let statistic = statisticInfo {
                 
+                self.isExpanded = statistic.isExpanded
                 let hours = statistic.time / 60
                 let minutes = statistic.time.truncatingRemainder(dividingBy: 60)
                 
@@ -30,10 +31,18 @@ class StatisticSectionView: UIView {
                 self.lbExpense?.text = String(format: "%0.2f %@", statistic.expense, statistic.currency)
             }
             else {
+                self.isExpanded = false
                 self.lbDate?.text =  nil
                 self.lbTime?.text = nil
                 self.lbExpense?.text = nil
             }
+        }
+    }
+    
+    override var isExpanded: Bool {
+        
+        didSet {
+            self.ivAccessory.isHighlighted = self.isExpanded
         }
     }
 
