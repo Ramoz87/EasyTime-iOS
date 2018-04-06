@@ -95,8 +95,10 @@ class SettingsViewController: BaseViewController<SettingsViewModel>, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
+        let layout = (collectionViewLayout as! UICollectionViewFlowLayout)
         let height = (indexPath.row == 0) ? StatisticTimeCollectionViewCell.height : StatisticExpenseCollectionViewCell.height
-        let width = (collectionViewLayout as! UICollectionViewFlowLayout).itemSize.width
+        let width = collectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right
+
         return CGSize(width: CGFloat(width), height: CGFloat(height))
     }
     

@@ -52,7 +52,7 @@ class StatisticFilterViewController: BaseViewController<StatisticFilterViewModel
         {
             cell.lbTitle.text = object.title
             cell.lbHeader.text = object.header
-            cell.isCellSelected = object.selected
+            cell.isCellSelected = (indexPath.row==self.viewModel.selectedIndex)
         }
         else
         {
@@ -69,16 +69,9 @@ class StatisticFilterViewController: BaseViewController<StatisticFilterViewModel
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         guard let object = self.viewModel[indexPath.row] else { return }
-        
-        if self.viewModel.selectedIndex > -1 {
-            
-            let cell = collectionView.cellForItem(at: IndexPath(row: self.viewModel.selectedIndex, section: 0)) as! StatisticFilterCollectionViewCell
-            cell.isCellSelected = false
-        }
-        
-        let cell = collectionView.cellForItem(at: indexPath) as! StatisticFilterCollectionViewCell
-        cell.isCellSelected = true
+      
         self.viewModel.selectedIndex = indexPath.row
+        collectionView.reloadSections(IndexSet(integer: 0))
         
         if let delegate = self.delegate {
             
@@ -91,7 +84,7 @@ class StatisticFilterViewController: BaseViewController<StatisticFilterViewModel
         let height = StatisticFilterCollectionViewCell.height
         let layout = (collectionViewLayout as! UICollectionViewFlowLayout)
         
-        let width = (collectionView.contentSize.width - layout.sectionInset.left - layout.sectionInset.right - layout.minimumInteritemSpacing*2) / 3
+        let width = (collectionView.frame.size.width - layout.sectionInset.left - layout.sectionInset.right - layout.minimumInteritemSpacing*2) / 3
         return CGSize(width: CGFloat(width), height: CGFloat(height))
     }
     

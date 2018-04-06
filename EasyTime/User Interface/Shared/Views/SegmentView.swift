@@ -27,6 +27,7 @@ class SegmentView: UIControl {
         backgroundView.layer.cornerRadius = frame.height / 2
         backgroundView.layer.borderColor = Constants.borderColor.cgColor
         backgroundView.layer.borderWidth = 1
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false;
         backgroundView.isUserInteractionEnabled = false
         
         return backgroundView

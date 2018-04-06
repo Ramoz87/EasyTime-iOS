@@ -109,7 +109,7 @@ class StatisticDetailsViewModel: BaseViewModel {
                         for item in dayRecords {
                             guard let job = item.job else { continue }
                             
-                            var object = section.objects.filter({$0.jobId == job.jobId}).first
+                            var object = section.objects.filter({$0.job.jobId == job.jobId}).first
                             if (object == nil)
                             {
                                 object = StatisticSectionObject(job: job)
@@ -142,15 +142,15 @@ class StatisticDetailsViewModel: BaseViewModel {
 }
 
 class StatisticSectionObject {
-    var jobId: String
     var name: String
     var time: Float
     var expense: Float
     var currency: String = Constants.currency
+    let job: ETJob
     
     init(job: Job) {
-        self.jobId = job.jobId!
-        
+    
+        self.job = ETJob(job: job)
         self.name = ""
         self.name.append(job.number, separator: Constants.titleSeparator)
         self.name.append(job.name, separator: Constants.titleSeparator)
@@ -158,6 +158,8 @@ class StatisticSectionObject {
         self.time = 0
         self.expense = 0
     }
+    
+    
 }
 
 class StatisticSectionInfo {

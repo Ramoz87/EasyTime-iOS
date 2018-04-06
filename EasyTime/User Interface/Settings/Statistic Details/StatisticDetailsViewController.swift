@@ -208,6 +208,11 @@ class StatisticDetailsViewController: BaseViewController<StatisticDetailsViewMod
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let object = self.viewModel[indexPath] else { return }
+        let viewModel = InvoiceViewModel(job: object.job)
+        let controller = InvoiceViewController(viewModel: viewModel)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     //MARK: - CollectionViewUpdateDelegate

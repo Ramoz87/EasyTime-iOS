@@ -88,11 +88,10 @@ class StatisticFilterViewModel: BaseViewModel {
         
         var day = Date()
         
-        for index in 0..<Constants.periodDay {
+        for _ in 0..<Constants.periodDay {
             let object = StatisticFilterObject(startDate: day.startOfDay, endDate: day.endOfDay)
             object.title = day.toString("dd MMM")
             object.header = day.toString("EE")
-            object.selected = (index == self.selectedIndex)
             dataSource.append(object)
             day = Calendar.current.date(byAdding: .day, value: -1, to: day)!
         }
@@ -103,7 +102,7 @@ class StatisticFilterViewModel: BaseViewModel {
         
         var day = Date()
         
-        for index in 0..<Constants.periodWeek {
+        for _ in 0..<Constants.periodWeek {
             let start = day.startOfWeek
             let end = day.endOfWeek
             
@@ -117,7 +116,6 @@ class StatisticFilterViewModel: BaseViewModel {
             {
                 object.header = String(format: "%@-%@", start.toString("MMM"), end.toString("MMM"))
             }
-            object.selected = (index == self.selectedIndex)
             dataSource.append(object)
             
             day = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: start)!
@@ -129,14 +127,13 @@ class StatisticFilterViewModel: BaseViewModel {
         
         var day = Date()
         
-        for index in 0..<Constants.periodMonth {
+        for _ in 0..<Constants.periodMonth {
             let start = day.startOfMonth
             let end = day.endOfMonth
             
             let object = StatisticFilterObject(startDate: start, endDate: end)
             object.header = start.toString("MMMM")
             object.title = start.toString("YYYY")
-            object.selected = (index == self.selectedIndex)
             dataSource.append(object)
             
             day = Calendar.current.date(byAdding: .month, value: -1, to: start)!
@@ -149,8 +146,6 @@ class StatisticFilterObject {
     var header: String?
     var start: Date
     var end: Date
-    
-    var selected: Bool = false
     
     init(startDate: Date, endDate: Date) {
         self.start = startDate

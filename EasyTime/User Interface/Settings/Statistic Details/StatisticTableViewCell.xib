@@ -43,7 +43,7 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expandIcon" highlightedImage="collapseIcon" translatesAutoresizingMaskIntoConstraints="NO" id="0QS-vt-flc">
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="expandIcon" translatesAutoresizingMaskIntoConstraints="NO" id="0QS-vt-flc">
                         <rect key="frame" x="354" y="26" width="11" height="7"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="7" id="Z0v-PN-sj7"/>
@@ -98,7 +98,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="collapseIcon" width="11" height="7"/>
         <image name="expandIcon" width="7" height="11"/>
     </resources>
 </document>
