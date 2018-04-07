@@ -23,6 +23,6 @@ class ETUser {
     }
     
     lazy var fullName = {
-        return [self.firstName, self.lastName].flatMap{$0}.joined(separator: " ")
+        return [self.firstName, self.lastName].compactMap{$0}.joined(separator: " ")
     }()
 }

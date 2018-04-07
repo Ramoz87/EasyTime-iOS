@@ -83,7 +83,7 @@ class AddMaterialsTableViewCell: UITableViewCell, UITextFieldDelegate {
             return
         }
         
-        if let text = textField.text as NSString! {
+        if let text = textField.text as NSString? {
             var quantity = text.floatValue
             if  quantity > material.stockQuantity {
                 quantity = material.stockQuantity

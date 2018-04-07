@@ -81,7 +81,7 @@ class StockMaterialTableViewCell: UITableViewCell, UITextFieldDelegate {
     //MARK: - UITextFieldDelegate
         
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if let text = textField.text as NSString! {
+        if let text = textField.text as NSString? {
             
             self.value = text.integerValue
         }

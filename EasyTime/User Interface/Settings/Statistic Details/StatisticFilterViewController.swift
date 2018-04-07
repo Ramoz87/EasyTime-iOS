@@ -52,7 +52,7 @@ class StatisticFilterViewController: BaseViewController<StatisticFilterViewModel
         {
             cell.lbTitle.text = object.title
             cell.lbHeader.text = object.header
-            cell.isCellSelected = (indexPath.row==self.viewModel.selectedIndex)
+            cell.isCellSelected = object.selected
         }
         else
         {
@@ -69,10 +69,19 @@ class StatisticFilterViewController: BaseViewController<StatisticFilterViewModel
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         guard let object = self.viewModel[indexPath.row] else { return }
-      
-        self.viewModel.selectedIndex = indexPath.row
-        collectionView.reloadSections(IndexSet(integer: 0))
         
+        let oldIndex = self.viewModel.selectedIndex
+        let newIndex = indexPath.row
+        
+        var indexPaths = [indexPath]
+       
+        if oldIndex > -1, oldIndex != newIndex {
+            indexPaths.append(IndexPath(row: oldIndex, section: 0))
+        }
+        
+        self.viewModel.selectedIndex = newIndex
+        collectionView.reloadItems(at: indexPaths)
+                
         if let delegate = self.delegate {
             
             delegate.dateRangeDidChange(filter: self, start: object.start, end: object.end)
