@@ -189,12 +189,10 @@ class StatisticDetailsViewController: BaseViewController<StatisticDetailsViewMod
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        return self.viewModel.numberOfSections() > 1 ?  StatisticSectionView.sectionHeight : 0
+        return StatisticSectionView.sectionHeight
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-       
-        guard self.viewModel.numberOfSections() > 1 else { return nil }
        
         let sectionView: StatisticSectionView = UIView.loadFromNib()
         sectionView.statisticInfo = self.viewModel[section]
