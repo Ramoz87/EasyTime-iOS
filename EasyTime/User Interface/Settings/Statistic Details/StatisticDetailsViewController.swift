@@ -18,6 +18,7 @@ class StatisticDetailsViewController: BaseViewController<StatisticDetailsViewMod
     @IBOutlet weak var vTop: UIView!
     @IBOutlet weak var vBottom: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var vHintNothing: UIView!
     
     @IBOutlet weak var lbTotalTime: UILabel!
     @IBOutlet weak var lbTotalExpense: UILabel!
@@ -126,6 +127,10 @@ class StatisticDetailsViewController: BaseViewController<StatisticDetailsViewMod
         
         self.lbTotalTime.text = self.viewModel.totalTime
         self.lbTotalExpense.text = self.viewModel.totalExpense
+        
+        let hasData = self.viewModel.numberOfSections() > 0
+        self.vHintNothing.isHidden = hasData
+        self.tableView.isHidden = !hasData
     }
     
     //MARK: - Actions
